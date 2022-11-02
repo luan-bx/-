@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>项目管理系统-修改密码</title>
+
+    <!-- Bootstrap CSS -->    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      function check(){
+        if(document.getElementById('newPassword').value==document.getElementById('confirmNewPassword').value){
+          return true;
+        }
+        else{
+          alert("前后两次输入密码不一致！");
+          return false;
+        }
+      }
+    </script>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+  <body>
+     <div class="row">
+                  <div class="col-lg-6" style="margin-left:25%; margin-top: 15%;">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             用户<span th:text="${userName}"></span>修改密码
+                          </header>
+                          <div class="panel-body">
+                              <form class="form-horizontal" action="updatePwd" method="post" onsubmit="return check()">
+                                <input type="hidden" name="username" th:value="${userName}">
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label">请输入您的新密码：</label>
+                                      <div class="col-sm-8">
+                                          <input type="password" class="form-control" id="newPassword" name="password">
+                                      </div>
+                                  </div>   
+                                  <div class="form-group">
+                                      <label class="col-sm-4 control-label">请确认您的新密码：</label>
+                                      <div class="col-sm-8">
+                                          <input type="password" class="form-control" id="confirmNewPassword">
+                                      </div>
+                                  </div>   
+                                  <button type="submit" class="btn btn-primary" style="margin-left:45%; margin-right:45%;width: 10%;">提交</button>                           
+                                </form>
+                          </div>
+                      </section>
+              </div>
+  </body>
+
+
+   <script th:inline="javascript">
+      /*<![CDATA[*/
+        var msg = /*[[${msg}]]*/null;
+        if(msg!=null){
+            alert(msg);
+        }
+      /*]]>*/
+  </script>
+
+
+</html>

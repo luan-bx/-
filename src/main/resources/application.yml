@@ -1,0 +1,50 @@
+server:
+   port: 8081
+   context-path: /
+   connection-timeout: 18000000
+   
+mybatis:
+   configuration:
+# 开启驼峰uName自动映射到u_name
+      map-underscore-to-camel-case: true
+
+spring:
+# mysql
+   datasource:
+      url: jdbc:mysql://114.212.128.235:3306/pms # 组内服务器部署Mysql，连接需要连接内网
+      username: root
+      password: Shark666@nju
+      driver-class-name: com.mysql.jdbc.Driver
+   mail:    
+#    邮箱账号  
+        username: 982857267@qq.com    
+#    邮箱客户端授权码  
+        password: mgmjrdpbjwcdbefi   
+#    邮箱服务器地址  
+        host: smtp.qq.com  
+        properties:    
+            mail:      
+                smtp:        
+                    ssl:          
+                        enable: true
+      
+#html
+   thymeleaf:
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    prefix: classpath:/template/            # 静态页面所在的路径，一般在resources文件加下创建
+    suffix: .html
+#file    
+   #http:
+      #multipart:
+               #maxFileSize: 100Mb
+               #maxRequestSize: 100Mb
+   servlet:
+      multipart:
+         max-file-size: 10240MB
+         max-request-size: 10240MB   
+
+#关掉pom引入的thymeleaf的日志          
+log:
+    level:
+       org.thymeleaf: info
