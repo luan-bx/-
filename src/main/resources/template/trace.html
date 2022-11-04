@@ -414,10 +414,27 @@
 					</ol>
 				</div>
 			</div>
-            <div class="row" style="height:100%">
+              <div class="row">
+              <div class="col-xs-8">
+                  <header class="panel-heading tab-bg-primary ">
+                      <ul class="nav nav-tabs">
+                          <li class="active">
+                              <a data-toggle="tab" href="#home" id="locationMapButton">监测点地图</a>
+                          </li>
+                          <li class="">
+                              <a data-toggle="tab" href="#about" id="windMapButton">风场图</a>
+                          </li>
+                          <li class="">
+                              <a data-toggle="tab" href="#profile" id="heatMapButton">热力图</a>
+                          </li>
+                      </ul>
+                  </header>
+              </div>
+             </div>
+            <div class="row" style="height:100%" id="location">
             	
             	<div class="col-lg-8" id="mapContainer" style="height:100%">
-            		<iframe th:src="@{/wind}" style="width:100%; height:80%">
+            		<iframe th:src="@{/map}" style="width:100%; height:80%">
             		</iframe>
             	</div>
                 <div class="col-lg-3">
@@ -456,6 +473,90 @@
                     </div>
                 </div>
             </div>
+              <div class="row" style="height:100%;display: none" id="windMap" >
+
+                  <div class="col-lg-8" id="windMapContainer" style="height:100%">
+                      <iframe th:src="@{/wind}" style="width:100%; height:80%">
+                      </iframe>
+                  </div>
+                  <!--<div class="col-lg-3">
+                      <div class="row">
+                          <section class="panel">
+                              <header class="panel-heading">
+                                  数据统计
+                              </header>
+                              <table class="table table-condensed">
+                                  <thead>
+                                  <tr>
+                                      <th>数据</th>
+                                      <th>监测点</th>
+                                      <th>数据量</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr>
+                                      <td>SO2浓度最高</td>
+                                      <td>夫子庙监测点</td>
+                                      <td>7.312</td>
+                                  </tr>
+                                  <tr>
+                                      <td>O2浓度最高</td>
+                                      <td>老门东监测点</td>
+                                      <td>13.79</td>
+                                  </tr>
+                                  <tr>
+                                      <td>烟气流速最高</td>
+                                      <td>雨花台监测点</td>
+                                      <td>7.3</td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </section>
+                      </div>
+                  </div>-->
+              </div>
+              <div class="row" style="height:100%;display: none" id="heatMap">
+
+                  <div class="col-lg-8" id="heatMapContainer" style="height:100%">
+                      <iframe th:src="@{/heatMap}" style="width:100%; height:80%">
+                      </iframe>
+                  </div>
+                  <!--<div class="col-lg-3">
+                      <div class="row">
+                          <section class="panel">
+                              <header class="panel-heading">
+                                  数据统计
+                              </header>
+                              <table class="table table-condensed">
+                                  <thead>
+                                  <tr>
+                                      <th>数据</th>
+                                      <th>监测点</th>
+                                      <th>数据量</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                  <tr>
+                                      <td>SO2浓度最高</td>
+                                      <td>夫子庙监测点</td>
+                                      <td>7.312</td>
+                                  </tr>
+                                  <tr>
+                                      <td>O2浓度最高</td>
+                                      <td>老门东监测点</td>
+                                      <td>13.79</td>
+                                  </tr>
+                                  <tr>
+                                      <td>烟气流速最高</td>
+                                      <td>雨花台监测点</td>
+                                      <td>7.3</td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </section>
+                      </div>
+                  </div>-->
+              </div>
           </section>
       </section>
       <!--main content end-->
@@ -471,7 +572,25 @@
     <script src="js/scripts.js"></script>
     <script src="js/videoMonitor.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=0aPMqqDHBDKh15QiIlIh42zpNy2j3vHn"></script>
- 
+    <script type="text/javascript">
+        $(function (){
+            $("#locationMapButton").click(function (){
+                $("#location").css({"display":"block"});
+                $("#windMap").css({"display":"none"});
+                $("#heatMap").css({"display":"none"});
+            });
+            $("#windMapButton").click(function (){
+                $("#location").css({"display":"none"});
+                $("#windMap").css({"display":"block"});
+                $("#heatMap").css({"display":"none"});
+            });
+            $("#heatMapButton").click(function (){
+                $("#location").css({"display":"none"});
+                $("#windMap").css({"display":"none"});
+                $("#heatMap").css({"display":"block"});
+            });
+        })
+    </script>
 
 
   </body>
