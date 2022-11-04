@@ -107,4 +107,7 @@ public class skip {
 	public String huiliuWeb() {
 		return "huiliu";
 	}
+
+	@RequestMapping("/wind")
+	public String windWeb(){ return "demo";}
 }
