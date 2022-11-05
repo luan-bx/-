@@ -108,8 +108,6 @@ public class skip {
 		return "huiliu";
 	}
 
-	@RequestMapping("/traceHeatMap")
-	public String traceHeatMapWeb() {
-		return "traceHeatMap";
-	}
+	@RequestMapping("/wind")
+	public String windWeb(){ return "demo";}
 }

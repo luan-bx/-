@@ -1,4 +1,8 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!DOCTYPE html>
+  <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -9,16 +13,17 @@
       ul,li{list-style: none;margin:0;padding:0;float:left;}
       html{height:100%}
       body{height:100%;margin:0px;padding:0px;font-family:"微软雅黑";}
-      #container{height:100%;width:100%;}
+      #container{height:650px;width:100%;}
       #r-result{width:100%;}
     </style>
   </head>
 <body>
 <div id="container"></div>
-<!--<div id="r-result">
+<div id="r-result">
   <input type="button"  οnclick="openHeatmap();" value="显示热力图"/><input type="button"  οnclick="closeHeatmap();" value="关闭热力图"/>
-</div>-->
+</div>
 </body>
+</html>
 <script type="text/javascript">
   var map = new BMap.Map("container");          // 创建地图实例
 
@@ -28,27 +33,28 @@
 
   var points =[
 
-    {"lng":"116.123421","lat":"39.612715","count":"37643"},
-    {"lng":"116.113421","lat":"39.662715","count":"22643"},
-    {"lng":"116.553421","lat":"39.332715","count":"34643"},
 
-    {"lng":"116.193421","lat":"39.652715","count":"34643"},
-    {"lng":"116.183421","lat":"39.682715","count":"24643"},
-    {"lng":"116.593421","lat":"39.332715","count":"39643"},
-    {"lng":"116.123421","lat":"39.612715","count":"37643"},
-    {"lng":"116.113421","lat":"39.662715","count":"22643"},
-    {"lng":"116.953421","lat":"39.932715","count":"74643"},
+  {"lng":"116.123421","lat":"39.612715","count":"37643"},
+  {"lng":"116.113421","lat":"39.662715","count":"22643"},
+  {"lng":"116.553421","lat":"39.332715","count":"34643"},
 
-    {"lng":"116.773421","lat":"39.162715","count":"72643"},
-    {"lng":"116.993421","lat":"39.932715","count":"14643"},
-    {"lng":"116.647674","lat":"39.900081","count":"17000"},
-    {"lng":"116.706551","lat":"39.690368","count":"38000"},
-    {"lng":"117.773421","lat":"40.162715","count":"22643"},
-    {"lng":"115.993421","lat":"40.232715","count":"44643"},
-    {"lng":"115.447674","lat":"38.900081","count":"67000"},
-    {"lng":"117.173421","lat":"40.062715","count":"42643"},
-    {"lng":"115.793421","lat":"40.002715","count":"14643"},
-    {"lng":"115.947674","lat":"38.700081","count":"47000"},
+  {"lng":"116.193421","lat":"39.652715","count":"34643"},
+  {"lng":"116.183421","lat":"39.682715","count":"24643"},
+  {"lng":"116.593421","lat":"39.332715","count":"39643"},
+  {"lng":"116.123421","lat":"39.612715","count":"37643"},
+  {"lng":"116.113421","lat":"39.662715","count":"22643"},
+  {"lng":"116.953421","lat":"39.932715","count":"74643"},
+
+  {"lng":"116.773421","lat":"39.162715","count":"72643"},
+  {"lng":"116.993421","lat":"39.932715","count":"14643"},
+  {"lng":"116.647674","lat":"39.900081","count":"17000"},
+  {"lng":"116.706551","lat":"39.690368","count":"38000"},
+  {"lng":"117.773421","lat":"40.162715","count":"22643"},
+  {"lng":"115.993421","lat":"40.232715","count":"44643"},
+  {"lng":"115.447674","lat":"38.900081","count":"67000"},
+  {"lng":"117.173421","lat":"40.062715","count":"42643"},
+  {"lng":"115.793421","lat":"40.002715","count":"14643"},
+  {"lng":"115.947674","lat":"38.700081","count":"47000"},
   ];
 
 
