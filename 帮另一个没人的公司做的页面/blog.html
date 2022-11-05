@@ -10,20 +10,29 @@
 <script type="text/javascript" src="js/arial.js"></script>
 <script type="text/javascript" src="js/cuf_run.js"></script>-->
 <!-- CuFon ends -->
+  <style type="text/css">
+    th{
+      word-break: keep-all;
+      word-wrap:break-word;
+    }
+    td{
+      min-width: 50px;
+    }
+  </style>
 </head>
 <body>
 <div class="main">
 
   <div class="header">
     <div class="header_resize">
-      <div class="logo"><h1><a href="index.html"><span>智能</span> 一体机</a></h1></div>
+      <div class="logo"><h1><a href="index.html"><i>智能监控一体机</i></a></h1></div>
       <div class="menu_nav">
         <ul>
           <li><a href="index.html">首页</a></li>
           <li><a href="support.html">视频监控</a></li>
-          <li><a href="about.html">数据设备</a></li>
-          <li><a href="blog.html">限值报警</a></li>
-          <li class="active"><a href="contact.html">设备管理</a></li>
+          <li><a href="about.html">数据监测</a></li>
+          <li class="active"><a href="blog.html">限值报警</a></li>
+          <li><a href="contact.html">设备管理</a></li>
         </ul>
       </div>
       <div class="clr"></div>
@@ -38,53 +47,54 @@
         <div class="article">
           <table cellpadding="10" cellspacing="0" style="font-size: 20px;text-align: center" border="1">
             <tr>
-              <th>设备名称</th>
-              <th>网络状态</th>
-              <th>内存利用率</th>
-              <th>存储利用率</th>
-              <th>详情</th>
+              <th>序号</th>
+              <th>报警时间</th>
+              <th>报警数据</th>
+              <th>数值</th>
+              <th>限值</th>
+              <th>报警监测点</th>
+              <th></th>
+              <th></th>
             </tr>
             <tr>
-              <td>设备a</td>
-              <td>良好</td>
-              <td>62%</td>
-              <td>41%</td>
-              <td><a href="#">详情</a> </td>
+              <td>1</td>
+              <td>2022/10/15</td>
+              <td>SO2</td>
+              <td>11.56</td>
+              <td>10.00</td>
+              <td>监测点a</td>
+              <td><a href="#">查看</a> </td>
+              <td><a href="#">删除</a> </td>
             </tr>
             <tr>
-              <td>设备b</td>
-              <td>良好</td>
-              <td>62%</td>
-              <td>41%</td>
-              <td><a href="#">详情</a> </td>
+              <td>2</td>
+              <td>2022/10/15</td>
+              <td>NO</td>
+              <td>13.84</td>
+              <td>7.81</td>
+              <td>监测点c</td>
+              <td><a href="#">查看</a> </td>
+              <td><a href="#">删除</a> </td>
             </tr>
             <tr>
-              <td>设备c</td>
-              <td>良好</td>
-              <td>62%</td>
-              <td>41%</td>
-              <td><a href="#">详情</a> </td>
+              <td>3</td>
+              <td>2022/10/15</td>
+              <td>烟气浓度</td>
+              <td>17.92</td>
+              <td>14.36</td>
+              <td>监测点d</td>
+              <td><a href="#">查看</a> </td>
+              <td><a href="#">删除</a> </td>
             </tr>
             <tr>
-              <td>设备d</td>
-              <td>良好</td>
-              <td>62%</td>
-              <td>41%</td>
-              <td><a href="#">详情</a> </td>
-            </tr>
-            <tr>
-              <td>设备e</td>
-              <td>良好</td>
-              <td>62%</td>
-              <td>41%</td>
-              <td><a href="#">详情</a> </td>
-            </tr>
-            <tr>
-              <td>设备f</td>
-              <td>良好</td>
-              <td>62%</td>
-              <td>41%</td>
-              <td><a href="#">详情</a> </td>
+              <td>4</td>
+              <td>2022/10/15</td>
+              <td>总氮</td>
+              <td>17.56</td>
+              <td>6.48</td>
+              <td>监测点b</td>
+              <td><a href="#">查看</a> </td>
+              <td><a href="#">删除</a> </td>
             </tr>
           </table>
         </div>
@@ -99,14 +109,14 @@
           </ul>
         </div>
         <div class="gadget">
-          <h2 class="star"><span>企业拥有设备</span></h2><div class="clr"></div>
+          <h2 class="star"><span>监测点</span></h2><div class="clr"></div>
           <ul class="ex_menu">
-            <li><a href="#" title="Website Templates">设备a</a><br />地点：*****，用途：*****</li>
-            <li><a href="#">设备b</a><br />地点：*****，用途：*****</li>
-            <li><a href="#" title="Affordable Hosting">设备c</a><br />地点：*****，用途：*****</li>
-            <li><a href="#" title="Stock Icons">设备d</a><br />地点：*****，用途：*****</li>
-            <li><a href="#" title="Website Builder">设备e</a><br />地点：*****，用途：*****</li>
-            <li><a href="#" title="CSS Templates">设备f</a><br />地点：*****，用途：*****</li>
+            <li><a href="#" title="Website Templates">监测点a</a><br />监测数据：烟气浓度</li>
+            <li><a href="#">监测点b</a><br />监测数据：水温</li>
+            <li><a href="#" title="Affordable Hosting">监测点c</a><br />监测数据：NO</li>
+            <li><a href="#" title="Stock Icons">监测点d</a><br />监测数据：SO2</li>
+            <li><a href="#" title="Website Builder">监测点e</a><br />监测数据：水体总磷</li>
+            <li><a href="#" title="CSS Templates">监测点f</a><br />监测数据：水体总氮</li>
           </ul>
         </div>
       </div>
@@ -143,9 +153,9 @@
       <ul class="fmenu">
         <li><a href="index.html">Home</a></li>
         <li><a href="support.html">Support</a></li>
-        <li><a href="blog.html">Blog</a></li>
+        <li class="active"><a href="blog.html">Blog</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li class="active"><a href="contact.html">Contacts</a></li>
+        <li><a href="contact.html">Contacts</a></li>
       </ul>
       <div class="clr"></div>
     </div>

@@ -107,4 +107,9 @@ public class skip {
 	public String huiliuWeb() {
 		return "huiliu";
 	}
+
+	@RequestMapping("/traceHeatMap")
+	public String traceHeatMapWeb() {
+		return "traceHeatMap";
+	}
 }
