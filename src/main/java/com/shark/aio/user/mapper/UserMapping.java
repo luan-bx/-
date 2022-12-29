@@ -1,6 +1,6 @@
-package com.lbx.aio.user.mapper;
+package com.shark.aio.user.mapper;
 
-import com.lbx.aio.user.entity.UserEntity;
+import com.shark.aio.user.entity.UserEntity;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -1,7 +1,4 @@
-package com.lbx.aio.util;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.shark.aio.util;
 
 public interface Constants {
 

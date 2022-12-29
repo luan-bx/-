@@ -1,4 +1,4 @@
-package com.lbx.aio.alarm.service;
+package com.shark.aio.alarm.service;
 
 public class AlarmService {
 

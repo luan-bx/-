@@ -1,4 +1,4 @@
-package com.lbx.aio.util;
+package com.shark.aio.util;
 
 import java.security.MessageDigest;
 

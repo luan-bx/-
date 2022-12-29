@@ -1,4 +1,4 @@
-package com.lbx.aio;
+package com.shark.aio;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

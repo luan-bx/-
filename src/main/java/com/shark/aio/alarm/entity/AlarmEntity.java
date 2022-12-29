@@ -1,4 +1,4 @@
-package com.lbx.aio.alarm.entity;
+package com.shark.aio.alarm.entity;
 
 public class AlarmEntity {
 

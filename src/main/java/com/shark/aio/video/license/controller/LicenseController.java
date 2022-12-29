@@ -1,4 +1,4 @@
-package com.lbx.aio.video.license.controller;
+package com.shark.aio.video.license.controller;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

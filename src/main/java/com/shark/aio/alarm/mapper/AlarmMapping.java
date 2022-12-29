@@ -1,4 +1,4 @@
-package com.lbx.aio.alarm.mapper;
+package com.shark.aio.alarm.mapper;
 
 public interface AlarmMapping {
 

@@ -1,4 +1,4 @@
-package com.lbx.aio.information.controller;
+package com.shark.aio.information.controller;
 
 public class IformationController {
 

@@ -1,4 +1,4 @@
-package com.lbx.aio.base.controller;
+package com.shark.aio.base.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

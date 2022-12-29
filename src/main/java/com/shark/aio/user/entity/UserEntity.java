@@ -1,4 +1,4 @@
-package com.lbx.aio.user.entity;
+package com.shark.aio.user.entity;
 
 import lombok.Getter;
 import lombok.Setter;

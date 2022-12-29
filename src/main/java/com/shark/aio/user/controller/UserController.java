@@ -1,4 +1,4 @@
-package com.lbx.aio.user.controller;
+package com.shark.aio.user.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.lbx.aio.util.ConfPhone;
-import com.lbx.aio.util.Constants;
-import com.lbx.aio.util.SendSms;
-import com.lbx.aio.util.VerCodeGenerateUtil;
+import com.shark.aio.util.ConfPhone;
+import com.shark.aio.util.Constants;
+import com.shark.aio.util.SendSms;
+import com.shark.aio.util.VerCodeGenerateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lbx.aio.user.entity.UserEntity;
-import com.lbx.aio.user.mapper.UserMapping;
-import com.lbx.aio.user.service.UserService;
+import com.shark.aio.user.entity.UserEntity;
+import com.shark.aio.user.mapper.UserMapping;
+import com.shark.aio.user.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 

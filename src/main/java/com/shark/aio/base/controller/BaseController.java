@@ -1,4 +1,4 @@
-package com.lbx.aio.base.controller;
+package com.shark.aio.base.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

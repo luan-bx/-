@@ -1,10 +1,10 @@
-package com.lbx.aio.user.service;
+package com.shark.aio.user.service;
 
-import com.lbx.aio.user.entity.UserEntity;
-import com.lbx.aio.user.mapper.UserMapping;
-import com.lbx.aio.util.Constants;
-import com.lbx.aio.util.MD5Util;
-import com.lbx.aio.util.VerCodeGenerateUtil;
+import com.shark.aio.user.entity.UserEntity;
+import com.shark.aio.user.mapper.UserMapping;
+import com.shark.aio.util.Constants;
+import com.shark.aio.util.MD5Util;
+import com.shark.aio.util.VerCodeGenerateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
