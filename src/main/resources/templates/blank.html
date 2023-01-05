@@ -48,7 +48,7 @@
             </div>
             <div class="profile_info">
               <span>欢迎,</span>
-              <h2>大帅哥</h2>
+              <h2>天颐</h2>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -60,32 +60,26 @@
             <div class="menu_section">
               <h3>导航栏</h3>
               <ul class="nav side-menu">
-                <li><a th:href="@{/index}"><i class="fa fa-home"></i> 首页  </a></li>
-                <li><a th:href="@{/information}"><i class="fa fa-edit"></i> 企业信息 </a></li>
-                <li><a><i class="fa fa-desktop"></i> 污染源监控 <span class="fa fa-chevron-down"></span></a>
+                <li><a th:href="@{/index}"><i class="fa fa-desktop"></i> 可视化面板  </a></li>
+                <li><a><i class="fa fa-bar-chart-o"></i> 数据监测 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a th:href="@{/wastedWater}">废水监控</a></li>
-                    <li><a th:href="@{/wastedGas}">废气监控</a></li>
+                    <li><a th:href="@{/pollutionMonitor}"> 污染源监测 </a></li>
+                    <li><a th:href="@{/conditionMonitor}"> 工况监测 </a></li>
+                    <li><a th:href="@{/videoMonitor}"> 视频监测 </a></li>
                   </ul>
                 </li>
-                <li><a th:href="@{/conditionMonitor}"><i class="fa fa-table"></i> 工况监控 </a></li>
-                <li><a><i class="fa fa-bar-chart-o"></i> 视频监控 <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-bolt"></i> 智慧预警 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a th:href="@{/face}"> 人员识别 </a></li>
-                    <li><a th:href="@{/carId}"> 车牌识别 </a></li>
-                    <li><a th:href="@{/huiliu}">历史视频</a></li>
+                    <li><a th:href="@{/alarm}"> 告警通知 </a></li>
+                    <li><a th:href="@{/alarmSet}"> 预警设置 </a></li>
                   </ul>
                 </li>
-                <li><a th:href="@{/alarm}"><i class="fa fa-bolt"></i> 报警管理 </a></li>
-                <li><a th:href="@{/upload}"><i class="fa fa-clone"></i> 数据上传 </a></li>
-                <li><a th:href="@{/trace}"><i class="fa fa-camera"></i> 溯源分析 </a></li>
-                <li><a th:href="@{/file}"><i class="fa fa-file"></i> 文件管理 </a></li>
-                <li><a><i class="fa fa-bar-chart-o"></i> 系统管理 <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-bar-chart-o"></i> 运营管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                    <li><a th:href="@{/user}">用户</a></li>
-                    <li><a th:href="@{/authority}">权限</a></li>
-                    <li><a th:href="@{/log}">日志</a></li>
-                    <li><a th:href="@{/disk}">磁盘容量</a></li>
+                    <li><a th:href="@{/announcement}">园区公告</a></li>
+                    <li><a th:href="@{/dataReport}">数据上报</a></li>
+                    <li><a th:href="@{/documentManagement}">文件管理</a></li>
+                    <li><a th:href="@{/diskCapacity}">磁盘容量</a></li>
                     <li><a th:href="@{/device}">设备详情</a></li>
                   </ul>
                 </li>
