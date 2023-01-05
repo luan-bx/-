@@ -68,6 +68,9 @@ public interface Constants {
 	String LOGIN = "login";
 	String INDEX = "index";
 	String SIGNUP = "signup";
+	String MAP = "map";
+	String TRACE = "trace";
+	String ALARMSETTINGS = "alarmSettings";
 	String NEW = "new";
 	String REVIEW = "review";
 	String REVIEWCHECK ="review-check";
