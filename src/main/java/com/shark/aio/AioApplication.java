@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.lbx.aio.users.mapper", "com.lbx.aio.project.mapper", "com.lbx.aio.base.mapper"})
+@MapperScan(basePackages = {"com.shark.aio.users.mapper", "com.shark.aio.project.mapper", "com.shark.aio.base.mapper"})
 public class AioApplication {
 
     public static void main(String[] args) {
