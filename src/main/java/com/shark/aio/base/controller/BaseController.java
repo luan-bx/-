@@ -36,7 +36,7 @@ public class BaseController {
 ////		UserEntity userEntity = userMapping.queryUserByUserName(userName);
 ////		return authController.auth(userEntity, userName, req, response);
 //		return "wastedWater";
-		return "index";
+		return "device";
 	}
 
 }

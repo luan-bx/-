@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>智能一体机</title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- iCheck -->
+    <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+    
+    	<!-- 侧边栏 -->
+        <div th:replace="~{blank::menu}"></div>
+
+        <!-- 右上角图标 -->
+        <div th:replace="~{blank::top_nav}"></div>
+        
+        <!-- 主页面 -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3><small>设备详情</small></h3>
+              </div>
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>已接入的设备</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <!-- start project list -->
+                    <table class="table table-striped projects">
+                      <thead>
+                        <tr>
+                          <th style="width: 10%">设备编号</th>
+                          <th style="width: 10%">所属企业</th>
+                          <th style="width: 10%">网络状态</th>
+                          <th>内存利用率</th>
+                          <th>存储利用率</th>
+                          <th>编辑</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>设备1</td>
+                          <td>企业1</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">良好</button>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
+                            </div>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="32"></div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 提醒 </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          </td>
+                        </tr>
+                        
+                         <tr>
+                          <td>设备2</td>
+                          <td>企业1</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">良好</button>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="63"></div>
+                            </div>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="46"></div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 提醒 </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>设备3</td>
+                          <td>企业2</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">良好</button>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="39"></div>
+                            </div>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="24"></div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 提醒 </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>设备4</td>
+                          <td>企业3</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">良好</button>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="55"></div>
+                            </div>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="45"></div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 提醒 </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          </td>
+                        </tr>
+                         <tr>
+                          <td>设备1</td>
+                          <td>企业1</td>
+                          <td>
+                            <button type="button" class="btn btn-success btn-xs">良好</button>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
+                            </div>
+                          </td>
+                          <td class="project_progress">
+                            <div class="progress progress_sm">
+                              <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="32"></div>
+                            </div>
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 提醒 </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除 </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- end project list -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+    <!-- Bootstrap -->
+   <script th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <!-- FastClick -->
+    <script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+    <!-- NProgress -->
+    <script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+    <!-- bootstrap-progressbar -->
+    <script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script th:src="@{/build/js/custom.min.js}"></script>
+  </body>
+</html>

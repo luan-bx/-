@@ -112,4 +112,14 @@ public class Skip {
 	public String traceHeatMapWeb() {
 		return "traceHeatMap";
 	}
+	
+	@RequestMapping("/pollutionMonitor")
+	public String pollutionMonitorWeb() {
+		return "pollutionMonitor";
+	}
+	
+	@RequestMapping("/alarmSettings")
+	public String alarmSettingsWeb() {
+		return "alarmSettings";
+	}
 }
