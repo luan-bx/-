@@ -43,60 +43,95 @@
 
 
       <!-- 主页面 -->
-      <div  class="right_col" role="main">
-        <div class="row">
+      <div class="right_col" role="main">
+        <div class="" th:with="baseURL='/alarm/settings'">
+          <div class="page-title">
+            <div class="title_left">
+              <h3><small>预警设置</small></h3>
 
-        <div class="col-lg-12 ">
-          <div class="x_panel">
-            <div class="x_title">
-              <h2>园区地图</h2>
-              <ul class="nav navbar-right panel_toolbox" style="min-width: 30px">
-                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-              </ul>
-              <div class="clearfix"></div>
             </div>
-            <div class="x_content">
-              <div class="dashboard-widget-content">
-                <div class="col-md-4 hidden-small">
-                  <h2 class="line_30">数据统计</h2>
 
-                  <table class="countries_list">
-                    <thead style="text-align: center">
-                    <tr>
-                      <th>数据</th>
-                      <th>监测点</th>
-                      <th>数据量</th>
-                    </tr>
-                    </thead>
-                    <tbody style="text-align: center">
-                    <tr>
-                      <td>SO2浓度最高</td>
-                      <td>夫子庙监测点</td>
-                      <td>7.312</td>
-                    </tr>
-                    <tr>
-                      <td>O2浓度最高</td>
-                      <td>老门东监测点</td>
-                      <td>13.79</td>
-                    </tr>
-                    <tr>
-                      <td>烟气流速最高</td>
-                      <td>雨花台监测点</td>
-                      <td>7.3</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-md-8 hidden-small">
-                  <iframe th:src="@{/map}" style="height: 100%; width: 100%; min-height: 600px;"></iframe>
-                </div>
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5   form-group pull-right top_search">
               </div>
             </div>
           </div>
-        </div>
 
-      </div>
+          <div class="clearfix"></div>
+
+          <div class="">
+
+            <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2><i class="fa fa-cog"></i> 编辑预警设置</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                  <form th:action="@{${baseURL}+'/edit'}" th:object="${alarmEntity}" method="post" id="editSettingForm" data-parsley-validate class="form-horizontal form-label-left">
+                    <input type="hidden" name="id" th:value="*{id}">
+                    <div class="item form-group">
+                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="editMonitorClass">监测类型<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 ">
+                        <select class="form-control " id="editMonitorClass" name="monitorClass">
+                          <option th:each="mc:${allMonitorClass}" th:value="${mc}" th:text="${mc}" th:selected="*{monitorClass}==${mc}">污染源监测</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="item form-group">
+                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="editMonitorValue">监测值<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 ">
+                        <select class="form-control " id="editMonitorValue" name="monitorValue">
+                          <option th:each="pn:${allPollutionName}" th:value="${pn}" th:text="${pn}" th:selected="*{monitorValue}==${pn}">SO2</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="item form-group">
+                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="editLowerLimit">下限阈值
+                      </label>
+                      <div class="col-md-6 col-sm-6 ">
+                        <input th:value="*{lowerLimit}"  min="0" step="0.0001" type="number" id="editLowerLimit" class="form-control " name="lowerLimit">
+                      </div>
+                    </div>
+                    <div class="item form-group">
+                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="editUpperLimit">上限阈值
+                      </label>
+                      <div class="col-md-6 col-sm-6 ">
+                        <input th:value="*{upperLimit}"  min="0" step="0.0001" type="number" id="editUpperLimit" name="upperLimit" class="form-control">
+                      </div>
+                    </div>
+                    <div class="item form-group">
+                      <label for="editMessage" class="col-form-label col-md-3 col-sm-3 label-align">报警信息<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 ">
+                        <input th:value="*{message}" id="editMessage" class="form-control" type="text" name="message" required="required">
+                      </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="item form-group">
+                      <div class="col-md-6 col-sm-6 offset-md-4">
+                        <button class="btn btn-primary" type="reset" style="min-width: 75px;">复位</button>
+                        <button type="submit" class="btn btn-success" style="min-width: 75px;margin-left: 25px;">提交</button>
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
       </div>
       <!-- 主页面结束 -->
 

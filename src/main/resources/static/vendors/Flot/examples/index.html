@@ -76,5 +76,12 @@
 		Copyright &copy; 2007 - 2013 IOLA and Ole Laursen
 	</div>
 
-</body>
+<script th:inline="javascript">
+      /*<![CDATA[*/
+        var msg = /*[[${msg}]]*/null;
+        if(msg!=null){
+            alert(msg);
+        }
+      /*]]>*/
+  </script>
 </html>

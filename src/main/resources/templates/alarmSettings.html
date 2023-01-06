@@ -75,7 +75,7 @@
               <div class="x_panel">
                 <div class="x_title">
 <!--                  <h2>预警设置</h2>-->
-                  <a href="" class="btn btn-primary btn-sm"><i class="fa fa-arrows"></i> 新增预警</a>
+                  <a th:href="@{${baseURL}+'/add'}" class="btn btn-primary btn-sm"><i class="fa fa-arrows"></i> 新增预警</a>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -119,13 +119,23 @@
                     </thead>
                     <tbody style="text-align: center">
                     <tr th:each="obj,objStat:*{list}">
-                      <th scope="row" th:text="${objStat.index+1}">1</th>
+                      <th scope="row" th:text="${objStat.index}+*{startRow}">1</th>
                       <td th:text="${obj.monitorClass}"></td>
                       <td th:text="${obj.monitorValue}"></td>
                       <td th:text="${obj.lowerLimit}"></td>
                       <td th:text="${obj.upperLimit}"></td>
                       <td th:text="${obj.message}"></td>
-                      <td><a href="" style="color: #33beff">编辑</a> <a href="" style="color: #33beff">删除</a></td>
+                      <td>
+                          <a th:href="@{${baseURL}+'/edit/'(
+                            monitorClass=${obj.monitorClass},
+                            monitorValue=${obj.monitorValue},
+                            lowerLimit=${obj.lowerLimit},
+                            upperLimit=${obj.upperLimit},
+                            message=${obj.message},
+                            id=${obj.id}
+                          )}" style="color: #33beff">编辑</a>
+                          <a th:href="@{${baseURL}+'/delete/'+${obj.id}}" onclick="if(confirm('确定删除该预警设置吗？该操作很危险，我们建议您进行编辑而不是删除。')===false) return false;" style="color: #33beff">删除</a>
+                      </td>
                     </tr>
                     </tbody>
                   </table>
@@ -230,5 +240,15 @@
       });
     });
   </script>
-  </body>
+  <script th:inline="javascript">
+      /*<![CDATA[*/
+        $(function(){
+            var msg = /*[[${msg}]]*/null;
+            if(msg!=null){
+                alert(msg);
+            }
+        })
+      /*]]>*/
+  </script>
+</body>
 </html>

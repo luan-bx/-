@@ -100,5 +100,13 @@
     <!-- Custom Theme Scripts -->
     <script th:src="@{/build/js/custom.min.js}"></script>
 	
-  </body>
+  <script th:inline="javascript">
+      /*<![CDATA[*/
+        var msg = /*[[${msg}]]*/null;
+        if(msg!=null){
+            alert(msg);
+        }
+      /*]]>*/
+  </script>
+</body>
 </html>

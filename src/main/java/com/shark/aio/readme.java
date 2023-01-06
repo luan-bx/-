@@ -27,7 +27,7 @@ public class readme {
 	 * <li><a th:href="@{/videoMonitor}"> 视频监测 </a></li>
 	 * 智慧预警
 	 * <li><a th:href="@{/alarm}"> 告警通知 </a></li>
-	 * <li><a th:href="@{/alarmSet}"> 预警设置 </a></li>
+	 * <li><a th:href="@{/alarm/settings}"> 预警设置 </a></li>
 	 * 运营管理
 	 * <li><a th:href="@{/announcement}">园区公告</a></li>
 	 * <li><a th:href="@{/dataReport}">数据上报</a></li>

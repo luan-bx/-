@@ -43,6 +43,9 @@ public interface Constants {
 	/*
 	 * 返回前端
 	 */
+	String MSG = "msg";
+	String ALLMONITORCLASS = "allMonitorClass";
+	String ALLPOLLUTIONNAME = "allPollutionName";
 	String INFORMATION ="information";
 	String INFORMATIONID ="informationId";
 	String DEPARTMENT ="department";
@@ -71,6 +74,8 @@ public interface Constants {
 	String MAP = "map";
 	String TRACE = "trace";
 	String ALARMSETTINGS = "alarmSettings";
+	String ADDALARMSETTING = "addAlarmSetting";
+	String EDITALARMSETTING = "editAlarmSetting";
 	String NEW = "new";
 	String REVIEW = "review";
 	String REVIEWCHECK ="review-check";
