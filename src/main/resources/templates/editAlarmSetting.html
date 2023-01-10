@@ -75,7 +75,7 @@
                 </div>
                 <div class="x_content">
 
-                  <form th:action="@{${baseURL}+'/edit'}" th:object="${alarmEntity}" method="post" id="editSettingForm" data-parsley-validate class="form-horizontal form-label-left">
+                  <form th:action="@{${baseURL}+'/edit'}" th:object="${alarmSettingsEntity}" method="post" id="editSettingForm" data-parsley-validate class="form-horizontal form-label-left">
                     <input type="hidden" name="id" th:value="*{id}">
                     <div class="item form-group">
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="editMonitorClass">监测类型<span class="required">*</span>

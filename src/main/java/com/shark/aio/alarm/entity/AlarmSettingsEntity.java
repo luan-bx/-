@@ -9,7 +9,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AlarmEntity {
+public class AlarmSettingsEntity {
     /*
     create table AIO.alarm_settings
     (

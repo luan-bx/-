@@ -1,22 +1,23 @@
 package com.shark.aio.alarm.service;
 
 import com.github.pagehelper.PageInfo;
-import com.shark.aio.alarm.entity.AlarmEntity;
+import com.shark.aio.alarm.entity.AlarmRecordEntity;
+import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.mapper.AlarmMapping;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ObjectUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.jdbc.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class AlarmService {
 
     @Autowired
@@ -33,15 +34,15 @@ public class AlarmService {
      * @param feature 模糊查询：查询关键字
      * @return 查询后并分页的结果
      */
-    public PageInfo<AlarmEntity> getAlarmSettingsByPage(Integer pageNum, Integer pageSize, String feature){
-        List<AlarmEntity> alarmSettings;
+    public PageInfo<AlarmSettingsEntity> getAlarmSettingsByPage(Integer pageNum, Integer pageSize, String feature){
+        List<AlarmSettingsEntity> alarmSettings;
         if(feature!=null&&!feature.equals("")){
             feature = "%"+feature+"%";
             alarmSettings = alarmMapping.getAlarmSettingsByFeatures(feature);
         }else{
             alarmSettings = alarmMapping.getAllAlarmSettings();
         }
-        PageInfo<AlarmEntity> pageInfo = new PageInfo<>(alarmSettings, 5);
+        PageInfo<AlarmSettingsEntity> pageInfo = new PageInfo<>(alarmSettings, 5);
         return pageInfo;
     }
 
@@ -49,23 +50,23 @@ public class AlarmService {
      * 新增预警设置或监测类型或污染物类型
      * 预警设置中，监测值不能重复
      * 监测类型和污染物类型不能和已有的重复
-     * @param alarmEntity 新预警设置
+     * @param alarmSettingsEntity 新预警设置
      * @param newMonitorClass 新监测类型
      * @param existMonitorClass 已有的监测类型
      * @param newPollution 新污染物
      * @param existPollutionName 已有的污染物
      * @return 返回给页面的消息
      */
-    public String addAlarmSetting(AlarmEntity alarmEntity,
+    public String addAlarmSetting(AlarmSettingsEntity alarmSettingsEntity,
                                   String newMonitorClass, String existMonitorClass,
                                   String newPollution, String existPollutionName){
         //新增预警设置，判断上下限阈值的合理性和监测值是否重复
-        if (!ObjectUtil.isEmpty(alarmEntity)){
-            if (alarmEntity.getUpperLimit()<=alarmEntity.getLowerLimit()) return "上限阈值须大于下限阈值！";
+        if (!ObjectUtil.isEmpty(alarmSettingsEntity)){
+            if (alarmSettingsEntity.getUpperLimit()<= alarmSettingsEntity.getLowerLimit()) return "上限阈值须大于下限阈值！";
            try {
-               alarmMapping.insertAlarmEntity(alarmEntity);
+               alarmMapping.insertAlarmEntity(alarmSettingsEntity);
            }catch (DataIntegrityViolationException e){
-                e.printStackTrace();
+                log.error("AlarmService/addAlarmSetting:新增预警设置失败！",e);
                 return "监测值不能和已有的重复！";
            }
            return "新增预警设置成功！";
@@ -83,7 +84,7 @@ public class AlarmService {
                 alarmMapping.insertMonitorClass(newMonitorClass);
                 return "新增监测类型成功！";
             }catch (Exception e){
-                e.printStackTrace();
+                log.error("AlarmService/addAlarmSetting:新增监测类型失败！",e);
                 return "新增监测类型失败！";
             }
         }
@@ -99,7 +100,7 @@ public class AlarmService {
                 alarmMapping.insertPollution(newPollution);
                 return "新增污染物成功！";
             }catch (Exception e){
-                e.printStackTrace();
+                log.error("AlarmService/addAlarmSetting:新增污染物失败！",e);
                 return "新增污染物失败！";
             }
         }
@@ -116,25 +117,25 @@ public class AlarmService {
             alarmMapping.deleteAlarmSettingById(id);
             return "删除成功！";
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("AlarmService/deleteAlarmSettingById:删除失败!",e);
             return "删除失败";
         }
     }
 
     /**
      * 编辑预警设置
-     * @param alarmEntity 修改后的预警设置
+     * @param alarmSettingsEntity 修改后的预警设置
      * @return 返回页面的消息
      */
-    public String editAlarmSetting(AlarmEntity alarmEntity){
-        if (alarmEntity.getUpperLimit()<=alarmEntity.getLowerLimit()) return "上限阈值须大于下限阈值！";
-        if (alarmMapping.getMonitorValue(alarmEntity.getMonitorValue())!=null) return "监测值和已有监测值重复！";
+    public String editAlarmSetting(AlarmSettingsEntity alarmSettingsEntity){
+        if (alarmSettingsEntity.getUpperLimit()<= alarmSettingsEntity.getLowerLimit()) return "上限阈值须大于下限阈值！";
+        if (alarmMapping.getMonitorValue(alarmSettingsEntity.getMonitorValue())!=null) return "监测值和已有监测值重复！";
         try {
-            alarmMapping.updateAlarmSetting(alarmEntity);
+            alarmMapping.updateAlarmSetting(alarmSettingsEntity);
             return "修改成功！";
 
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("AlarmService/editAlarmSetting:修改失败！",e);
             return "修改失败！";
         }
     }
@@ -148,7 +149,7 @@ public class AlarmService {
             List<String> allMonitorClass = alarmMapping.getAllMonitorClass();
             return allMonitorClass;
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("AlarmService/getAllMonitorClass:获取全部监测类型失败！",e);
             return null;
         }
     }
@@ -162,7 +163,7 @@ public class AlarmService {
             List<String> allPollutionName = alarmMapping.getAllPollutionName();
             return allPollutionName;
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("AlarmService/getAllMonitorClass:获取全部污染物名称失败！",e);
             return null;
         }
     }
@@ -184,4 +185,60 @@ public class AlarmService {
         return true;
     }
 
+    /**
+     * 从数据库查询报警记录
+     * @param pageNum 当前页码
+     * @param pageSize 每页大小
+     * @param features 查询条件，为null则不进行条件查询，直接查询所有记录
+     * @return 分页后的查询记录
+     */
+    public PageInfo<AlarmRecordEntity> getAlarmRecordsByPage(Integer pageNum, Integer pageSize, HashMap<String,String> features){
+        List<AlarmRecordEntity> allAlarmRecords = null;
+        try{
+            if (features==null || features.isEmpty()){
+                allAlarmRecords = alarmMapping.getAllAlarmRecords();
+            }
+            else{
+                System.out.println("map:"+features);
+                allAlarmRecords = alarmMapping.getAlarmRecordsByFeature(features);
+            }
+//            for(AlarmRecordEntity alarmRecordEntity : allAlarmRecords){
+//                String timestamp = String.valueOf(alarmRecordEntity.getAlarmTime());
+//
+//            }
+        }catch (Exception e){
+            log.error("AlarmService/getAllAlarmRecords:获取报警记录失败！",e);
+        }
+        return new PageInfo<>(allAlarmRecords, 5);
+    }
+
+    /**
+     * 动态SQL，用于报警记录的条件查询
+     * @param features 查询条件
+     * @return SQL语句
+     */
+    public String selectRecordsByDynamicSql(HashMap<String,String> features){
+        String sql = new SQL(){
+            {
+                SELECT("*");
+                FROM("alarm_records");
+                if (!ObjectUtil.isEmptyString(features.get("monitor"))){
+                    WHERE("monitor = '"+features.get("monitor")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("monitorClass"))){
+                    WHERE("monitor_class = '"+features.get("monitorClass")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("monitorValue"))){
+                    WHERE("monitor_value = '"+features.get("monitorValue")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("startTime"))){
+                    WHERE("alarm_time >= '"+features.get("startTime")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("endTime"))){
+                    WHERE("alarm_time <= '"+features.get("endTime")+"'");
+                }
+            }
+        }.toString();
+        return sql;
+    }
 }

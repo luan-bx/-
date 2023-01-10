@@ -1,8 +1,11 @@
 package com.shark.aio.alarm.mapper;
 
-import com.shark.aio.alarm.entity.AlarmEntity;
+import com.shark.aio.alarm.entity.AlarmRecordEntity;
+import com.shark.aio.alarm.entity.AlarmSettingsEntity;
+import com.shark.aio.alarm.service.AlarmService;
 import org.apache.ibatis.annotations.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -13,7 +16,7 @@ public interface AlarmMapping {
      * @return 所有预警设置List
      */
     @Select("select * from alarm_settings")
-    public List<AlarmEntity> getAllAlarmSettings();
+    public List<AlarmSettingsEntity> getAllAlarmSettings();
 
     /**
      * 根据查询关键字feature，查询符合要求的预警设置
@@ -27,7 +30,7 @@ public interface AlarmMapping {
             "or lower_limit like #{feature} " +
             "or upper_limit like #{feature} " +
             "or message like #{feature}")
-    public List<AlarmEntity> getAlarmSettingsByFeatures(String feature);
+    public List<AlarmSettingsEntity> getAlarmSettingsByFeatures(String feature);
 
     /**
      * 查询预警设置表alarm_settings
@@ -41,11 +44,11 @@ public interface AlarmMapping {
 
     /**
      * 向预警设置表alarm_settings插入新的记录
-     * @param alarmEntity 要插入的记录
+     * @param alarmSettingsEntity 要插入的记录
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("insert into alarm_settings values (null,#{monitorClass},#{monitorValue},#{lowerLimit},#{upperLimit},#{message})")
-    public int insertAlarmEntity(AlarmEntity alarmEntity);
+    public int insertAlarmEntity(AlarmSettingsEntity alarmSettingsEntity);
 
     /**
      * 根据id删除alarm_settings表中的一条记录
@@ -57,7 +60,7 @@ public interface AlarmMapping {
 
     /**
      * 根据id编辑alarm_settings表中的记录
-     * @param alarmEntity 编辑后的字段
+     * @param alarmSettingsEntity 编辑后的字段
      * @return 成功编辑的记录数，即编辑成功为1，编辑失败为0
      */
     @Update("UPDATE `alarm_settings` " +
@@ -68,7 +71,7 @@ public interface AlarmMapping {
             "`upper_limit` = #{upperLimit}, " +
             "`message` = #{message} " +
             "WHERE `id`=#{id}")
-    public int updateAlarmSetting(AlarmEntity alarmEntity);
+    public int updateAlarmSetting(AlarmSettingsEntity alarmSettingsEntity);
 
     /**
      * 从监测类型表monitor_class表中查询所有监测类型
@@ -99,4 +102,20 @@ public interface AlarmMapping {
      */
     @Insert("INSERT INTO `pollution` SET `name`=#{name}")
     public int insertPollution(String name);
+
+    /**
+     * 查询所有报警记录
+     * @return 报警记录List
+     */
+    @Select("SELECT * FROM `alarm_records`")
+    public List<AlarmRecordEntity> getAllAlarmRecords();
+
+
+    /**
+     * 根据条件查询报警记录
+     * @param features 查询条件
+     * @return 报警记录List
+     */
+    @SelectProvider(type = AlarmService.class, method = "selectRecordsByDynamicSql")
+    public List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
 }
