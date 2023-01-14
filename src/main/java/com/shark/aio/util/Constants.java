@@ -76,6 +76,7 @@ public interface Constants {
 	String ALARMSETTINGS = "alarmSettings";
 	String ADDALARMSETTING = "addAlarmSetting";
 	String EDITALARMSETTING = "editAlarmSetting";
+	String ALARMREOCRDS = "alarmRecords";
 	String NEW = "new";
 	String REVIEW = "review";
 	String REVIEWCHECK ="review-check";
