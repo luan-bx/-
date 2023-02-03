@@ -1,0 +1,37 @@
+package com.shark.aio.util;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateUtil {
+
+    /**
+     * 输入框格式
+     */
+    private static SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+    /**
+     * 时间戳格式
+     */
+    private static SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    /**
+     * 页面展示的格式
+     */
+    private static SimpleDateFormat pageFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+
+    /**
+     * 输入框格式转化为时间戳格式
+     * @param date 输入框格式日期和时间
+     * @return 时间戳格式日期和时间
+     */
+    public static String toTimestamp(String date) throws ParseException {
+        Date inputDate = inputDateFormat.parse(date);
+        return timestampFormat.format(inputDate);
+    }
+
+
+    public static String timestampToPageFormat(String timestamp) throws ParseException {
+        Date timestampDate = timestampFormat.parse(timestamp);
+        return pageFormat.format(timestampDate);
+    }
+}
