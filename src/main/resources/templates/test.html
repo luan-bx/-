@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>flv播放页面</title>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        });
+        //这是当关闭页面或浏览器的时候调用后台的方法把进程给停掉
+        window.onbeforeunload = function(e) {
+            $.ajax({
+                url:"${ctx}/zxjk/zxBasDevice/closeFfmpeg",
+                type:"post",
+                data:{
+                    "command":"${command}"
+                },
+                dataType:"json",
+                async:true,
+                success: function (data){
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<script src="https://cdn.bootcdn.net/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
+<video style="height: 400px;width: 600px;" id="videoElement" muted autoplay controls></video>
+<script>
+    var flvPlayer = null;
+    if (flvjs.isSupported()) {
+        var videoElement = document.getElementById('videoElement');
+        flvPlayer = flvjs.createPlayer({
+            type: 'flv',
+            url: 'http://localhost:9000/live?port=1935&app=myapp&stream=room'
+        });
+        flvPlayer.attachMediaElement(videoElement);
+        flvPlayer.load();
+    }
+</script>
+</body>
+</html>
