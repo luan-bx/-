@@ -23,8 +23,8 @@ import java.util.HashMap;
 @Slf4j
 @RequestMapping("/alarm")
 public class AlarmController {
-    @Autowired
-    private AlarmService alarmService;
+	@Autowired
+	private AlarmService alarmService;
 
     /**
      * 跳转到预警设置页面
@@ -62,7 +62,6 @@ public class AlarmController {
         }
         return Constants.ADDALARMSETTING;
     }
-
 
     /**
      * 新增预警设置或监测类型或污染物类型

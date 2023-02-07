@@ -118,4 +118,5 @@ public interface AlarmMapping {
      */
     @SelectProvider(type = AlarmService.class, method = "selectRecordsByDynamicSql")
     public List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
+
 }
