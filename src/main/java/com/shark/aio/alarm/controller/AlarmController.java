@@ -185,4 +185,9 @@ public class AlarmController {
         return Constants.ALARMREOCRDS;
     }
 
+
+    @RequestMapping("/testRtmp")
+    public String toTestPage(){
+        return "test";
+    }
 }
