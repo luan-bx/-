@@ -140,6 +140,12 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.1</version>
         </dependency>
+        <!-- JavaCV -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.5.4</version>
+        </dependency>
 
     </dependencies>
 
