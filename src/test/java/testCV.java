@@ -1,4 +1,3 @@
-import org.bytedeco.javacpp.opencv_core;
 import org.bytedeco.javacv.*;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +26,7 @@ public class testCV {
         while (true){
             frame = grabber.grabImage();
             System.out.println(frame.image);
-            opencv_core.Mat mat = converter.convertToMat(frame);
+//            opencv_core.Mat mat = converter.convertToMat(frame);
             canvasFrame.showImage(frame);
         }
     }
