@@ -8,4 +8,6 @@ public class testUtil {
         AlarmSettingsEntity alarmSettingsEntity = new AlarmSettingsEntity();
         System.out.println(ObjectUtil.isEmpty(alarmSettingsEntity));
     }
+
+
 }

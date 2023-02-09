@@ -8,15 +8,26 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.github.pagehelper.PageInfo;
+import com.shark.aio.video.entity.VideoEntity;
+import com.shark.aio.video.service.VideoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Slf4j
 public class FaceController {
+
+	@Autowired
+	private VideoService videoService;
 
 	@RequestMapping("/callFaceAI")
 	public static void callFaceAI(String filePath) {
@@ -70,5 +81,25 @@ public class FaceController {
 			System.out.println("发送POST请求出现异常！" + e);
 			e.printStackTrace();
 		}
+	}
+
+
+	@RequestMapping({"/videoMonitor","/videoMonitor/{pageSize}/{pageNum}"})
+	public String toFacePage(HttpServletRequest request,
+							 @PathVariable(required = false) Integer pageSize,
+							 @PathVariable(required = false) Integer pageNum ,
+							 String feature){
+		PageInfo<VideoEntity> videos = videoService.selectVideosByPage(pageSize, pageNum, feature);
+		/*for(int i=0;i<10;i++){
+			videos.add(new VideoEntity(i+1,"监测点"+(i+1),"rtmp://localhost:1935/myapp/room","测试监测点"));
+		}*/
+
+		request.setAttribute("allVideos",videos);
+		return "video";
+	}
+
+	@GetMapping("/videoPlay")
+	public String toVideoPlayPage(@ModelAttribute("url") String url){
+		return "videoPlay";
 	}
 }
