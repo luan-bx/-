@@ -60,6 +60,7 @@ public class AlarmService {
     public String addAlarmSetting(AlarmSettingsEntity alarmSettingsEntity,
                                   String newMonitorClass, String existMonitorClass,
                                   String newPollution, String existPollutionName){
+
         //新增预警设置，判断上下限阈值的合理性和监测值是否重复
         if (!ObjectUtil.isEmpty(alarmSettingsEntity)){
             if (alarmSettingsEntity.getUpperLimit()<= alarmSettingsEntity.getLowerLimit()) return "上限阈值须大于下限阈值！";

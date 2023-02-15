@@ -19,6 +19,14 @@ public interface AlarmMapping {
     public List<AlarmSettingsEntity> getAllAlarmSettings();
 
     /**
+     * 查询某类监测项目的数据
+     * @param monitorClass
+     * @return
+     */
+    @Select("select * from `alarm_settings` where `monitor_class` = #{monitorClass}")
+    AlarmSettingsEntity getAlarmSettingsEntity(String monitorClass);
+
+    /**
      * 根据查询关键字feature，查询符合要求的预警设置
      * 有一个字段符合查询关键字即可
      * @param feature 查询关键字
@@ -89,6 +97,14 @@ public interface AlarmMapping {
     public int insertMonitorClass(String name);
 
     /**
+     * 向监测点monitor表中插入一条新的记录
+     * @param name 监测类型名
+     * @return 成功插入的记录数，即插入成功为1，插入失败为0
+     */
+    @Insert("INSERT INTO `monitor` SET `name`=#{name}")
+    public int insertMonitor(String name);
+
+    /**
      * 从污染物类型pollution表中查询所有污染物
      * @return 所有污染物List
      */
@@ -102,6 +118,13 @@ public interface AlarmMapping {
      */
     @Insert("INSERT INTO `pollution` SET `name`=#{name}")
     public int insertPollution(String name);
+
+    /**
+     * 插入报警记录
+     * @param alarmRecordentity
+     */
+    @Insert("INSERT INTO `alarm_records` values (null,#{alarmTime},#{monitor},#{monitorClass},#{monitorValue},#{monitorData},#{message})")
+    public void insertalarmRecords(AlarmRecordEntity alarmRecordentity);
 
     /**
      * 查询所有报警记录

@@ -1,10 +1,11 @@
-package com.shark.aio.conditionData.controller;
+package com.shark.aio.pollutionData.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.mapper.AlarmMapping;
-import com.shark.aio.conditionData.service.ConditionService;
+import com.shark.aio.pollutionData.entity.PollutionMonitorEntity;
+import com.shark.aio.pollutionData.service.PollutionService;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,34 +28,18 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 接受数工况数据
+ * 接受数采仪数据
  * 将数据存储数据库（何种方式分类存储）
  * 将数据传到前端（传多少条，太多会卡）
  */
-
-/**
- * 数采仪数据格式
- * {"data":
- * 		{"dataPoints":
- * 			[
- *            	{"variableName":"温度","dataPointId":8992316,"err":0,"slaveName":"高精度温湿度传感器IIOT-T20-BD","time":1665482403,"value":"24"},
- *           	{"variableName":"温度","dataPointId":8992316,"err":0,"slaveName":"高精度温湿度传感器IIOT-T20-BD","time":1665482403,"value":"40"}
- * 			],
- * 		"deviceId":
- * 			"00500222052800054256",
- * 		"deviceName":
- * 			"Sens"
- *    },
- * "type":"dataPoint"}
- */
 @Controller
 @Slf4j
-public class ConditionController {
+public class PollutionController {
 
 	@Autowired
 	private AlarmMapping alarmMapping;
 	@Autowired
-	private ConditionService conditionService;
+	private PollutionService pollutionService;
 	/**
 	 * 验证码校验、接收数据
 	 * @param request
@@ -62,11 +48,11 @@ public class ConditionController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("/receiveConditionData")
+	@RequestMapping("/receivePollutionData")
 	@ResponseBody
-	protected String receiveConditionData(HttpServletRequest request, HttpServletResponse response)
+	protected String receivePollutionData(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		log.info("进入接收方法");
 		String strjson = request.getParameter("verify");
 		if (strjson != null) {
@@ -81,11 +67,11 @@ public class ConditionController {
 		return strjson;
 	}
 
-public static void main(String arg[]){
-		ConditionController c = new ConditionController();
-	HttpServletRequest  request = null;
-	c.getJsonInfo(request);
-}
+	public static void main(String arg[]){
+		PollutionController c = new PollutionController();
+		HttpServletRequest  request = null;
+		c.getJsonInfo(request);
+	}
 	/**
 	 * 数据转换json，更换时间格式，写入数据文件
 	 * @param request
@@ -95,7 +81,7 @@ public static void main(String arg[]){
 	private JSONObject getJsonInfo(HttpServletRequest request) {
 		JSONObject json = new JSONObject();
 		try {
-			
+
 //			InputStreamReader in = new InputStreamReader(request.getInputStream(), "utf-8");
 //			BufferedReader br = new BufferedReader(in);
 //			StringBuilder sb = new StringBuilder();
@@ -112,17 +98,17 @@ public static void main(String arg[]){
 				byte[] bytes = new byte[4];//每一次读取四个字节
 				String line = null;
 				BufferedReader br = new BufferedReader(fileReader);
-			while ((line = br.readLine()) != null) {
-				sb.append(line);
-				log.info(line);
-			}
+				while ((line = br.readLine()) != null) {
+					sb.append(line);
+					log.info(line);
+				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} finally {
 				fileReader.close();
 			}
 
-		log.info(String.valueOf(sb));
+			log.info(String.valueOf(sb));
 			json = JSONObject.fromObject(sb.toString());
 			//换时间戳-->字符串
 			//先把要换的数据从json找到，再调用换格式的方法
@@ -194,13 +180,13 @@ public static void main(String arg[]){
 				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file, true));
 //				out.write(String.valueOf(json + "\r\n").getBytes());
 				out.write(("{\"data\":[" +
-							"{\"名称" + "\":" + "\"" + name0 + "\"," +
-							"\"时间\":" + "\"" + time0 + "\","+
-							"\"幅值\":" + "\"" + value0 + "\"}," +
-						    "{\"名称" + "\":" + "\"" + name1 + "\"," +
-							"\"时间\":" + "\"" + time1 + "\"," +
-							"\"幅值\":" + "\"" + value1 + "\"}]," +
-							"\"设备ID\":" + "\"" + deviceID + "\"}" + "\r\n").getBytes());
+						"{\"名称" + "\":" + "\"" + name0 + "\"," +
+						"\"时间\":" + "\"" + time0 + "\","+
+						"\"幅值\":" + "\"" + value0 + "\"}," +
+						"{\"名称" + "\":" + "\"" + name1 + "\"," +
+						"\"时间\":" + "\"" + time1 + "\"," +
+						"\"幅值\":" + "\"" + value1 + "\"}]," +
+						"\"设备ID\":" + "\"" + deviceID + "\"}" + "\r\n").getBytes());
 				out.flush();
 				try {
 					out.close();
@@ -229,8 +215,8 @@ public static void main(String arg[]){
 	 * @param req
 	 * @throws IOException
 	 */
-	@RequestMapping("/returnConditionData")
-	public void returnConditionData(String filePath, HttpServletResponse req) throws IOException {
+	@RequestMapping("/returnPollutionData")
+	public void returnPollutionData(String filePath, HttpServletResponse req) throws IOException {
 		filePath = "D:/项目/AIO/pollutionData.txt";
 		FileInputStream fin = new FileInputStream(filePath);
 		InputStreamReader reader = new InputStreamReader(fin);
@@ -248,7 +234,7 @@ public static void main(String arg[]){
 		}
 		buffReader.close();
 		req.setContentType("text/html;charset=utf-8");
-			req.getWriter().write(str);
+		req.getWriter().write(str);
 	}
 
 
@@ -266,19 +252,37 @@ public static void main(String arg[]){
 		String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
 
 		return date;
-		
-		}
+
+	}
 
 	/**
 	 * 跳转到新增污染源页面
 	 * @param request request
 	 * @return 新增污染源页面
 	 */
-	@GetMapping("/condition/add")
-	public String toAddConditionPage(HttpServletRequest request){
-		if (!conditionService.searchMonitor(request)){
+	@GetMapping("/pollution/add")
+	public String toAddPollutionPage(HttpServletRequest request){
+		if (!pollutionService.searchMonitor(request)){
 			return "500";
 		}
 		return Constants.ADDPOLLUTION;
+	}
+
+	/**
+	 * 新增监测点或设备关联
+	 * 监测点不能重复
+	 * @param pollutionMonitorEntity
+	 * @param newMonitorName 新监测点名称
+	 * @param existMonitorName 已有的监测点名称
+	 * @return 操作成功返回预警设置页，否则返回新增页
+	 */
+	@PostMapping("/pollution/submit/add")
+	public String addAlarmSetting(HttpServletRequest request, PollutionMonitorEntity pollutionMonitorEntity,
+								  String newMonitorName, String existMonitorName){
+		log.info("0000000000"+pollutionMonitorEntity.toString());
+		String msg = pollutionService.addPollutionMonitor(pollutionMonitorEntity,newMonitorName,existMonitorName);
+		request.setAttribute(Constants.MSG, msg);
+		if (msg.contains("成功")) return "forward:/pollutionMonitor";
+		else return toAddPollutionPage(request);
 	}
 }

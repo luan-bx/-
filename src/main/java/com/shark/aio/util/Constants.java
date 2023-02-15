@@ -45,26 +45,14 @@ public interface Constants {
 	 */
 	String MSG = "msg";
 	String ALLMONITORCLASS = "allMonitorClass";
+	String ALLMONITOR = "allMonitor";
 	String ALLPOLLUTIONNAME = "allPollutionName";
 	String INFORMATION ="information";
-	String INFORMATIONID ="informationId";
-	String DEPARTMENT ="department";
-	String POST ="post";
 	String LOGINERROE ="loginerror";
 	String SIGNFIRST ="signfirst";
 	String USERNAME = "userName";
-	String DESCRIPTION = "description";
 	String POSTID = "postId";
-	String PRONAME = "proname";
-	String PENDING = "pending";
-	String PROCESSING = "processing";
-	String PAYMENTTREM = "paymentTerm";
-	String ELEENGINEER = "eleEngineer";
-	String SOFENGINEER = "sofEngineer";
-	String MECENGINEER = "MecEngineer";
-	String ELEENGINEERNoBUSY = "eleEngineerNoBusy";
-	String SOFENGINEERNoBUSY = "sofEngineerNoBusy";
-	String MECENGINEERNoBUSY = "mecEngineerNoBusy";
+
 	/*
 	 * 页面
 	 */
@@ -73,92 +61,23 @@ public interface Constants {
 	String SIGNUP = "signup";
 	String MAP = "map";
 	String TRACE = "trace";
+	String ADDPOLLUTION = "addPollution";
 	String ALARMSETTINGS = "alarmSettings";
 	String ADDALARMSETTING = "addAlarmSetting";
 	String EDITALARMSETTING = "editAlarmSetting";
 	String ALARMREOCRDS = "alarmRecords";
-	String NEW = "new";
-	String REVIEW = "review";
-	String REVIEWCHECK ="review-check";
-	String SIGN = "sign";
-	String SIGNCHECK = "sign-check";
-	String DESIGNCHECK = "design-check";
-	String DESIGN = "design";
-	String REDESIGN = "reDesign";
-	String ELEDESIGN = "ele-design";
-	String MECDESIGN = "mec-design";
-	String SOFDESIGN = "sof-design";
-	String PRODUCTOUT = "product-out";
-	String PRODUCTPROCESS = "product-process";
-	String PRODUCTPURCHASE = "product-purchase";
-	String PRODUCTCHECK = "product-check";
-	String ASSEMBLE = "assemble";
-	String ASSEMBLECHECK = "assemble-check";
+
 	String SUCCESS = "success";
 	String ALLDETAIL ="allDetail";
 	String PERSONALCENTER="personal-center";
 	String REASSEMBLE ="reAssemble";
 	String WAIT = "wait";
-	
-	String REVIEWDETAIL ="reviewDetail";
-	String SIGNDETAIL ="signDetail";
-	String DESIGNDETAIL ="designDetail";
-	String DESIGNALLDETAIL ="designAllDetail";
-	String MECDESIGNDETAIL ="mecDesignDetail";
-	String ELEDESIGNDETAIL ="eleDesignDetail";
-	String SOFDESIGNDETAIL ="sofDesignDetail";
-	String PRODUCTOUTDETAIL ="productOutDetail";
-	String PRODUCTPROCESSDETAIL ="productProcessDetail";
-	String PRODUCTPURCHASEDETAIL ="productPurchaseDetail";
-	String PRODUCTALLDETAIL ="productAllDetail";
-	String ASSEMBLEDETAIL ="assembleDetail";
-	
+
 	String UPDATEEMAIL = "updateEmail";
 	String UPDATEPHONE = "updatePhone";
 	String UPDATEPWD1 = "updatePwd1";//修改密码第一步：输入用户名
 	String UPDATEPWD2 = "updatePwd2";//修改密码第二部：输入手机邮箱验证码
 	String UPDATEPWD = "updatePwd";//修改密码最后一步：输入新密码
 
-	
-	/*
-	 * 侧边栏-返回项目信息列表
-	 */
-	
-	String REVIEWING = "reviewing";
-	String SIGNING = "signing";
-	String DESIGNING = "designing";
-	String ASSEMBLING = "assembling";
-	/*
-	 * 信息默认值
-	 */
-	
-	String NEWENTITY = "newEntity";
-	String SIGNENTITY = "signEntity";
-	String DESIGNENTITY = "designEntity";
-	String PRODUCTOUTSOURCEENTITY = "productOutsourceEntity";
-	String PRODUCTPROCESSENTITY = "productProcessEntity";
-	String PRODUCTPURCHASEENTITY = "productPurchaseEntity";
-	String ASSEMBLEENTITY = "assembleEntity";
-	String USERENTITY = "userEntity";
-	String DESIGNMECHANCISENTITY = "designMechancisEntity";
-	String DESIGNSOFTWAREENTITY = "designSoftwareEntity";
-	String DESIGNELECTRICALENTITY = "designElectricalEntity";
-	
-	/*
-	 * 后台管理系统
-	 */
-	String BACKENDSYSTEM = "backEndSystem/";
-	String ALLUSER = "allUser";
-	String ALLPAYMENTTERM = "allPaymentTerm";
-	String COMPANYNAMEENTITY = "companyNameEntity";
-	String CONSTRUCTION = "construction";
-	String PAYMENT = "payment";
-	String PROJECTMANAGE = "projectManage";
-	String PROJECTDETAIL = "projectDetail";
-	String SIGNUPDATE = "signUpdate";
-	String DESIGNUPDATE = "designUpdate";
-	String MECELESOFDETAIL = "mecelesofDetail";
-	String OUTPURPRODETAIL = "outPurProDetail";
-	String PROCESSMANAGE = "processManage";
-	
+
 }

@@ -35,7 +35,7 @@ public class videoTestController {
                     + " "
                     + videoPath
                     + " "
-                    + "-c:v libx264 -c:a aac -f flv -an rtmp://xxx.xxx.xxx.xxx:1935/myapp/room";
+                    + "-c:v libx264 -c:a aac -f flv -an rtsp://admin:lbx123456@192.168.1.64:554//Streaming/Channels/1";
             commandUtil.winExec(cmd);
         }
         /*如果是Linux系统**/
@@ -46,7 +46,7 @@ public class videoTestController {
                     + videoPath
                     + "'"
                     + ""
-                    + " -codec copy -f flv -an 'rtmp://xxx.xxx.xxx.xxx:1935/myapp/room'";
+                    + " -codec copy -f flv -an 'rtsp://admin:lbx123456@192.168.1.64:554//Streaming/Channels/1'";
             commandUtil.linuxExec(cmd);
         }
     }
