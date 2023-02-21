@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.video.MediaUtils;
 import com.shark.aio.video.entity.VideoEntity;
 import com.shark.aio.video.service.VideoService;
+import org.bytedeco.javacv.FrameGrabber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -28,6 +31,7 @@ public class FaceController {
 
 	@Autowired
 	private VideoService videoService;
+
 
 	@RequestMapping("/callFaceAI")
 	public static void callFaceAI(String filePath) {
@@ -99,7 +103,18 @@ public class FaceController {
 	}
 
 	@GetMapping("/videoPlay")
-	public String toVideoPlayPage(@ModelAttribute("url") String url){
+	public String toVideoPlayPage(@ModelAttribute("stream")String stream, HttpSession session) throws NoSuchFieldException, IllegalAccessException {
+		videoService.addSession(stream, session);
 		return "videoPlay";
 	}
+
+	@PostMapping("/quitVideoPlay")
+	@ResponseBody
+	public String quitVideoPlayPage(@RequestParam String stream,HttpSession session){
+		videoService.dropSession(stream, session);
+		return null;
+	}
+
+
+
 }

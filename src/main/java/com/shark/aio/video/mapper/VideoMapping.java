@@ -19,4 +19,7 @@ public interface VideoMapping {
     @Select("SELECT * FROM `video` where monitor_name like #{feature} or description like #{feature}")
     public List<VideoEntity> selectVideosByFeature(String feature);
 
+    @Select("SELECT `rtsp` FROM `video` WHERE `stream`=#{stream}")
+    public String selectRtspByStream(String stream);
+
 }
