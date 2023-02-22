@@ -44,12 +44,13 @@ public class ProcessUtil {
         int pid = -1;
         /*如果是winodws系统**/
         if (IS_WINDOWS) {
-            String cmd ="ffmpeg -rtsp_transport tcp -i"
+            String cmd ="cmd /k start ffmpeg -rtsp_transport tcp -i"
                     + " "
                     + videoPath
                     + " "
                     + "-vcodec libx264 -r 25 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/"
                     + stream;
+            log.info(cmd);
             pid = commandUtil.winExec(cmd);
         }
         /*如果是Linux系统**/

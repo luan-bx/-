@@ -103,8 +103,8 @@ public class FaceController {
 	}
 
 	@GetMapping("/videoPlay")
-	public String toVideoPlayPage(@ModelAttribute("stream")String stream, HttpSession session) throws NoSuchFieldException, IllegalAccessException {
-		videoService.addSession(stream, session);
+	public String toVideoPlayPage(@ModelAttribute("stream")String stream) throws NoSuchFieldException, IllegalAccessException {
+		videoService.addSession(stream);
 		return "videoPlay";
 	}
 

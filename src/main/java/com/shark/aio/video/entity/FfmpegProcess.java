@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * 进程类
  * 每个url一个推流进程足够
- * 该类用来记录推流进程的进程id，和正在使用该流的Session
+ * 该类用来记录推流进程的进程id，和正在使用该流的页面数量
  */
 @Data
 @AllArgsConstructor
@@ -27,7 +27,15 @@ public class FfmpegProcess {
     private int pid;
 
     /**
-     * 正在拉流的session
+     * 正在拉流的s页面数量
      */
-    private Set<HttpSession> sessions;
+    private int count;
+
+    public int increase(){
+        return count++;
+    }
+
+    public int decrease(){
+        return count--;
+    }
 }
