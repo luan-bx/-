@@ -126,6 +126,7 @@ public class UserController {
 			UserEntity user = userMapping.queryUserByUserName(userName);
 			String iconPath = user.getIcon();
 			req.getSession().setAttribute("iconPath",iconPath);
+			req.getSession().setMaxInactiveInterval(0);
 //			return authController.auth(user, userName, req, response);
 			return "pollutionMonitor";
 		} else if (login.equals(Constants.ERROR)) {

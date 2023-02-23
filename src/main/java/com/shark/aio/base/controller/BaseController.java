@@ -46,6 +46,7 @@ public class BaseController {
 //		return "wastedWater";
 		String iconPath = userMapping.queryUserByUserName(userName).getIcon();
 		req.getSession().setAttribute("iconPath",iconPath);
+		req.getSession().setMaxInactiveInterval(0);
 		return "device";
 	}
 
