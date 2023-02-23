@@ -21,12 +21,26 @@ public class VideoService {
     @Autowired
     private VideoMapping videoMapping;
 
+    /**
+     * 存放rtsp地址和推拉流进程的映射关系
+     */
     private static HashMap<String, FfmpegProcess> map = new HashMap<>();
 
+    /**
+     * 查询全部摄像头信息
+     * @return 摄像头list
+     */
     public List<VideoEntity> selectAllVideos(){
         return videoMapping.selectAllVideos();
     }
 
+    /**
+     * 分页查询摄像头信息
+     * @param pageSize 分页每页大小
+     * @param pageNum   分页页码
+     * @param feature   模糊查询特征字符串
+     * @return 分页查询结果
+     */
     public PageInfo<VideoEntity> selectVideosByPage(Integer pageSize, Integer pageNum, String feature){
         List<VideoEntity> videos;
         if(feature!=null&&!feature.equals("")){
@@ -39,6 +53,13 @@ public class VideoService {
     }
 
 
+    /**
+     * 使map中，stream参数对应的rtsp地址下的页面数量加一
+     * 如果在数量增加前rtsp地址下没有页面，则创建推流进程
+     * @param stream rtmp的stream参数
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
     public void addSession(String stream) throws NoSuchFieldException, IllegalAccessException {
         String rtsp = videoMapping.selectRtspByStream(stream);
         synchronized (map){
@@ -55,7 +76,12 @@ public class VideoService {
         log.info("目前流"+rtsp+"下的页面有："+map.get(rtsp).getCount()+"个");
     }
 
-    public void dropSession(String stream, HttpSession session){
+    /**
+     * 使map中，stream参数对应的rtsp地址下的页面数量加一
+     * 如果在数量减少后rtsp地址下没有页面，则销毁推流进程
+     * @param stream
+     */
+    public void dropSession(String stream){
         String rtsp = videoMapping.selectRtspByStream(stream);
         synchronized (map){
             FfmpegProcess ffmpegProcess = map.get(rtsp);

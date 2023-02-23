@@ -88,6 +88,14 @@ public class FaceController {
 	}
 
 
+	/**
+	 * 跳转到摄像头列表页面
+	 * @param request request
+	 * @param pageSize 分页每页大小
+	 * @param pageNum 分页页码
+	 * @param feature 模糊查询特征字符串
+	 * @return 页面
+	 */
 	@RequestMapping({"/videoMonitor","/videoMonitor/{pageSize}/{pageNum}"})
 	public String toFacePage(HttpServletRequest request,
 							 @PathVariable(required = false) Integer pageSize,
@@ -102,16 +110,28 @@ public class FaceController {
 		return "video";
 	}
 
+	/**
+	 * 跳转到视频播放页面
+	 * @param stream rtmp流中的stream参数
+	 * @return 视频播放页面
+	 * @throws NoSuchFieldException
+	 * @throws IllegalAccessException
+	 */
 	@GetMapping("/videoPlay")
 	public String toVideoPlayPage(@ModelAttribute("stream")String stream) throws NoSuchFieldException, IllegalAccessException {
 		videoService.addSession(stream);
 		return "videoPlay";
 	}
 
+	/**
+	 * 退出视频播放页面，用于推流进程的开启关闭管理
+	 * @param stream rtmp流中的stream参数
+	 * @return 啥也不返回
+	 */
 	@PostMapping("/quitVideoPlay")
 	@ResponseBody
-	public String quitVideoPlayPage(@RequestParam String stream,HttpSession session){
-		videoService.dropSession(stream, session);
+	public String quitVideoPlayPage(@RequestParam String stream){
+		videoService.dropSession(stream);
 		return null;
 	}
 

@@ -8,6 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class FaceControllerAdvice {
 
+    /**
+     * FaceController类的全局异常处理，捕获进程操作产生的NoSuchFieldException和IllegalAccessException
+     * 返回错误信息，并跳转到视频播放页面
+     * @return 视频播放页
+     */
     @ExceptionHandler({NoSuchFieldException.class, IllegalAccessException.class})
     public ModelAndView addSessionExceptionHandler(){
 
