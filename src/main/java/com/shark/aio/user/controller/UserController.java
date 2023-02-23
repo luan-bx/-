@@ -35,6 +35,8 @@ public class UserController {
 	@Autowired
 	protected UserMapping userMapping;
 
+
+
 	/*
 	 * 20220908-thg，获得手机验证码
 	 */
@@ -70,34 +72,7 @@ public class UserController {
 	@RequestMapping("/signup")
 	public String signup(UserEntity userEntity, String code, HttpSession session, 
 			@RequestParam(value = "file", required = false) List<MultipartFile> file, HttpServletRequest req) {
-		/*
-		 * 是否是高级管理员，string转boolean
-		 */
-//		if (isAdminInt == 1) {
-//			userEntity.setAdmin(true);
-//		} else {
-//			userEntity.setAdmin(false);
-//		}
-		//20220908-thg,加入手机号正确验证
-//				if(!ConfPhone.confPhone(userEntity.getPhone())) {
-//					log.info("手机号错误");
-//					req.setAttribute(Constants.ERROR, "手机号错误,请输入正确的手机号");
-//					return regist(req);
-//				}
-//		//20220908-thg,验证码
-//				if(!userEntity.getPhone().equals(session.getAttribute("phone"))) {
-//					log.info("用户中途更换手机号码");
-//					req.setAttribute(Constants.ERROR, "请勿中途更换手机号码");
-//					return regist(req);
-//				}
-//				if(!code.equals(session.getAttribute("phonecode"))) {
-//					log.info("验证码错误或过期");
-//					req.setAttribute(Constants.ERROR, "验证码错误或过期");
-//					return regist(req);
-//				}
-//		userEntity.setAdmin(false);
-//20220908-thg		userEntity.setDepartmentId(userService.departmentId(userEntity.getDepartmentName()));
-//		userEntity.setPostId(userService.postId(userEntity.getPostName()));
+
 		userEntity.setPostId(16);
 		userEntity.setPostName("待管理员审核");
 		//20220908-thg,注册自动设置部门和邮箱
@@ -122,19 +97,7 @@ public class UserController {
 //				return Constants.SIGNUP;
 				return "redirect:/regist"; //qh 20220412
 			}
-			// 是新用户
-			
-			/*
-			 *  判断是否绑定wx
-			 */
-//			String bindResult = UserService.bindUser(userEntity.getPhone());
-//			if (!bindResult.equals(Constants.FAILCODE)) {
-//				// 绑定成功
-//				log.info("UserController/signup, 新用户微信绑定成功");
-//			} else {
-//				// 绑定失败(wx也未注册过)
-//				log.info("UserController/signup, 新用户微信绑定失败");
-//			}
+
 			log.info("注册成功");
 			return Constants.LOGIN;// 注册成功返回登录页面
 		} else if (isNewUser.equals(Constants.ERROR)) {
@@ -161,8 +124,11 @@ public class UserController {
 			//判断权限
 			String userName = userEntity.getUserName();
 			UserEntity user = userMapping.queryUserByUserName(userName);
+			String iconPath = user.getIcon();
+			req.getSession().setAttribute("iconPath",iconPath);
+			req.getSession().setMaxInactiveInterval(0);
 //			return authController.auth(user, userName, req, response);
-			return "wastedWater";
+			return "pollutionMonitor";
 		} else if (login.equals(Constants.ERROR)) {
 			// 登录失败
 			req.setAttribute(Constants.INFORMATION, Constants.LOGINERROE);

@@ -13,7 +13,8 @@ public class VideoEntity {
 
     private Integer id = 1;
     private String monitorName = "监测点";
-    private String url = "rtmp://localhost:1935/myapp/room";
+    private String rtsp = "rtmp://localhost:1935/myapp/room";
     private String description = "测试用监测点";
+    private String stream = "room";
 
 }
