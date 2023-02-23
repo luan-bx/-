@@ -14,7 +14,8 @@ public interface Constants {
 	 */
 	String ALREADY = "already";
 	String BINDSUCCESS = "bindsuccess";
-	String FILEPATH = "/Users/lb/Downloads/shark/环保仪/data/";
+	//String FILEPATH = "/Users/lb/Downloads/shark/环保仪/data/";
+	String FILEPATH = "C:/shark/环保仪/data/";
 	String USERS = "users/";
 	String PROJECT = "project/";
 	
