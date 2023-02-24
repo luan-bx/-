@@ -231,7 +231,7 @@ public static void main(String arg[]){
 	 */
 	@RequestMapping("/returnConditionData")
 	public void returnConditionData(String filePath, HttpServletResponse req) throws IOException {
-		filePath = "D:/项目/AIO/pollutionData.txt";
+		filePath = "D:/项目/AIO/conditionData.txt";
 		FileInputStream fin = new FileInputStream(filePath);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
@@ -243,7 +243,6 @@ public static void main(String arg[]){
 				str = str.concat("  ");
 			}
 			str = str.concat(strTmp);
-			log.info(str);
 
 		}
 		buffReader.close();

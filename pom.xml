@@ -154,6 +154,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
+        <!-- netty HJ212用-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.68.Final</version>
+        </dependency>
 
     </dependencies>
 

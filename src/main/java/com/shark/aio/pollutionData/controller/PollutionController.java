@@ -229,7 +229,7 @@ public class PollutionController {
 				str = str.concat("  ");
 			}
 			str = str.concat(strTmp);
-			log.info(str);
+//			log.info(str);
 
 		}
 		buffReader.close();
