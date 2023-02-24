@@ -7,7 +7,7 @@ public class testCV {
 
     @Test
     public void testzc() throws FrameGrabber.Exception {
-        //ffmpeg -rtsp_transport tcp -i rtsp://admin:Shark666@nju@192.168.0.2:554 -vcodec libx264 -r 25 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/room
+        //ffmpeg -rtsp_transport tcp -i rtsp://admin:Shark666@nju@192.168.0.2:554 -vcodec libx264 -r 25 -video_size 1280*720 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/room
         //ffmpeg -rtsp_transport tcp -i rtsp://admin:Shark666@nju@192.168.0.2:554/Streaming/tracks/101?starttime=20230221t110000z -allowed_media_types video -vcodec libx264 -r 25 -ar 22050 -preset ultrafast -tune zerolatency -f flv rtmp://localhost:1935/myapp/mystream
         //ffmpeg -re -i D:\aierhaisen1.mp4 -i D:\aierhaisen2.mp4 -vcodec libx264 -acodec aac -f flv rtmp://localhost:1935/myapp/mystream
         //String file = "rtsp://192.168.2.38:5554/2";
