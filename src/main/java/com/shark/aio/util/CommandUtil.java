@@ -12,12 +12,13 @@ import java.io.InputStreamReader;
 public class CommandUtil {
 
     /** 调用linux命令* */
-    public String linuxExec(String cmd) {
+    public int linuxExec(String cmd) throws NoSuchFieldException, IllegalAccessException {
         System.out.println("执行命令[ " + cmd + "]");
         Runtime run = Runtime.getRuntime();
         try {
             Process process = run.exec(cmd);
-            String line;
+            int pid = ProcessUtil.getProcessIdInLinux(process);
+            /*String line;
             BufferedReader stdoutReader =
                     new BufferedReader(new InputStreamReader(process.getInputStream()));
             StringBuffer out = new StringBuffer();
@@ -29,24 +30,24 @@ public class CommandUtil {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            process.destroy();
-            return out.toString();
+            process.destroy();*/
+            return pid;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return -1;
     }
     /** 调用windwos命令* */
-    public String winExec(String cmd) {
+    public int winExec(String cmd) throws NoSuchFieldException, IllegalAccessException {
         Runtime runtime = Runtime.getRuntime();
-        String command =cmd;
         try {
-            Process process = runtime.exec(command);
+            Process process = runtime.exec(cmd);
+            int pid = ProcessUtil.getProcessIdInWindows(process);
             new InputStreamReader(process.getInputStream());
-            return "成功";
+            return pid;
         } catch (IOException e) {
             e.printStackTrace();
-            return "请检查摄像头地址";
         }
+        return -1;
     }
 }

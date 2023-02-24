@@ -117,7 +117,7 @@ public class UserService {
 //			如果空数据发过来如何判断
 			UserEntity NAME = userMapping.queryUserByUserName(userEntity.getUserName());
 			UserEntity PHONE = userMapping.queryUserByPhone(userEntity.getPhone());
-			UserEntity EMAIL = userMapping.queryCuByEmail(userEntity.getEmail());
+//			UserEntity EMAIL = userMapping.queryCuByEmail(userEntity.getEmail());
 			UserEntity number = userMapping.queryUserByNumber(userEntity.getNumber());
 			if (NAME != null) {
 				log.info("该用户名已注册过");
@@ -127,11 +127,11 @@ public class UserService {
 				log.info("该手机号已注册过");
 				req.setAttribute(Constants.ALREADY, "该手机号已经注册过，请返回登录");
 				return Constants.FAILCODE;
-			} else if (EMAIL != null) {
+			} /*else if (EMAIL != null) {
 				log.info("该邮箱已注册过");
 				req.setAttribute(Constants.ALREADY, "该邮箱已经注册过，请返回登录");
 				return Constants.FAILCODE;
-			} else if (number != null) {
+			} */else if (number != null) {
 				log.info("该工号已注册过");
 				req.setAttribute(Constants.ALREADY, "该工号已经注册过，请返回登录");
 				return Constants.FAILCODE;

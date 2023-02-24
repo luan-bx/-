@@ -11,8 +11,8 @@ public interface UserMapping {
 	/*
 	 * 插入一个客户用户记录
 	 */
-	@Insert("INSERT INTO `user`(`user_name`, `password`, `openId`, `phone`, `email`, `gender`,`icon`, `number`, `post_id`, `department_id`, `wx_id`) "
-			+ "values(#{userName}, #{password}, #{openId}, #{phone}, #{email}, #{gender}, #{icon}, #{number}, #{postId}, #{departmentId}, #{wxId});")
+	@Insert("INSERT INTO `user`(`user_name`, `password`, `openId`, `phone`, `email`, `gender`,`icon`, `number`, `post_id`,  `wx_id`) "
+			+ "values(#{userName}, #{password}, #{openId}, #{phone}, #{email}, #{gender}, #{icon}, #{number}, #{postId},  #{wxId});")
 	void insert(UserEntity customerUserEntity);
 	
 	/*

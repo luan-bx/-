@@ -112,12 +112,12 @@
                           <div class="mask">
                             <p th:text="${video.description}" style="font-size: 20px;max-height: 50px">Your Text</p>
                             <div class="tools tools-bottom">
-                              <a th:href="@{/videoPlay(url=${video.url})}"><i class="fa fa-play"></i></a>
+                              <a th:href="@{/videoPlay(stream=${video.stream})}"><i class="fa fa-play"></i></a>
                             </div>
                           </div>
                         </div>
                         <div class="caption">
-                          <p th:text="${video.monitorName}">Snow and Ice Incoming for the South</p>
+                          <p th:text="${video.monitorName}" style="text-align: center">Snow and Ice Incoming for the South</p>
                         </div>
                       </div>
                     </div>
