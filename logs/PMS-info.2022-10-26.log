@@ -1,0 +1,96 @@
+2022-10-26 15:16:48.129 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-26 15:16:48.193 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-SDAFTBQ with PID 13468 (D:\项目\PMS-lbx\PMS_final\target\classes started by lbx in D:\项目\PMS-lbx\PMS_final)
+2022-10-26 15:16:48.194 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-26 15:16:50.183 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:16:50.184 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-26 15:16:50.185 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-26 15:16:50.290 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-26 15:16:51.552 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:16:51.582 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.944 seconds (JVM running for 5.013)
+2022-10-26 15:17:22.402 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-26 15:20:06.595 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-26 15:20:06.621 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-SDAFTBQ with PID 2528 (D:\项目\PMS-lbx\PMS_final\target\classes started by lbx in D:\项目\PMS-lbx\PMS_final)
+2022-10-26 15:20:06.622 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-26 15:20:07.755 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:20:07.755 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-26 15:20:07.755 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-26 15:20:07.899 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-26 15:20:08.746 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:20:08.768 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 2.406 seconds (JVM running for 2.859)
+2022-10-26 15:20:16.192 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-26 15:27:19.127 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-26 15:27:19.155 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-SDAFTBQ with PID 10856 (D:\项目\PMS-lbx\PMS_final\target\classes started by lbx in D:\项目\PMS-lbx\PMS_final)
+2022-10-26 15:27:19.155 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-26 15:27:20.279 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:27:20.280 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-26 15:27:20.280 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-26 15:27:20.408 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-26 15:27:21.514 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:27:21.563 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 2.657 seconds (JVM running for 3.099)
+2022-10-26 15:27:27.061 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-26 15:27:27.090 [,] [http-nio-8081-exec-1] INFO  c.s.b.BaseController - [pms,63] - BaseController/pms, 本次登录用户:
+2022-10-26 15:27:27.104 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2022-10-26 15:27:28.142 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2022-10-26 15:30:49.854 [,] [http-nio-8081-exec-5] INFO  c.s.b.BaseController - [pms,63] - BaseController/pms, 本次登录用户:
+2022-10-26 15:30:57.872 [,] [http-nio-8081-exec-7] INFO  c.s.b.BaseController - [pms,63] - BaseController/pms, 本次登录用户:
+2022-10-26 15:34:12.919 [,] [http-nio-8081-exec-4] INFO  c.s.b.BaseController - [pms,63] - BaseController/pms, 本次登录用户:
+2022-10-26 15:56:05.417 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-26 15:56:05.455 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-SDAFTBQ with PID 15116 (D:\项目\PMS-lbx\PMS_final\target\classes started by lbx in D:\项目\PMS-lbx\PMS_final)
+2022-10-26 15:56:05.456 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-26 15:56:07.490 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:56:07.491 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-26 15:56:07.491 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-26 15:56:07.618 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-26 15:56:08.564 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-26 15:56:08.597 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.715 seconds (JVM running for 4.35)
+2022-10-26 15:56:40.325 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-26 15:56:40.396 [,] [http-nio-8081-exec-1] INFO  c.s.b.BaseController - [pms,63] - BaseController/pms, 本次登录用户:
+2022-10-26 15:56:40.411 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2022-10-26 15:56:42.077 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2022-10-26 15:57:11.276 [,] [http-nio-8081-exec-8] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : BOSS
+2022-10-26 15:57:11.278 [,] [http-nio-8081-exec-8] INFO  c.s.u.s.UserService - [login,212] - MD5加密2F21C74CA436BDEBFA2904AE42061F6E
+2022-10-26 15:57:11.279 [,] [http-nio-8081-exec-8] INFO  c.s.u.s.UserService - [login,228] - UserService/login, 登录失败，用户名或密码错误，账户：BOSS 密码：123456
+2022-10-26 15:57:11.279 [,] [http-nio-8081-exec-8] INFO  c.s.u.c.UserController - [Login,190] - UserController/Login, 用户登录失败
+2022-10-26 15:57:26.184 [,] [http-nio-8081-exec-4] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : 管理员
+2022-10-26 15:57:26.184 [,] [http-nio-8081-exec-4] INFO  c.s.u.s.UserService - [login,212] - MD5加密1E82FC4F54B69C613692AD75C526C8DD
+2022-10-26 15:57:26.185 [,] [http-nio-8081-exec-4] INFO  c.s.u.s.UserService - [login,228] - UserService/login, 登录失败，用户名或密码错误，账户：管理员 密码：123456
+2022-10-26 15:57:26.185 [,] [http-nio-8081-exec-4] INFO  c.s.u.c.UserController - [Login,190] - UserController/Login, 用户登录失败
+2022-10-26 15:58:17.345 [,] [http-nio-8081-exec-6] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : 管理员
+2022-10-26 15:58:17.345 [,] [http-nio-8081-exec-6] INFO  c.s.u.s.UserService - [login,212] - MD5加密01E5A282692024E73EA57120462343ED
+2022-10-26 15:58:17.345 [,] [http-nio-8081-exec-6] INFO  c.s.u.s.UserService - [login,228] - UserService/login, 登录失败，用户名或密码错误，账户：管理员 密码：123456789
+2022-10-26 15:58:17.345 [,] [http-nio-8081-exec-6] INFO  c.s.u.c.UserController - [Login,190] - UserController/Login, 用户登录失败
+2022-10-26 15:58:39.862 [,] [http-nio-8081-exec-1] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : 管理员
+2022-10-26 15:58:39.862 [,] [http-nio-8081-exec-1] INFO  c.s.u.s.UserService - [login,212] - MD5加密1E82FC4F54B69C613692AD75C526C8DD
+2022-10-26 15:58:39.863 [,] [http-nio-8081-exec-1] INFO  c.s.u.s.UserService - [login,228] - UserService/login, 登录失败，用户名或密码错误，账户：管理员 密码：123456
+2022-10-26 15:58:39.863 [,] [http-nio-8081-exec-1] INFO  c.s.u.c.UserController - [Login,190] - UserController/Login, 用户登录失败
+2022-10-26 15:58:43.558 [,] [http-nio-8081-exec-7] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : 管理员
+2022-10-26 15:58:43.559 [,] [http-nio-8081-exec-7] INFO  c.s.u.s.UserService - [login,212] - MD5加密1E82FC4F54B69C613692AD75C526C8DD
+2022-10-26 15:58:43.559 [,] [http-nio-8081-exec-7] INFO  c.s.u.s.UserService - [login,228] - UserService/login, 登录失败，用户名或密码错误，账户：管理员 密码：123456
+2022-10-26 15:58:43.559 [,] [http-nio-8081-exec-7] INFO  c.s.u.c.UserController - [Login,190] - UserController/Login, 用户登录失败
+2022-10-26 16:00:30.146 [,] [http-nio-8081-exec-8] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : 管理员
+2022-10-26 16:00:30.146 [,] [http-nio-8081-exec-8] INFO  c.s.u.s.UserService - [login,212] - MD5加密1E82FC4F54B69C613692AD75C526C8DD
+2022-10-26 16:00:30.147 [,] [http-nio-8081-exec-8] INFO  c.s.u.s.UserService - [login,218] - UserService/login, 登录成功
+2022-10-26 16:00:30.148 [,] [http-nio-8081-exec-8] INFO  c.s.u.c.UserController - [Login,181] - UserController/Login, 用户登录成功
+2022-10-26 16:00:30.423 [,] [http-nio-8081-exec-8] INFO  c.s.b.util.BaseUtil - [toIndex,90] - BaseController/pms, pending:[]
+2022-10-26 16:00:30.440 [,] [http-nio-8081-exec-8] INFO  c.s.b.util.BaseUtil - [toIndex,92] - BaseController/pms, processing:[{"companyName":"华为","name":"华为","statusName":"项目生产中","submitTime":1657014832000},{"companyName":"tyui-22","name":"tyui-22","statusName":"项目装配中","submitTime":1657365646000},{"companyName":"1234567","name":"1234567","statusName":"项目设计中","submitTime":1657463742000},{"companyName":"阿里巴巴","name":"车床","statusName":"项目设计中","submitTime":1663834869000}]
+2022-10-26 16:00:30.441 [,] [http-nio-8081-exec-8] INFO  c.s.b.util.BaseUtil - [toIndex,94] - BaseController/pms, finished:[{"companyName":"MF123456","name":"MF123456","statusName":"项目已完成","submitTime":1657372287000},{"companyName":"机械制造","name":"机械制造","statusName":"项目审核不通过","submitTime":1663828080000}]
+2022-10-26 16:00:48.142 [,] [http-nio-8081-exec-6] INFO  c.s.p.c.ProjectController - [productProjectWeb,1179] - ProjectController/productProjectWeb, product:[{"submitTime":1657014832000,"companyName":"华为","name":"华为","statusName":"项目生产中"}]
+2022-10-26 16:00:51.929 [,] [http-nio-8081-exec-10] INFO  c.s.p.c.ProjectController - [signProjectWeb,410] - ProjectController/signProjectWeb, sign:[]
+2022-10-26 16:00:52.270 [,] [http-nio-8081-exec-7] INFO  c.s.p.c.ProjectController - [designProjectWeb,508] - ProjectController/designProjectWeb, design:[{"submitTime":1657463742000,"companyName":"1234567","name":"1234567","statusName":"项目设计中"},{"submitTime":1663834869000,"companyName":"阿里巴巴","name":"车床","statusName":"项目设计中"}]
+2022-10-26 16:01:30.937 [,] [http-nio-8081-exec-5] INFO  c.s.p.c.d.DesignSoftwareController - [designSoftware,47] - DesignSoftwareController/designSoftware, 项目软件设计记录请求失败
+2022-10-26 16:01:30.937 [,] [http-nio-8081-exec-5] INFO  c.s.p.c.ProjectController - [designSoftware,820] - ProjectController/designSoftware, 项目设计-软件失败
+2022-10-26 16:02:22.139 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-26 16:02:22.170 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-SDAFTBQ with PID 12864 (D:\项目\PMS-lbx\PMS_final\target\classes started by lbx in D:\项目\PMS-lbx\PMS_final)
+2022-10-26 16:02:22.171 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-26 16:02:23.557 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-26 16:02:23.557 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-26 16:02:23.557 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-26 16:02:23.691 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-26 16:02:24.547 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-26 16:02:24.573 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 2.675 seconds (JVM running for 3.138)
+2022-10-26 16:02:24.856 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-26 16:03:01.585 [,] [http-nio-8081-exec-8] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2022-10-26 16:03:02.723 [,] [http-nio-8081-exec-8] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2022-10-26 16:04:17.069 [,] [http-nio-8081-exec-3] INFO  c.s.p.s.d.DesignSoftwareService - [insertDesignSoftware,81] - 数据库中ProgUrl储存C:\Users\lbx\Desktop\test/project/1234567/design/4565-software_design/2022-10-26_16-04-13/服务器.rar
+2022-10-26 16:04:17.093 [,] [http-nio-8081-exec-3] INFO  c.s.p.c.d.DesignSoftwareController - [designSoftware,43] - DesignSoftwareController/designSoftware, 项目软件设计记录请求成功
+2022-10-26 16:04:17.122 [,] [http-nio-8081-exec-3] INFO  c.s.p.c.ProjectController - [designSoftware,830] - ProjectController/designSoftware, 项目设计-软件成功
