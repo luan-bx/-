@@ -1,0 +1,20 @@
+2022-10-25 19:33:31.183 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-25 19:33:31.225 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 16260 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-25 19:33:31.226 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-25 19:33:33.873 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-25 19:33:33.874 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-25 19:33:33.879 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-25 19:33:34.008 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-25 19:33:35.510 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-25 19:33:35.610 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 4.818 seconds (JVM running for 5.933)
+2022-10-25 19:34:03.856 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-25 19:34:26.860 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-25 19:34:26.900 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 8976 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-25 19:34:26.901 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-25 19:34:28.596 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-25 19:34:28.597 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-25 19:34:28.597 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-25 19:34:28.698 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-25 19:34:29.958 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-25 19:34:30.027 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.481 seconds (JVM running for 4.047)
+2022-10-25 19:34:33.271 [,] [http-nio-8081-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'

@@ -15,6 +15,7 @@ import java.net.URL;
 
 @Controller
 @Slf4j
+@CrossOrigin
 public class FaceController {
 
 	@Autowired
