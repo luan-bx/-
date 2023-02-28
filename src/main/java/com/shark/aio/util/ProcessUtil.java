@@ -17,9 +17,9 @@ import java.lang.reflect.Field;
 public class ProcessUtil {
 
     /** Windows系统* */
-    private static final boolean IS_WINDOWS = System.getProperty("os.name").toLowerCase().contains("win");
+    public static final boolean IS_WINDOWS = System.getProperty("os.name").toLowerCase().contains("win");
     /** Linux系统* */
-    private static final boolean IS_LINUX = System.getProperty("os.name").toLowerCase().contains("Linux");
+    public static final boolean IS_LINUX = System.getProperty("os.name").toLowerCase().contains("linux");
 
     public static int getProcessIdInWindows(Process p) throws NoSuchFieldException, IllegalAccessException {
         Field f = p.getClass().getDeclaredField("handle");
@@ -47,8 +47,7 @@ public class ProcessUtil {
             String cmd ="cmd /k start ffmpeg -rtsp_transport tcp -i"
                     + " "
                     + videoPath
-                    + " "
-                    + "-vcodec libx264 -r 25 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/"
+                    + " -vcodec libx264 -r 25 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/"
                     + stream;
             log.info(cmd);
             pid = commandUtil.winExec(cmd);
@@ -60,12 +59,16 @@ public class ProcessUtil {
                     + ""
                     + videoPath
                     + "'"
-                    + ""
+                    + " "
                     + "-vcodec libx264 -r 25 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/"
                     + stream;
             pid = commandUtil.linuxExec(cmd);
         }
-        log.info("启动推流进程成功，进程："+pid);
+        if(pid>0) {
+            log.info("启动推流进程成功，进程：" + pid);
+        }else{
+            log.warn("启动推流进程error");
+        }
         return pid;
     }
 

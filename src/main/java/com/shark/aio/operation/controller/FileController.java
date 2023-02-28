@@ -1,6 +1,7 @@
 package com.shark.aio.operation.controller;
 
 import com.shark.aio.operation.entity.AIOFile;
+import com.shark.aio.util.ProcessUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,9 @@ import java.util.List;
 @Controller
 public class FileController {
 
-    private static final String videoDir = "F:\\code\\soft\\AIO\\video";
-    private static final String dataDir = "F:\\code\\soft\\AIO\\data";
-    private static final String logsDir = "F:\\code\\soft\\AIO\\logs";
+    private static final String videoDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\video":"/home/thg/桌面/AIO/video";
+    private static final String dataDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\data":"/home/thg/桌面/AIO/data";
+    private static final String logsDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\logs":"/home/thg/桌面/AIO/logs";
     private static long getTotalSizeOfFilesInDir(final File file) {
         if (file.isFile())
             return file.length();
@@ -80,6 +81,6 @@ public class FileController {
         request.setAttribute("videoFileList",videoFileList);
         request.setAttribute("dataFileList",dataFileList);
         request.setAttribute("logsFileList",logsFileList);
-        return "FileManagement";
+        return "fileManagement";
     }
 }

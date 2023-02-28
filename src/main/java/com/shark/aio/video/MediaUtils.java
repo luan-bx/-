@@ -126,7 +126,7 @@ public class MediaUtils {
                 //udpService.sendMessageBytes(bytes, ip, port);
                 //使用websocket发送数据
                 System.out.println("send......");
-                WebSocket.sendAll(bytes);
+//                WebSocket.sendAll(bytes);
                 System.out.println("after send......");
             }
         } catch (Exception e){

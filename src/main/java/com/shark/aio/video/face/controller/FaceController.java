@@ -27,6 +27,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
+@CrossOrigin
 public class FaceController {
 
 	@Autowired
