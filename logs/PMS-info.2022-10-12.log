@@ -1,0 +1,284 @@
+2022-10-12 12:35:33.969 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 12:35:34.100 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 17796 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 12:35:34.104 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 12:35:37.469 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 12:35:37.470 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 12:35:37.475 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 12:35:37.610 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 12:35:39.536 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 12:35:39.615 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 6.217 seconds (JVM running for 7.479)
+2022-10-12 12:36:23.586 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-12 12:36:23.619 [,] [http-nio-8081-exec-1] INFO  c.s.b.BaseController - [pms,60] - 172.29.56.24
+2022-10-12 12:37:00.660 [,] [http-nio-8081-exec-5] INFO  c.s.b.BaseController - [pms,60] - 172.29.56.24
+2022-10-12 12:37:12.424 [,] [http-nio-8081-exec-7] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2022-10-12 12:37:13.007 [,] [http-nio-8081-exec-7] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2022-10-12 12:37:19.784 [,] [http-nio-8081-exec-7] INFO  c.s.b.BaseController - [pms,60] - 172.29.56.24
+2022-10-12 12:38:35.450 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 12:38:35.482 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 1788 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 12:38:35.484 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 12:38:37.389 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 12:38:37.389 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 12:38:37.390 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 12:38:37.508 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 12:38:38.729 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 12:38:38.810 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.685 seconds (JVM running for 4.247)
+2022-10-12 12:38:40.950 [,] [http-nio-8081-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-12 12:38:40.997 [,] [http-nio-8081-exec-2] INFO  c.s.b.BaseController - [pms,60] - 172.29.56.24
+2022-10-12 12:38:56.625 [,] [http-nio-8081-exec-4] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2022-10-12 12:38:57.640 [,] [http-nio-8081-exec-4] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2022-10-12 12:38:57.674 [,] [http-nio-8081-exec-4] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : thg-admin1
+2022-10-12 12:38:57.677 [,] [http-nio-8081-exec-4] INFO  c.s.u.s.UserService - [login,212] - MD5加密032E6918EE47FEA204EBC0BE419AFBD1
+2022-10-12 12:38:57.679 [,] [http-nio-8081-exec-4] INFO  c.s.u.s.UserService - [login,218] - UserService/login, 登录成功
+2022-10-12 12:38:57.680 [,] [http-nio-8081-exec-4] INFO  c.s.u.c.UserController - [Login,180] - UserController/Login, 用户登录成功
+2022-10-12 12:38:57.940 [,] [http-nio-8081-exec-4] INFO  c.s.b.util.BaseUtil - [toIndex,90] - BaseController/pms, pending:[]
+2022-10-12 12:38:57.980 [,] [http-nio-8081-exec-4] INFO  c.s.b.util.BaseUtil - [toIndex,92] - BaseController/pms, processing:[{"companyName":"华为","name":"华为","statusName":"项目生产中","submitTime":1657014832000},{"companyName":"tyui-22","name":"tyui-22","statusName":"项目装配中","submitTime":1657365646000},{"companyName":"1234567","name":"1234567","statusName":"项目设计中","submitTime":1657463742000},{"companyName":"阿里巴巴","name":"车床","statusName":"项目设计中","submitTime":1663834869000}]
+2022-10-12 12:38:57.980 [,] [http-nio-8081-exec-4] INFO  c.s.b.util.BaseUtil - [toIndex,94] - BaseController/pms, finished:[{"companyName":"MF123456","name":"MF123456","statusName":"项目已完成","submitTime":1657372287000},{"companyName":"机械制造","name":"机械制造","statusName":"项目审核不通过","submitTime":1663828080000}]
+2022-10-12 12:39:31.248 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 12:39:31.279 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 18116 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 12:39:31.279 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 12:39:33.296 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 12:39:33.297 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 12:39:33.297 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 12:39:33.429 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 12:39:34.792 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 12:39:34.870 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.949 seconds (JVM running for 4.612)
+2022-10-12 12:39:34.961 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-12 12:39:38.701 [,] [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2022-10-12 12:39:39.641 [,] [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2022-10-12 12:39:39.678 [,] [http-nio-8081-exec-2] INFO  c.s.u.s.UserService - [login,206] - UserService/login, 使用用户名登录 : thg-admin1
+2022-10-12 12:39:39.679 [,] [http-nio-8081-exec-2] INFO  c.s.u.s.UserService - [login,212] - MD5加密032E6918EE47FEA204EBC0BE419AFBD1
+2022-10-12 12:39:39.684 [,] [http-nio-8081-exec-2] INFO  c.s.u.s.UserService - [login,218] - UserService/login, 登录成功
+2022-10-12 12:39:39.684 [,] [http-nio-8081-exec-2] INFO  c.s.u.c.UserController - [Login,180] - UserController/Login, 用户登录成功
+2022-10-12 12:39:39.835 [,] [http-nio-8081-exec-2] INFO  c.s.b.util.BaseUtil - [toIndex,90] - BaseController/pms, pending:[]
+2022-10-12 12:39:39.863 [,] [http-nio-8081-exec-2] INFO  c.s.b.util.BaseUtil - [toIndex,92] - BaseController/pms, processing:[{"companyName":"华为","name":"华为","statusName":"项目生产中","submitTime":1657014832000},{"companyName":"tyui-22","name":"tyui-22","statusName":"项目装配中","submitTime":1657365646000},{"companyName":"1234567","name":"1234567","statusName":"项目设计中","submitTime":1657463742000},{"companyName":"阿里巴巴","name":"车床","statusName":"项目设计中","submitTime":1663834869000}]
+2022-10-12 12:39:39.863 [,] [http-nio-8081-exec-2] INFO  c.s.b.util.BaseUtil - [toIndex,94] - BaseController/pms, finished:[{"companyName":"MF123456","name":"MF123456","statusName":"项目已完成","submitTime":1657372287000},{"companyName":"机械制造","name":"机械制造","statusName":"项目审核不通过","submitTime":1663828080000}]
+2022-10-12 12:39:43.687 [,] [http-nio-8081-exec-3] INFO  c.s.u.c.UserController - [personalCenterWeb,230] - BaseController/pms, 本次登录用户:thg-admin1
+2022-10-12 12:39:51.540 [,] [http-nio-8081-exec-5] INFO  c.s.u.s.UserService - [getUpdateEmailCode,362] - UserService/updateEmail:
+org.springframework.mail.MailSendException: Failed to close server connection after message failures; nested exception is javax.mail.MessagingException: Can't send command to SMTP host;
+  nested exception is:
+	java.net.SocketException: Connection or outbound has closed. Failed messages: com.sun.mail.smtp.SMTPSendFailedException: 501 Mail from address must be same as authorization user.
+;
+  nested exception is:
+	com.sun.mail.smtp.SMTPSenderFailedException: 501 Mail from address must be same as authorization user.
+
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:481)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at com.shark.users.service.UserService.getUpdateEmailCode(UserService.java:356)
+	at com.shark.users.controller.UserController.getEmailCode(UserController.java:358)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: javax.mail.MessagingException: Can't send command to SMTP host
+	at com.sun.mail.smtp.SMTPTransport.sendCommand(SMTPTransport.java:2431)
+	at com.sun.mail.smtp.SMTPTransport.sendCommand(SMTPTransport.java:2418)
+	at com.sun.mail.smtp.SMTPTransport.close(SMTPTransport.java:1394)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:476)
+	... 46 common frames omitted
+Caused by: java.net.SocketException: Connection or outbound has closed
+	at java.base/sun.security.ssl.SSLSocketImpl$AppOutputStream.write(SSLSocketImpl.java:1291)
+	at com.sun.mail.util.TraceOutputStream.write(TraceOutputStream.java:116)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:81)
+	at java.base/java.io.BufferedOutputStream.flush(BufferedOutputStream.java:142)
+	at com.sun.mail.smtp.SMTPTransport.sendCommand(SMTPTransport.java:2429)
+	... 49 common frames omitted
+2022-10-12 12:39:51.542 [,] [http-nio-8081-exec-5] INFO  c.s.u.c.UserController - [getEmailCode,360] - UserController/getEmailCode:发送验证码失败
+2022-10-12 13:00:26.028 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 13:00:26.062 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 14484 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 13:00:26.063 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 13:00:27.871 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:00:27.872 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 13:00:27.872 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 13:00:27.993 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 13:00:29.300 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:00:29.385 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.686 seconds (JVM running for 4.281)
+2022-10-12 13:00:34.882 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-12 13:00:36.002 [,] [http-nio-8081-exec-1] INFO  c.s.u.s.UserService - [getUpdateEmailCode,362] - UserService/updateEmail:
+org.springframework.mail.MailAuthenticationException: Authentication failed; nested exception is javax.mail.AuthenticationFailedException: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:440)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at com.shark.users.service.UserService.getUpdateEmailCode(UserService.java:356)
+	at com.shark.users.controller.UserController.getEmailCode(UserController.java:358)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: javax.mail.AuthenticationFailedException: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:947)
+	at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:858)
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:762)
+	at javax.mail.Service.connect(Service.java:342)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 46 common frames omitted
+2022-10-12 13:00:36.002 [,] [http-nio-8081-exec-1] INFO  c.s.u.c.UserController - [getEmailCode,360] - UserController/getEmailCode:发送验证码失败
+2022-10-12 13:02:06.774 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 13:02:06.813 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 12728 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 13:02:06.815 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 13:02:08.699 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:02:08.699 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 13:02:08.699 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 13:02:08.823 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 13:02:10.159 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:02:10.231 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.805 seconds (JVM running for 4.455)
+2022-10-12 13:02:38.453 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 13:02:38.490 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 10800 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 13:02:38.493 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 13:02:40.378 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:02:40.379 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 13:02:40.379 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 13:02:40.512 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 13:02:41.871 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:02:41.942 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.832 seconds (JVM running for 4.577)
+2022-10-12 13:02:48.156 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-12 13:02:49.540 [,] [http-nio-8081-exec-1] INFO  c.s.u.s.UserService - [getUpdateEmailCode,362] - UserService/updateEmail:
+org.springframework.mail.MailAuthenticationException: Authentication failed; nested exception is javax.mail.AuthenticationFailedException: 535 Error: authentication failed, system busy
+
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:440)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312)
+	at com.shark.users.service.UserService.getUpdateEmailCode(UserService.java:356)
+	at com.shark.users.controller.UserController.getEmailCode(UserController.java:358)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: javax.mail.AuthenticationFailedException: 535 Error: authentication failed, system busy
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:947)
+	at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:858)
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:762)
+	at javax.mail.Service.connect(Service.java:342)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)
+	... 46 common frames omitted
+2022-10-12 13:02:49.541 [,] [http-nio-8081-exec-1] INFO  c.s.u.c.UserController - [getEmailCode,360] - UserController/getEmailCode:发送验证码失败
+2022-10-12 13:04:08.822 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-10-12 13:04:08.853 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-RHK02IA with PID 8536 (C:\Users\98285\Desktop\项目管理系统\PMS0926\target\classes started by 98285 in C:\Users\98285\Desktop\项目管理系统\PMS0926)
+2022-10-12 13:04:08.854 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-10-12 13:04:10.625 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:04:10.626 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-10-12 13:04:10.626 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-10-12 13:04:10.738 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-10-12 13:04:12.016 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-10-12 13:04:12.081 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 3.661 seconds (JVM running for 4.23)
+2022-10-12 13:04:16.001 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-10-12 13:04:19.368 [,] [http-nio-8081-exec-1] INFO  c.s.u.c.UserController - [getEmailCode,363] - UserController/getEmailCode:发送验证码成功

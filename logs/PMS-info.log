@@ -1,0 +1,10 @@
+2022-12-06 15:01:14.794 [,] [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.0.20.Final
+2022-12-06 15:01:14.803 [,] [main] INFO  com.shark.PMSapp - [logStarting,55] - Starting PMSapp on DESKTOP-GT12THB with PID 15532 (F:\code\soft\PMS\PMS_final\PMS\target\classes started by dell in F:\code\soft\PMS\PMS_final\PMS)
+2022-12-06 15:01:14.804 [,] [main] INFO  com.shark.PMSapp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+2022-12-06 15:01:15.383 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2022-12-06 15:01:15.383 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2022-12-06 15:01:15.386 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2022-12-06 15:01:15.439 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2022-12-06 15:01:15.917 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2022-12-06 15:01:15.929 [,] [main] INFO  com.shark.PMSapp - [logStarted,61] - Started PMSapp in 1.273 seconds (JVM running for 1.635)
+2022-12-06 15:01:32.285 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
