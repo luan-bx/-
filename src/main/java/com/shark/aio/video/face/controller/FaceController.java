@@ -1,29 +1,17 @@
 package com.shark.aio.video.face.controller;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.github.pagehelper.PageInfo;
-import com.shark.aio.video.MediaUtils;
 import com.shark.aio.video.entity.VideoEntity;
 import com.shark.aio.video.service.VideoService;
-import org.bytedeco.javacv.FrameGrabber;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import lombok.extern.slf4j.Slf4j;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 @Controller
 @Slf4j
@@ -33,14 +21,17 @@ public class FaceController {
 	private VideoService videoService;
 
 
+	public static void main(String arg[]){
+		callFaceAI("");
+	}
 	@RequestMapping("/callFaceAI")
 	public static void callFaceAI(String filePath) {
-		filePath = "/Users/lb/Downloads/img.jpeg";
+		filePath = "C:\\Users\\lbx\\Desktop\\picture\\2.jpg";
 		DataOutputStream out = null;
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://172.28.180.126:80/predict");
+			URL url = new URL("http://192.168.0.130:5000/ssd_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
@@ -77,10 +68,11 @@ public class FaceController {
 			out.close();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = null;
+
 			while ((line = reader.readLine()) != null) {
-				System.out.println(line);
-				log.info(line);
+				log.info(line.substring(0,100));
 			}
+
 		} catch (Exception e) {
 			System.out.println("发送POST请求出现异常！" + e);
 			e.printStackTrace();

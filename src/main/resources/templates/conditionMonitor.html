@@ -83,11 +83,12 @@
                                                 <tr>
                                                     <th>序号</th>
                                                     <th>采样时间</th>
-                                                    <th>车床设备状态</th>
-                                                    <th>分离器设备状态</th>
-                                                    <th>热换器设备状态</th>
-                                                    <th>外压设备状态</th>
-                                                    <th>金属设备状态</th>
+                                                    <th>设备</th>
+                                                    <th>i12001</th>
+                                                    <th>i12002</th>
+                                                    <th>i12003</th>
+                                                    <th>i22001</th>
+                                                    <th>i32001</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody id="tbody"></tbody>
@@ -193,16 +194,22 @@
         for(var i=1; i<response.length; i++)
         {
             response[i]=JSON.parse(response[i]);
-            let time = response[i]['data'][0]["时间"];
-            let value0 = response[i]['data'][0]["幅值"];
-            let value1 = response[i]['data'][1]["幅值"];
-            let deviceID = response[i]["设备ID"]
+            let time = response[i]["DataTime"];
+            let deviceID = response[i]["MN"];
+            let value0 = response[i]['CP']['i12001-Info'];
+            let value1 = response[i]['CP']['i12002-Info'];
+            let value2 = response[i]['CP']['i12003-Info'];
+            let value3 = response[i]['CP']['i22001-Info'];
+            let value4 = response[i]['CP']['i32001-Info'];
             let str = "<tr>" +
                           "<td>"+i+"</td>" +
-                          "<td>"+deviceID+"</td>" +
                           "<td>"+time+"</td>" +
+                          "<td>"+deviceID+"</td>" +
                           "<td>"+value0+"</td>" +
                           "<td>"+value1+"</td>" +
+                          "<td>"+value2+"</td>" +
+                          "<td>"+value3+"</td>" +
+                          "<td>"+value4+"</td>" +
                       "</tr>";
             $("#tbody").append(str);
         }

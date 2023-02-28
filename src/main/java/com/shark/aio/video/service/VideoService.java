@@ -2,7 +2,6 @@ package com.shark.aio.video.service;
 
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.util.ProcessUtil;
-import com.shark.aio.video.WebSocket;
 import com.shark.aio.video.entity.FfmpegProcess;
 import com.shark.aio.video.entity.VideoEntity;
 import com.shark.aio.video.mapper.VideoMapping;
@@ -10,9 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Slf4j

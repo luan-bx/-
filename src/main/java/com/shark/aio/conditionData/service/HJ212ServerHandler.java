@@ -1,7 +1,6 @@
 package com.shark.aio.conditionData.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shark.aio.conditionData.ConditionFileEntity;
 import com.shark.aio.conditionData.mapper.ConditionMapping;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -40,37 +39,42 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws IOException {
+
+
         System.out.println("=============" + (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()) + "=============");
         System.out.println("收到" + ctx.channel().id() + "设备消息 ===> " + msg);
 
         // 解析物联网设备发来的数据
         JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
-        JSONObject data2 = HJ212MsgUtils.dealMsg1((String) msg);
+//        JSONObject data2 = HJ212MsgUtils.dealMsg2((String) msg);
 
         /**
          * 做自己的业务逻辑，分发数据，分析数据，持久化数据等。
          */
 
-        System.out.println("设备消息解析JSON结果：" + data.toJSONString());
-        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
-        try {
-            String path = "D:\\项目\\AIO\\conditionData.txt";//根据日期或某个算法自动生成
-            File file = new File(path);
-            if(!file.exists()){
-                file.mkdirs();
-            }
-            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
-            out.write(data.toJSONString().getBytes());
-            out.flush();
-            out.close();
-            ConditionFileEntity conditionFileEntity = null;
-            conditionFileEntity.setFileUrl(path);
-            conditionMapping.insertFileUrl(conditionFileEntity);
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+        if (data != null){
+            System.out.println("设备消息解析JSON结果：" + data.toJSONString());
+//        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
+            try {
+                String path = "D:\\项目\\AIO\\conditionData.txt";//根据日期或某个算法自动生成
+                File file = new File(path);
+//            if(!file.exists()){
+//                file.mkdirs();
+//            }
+                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
+                out.write((data.toJSONString()+"\n").getBytes());
+                out.flush();
+                out.close();
+//            ConditionFileEntity conditionFileEntity = null;
+//            conditionFileEntity.setFileUrl(path);
+//            conditionMapping.insertFileUrl(conditionFileEntity);
+            } catch (Exception e) {
+                // TODO: handle exception
+                e.printStackTrace();
 //            req.setAttribute("error", "添加文件失败");
 //            return Constants.FAILCODE;
+            }
+
         }
 
     }

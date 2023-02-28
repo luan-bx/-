@@ -1,6 +1,7 @@
 package com.shark.aio.video.service;
 
 import org.bytedeco.ffmpeg.global.avcodec;
+import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 import org.bytedeco.javacv.Frame;
@@ -13,11 +14,11 @@ import java.util.Date;
  * @author lbx
  * @date 2023/2/23 - 16:11
  **/
-public class JavaCVService {
+public class VideoRecorderService {
     static SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
     static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
     static String inputFile = "rtsp://admin:lbx123456@192.168.0.3:554";
-    static String outputFile = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) + "\\" + TimeFormat.format(new Date()) + ".mp4";
+    static String outputFile = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) + "\\%Y-%m-%d_%H-%M-%S.mp4";
 
     public static void main(String[] args)
             throws Exception {
@@ -63,19 +64,38 @@ public class JavaCVService {
         //socket网络超时时间
         grabber.setOption("stimeout","3000000");
 
+        grabber.setImageWidth(1280);
+        grabber.setImageHeight(720);
+        grabber.setImageScalingFlags(0);
+//        grabber.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
+        grabber.setFrameRate(25);
+        // 一般来说摄像头的帧率是25
+//        if (grabber.getFrameRate() > 0 && grabber.getFrameRate() < 100) {
+//            framerate = grabber.getFrameRate();
+//        } else {
+//            framerate = 25.0;
+//        }
+
         // 流媒体输出地址，分辨率（长，高），是否录制音频（0:不录制/1:录制）
-        FFmpegFrameRecorder recorder = new FFmpegFrameRecorder(outputFile, 1920,1080, audioChannel);
+        FFmpegFrameRecorder recorder = new FFmpegFrameRecorder(outputFile, 1280,720, audioChannel);
         // 设置视频编码H264
         recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
         //设置音频编码
         recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
         // 2000 kb/s, reasonable "sane" area for 720
 //        recorder.setVideoBitrate(4000000);
+//        recorder.setPixelFormat(avutil.AV_PIX_FMT_YUV420P);
+//        recorder.setPixelFormat(0);
+        //过滤掉日志
+        avutil.av_log_set_level(avutil.AV_LOG_ERROR);
+
+        recorder.setOption("strftime", "1"); //根据日期生成文件名
 
         recorder.setFormat("segment");
         //十秒钟一切
-        recorder.setOption("segment_time", "60");
-//        recorder.setOption("segment_filename", "D:\\项目\\AIO\\recorder\\" +(new java.text.SimpleDateFormat("yyyy-MM-dd HH-mm-ss")).format(new Date()) + "\\recorder%03d.mp4");
+        recorder.setOption("segment_time", "10");
+        recorder.setOption("segment_filename", "10");
+//      recorder.setOption("segment_filename", "D:\\项目\\AIO\\recorder\\" +(new java.text.SimpleDateFormat("yyyy-MM-dd HH-mm-ss")).format(new Date()) + "\\recorder%03d.mp4");
         //生成模式：live（实时生成）、cache（边缓存边生成，只支持m3u8清单文件缓存）
         recorder.setOption("segment_list_flags", "live");
         //强制锁定切片时长
@@ -144,5 +164,7 @@ public class JavaCVService {
             }
         }
     }
+
+
 
 }
