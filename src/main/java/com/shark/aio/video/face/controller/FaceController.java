@@ -70,6 +70,28 @@ public class FaceController {
 			while ((line = reader.readLine()) != null) {
 				log.info(line.substring(0,100));
 			}
+			
+			BASE64Decoder decoder = new BASE64Decoder();
+		    try {
+		        // 解密
+		        byte[] b = decoder.decodeBuffer(imgStr);
+		        // 处理数据
+		        for(int i = 0; i < b.length; ++i) {
+		            if (b[i] < 0) {
+		                b[i] += 256;
+		            }
+		        }
+		        OutputStream out = new FileOutputStream("D:\\项目\\AIO\\image\\AIResult\\face.jpg);
+		        out.write(b);
+		        out.flush();
+		        out.close();
+		        return true;
+		    } catch (IOException e) {
+		        // TODO Auto-generated catch block
+		        e.printStackTrace();
+		    }
+
+
 
 		} catch (Exception e) {
 			System.out.println("发送POST请求出现异常！" + e);
