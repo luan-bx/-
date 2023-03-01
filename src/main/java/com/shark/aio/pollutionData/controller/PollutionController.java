@@ -162,8 +162,7 @@ public class PollutionController {
 
 			//			String pretty = JSON.toJSONString(json, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
 //					SerializerFeature.WriteDateUseDateFormat);
-			String path = "D:/项目/AIO/";
-			File file = new File(path + "pollutionData.txt");
+			File file = new File(Constants.pollutionData);
 			if (file.exists()) {
 //				System.out.println("文件存在");
 			} else {
@@ -217,7 +216,7 @@ public class PollutionController {
 	 */
 	@RequestMapping("/returnPollutionData")
 	public void returnPollutionData(String filePath, HttpServletResponse req) throws IOException {
-		filePath = "D:/项目/AIO/pollutionData.txt";
+		filePath = Constants.pollutionData;
 		FileInputStream fin = new FileInputStream(filePath);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);

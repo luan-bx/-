@@ -22,9 +22,6 @@ public class FaceController {
 	private VideoService videoService;
 
 
-	public static void main(String arg[]){
-		callFaceAI("");
-	}
 	@RequestMapping("/callFaceAI")
 	public static void callFaceAI(String filePath) {
 		filePath = "C:\\Users\\lbx\\Desktop\\picture\\2.jpg";

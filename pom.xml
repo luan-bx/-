@@ -8,7 +8,7 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.shark</groupId>
     <artifactId>AIO</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>AIO</name>
@@ -185,6 +185,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.shark.aio.AioApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -2,6 +2,7 @@ package com.shark.aio.conditionData.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.conditionData.mapper.ConditionMapping;
+import com.shark.aio.util.Constants;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -56,7 +57,7 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println("设备消息解析JSON结果：" + data.toJSONString());
 //        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
             try {
-                String path = "D:\\项目\\AIO\\conditionData.txt";//根据日期或某个算法自动生成
+                String path = Constants.conditionData;//根据日期或某个算法自动生成
                 File file = new File(path);
 //            if(!file.exists()){
 //                file.mkdirs();
