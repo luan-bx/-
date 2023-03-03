@@ -1,6 +1,7 @@
 package com.shark.aio.video.service;
 
 import com.shark.aio.video.face.controller.FaceController;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
@@ -11,6 +12,9 @@ import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.FrameRecorder.Exception;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -25,18 +29,28 @@ import java.util.Date;
  * 连续截图，覆盖截图
  * @author eguid
  */
+@Controller
+@NoArgsConstructor
 public class ImageRecorderService implements Runnable{
 
-    private String input;
+    private String input = "rtsp://admin:lbx123456@nju@192.168.0.3:554";
     private String output;
     private Integer width;
     private Integer height;
     private String mode;
 
-    public static void main(String[] args) throws java.lang.Exception {
-        SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        String url = "D:\\项目\\AIO\\image\\" +(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(new Date()) ;
-        File localPath1 = new File(url + "\\lbx");
+    SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    static String url = "/home/user/AIO/image/" +(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(new Date()) ;
+
+    //该方法监测的文件夹路径
+    private static final String PARENT_DIR = url + "/lbx";
+
+
+    @RequestMapping("/diaoyong")
+    @ResponseBody
+    public String diaoyong(String[] args) throws java.lang.Exception {
+
+        File localPath1 = new File(url + "/lbx");
         if (!localPath1.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
             localPath1.mkdirs();
         }
@@ -46,9 +60,10 @@ public class ImageRecorderService implements Runnable{
         }
 
 //        record("rtsp://admin:lbx123456@192.168.0.3:554", url + "\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0");
-        new Thread(new ImageRecorderService("rtsp://admin:lbx123456@192.168.0.3:554", url + "\\lbx\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0")).start();
-        new Thread(new ImageRecorderService("rtsp://admin:Shark666@nju@192.168.0.2:554", url + "\\thg\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0")).start();
+        new Thread(new ImageRecorderService("rtsp://admin:lbx123456@192.168.0.3:554", url + "/lbx/%Y-%m-%d_%H-%M-%S.jpg", 1280, 720,"0")).start();
+        new Thread(new ImageRecorderService("rtsp://admin:Shark666@nju@218.2.130.246:554", url + "\\thg\\%Y-%m-%d_%H-%M-%S.jpg", 1280, 720,"0")).start();
         runExample();
+        return "success";
     }
 
 
@@ -64,7 +79,6 @@ public class ImageRecorderService implements Runnable{
 //    public static void record(String input,String output,Integer width,Integer height,String mode) throws Exception, org.bytedeco.javacv.FrameGrabber.Exception{
 //
 //    }
-
 
 
     public ImageRecorderService(String input,String output,Integer width,Integer height,String mode){
@@ -157,8 +171,6 @@ public class ImageRecorderService implements Runnable{
 
 
 
-    private static final String PARENT_DIR =
-            "D:\\项目\\AIO\\image\\2023-02-28\\lbx";
 
 
 

@@ -1,12 +1,14 @@
 package com.shark.aio.video.face.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.util.ProcessUtil;
 import com.shark.aio.video.entity.VideoEntity;
 import com.shark.aio.video.service.VideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
@@ -23,13 +25,14 @@ public class FaceController {
 
 
 	@RequestMapping("/callFaceAI")
+	@ResponseBody
 	public static void callFaceAI(String filePath) {
-		filePath = "C:\\Users\\lbx\\Desktop\\picture\\2.jpg";
+//		filePath = "C:\\Users\\thg\\Desktop\\1.jpg";
 		DataOutputStream out = null;
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://192.168.0.130:5000/ssd_predict");
+			URL url = new URL("http://localhost:5000/ssd_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
@@ -66,32 +69,32 @@ public class FaceController {
 			out.close();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = null;
+			line = reader.readLine();
+			log.info(line.substring(0,100));
+			String msg = "";
+			if (line.contains("person")) {
+				msg = line.substring(line.indexOf("\"img_str\":\"")+"\"img_str\":\"".length(), line.indexOf("\"}"));
+				log.info(msg);
+				BASE64Decoder decoder = new BASE64Decoder();
 
-			while ((line = reader.readLine()) != null) {
-				log.info(line.substring(0,100));
+				try {
+					// 解密
+					byte[] b = decoder.decodeBuffer(msg);
+					// 处理数据
+					for(int i = 0; i < b.length; ++i) {
+						if (b[i] < 0) {
+							b[i] += 256;
+						}
+					}
+					OutputStream out2 = new FileOutputStream(ProcessUtil.IS_WINDOWS?"C:\\Users\\thg\\Desktop\\face.jpg":"/home/user/AIO/image/AIResult/face.jpg");
+					out2.write(b);
+					out2.flush();
+					out2.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			
-			BASE64Decoder decoder = new BASE64Decoder();
-		    try {
-		        // 解密
-		        byte[] b = decoder.decodeBuffer(imgStr);
-		        // 处理数据
-		        for(int i = 0; i < b.length; ++i) {
-		            if (b[i] < 0) {
-		                b[i] += 256;
-		            }
-		        }
-		        OutputStream out = new FileOutputStream("D:\\项目\\AIO\\image\\AIResult\\face.jpg);
-		        out.write(b);
-		        out.flush();
-		        out.close();
-		        return true;
-		    } catch (IOException e) {
-		        // TODO Auto-generated catch block
-		        e.printStackTrace();
-		    }
-
-
 
 		} catch (Exception e) {
 			System.out.println("发送POST请求出现异常！" + e);
