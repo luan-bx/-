@@ -1,6 +1,10 @@
 package com.shark.aio.video.face.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.util.Constants;
+import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ProcessUtil;
 import com.shark.aio.video.entity.CarRecordsEntity;
 import com.shark.aio.video.entity.FaceRecordsEntity;
@@ -16,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 @Controller
 @Slf4j
@@ -26,15 +31,17 @@ public class FaceController {
 	private VideoService videoService;
 
 
+
 	@RequestMapping("/callFaceAI")
 	@ResponseBody
-	public static void callFaceAI(String filePath) {
-		filePath = "C:\\Users\\dell\\Desktop\\1.png";
+	public static FaceRecordsEntity callFaceAI(File file) {
+//		filePath = "C:\\Users\\dell\\Desktop\\1.png";
+		FaceRecordsEntity faceRecord = null;
 		DataOutputStream out = null;
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://localhost:5000/carID_image_predict");
+			URL url = new URL("http://localhost:5000/ssd_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
@@ -46,7 +53,6 @@ public class FaceController {
 			conn.setRequestProperty("Charsert", "UTF-8");
 			conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
 			out = new DataOutputStream(conn.getOutputStream());
-			File file = new File(filePath);
 			StringBuilder sb1 = new StringBuilder();
 			sb1.append(prefix);
 			sb1.append(BOUNDARY);
@@ -72,23 +78,41 @@ public class FaceController {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = null;
 			line = reader.readLine();
-			log.info(line.substring(0,100));
+			log.info("人脸识别算法："+line.substring(0,100));
+			JSONObject result = JSON.parseObject(line);
 			String msg = "";
-			if (line.contains("person")) {
-				msg = line.substring(line.indexOf("\"img_str\":\"")+"\"img_str\":\"".length(), line.indexOf("\"}"));
-				log.info(msg);
+			if (result.getString("class_name").contains("person")) {
+				faceRecord = new FaceRecordsEntity();
+				//判断有几个人以及最高概率
+				String[] classes = result.getString("class_name").split(";");
+				int count = 0;
+				double score = 0;
+				for (String s: classes){
+					if (!s.contains("person")) continue;
+					count ++;
+					double thisScore = Double.parseDouble(s.substring(s.indexOf("person: ")+"person: ".length()));
+					if (thisScore > score){
+						score = thisScore;
+					}
+				}
+				faceRecord.setResult(count + "个人");
+				faceRecord.setScore(score);
+				/*msg = line.substring(line.indexOf("\"img_str\":\"")+"\"img_str\":\"".length(), line.indexOf("\"}"));
+				log.info(msg);*/
 				BASE64Decoder decoder = new BASE64Decoder();
 
 				try {
 					// 解密
-					byte[] b = decoder.decodeBuffer(msg);
+					byte[] b = decoder.decodeBuffer(result.getString("img_str"));
 					// 处理数据
 					for(int i = 0; i < b.length; ++i) {
 						if (b[i] < 0) {
 							b[i] += 256;
 						}
 					}
-					OutputStream out2 = new FileOutputStream(ProcessUtil.IS_WINDOWS?"C:\\Users\\dell\\Desktop\\face.jpg":"/home/user/AIO/image/AIResult/face.jpg");
+					String fileName = DateUtil.fileFormat.format(new Date())+".jpg";
+					faceRecord.setPictureUrl(fileName);
+					OutputStream out2 = new FileOutputStream(Constants.FACEIMGOUTPUTPATH + fileName);
 					out2.write(b);
 					out2.flush();
 					out2.close();
@@ -103,6 +127,7 @@ public class FaceController {
 			System.out.println("发送POST请求出现异常！" + e);
 			e.printStackTrace();
 		}
+		return faceRecord;
 	}
 
 

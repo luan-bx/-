@@ -18,10 +18,10 @@ import java.util.Date;
 public class VideoRecorderService {
     static SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
     static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
-    static String inputFile = Constants.LBXINPUT;
-    static String outputFile = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) + "\\%Y-%m-%d_%H-%M-%S.mp4";
+    private String inputFile = Constants.LBXINPUT;
+    private String outputFile =  Constants.VIDEOOUTPUTPATH + "\\%Y-%m-%d_%H-%M-%S.mp4";
 
-    public static void main(String[] args)
+    public void startRecordVideo()
             throws Exception {
         //海歌摄像头
         //String inputFile = "rtsp://admin:Shark666@nju@192.168.0.2:554";
@@ -54,7 +54,7 @@ public class VideoRecorderService {
      * @throws Exception
      * @throws org.bytedeco.javacv.FrameRecorder.Exception
      */
-    public static void frameRecord(String inputFile, String outputFile, int audioChannel)
+    public void frameRecord(String inputFile, String outputFile, int audioChannel)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
 
         boolean isStart=true;//该变量建议设置为全局控制变量，用于控制录制结束
@@ -128,7 +128,7 @@ public class VideoRecorderService {
 
 
 
-    private static void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder, Boolean status)
+    private void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder, Boolean status)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
         try {//建议在线程中使用该方法
             grabber.start();

@@ -34,7 +34,6 @@ build/
 
 
 src/main/java/com/shark/aio/video/WebSocket.java
-src/main/java/com/shark/aio/video/configuration/
 src/main/java/com/shark/aio/video/cron.java
 src/main/resources/templates/testFlask.html
 src/main/resources/templates/testWebSocket.html

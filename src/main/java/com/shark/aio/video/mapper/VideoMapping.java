@@ -42,10 +42,15 @@ public interface VideoMapping {
     @Select("SELECT `rtsp` FROM `video` WHERE `stream`=#{stream}")
     public String selectRtspByStream(String stream);
 
+    @Insert("INSERT INTO face_records (picture_url,result,score) VALUES(#{pictureUrl},#{result},#{score})")
+    public void insertFaceRecord(FaceRecordsEntity faceRecords);
+
     @Select("SELECT * FROM face_records")
     public List<FaceRecordsEntity> selectAllFaceRecords();
 
 
+    @Insert("INSERT INTO car_records (picture_url,result,score) VALUES(#{pictureUrl},#{result},#{score})")
+    public void insertCarRecord(CarRecordsEntity carRecords);
     @Select("SELECT * FROM car_records")
     public List<CarRecordsEntity> selectAllCarRecords();
 }

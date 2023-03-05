@@ -94,4 +94,12 @@ public interface Constants {
 	 */
 	String LBXINPUT = "rtsp://admin:lbx123456@192.168.0.3:554";
 	String THGINPUT = "rtsp://admin:Shark666@nju@192.168.0.2:554";
+
+	/**
+	 * 文件存储根路径
+	 */
+	String VIDEOOUTPUTPATH = "D:\\项目\\AIO\\recorder\\";
+	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\":"/home/user/AIO/image/";
+	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\faceResult\\":"/home/user/AIO/image/AIResult/";
+	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\carResult\\":"/home/user/AIO/image/AIResult/";
 }
