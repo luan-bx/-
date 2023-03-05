@@ -1,5 +1,6 @@
 package com.shark.aio.video.service;
 
+import com.shark.aio.util.Constants;
 import org.bytedeco.ffmpeg.global.avcodec;
 import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
@@ -17,7 +18,7 @@ import java.util.Date;
 public class VideoRecorderService {
     static SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
     static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
-    static String inputFile = "rtsp://admin:lbx123456@192.168.0.3:554";
+    static String inputFile = Constants.LBXINPUT;
     static String outputFile = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) + "\\%Y-%m-%d_%H-%M-%S.mp4";
 
     public static void main(String[] args)

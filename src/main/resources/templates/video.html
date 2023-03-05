@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -28,6 +29,43 @@
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+    <style type="text/css">
+      *{
+        margin:0px;
+        padding:0px;
+      }
+      /* 触发弹窗图片的样式 */
+      .resultImg {
+        margin: 10px auto;
+        cursor: pointer;
+        max-height: 130px;
+      }
+
+      /* 弹窗的位置和背景颜色 */
+      .modal {
+        display: none;
+        position: fixed; /* 绝对定位 */
+        z-index: 1; /* 元素置前 */
+        background-color: rgba(0,0,0,0.5);
+        width: 100%;
+        height: 100%;
+        line-height: 100%;
+        overflow: auto; /* 溢出出现滚动条 */
+      }
+
+      /* 弹窗图片的大小 */
+      .content {
+        margin: auto;
+        display: block;
+        vertical-align: middle;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+
+      }
+    </style>
+
   </head>
 
   <body class="nav-md">
@@ -44,7 +82,7 @@
 
       <!-- 主页面 -->
       <div class="right_col" role="main">
-        <div class="" th:object="${allVideos}" th:with="baseURL='/videoMonitor'">
+        <div class="">
           <div class="page-title">
             <div class="title_left">
               <h3><small>视频监控</small></h3>
@@ -53,16 +91,6 @@
 
             <div class="title_right">
               <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                <form th:action="@{${baseURL}+'/1/'+*{pageSize}}" method="post" id="mohuForm">
-                  <div class="input-group">
-
-                    <input name="feature" type="text" class="form-control" placeholder="搜索...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button" onclick="document.getElementById('mohuForm').submit()">确认</button>
-                    </span>
-
-                  </div>
-                </form>
               </div>
             </div>
           </div>
@@ -84,68 +112,225 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="dataTables_length" >
-                        <form id="pageSizeForm" th:action="@{${baseURL}+'/1/'}">
-                          <label>
 
-                            显示 <select id="pageSize" class="input-sm">
-                            <option value="10" th:selected="*{pageSize} eq '10'">10</option>
-                            <option value="15" th:selected="*{pageSize} eq '15'">15</option>
-                            <option value="25" th:selected="*{pageSize} eq '25'">25</option>
-                            <option value="50" th:selected="*{pageSize} eq '50'">50</option>
-                            <option value="100" th:selected="*{pageSize} eq '100'">100</option>
-                          </select> 条记录
 
-                          </label>
-                        </form>
+                  <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link" th:classappend="${class}=='video'?'active':''" th:href="@{/videoMonitor}" th:aria-selected="${class}=='video'">实时监控</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" th:classappend="${class}=='face'?'active':''" th:href="@{/videoMonitor/face}" th:aria-selected="${class}=='face'">人脸记录</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" th:classappend="${class}=='car'?'active':''" th:href="@{/videoMonitor/car}" th:aria-selected="${class}=='car'">车牌记录</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent" >
+                    <div class="tab-pane fade show active" th:if="${class}=='video'" th:object="${allVideos}" th:with="baseURL='/videoMonitor'">
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <div class="dataTables_length" >
+                            <form id="pageSizeForm" th:action="@{${baseURL}+'/1/'}">
+                              <label>
 
+                                显示 <select id="pageSize" class="input-sm">
+                                <option value="10" th:selected="*{pageSize} eq '10'">10</option>
+                                <option value="15" th:selected="*{pageSize} eq '15'">15</option>
+                                <option value="25" th:selected="*{pageSize} eq '25'">25</option>
+                                <option value="50" th:selected="*{pageSize} eq '50'">50</option>
+                                <option value="100" th:selected="*{pageSize} eq '100'">100</option>
+                              </select> 条记录
+
+                              </label>
+                            </form>
+
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <form th:action="@{${baseURL}+'/1/'+*{pageSize}}" method="post" id="videomohuForm">
+                            <div class="input-group">
+
+                              <input name="feature" type="search" class="form-control input-sm" placeholder="搜索...">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="document.getElementById('videomohuForm').submit()">确认</button>
+                              </span>
+
+                            </div>
+                          </form>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-55" th:each="video:*{list}">
-                      <div class="thumbnail">
-                        <div class="image view view-first">
-                          <img style="width: 100%; display: block;" th:src="@{/images/media.jpg}" alt="image" />
-                          <div class="mask">
-                            <p th:text="${video.description}" style="font-size: 20px;max-height: 50px">Your Text</p>
-                            <div class="tools tools-bottom">
-                              <a th:href="@{/videoPlay(stream=${video.stream})}"><i class="fa fa-play"></i></a>
+                      <div class="row">
+                        <div class="col-md-55" th:each="video:*{list}">
+                          <div class="thumbnail">
+                            <div class="image view view-first">
+                              <img style="width: 100%; display: block;" th:src="@{/images/media.jpg}" alt="image" />
+                              <div class="mask">
+                                <p th:text="${video.description}" style="font-size: 20px;max-height: 50px">Your Text</p>
+                                <div class="tools tools-bottom">
+                                  <a th:href="@{/videoPlay(stream=${video.stream})}"><i class="fa fa-play"></i></a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="caption">
+                              <p th:text="${video.monitorName}" style="text-align: center">Snow and Ice Incoming for the South</p>
                             </div>
                           </div>
                         </div>
-                        <div class="caption">
-                          <p th:text="${video.monitorName}" style="text-align: center">Snow and Ice Incoming for the South</p>
+                      </div>
+
+                      <!--                  下方分页导航栏-->
+                      <div class="row" th:with="feature=${feature} == null or ${feature} == '' ? '':'/'+${feature}">
+                        <div class="col-sm-5">
+                          <div class="dataTables_info" id="datatable_info"role="status " aria-live="polite" >第 <span th:text="*{startRow}">1</span> 到 <span th:text="*{endRow}">10</span> 条记录，总计 <span th:text="*{total}">10</span> 条</div>
                         </div>
+                        <div class="col-sm-7">
+                          <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                            <ul class="pagination">
+                              <li class="paginate_button previous disabled"id="datatable_previous">
+                                <a th:href="@{${baseURL}+'/1/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >首页</a>
+                              </li>
+                              <li class="paginate_button active" th:each="navigatePage:*{navigatepageNums}">
+                                <a th:href="@{${baseURL}+'/'+${navigatePage}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" th:text="${navigatePage}">1</a>
+                              </li>
+                              <li class="paginate_button next disabled" id="datatable_next">
+                                <a th:href="@{${baseURL}+'/'+*{pages}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >尾页</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                      </div>
+                      <!--                  分页导航栏结束-->
+                    </div>
+                    <div class="tab-pane fade show active" th:if="${class}=='face'" th:object="${faceRecords}" th:with="baseURL='/videoMonitor/face'">
+                      <div class="row">
+                        <div class="col-sm-2" style="margin-top: 10px;">
+                          <div class="dataTables_length" >
+                            <form id="pageSizeForm" th:action="@{${baseURL}+'/1/'}">
+                              <label>
+
+                                显示 <select id="pageSize" class="input-sm">
+                                <option value="10" th:selected="*{pageSize} eq '10'">10</option>
+                                <option value="25" th:selected="*{pageSize} eq '25'">25</option>
+                                <option value="50" th:selected="*{pageSize} eq '50'">50</option>
+                                <option value="100" th:selected="*{pageSize} eq '100'">100</option>
+                              </select> 条记录
+
+                              </label>
+                            </form>
+
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <table class="table">
+                        <thead style="text-align: center">
+                        <tr>
+                          <th>序号</th>
+                          <th>视频截图</th>
+                          <th>检测结果</th>
+                          <th>预测分数</th>
+                          <th>时间</th>
+                        </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                        <tr th:each="obj,objStat:*{list}">
+                          <th scope="row" th:text="${objStat.index}+*{startRow}">1</th>
+                          <td style="text-align: center"><img class="resultImg" th:src="@{'/faceResultPath/'+${obj.pictureUrl}}" style="max-width: 100px;max-height: 100px" onclick="pop(this)"></td>
+                          <td th:text="${obj.result}"></td>
+                          <td th:text="${obj.score}"></td>
+                          <td th:text="${#dates.format(obj.time,'yyyy年MM月dd日 HH:mm:ss')}"></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                      <div class="row" th:with="feature=${feature} == null or ${feature} == '' ? '':'/'+${feature}">
+                        <div class="col-sm-5">
+                          <div class="dataTables_info" id="datatable_info"role="status " aria-live="polite" >第 <span th:text="*{startRow}">1</span> 到 <span th:text="*{endRow}">10</span> 条记录，总计 <span th:text="*{total}">10</span> 条</div>
+                        </div>
+                        <div class="col-sm-7">
+                          <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                            <ul class="pagination">
+                              <li class="paginate_button previous disabled"id="datatable_previous">
+                                <a th:href="@{${baseURL}+'/1/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >首页</a>
+                              </li>
+                              <li class="paginate_button active" th:each="navigatePage:*{navigatepageNums}">
+                                <a th:href="@{${baseURL}+'/'+${navigatePage}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" th:text="${navigatePage}">1</a>
+                              </li>
+                              <li class="paginate_button next disabled" id="datatable_next">
+                                <a th:href="@{${baseURL}+'/'+*{pages}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >尾页</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="tab-pane fade show active" th:if="${class}=='car'" th:object="${carRecords}" th:with="baseURL='/videoMonitor/car'">
+                      <div class="row">
+                        <div class="col-sm-2" style="margin-top: 10px;">
+                          <div class="dataTables_length" >
+                            <form id="pageSizeForm" th:action="@{${baseURL}+'/1/'}">
+                              <label>
+
+                                显示 <select id="pageSize" class="input-sm">
+                                <option value="10" th:selected="*{pageSize} eq '10'">10</option>
+                                <option value="25" th:selected="*{pageSize} eq '25'">25</option>
+                                <option value="50" th:selected="*{pageSize} eq '50'">50</option>
+                                <option value="100" th:selected="*{pageSize} eq '100'">100</option>
+                              </select> 条记录
+
+                              </label>
+                            </form>
+
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <table class="table">
+                        <thead style="text-align: center">
+                        <tr>
+                          <th>序号</th>
+                          <th>视频截图</th>
+                          <th>检测结果</th>
+                          <th>预测分数</th>
+                          <th>时间</th>
+                        </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                        <tr th:each="obj,objStat:*{list}">
+                          <th scope="row" th:text="${objStat.index}+*{startRow}">1</ th>
+                          <td style="text-align: center"><img class="resultImg" th:src="@{'/carResultPath/'+${obj.pictureUrl}}" style="max-width: 100px;max-height: 100px" onclick="pop(this)"></td>
+                          <td th:text="${obj.result}"></td>
+                          <td th:text="${obj.score}"></td>
+                          <td th:text="${#dates.format(obj.time,'yyyy年MM月dd日 HH:mm:ss')}"></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                      <div class="row" th:with="feature=${feature} == null or ${feature} == '' ? '':'/'+${feature}">
+                        <div class="col-sm-5">
+                          <div class="dataTables_info" id="datatable_info"role="status " aria-live="polite" >第 <span th:text="*{startRow}">1</span> 到 <span th:text="*{endRow}">10</span> 条记录，总计 <span th:text="*{total}">10</span> 条</div>
+                        </div>
+                        <div class="col-sm-7">
+                          <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                            <ul class="pagination">
+                              <li class="paginate_button previous disabled"id="datatable_previous">
+                                <a th:href="@{${baseURL}+'/1/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >首页</a>
+                              </li>
+                              <li class="paginate_button active" th:each="navigatePage:*{navigatepageNums}">
+                                <a th:href="@{${baseURL}+'/'+${navigatePage}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" th:text="${navigatePage}">1</a>
+                              </li>
+                              <li class="paginate_button next disabled" id="datatable_next">
+                                <a th:href="@{${baseURL}+'/'+*{pages}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >尾页</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
                       </div>
                     </div>
                   </div>
-
-<!--                  下方分页导航栏-->
-                  <div class="row" th:with="feature=${feature} == null or ${feature} == '' ? '':'/'+${feature}">
-                    <div class="col-sm-5">
-                      <div class="dataTables_info" id="datatable_info"role="status " aria-live="polite" >第 <span th:text="*{startRow}">1</span> 到 <span th:text="*{endRow}">10</span> 条记录，总计 <span th:text="*{total}">10</span> 条</div>
-                    </div>
-                    <div class="col-sm-7">
-                      <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                        <ul class="pagination">
-                          <li class="paginate_button previous disabled"id="datatable_previous">
-                            <a th:href="@{${baseURL}+'/1/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >首页</a>
-                          </li>
-                          <li class="paginate_button active" th:each="navigatePage:*{navigatepageNums}">
-                            <a th:href="@{${baseURL}+'/'+${navigatePage}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" th:text="${navigatePage}">1</a>
-                          </li>
-                          <li class="paginate_button next disabled" id="datatable_next">
-                            <a th:href="@{${baseURL}+'/'+*{pages}+'/'+*{pageSize}+${feature}}" aria-controls="datatable" tabindex="0" >尾页</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                  </div>
-<!--                  分页导航栏结束-->
                 </div>
               </div>
             </div>
@@ -155,6 +340,20 @@
         </div>
       </div>
       <!-- 主页面结束 -->
+        <!-- 弹窗 -->
+        <div id="Modal" class="modal" onclick="this.style.display='none'">
+          <!-- 弹窗内容 -->
+          <img class="content" id="content-img"><span style="width: 0; height: 100%; overflow: hidden; display: inline-block; vertical-align: middle;"></span>
+        </div>
+        <!--相应图片点击操作-->
+        <script>
+          function pop(img) {
+            document.getElementById('Modal').style.display = "block";
+            document.getElementById("content-img").src = img.src;
+          }
+        </script>
+      </div>
+
 
 
 

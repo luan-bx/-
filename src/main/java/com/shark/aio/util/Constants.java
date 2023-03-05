@@ -87,4 +87,11 @@ public interface Constants {
 	String conditionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/conditionData.txt":"/home/user/AIO/data/condition/conditionData.txt";
 
 	String pollutionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/pollutionData.txt":"/home/user/AIO/data/pollution/pollutionData.txt";
+
+
+	/**
+	 * 摄像头地址
+	 */
+	String LBXINPUT = "rtsp://admin:lbx123456@192.168.0.3:554";
+	String THGINPUT = "rtsp://admin:Shark666@nju@192.168.0.2:554";
 }

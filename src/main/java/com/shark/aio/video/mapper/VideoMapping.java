@@ -1,5 +1,7 @@
 package com.shark.aio.video.mapper;
 
+import com.shark.aio.video.entity.CarRecordsEntity;
+import com.shark.aio.video.entity.FaceRecordsEntity;
 import com.shark.aio.video.entity.VideoEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -40,4 +42,10 @@ public interface VideoMapping {
     @Select("SELECT `rtsp` FROM `video` WHERE `stream`=#{stream}")
     public String selectRtspByStream(String stream);
 
+    @Select("SELECT * FROM face_records")
+    public List<FaceRecordsEntity> selectAllFaceRecords();
+
+
+    @Select("SELECT * FROM car_records")
+    public List<CarRecordsEntity> selectAllCarRecords();
 }

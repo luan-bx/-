@@ -2,6 +2,8 @@ package com.shark.aio.video.service;
 
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.util.ProcessUtil;
+import com.shark.aio.video.entity.CarRecordsEntity;
+import com.shark.aio.video.entity.FaceRecordsEntity;
 import com.shark.aio.video.entity.FfmpegProcess;
 import com.shark.aio.video.entity.VideoEntity;
 import com.shark.aio.video.mapper.VideoMapping;
@@ -48,6 +50,18 @@ public class VideoService {
             videos = videoMapping.selectAllVideos();
         }
         return new PageInfo<>(videos,5);
+    }
+
+    public PageInfo<FaceRecordsEntity> selectFaceRecordsByPage(Integer pageSize, Integer pageNum){
+        List<FaceRecordsEntity> faceRecords = videoMapping.selectAllFaceRecords();
+
+        return new PageInfo<>(faceRecords,5);
+    }
+
+    public PageInfo<CarRecordsEntity> selectCarRecordsByPage(Integer pageSize, Integer pageNum){
+        List<CarRecordsEntity> carRecords = videoMapping.selectAllCarRecords();
+
+        return new PageInfo<>(carRecords,5);
     }
 
 

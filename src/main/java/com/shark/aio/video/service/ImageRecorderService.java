@@ -1,5 +1,6 @@
 package com.shark.aio.video.service;
 
+import com.shark.aio.util.ProcessUtil;
 import com.shark.aio.video.face.controller.FaceController;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
@@ -33,24 +34,24 @@ import java.util.Date;
 @NoArgsConstructor
 public class ImageRecorderService implements Runnable{
 
-    private String input = "rtsp://admin:lbx123456@nju@192.168.0.3:554";
+    private String input;
     private String output;
     private Integer width;
     private Integer height;
     private String mode;
 
     SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-    static String url = "/home/user/AIO/image/" +(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(new Date()) ;
+    static String url = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\":("/home/user/AIO/image/" +(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(new Date())) ;
 
     //该方法监测的文件夹路径
-    private static final String PARENT_DIR = url + "/lbx";
+    private static final String PARENT_DIR = url + (ProcessUtil.IS_WINDOWS?"\\lbx":"/lbx");
 
 
     @RequestMapping("/diaoyong")
     @ResponseBody
     public String diaoyong(String[] args) throws java.lang.Exception {
 
-        File localPath1 = new File(url + "/lbx");
+        File localPath1 = new File(PARENT_DIR);
         if (!localPath1.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
             localPath1.mkdirs();
         }
@@ -61,7 +62,7 @@ public class ImageRecorderService implements Runnable{
 
 //        record("rtsp://admin:lbx123456@192.168.0.3:554", url + "\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0");
         new Thread(new ImageRecorderService("rtsp://admin:lbx123456@192.168.0.3:554", url + "/lbx/%Y-%m-%d_%H-%M-%S.jpg", 1280, 720,"0")).start();
-        new Thread(new ImageRecorderService("rtsp://admin:Shark666@nju@218.2.130.246:554", url + "\\thg\\%Y-%m-%d_%H-%M-%S.jpg", 1280, 720,"0")).start();
+        new Thread(new ImageRecorderService("rtsp://admin:Shark666@nju@192.168.0.2:554", url + "\\thg\\%Y-%m-%d_%H-%M-%S.jpg", 1280, 720,"0")).start();
         runExample();
         return "success";
     }

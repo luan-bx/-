@@ -2,6 +2,8 @@ package com.shark.aio.video.face.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.util.ProcessUtil;
+import com.shark.aio.video.entity.CarRecordsEntity;
+import com.shark.aio.video.entity.FaceRecordsEntity;
 import com.shark.aio.video.entity.VideoEntity;
 import com.shark.aio.video.service.VideoService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +29,12 @@ public class FaceController {
 	@RequestMapping("/callFaceAI")
 	@ResponseBody
 	public static void callFaceAI(String filePath) {
-//		filePath = "C:\\Users\\thg\\Desktop\\1.jpg";
+		filePath = "C:\\Users\\dell\\Desktop\\1.png";
 		DataOutputStream out = null;
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://localhost:5000/ssd_predict");
+			URL url = new URL("http://localhost:5000/carID_image_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
@@ -86,7 +88,7 @@ public class FaceController {
 							b[i] += 256;
 						}
 					}
-					OutputStream out2 = new FileOutputStream(ProcessUtil.IS_WINDOWS?"C:\\Users\\thg\\Desktop\\face.jpg":"/home/user/AIO/image/AIResult/face.jpg");
+					OutputStream out2 = new FileOutputStream(ProcessUtil.IS_WINDOWS?"C:\\Users\\dell\\Desktop\\face.jpg":"/home/user/AIO/image/AIResult/face.jpg");
 					out2.write(b);
 					out2.flush();
 					out2.close();
@@ -95,6 +97,7 @@ public class FaceController {
 					e.printStackTrace();
 				}
 			}
+
 
 		} catch (Exception e) {
 			System.out.println("发送POST请求出现异常！" + e);
@@ -112,16 +115,35 @@ public class FaceController {
 	 * @return 页面
 	 */
 	@RequestMapping({"/videoMonitor","/videoMonitor/{pageSize}/{pageNum}"})
-	public String toFacePage(HttpServletRequest request,
+	public String toVideoPage(HttpServletRequest request,
 							 @PathVariable(required = false) Integer pageSize,
 							 @PathVariable(required = false) Integer pageNum ,
 							 String feature){
 		PageInfo<VideoEntity> videos = videoService.selectVideosByPage(pageSize, pageNum, feature);
-		/*for(int i=0;i<10;i++){
-			videos.add(new VideoEntity(i+1,"监测点"+(i+1),"rtmp://localhost:1935/myapp/room","测试监测点"));
-		}*/
 
+		request.setAttribute("class","video");
 		request.setAttribute("allVideos",videos);
+		return "video";
+	}
+
+	@RequestMapping({"/videoMonitor/face","/videoMonitor/face/{pageSize}/{pageNum}"})
+	public String toFaceRecordsOfVideoPage(HttpServletRequest request,
+										   @PathVariable(required = false) Integer pageSize,
+										   @PathVariable(required = false) Integer pageNum ){
+		PageInfo<FaceRecordsEntity> faceRecords = videoService.selectFaceRecordsByPage(pageSize,pageNum);
+		request.setAttribute("class","face");
+		request.setAttribute("faceRecords",faceRecords);
+		return "video";
+	}
+
+	@RequestMapping({"/videoMonitor/car","/videoMonitor/car/{pageSize}/{pageNum}"})
+	public String toCarRecordsOfVideoPage(HttpServletRequest request,
+										   @PathVariable(required = false) Integer pageSize,
+										   @PathVariable(required = false) Integer pageNum){
+
+		PageInfo<CarRecordsEntity> carRecords = videoService.selectCarRecordsByPage(pageSize,pageNum);
+		request.setAttribute("class","car");
+		request.setAttribute("carRecords",carRecords);
 		return "video";
 	}
 
