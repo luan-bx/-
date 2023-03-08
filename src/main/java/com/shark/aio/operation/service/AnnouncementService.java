@@ -3,7 +3,6 @@ package com.shark.aio.operation.service;
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.operation.entity.AnnouncementEntity;
 import com.shark.aio.operation.mapper.AnnouncementMapping;
-import com.shark.aio.video.entity.VideoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

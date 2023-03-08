@@ -1,7 +1,6 @@
 package com.shark.aio.operation.mapper;
 
 import com.shark.aio.operation.entity.AnnouncementEntity;
-import com.shark.aio.video.entity.VideoEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
