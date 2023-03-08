@@ -86,5 +86,5 @@ public interface Constants {
 	 */
 	String conditionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/conditionData.txt":"/home/user/AIO/data/condition/conditionData.txt";
 
-	String pollutionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/pollutionData.txt":"/home/user/AIO/data/pollution/pollutionData.txt";
+	String pollutionData = ProcessUtil.IS_WINDOWS?"D:/pollutionData.txt":"/home/user/AIO/data/pollution/pollutionData.txt";
 }
