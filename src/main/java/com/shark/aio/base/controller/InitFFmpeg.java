@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 
-@Component
+//@Component
 @Slf4j
 public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 

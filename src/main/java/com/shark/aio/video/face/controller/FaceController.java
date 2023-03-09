@@ -21,6 +21,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -41,7 +42,7 @@ public class FaceController {
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://localhost:5000/ssd_predict");
+			URL url = new URL("http://114.212.128.235:8050/ssd_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
@@ -134,17 +135,13 @@ public class FaceController {
 	/**
 	 * 跳转到摄像头列表页面
 	 * @param request request
-	 * @param pageSize 分页每页大小
-	 * @param pageNum 分页页码
 	 * @param feature 模糊查询特征字符串
 	 * @return 页面
 	 */
-	@RequestMapping({"/videoMonitor","/videoMonitor/{pageSize}/{pageNum}"})
+	@RequestMapping("/videoMonitor")
 	public String toVideoPage(HttpServletRequest request,
-							 @PathVariable(required = false) Integer pageSize,
-							 @PathVariable(required = false) Integer pageNum ,
 							 String feature){
-		PageInfo<VideoEntity> videos = videoService.selectVideosByPage(pageSize, pageNum, feature);
+		List<VideoEntity> videos = videoService.selectAllVideos(feature);
 
 		request.setAttribute("class","video");
 		request.setAttribute("allVideos",videos);
@@ -172,6 +169,22 @@ public class FaceController {
 		return "video";
 	}
 
+	@GetMapping("/addVideo")
+	public String toAddVideoPage(){
+		return "addVideo";
+	}
+
+	@PostMapping("/addVideo")
+	public String addVideo(@RequestParam String monitorName,
+			               @RequestParam String username,
+						   @RequestParam String password,
+						   @RequestParam String ip,
+						   @RequestParam String port,
+						   String description){
+
+
+		return null;
+	}
 	/**
 	 * 跳转到视频播放页面
 	 * @param stream rtmp流中的stream参数
@@ -180,7 +193,8 @@ public class FaceController {
 	 * @throws IllegalAccessException
 	 */
 	@GetMapping("/videoPlay")
-	public String toVideoPlayPage(@ModelAttribute("stream")String stream) throws NoSuchFieldException, IllegalAccessException {
+	public String toVideoPlayPage(String stream, HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
+		request.setAttribute("stream",new String[]{stream});
 		videoService.addSession(stream);
 		return "videoPlay";
 	}

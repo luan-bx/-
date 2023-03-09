@@ -30,7 +30,7 @@ public class LicenseController {
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://localhost:5000/carID_image_predict");
+			URL url = new URL("http://114.212.128.235:8050/carID_image_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
