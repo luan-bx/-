@@ -13,6 +13,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,42 +41,40 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws IOException {
 
+        System.out.println("收到HJ212协议数据为 ===> " + msg);
 
-        System.out.println("=============" + (new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()) + "=============");
-        System.out.println("收到" + ctx.channel().id() + "设备消息 ===> " + msg);
+        //CRC校验
+        if(HJ212MsgUtils.checkData((String)msg).equals("error")){
+            // 解析物联网设备发来的数据
+            JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
+            //存储数据
+            if (data != null){
+                System.out.println("设备消息解析JSON结果：" + data.toJSONString());
+                try {
+                    SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    String documentPath = "D:\\项目\\AIO\\data\\" + DataFormat.format(new Date()) ;//根据日期或某个算法自动生成
+                    String filePath = documentPath + "\\conditionData.txt";
+                    File document = new File(documentPath);
+                    if(!document.exists()){
+                        document.mkdirs();
+                    }
+                    File file = new File(filePath);
 
-        // 解析物联网设备发来的数据
-        JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
-//        JSONObject data2 = HJ212MsgUtils.dealMsg2((String) msg);
-
-        /**
-         * 做自己的业务逻辑，分发数据，分析数据，持久化数据等。
-         */
-
-        if (data != null){
-            System.out.println("设备消息解析JSON结果：" + data.toJSONString());
-//        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
-            try {
-                String path = "D:\\项目\\AIO\\conditionData.txt";//根据日期或某个算法自动生成
-                File file = new File(path);
-//            if(!file.exists()){
-//                file.mkdirs();
-//            }
-                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
-                out.write((data.toJSONString()+"\n").getBytes());
-                out.flush();
-                out.close();
+                    BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
+                    out.write((data.toJSONString()+"\n").getBytes());
+                    out.flush();
+                    out.close();
 //            ConditionFileEntity conditionFileEntity = null;
 //            conditionFileEntity.setFileUrl(path);
 //            conditionMapping.insertFileUrl(conditionFileEntity);
-            } catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-//            req.setAttribute("error", "添加文件失败");
-//            return Constants.FAILCODE;
-            }
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    e.printStackTrace();
+                }
 
+            }
         }
+
 
     }
 

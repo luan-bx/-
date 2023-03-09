@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-@Order(1)
+@Order(2)
 public class EleHJ212Server implements ApplicationRunner {
 
     /**
@@ -68,7 +68,7 @@ public class EleHJ212Server implements ApplicationRunner {
                     pipeline.addLast("serverEncoder", new StringEncoder(CharsetUtil.UTF_8));
                     // netty提供了空闲状态监测处理器 0表示禁用事件
                     pipeline.addLast(new IdleStateHandler(65,0,0, TimeUnit.MINUTES));
-                    pipeline.addLast(new HJ212ServerHandler());
+                    pipeline.addLast(new EleHJ212ServerHandler());
                 }
             });
             log.info("环保 Netty Server PORT = " + PORT);

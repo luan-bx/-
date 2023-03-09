@@ -43,6 +43,11 @@ public class Skip {
 	public String eleMonitorWeb() {
 		return "eleMonitor";
 	}
+
+	@RequestMapping("/electricityMonitor")
+	public String electricityMonitorWeb() {
+		return "electricityMonitor";
+	}
 	
 	@RequestMapping("/alarm")
 	public String alarmWeb() {

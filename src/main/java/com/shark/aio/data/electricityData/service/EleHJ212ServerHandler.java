@@ -1,7 +1,6 @@
 package com.shark.aio.data.electricityData.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shark.aio.data.conditionData.mapper.ConditionMapping;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -25,10 +24,10 @@ import java.util.Map;
  **/
 @Slf4j
 @Component
-public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
+public class EleHJ212ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Autowired
-    private ConditionMapping conditionMapping;
+    private com.shark.aio.data.electricityData.mapper.ElectricityMapping electricityMapping;
     /**
      * 定义一个HashMap，用于保存所有的channel和设备ID的对应关系。
      */
@@ -56,7 +55,7 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println("设备消息解析JSON结果：" + data.toJSONString());
 //        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
             try {
-                String path = "D:\\项目\\AIO\\conditionData.txt";//根据日期或某个算法自动生成
+                String path = "D:\\项目\\AIO\\electricityData.txt";//根据日期或某个算法自动生成
                 File file = new File(path);
 //            if(!file.exists()){
 //                file.mkdirs();
@@ -65,9 +64,9 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
                 out.write((data.toJSONString()+"\n").getBytes());
                 out.flush();
                 out.close();
-//            ConditionFileEntity conditionFileEntity = null;
-//            conditionFileEntity.setFileUrl(path);
-//            conditionMapping.insertFileUrl(conditionFileEntity);
+//            ElectricityFileEntity electricityFileEntity = null;
+//            electricityFileEntity.setFileUrl(path);
+//            electricityMapping.insertFileUrl(electricityFileEntity);
             } catch (Exception e) {
                 // TODO: handle exception
                 e.printStackTrace();

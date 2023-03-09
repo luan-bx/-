@@ -3,6 +3,7 @@ package com.shark.aio.data.conditionData.service;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -240,11 +241,27 @@ public class HJ212MsgUtils {
      * @param data212
      * @return
      */
-    public static int getCRC(String data212) {
+    public static String checkData(String data212) {
+        String input = data212.substring(data212.indexOf("QN"), data212.indexOf("\r") -4);
+
+        String length = Integer.toString(input.length());
+        String lengthCheck = null;
+        if(length.length() == 3){
+            lengthCheck = "0" + length;
+        }else if (length.length()==2){
+            lengthCheck = "00"+length;
+        }else if (length.length()==1){
+            lengthCheck = "000"+length;
+        }
+        if(!data212.substring(2, 6).equals(lengthCheck)){
+            System.out.println("CRC校验失败");
+            return "error";
+        };
+
         int CRC = 0xFFFF;
         int num = 0xA001;
         int inum = 0;
-        byte[] sb = data212.getBytes();
+        byte[] sb = input.getBytes();
         for(int j = 0; j < sb.length; j ++) {
             inum = sb[j];
             CRC = (CRC >> 8) & 0x00FF;
@@ -258,18 +275,34 @@ public class HJ212MsgUtils {
                 }
             }
         }
-        return CRC;
+        String CRCString= Integer.toHexString(CRC);
+        String CRCCheck = null;
+        String CRCData = data212.substring(data212.indexOf("\r") - 4, data212.indexOf("\r"));
+        if (CRCString.length()==3){
+            CRCCheck = "0"+CRCString;
+        }else if (CRCString.length()==2){
+            CRCCheck = "00"+CRCString;
+        }else if (CRCString.length()==1){
+            CRCCheck = "000"+CRCString;
+        }else {
+            CRCCheck = CRCString;
+        }
+
+        if (!CRCCheck.equals(CRCData)){
+            return "error";
+        }
+        return CRCCheck;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        System.out.println(dealMsg1("##0746ST=31;CN=2061;PW=123456;MN=7568770259402;Flag=0;CP=&&DataTime=20221008100000;B02-Min=1.6960,B02-Avg=3.0586,B02-Max=3.7704,B02-Cou=11010.8437;S01-Min=17.7469,S01-Avg=19.4636,S01-Max=19.6944;S02-Min=3.2459,S02-Avg=5.6705,S02-Max=6.9578;S03-Min=30.0434,S03-Avg=30.2675,S03-Max=30.4503;S08-Min=-0.4643,S08-Avg=-0.3541,S08-Max=0.0000;S05-Min=6.1814,S05-Avg=6.8655,S05-Max=7.0097;a24088-Min=2.4957,a24088-Avg=3.2176,a24088-Max=4.7744,a24088-Cou=0.0354;25-Min=6.4292,25-Avg=12.1457,25-Max=20.0606,25-Cou=0.1336;a05002-Min=2.7715,a05002-Avg=7.8561,a05002-Max=14.7934,a05002-Cou=0.0863;17-Min=0.0000,17-Avg=0.0000,17-Max=0.0000,17-Cou=0.0000;18-Min=0.0000,18-Avg=0.0000,18-Max=0.0000,18-Cou=0.0000;16-Min=0.0000,16-Avg=0.0000,16-Max=0.0000,16-Cou=0.0000&&7BC0"));
 //        System.out.println(dealMsg2("##0746ST=31;CN=2061;PW=123456;MN=7568770259402;Flag=0;CP=&&DataTime=20221008100000;B02-Min=1.6960,B02-Avg=3.0586,B02-Max=3.7704,B02-Cou=11010.8437;S01-Min=17.7469,S01-Avg=19.4636,S01-Max=19.6944;S02-Min=3.2459,S02-Avg=5.6705,S02-Max=6.9578;S03-Min=30.0434,S03-Avg=30.2675,S03-Max=30.4503;S08-Min=-0.4643,S08-Avg=-0.3541,S08-Max=0.0000;S05-Min=6.1814,S05-Avg=6.8655,S05-Max=7.0097;a24088-Min=2.4957,a24088-Avg=3.2176,a24088-Max=4.7744,a24088-Cou=0.0354;25-Min=6.4292,25-Avg=12.1457,25-Max=20.0606,25-Cou=0.1336;a05002-Min=2.7715,a05002-Avg=7.8561,a05002-Max=14.7934,a05002-Cou=0.0863;17-Min=0.0000,17-Avg=0.0000,17-Max=0.0000,17-Cou=0.0000;18-Min=0.0000,18-Avg=0.0000,18-Max=0.0000,18-Cou=0.0000;16-Min=0.0000,16-Avg=0.0000,16-Max=0.0000,16-Cou=0.0000&&7BC0"));
 //
 //        System.out.println("=============" + (new java.text.SimpleDateFormat("yyyyMMddHHmmssSSS")).format(new Date()) + "=============");
-//        System.out.println(getCRC("##0746ST=31;CN=2061;PW=123456;MN=7568770259402;Flag=0;CP=&&DataTime=20221008100000;B02-Min=1.6960,B02-Avg=3.0586,B02-Max=3.7704,B02-Cou=11010.8437;S01-Min=17.7469,S01-Avg=19.4636,S01-Max=19.6944;S02-Min=3.2459,S02-Avg=5.6705,S02-Max=6.9578;S03-Min=30.0434,S03-Avg=30.2675,S03-Max=30.4503;S08-Min=-0.4643,S08-Avg=-0.3541,S08-Max=0.0000;S05-Min=6.1814,S05-Avg=6.8655,S05-Max=7.0097;a24088-Min=2.4957,a24088-Avg=3.2176,a24088-Max=4.7744,a24088-Cou=0.0354;25-Min=6.4292,25-Avg=12.1457,25-Max=20.0606,25-Cou=0.1336;a05002-Min=2.7715,a05002-Avg=7.8561,a05002-Max=14.7934,a05002-Cou=0.0863;17-Min=0.0000,17-Avg=0.0000,17-Max=0.0000,17-Cou=0.0000;18-Min=0.0000,18-Avg=0.0000,18-Max=0.0000,18-Cou=0.0000;16-Min=0.0000,16-Avg=0.0000,16-Max=0.0000,16-Cou=0.0000&&7BC0"));
+//        System.out.println(checkData("##0746ST=31;CN=2061;PW=123456;MN=7568770259402;Flag=0;CP=&&DataTime=20221008100000;B02-Min=1.6960,B02-Avg=3.0586,B02-Max=3.7704,B02-Cou=11010.8437;S01-Min=17.7469,S01-Avg=19.4636,S01-Max=19.6944;S02-Min=3.2459,S02-Avg=5.6705,S02-Max=6.9578;S03-Min=30.0434,S03-Avg=30.2675,S03-Max=30.4503;S08-Min=-0.4643,S08-Avg=-0.3541,S08-Max=0.0000;S05-Min=6.1814,S05-Avg=6.8655,S05-Max=7.0097;a24088-Min=2.4957,a24088-Avg=3.2176,a24088-Max=4.7744,a24088-Cou=0.0354;25-Min=6.4292,25-Avg=12.1457,25-Max=20.0606,25-Cou=0.1336;a05002-Min=2.7715,a05002-Avg=7.8561,a05002-Max=14.7934,a05002-Cou=0.0863;17-Min=0.0000,17-Avg=0.0000,17-Max=0.0000,17-Cou=0.0000;18-Min=0.0000,18-Avg=0.0000,18-Max=0.0000,18-Cou=0.0000;16-Min=0.0000,16-Avg=0.0000,16-Max=0.0000,16-Cou=0.0000&&7BC0"));
 //
 //        System.out.println("=============" + (new java.text.SimpleDateFormat("yyyyMMddHHmmssSSS")).format(new Date()) + "=============");
-        System.out.println(dealMsg1("##0169ST=32;CN=3020;PW=123456;MN=010000A8900016F000169DC0;Flag=5;CP=&&DataTime=20100301145000;PoIId=w01018;i12001-Info=0;i12002-Info=1;i12003-Info=1;i22001-Info=0;i32001-Info=0&&cd41\\r\\n"));
+//        System.out.println(checkData("##0101QN=20160801085857223;ST=32;CN=1062;PW=100000;MN=010000A8900016F000169DC0;Flag=5;CP=&&RtdInterval=30&&1C80\r\n"));
 
     }
 
