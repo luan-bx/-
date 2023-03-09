@@ -97,10 +97,12 @@ public class PollutionService {
         //新增监测值，判断是否和已有的监测值重复
         if (newMonitorName!=null){
             //插入新的监测类型
-            List<String> allMonitor = new ArrayList<>();
-            Collections.addAll(allMonitor, existMonitorName.split(","));
-            if (allMonitor.contains(newMonitorName)){
-                return "和已有监测类型重复！";
+            if (!ObjectUtil.isEmptyString(existMonitorName)){
+                List<String> allMonitor = new ArrayList<>();
+                Collections.addAll(allMonitor, existMonitorName.split(","));
+                if (allMonitor.contains(newMonitorName)){
+                    return "和已有监测类型重复！";
+                }
             }
             try {
                 alarmMapping.insertMonitor(newMonitorName);

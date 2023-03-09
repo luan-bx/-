@@ -94,10 +94,11 @@ public class PollutionController {
 			StringBuilder sb = new StringBuilder();
 			FileReader fileReader = null;
 			try {
-				fileReader = new FileReader("D:/项目/AIO/shucaiyi.txt");
+				String filePath = Constants.pollutionData;
+				fileReader = new FileReader(filePath);
 				byte[] bytes = new byte[4];//每一次读取四个字节
 				String line = null;
-				BufferedReader br = new BufferedReader(fileReader);
+				BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
 				while ((line = br.readLine()) != null) {
 					sb.append(line);
 					log.info(line);
@@ -162,8 +163,7 @@ public class PollutionController {
 
 			//			String pretty = JSON.toJSONString(json, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
 //					SerializerFeature.WriteDateUseDateFormat);
-			String path = "D:/项目/AIO/";
-			File file = new File(path + "pollutionData.txt");
+			File file = new File(Constants.pollutionData);
 			if (file.exists()) {
 //				System.out.println("文件存在");
 			} else {
@@ -217,7 +217,7 @@ public class PollutionController {
 	 */
 	@RequestMapping("/returnPollutionData")
 	public void returnPollutionData(String filePath, HttpServletResponse req) throws IOException {
-		filePath = "D:/项目/AIO/pollutionData.txt";
+		filePath = Constants.pollutionData;
 		FileInputStream fin = new FileInputStream(filePath);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);

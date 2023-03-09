@@ -1,6 +1,12 @@
-package com.shark.aio.data.video.service;
+package com.shark.aio.video.service;
 
-import com.shark.aio.data.video.face.controller.FaceController;
+import com.shark.aio.util.Constants;
+import com.shark.aio.util.ProcessUtil;
+import com.shark.aio.video.entity.FaceRecordsEntity;
+import com.shark.aio.video.face.controller.FaceController;
+import com.shark.aio.video.mapper.VideoMapping;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
@@ -11,6 +17,12 @@ import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.FrameRecorder.Exception;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -25,7 +37,13 @@ import java.util.Date;
  * 连续截图，覆盖截图
  * @author eguid
  */
+
+@Service
+@NoArgsConstructor
+@Getter
 public class ImageRecorderService implements Runnable{
+
+
 
     private String input;
     private String output;
@@ -33,23 +51,16 @@ public class ImageRecorderService implements Runnable{
     private Integer height;
     private String mode;
 
-    public static void main(String[] args) throws java.lang.Exception {
-        SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        String url = "D:\\项目\\AIO\\image\\" +(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(new Date()) ;
-        File localPath1 = new File(url + "\\lbx");
-        if (!localPath1.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
-            localPath1.mkdirs();
-        }
-        File localPath2 = new File(url + "\\thg");
-        if (!localPath2.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
-            localPath2.mkdirs();
-        }
+    private static SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    private static String url = Constants.IMGOUTPUTPATH;
 
-//        record("rtsp://admin:lbx123456@192.168.0.3:554", url + "\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0");
-        new Thread(new ImageRecorderService("rtsp://admin:lbx123456@192.168.0.3:554", url + "\\lbx\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0")).start();
-        new Thread(new ImageRecorderService("rtsp://admin:Shark666@nju@192.168.0.2:554", url + "\\thg\\%Y-%m-%d_%H-%M-%S.png", 1280, 720,"0")).start();
-        runExample();
-    }
+    //该方法监测的文件夹路径
+    private String PARENT_DIR;
+
+
+
+
+
 
 
     /**
@@ -66,18 +77,22 @@ public class ImageRecorderService implements Runnable{
 //    }
 
 
-
-    public ImageRecorderService(String input,String output,Integer width,Integer height,String mode){
+    public ImageRecorderService(String input,Integer width,Integer height,String mode,String monitorName){
 
         this.input = input;
-        this.output = output;
+        this.output = url  + monitorName + "\\%Y-%m-%d_%H-%M-%S.jpg";
         this.width = width;
         this.height = height;
         this.mode = mode;
+        this.PARENT_DIR = url  + monitorName;
     }
     @SneakyThrows
     @Override
     public void run() {
+        File localPath1 = new File(PARENT_DIR);
+        if (!localPath1.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
+            localPath1.mkdirs();
+        }
         FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(input);
         //虽然rtsp本身是协议，但是对于ffmpeg来说，rtsp只是个多路复用器/解复用器。可以支持普通的rtp传输，也可以支持RDT传输的Real-RTSP协议
         grabber.setFormat("rtsp");
@@ -157,42 +172,8 @@ public class ImageRecorderService implements Runnable{
 
 
 
-    private static final String PARENT_DIR =
-            "D:\\项目\\AIO\\image\\2023-02-28\\lbx";
 
 
 
-    public static void runExample() throws java.lang.Exception {
 
-        File parentDir = FileUtils.getFile(PARENT_DIR);
-
-        FileAlterationObserver observer = new FileAlterationObserver(parentDir);
-        observer.addListener(new FileAlterationListenerAdaptor() {
-
-            @Override
-            public void onFileCreate(File file) {
-                FaceController.callFaceAI(file.getPath());
-//                System.out.println("算法识别" + file.getName());
-            }
-
-            @Override
-            public void onFileDelete(File file) {
-                System.out.println("File deleted: " + file.getName());
-            }
-
-            @Override
-            public void onDirectoryCreate(File dir) {
-                System.out.println("Directory created: " + dir.getName());
-            }
-
-            @Override
-            public void onDirectoryDelete(File dir) {
-                System.out.println("Directory deleted: " + dir.getName());
-            }
-        });
-
-        FileAlterationMonitor monitor = new FileAlterationMonitor(500, observer);
-
-        monitor.start();
-    }
 }

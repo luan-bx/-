@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @Slf4j
 public class Skip {
 	@RequestMapping("/index")
-	public String indexWeb() {
+	public String indexWeb(HttpServletRequest request) {
+		request.setAttribute("stream",new String[]{"room","room","room","room","room","room","room","room","room"});
 		return "index";
 	}
 	

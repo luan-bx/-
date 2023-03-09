@@ -76,10 +76,12 @@ public class AlarmService {
         //新增监测值，判断是否和已有的监测值重复
         if (newMonitorClass!=null){
             //插入新的监测类型
-            List<String> allMonitorClass = new ArrayList<>();
-            Collections.addAll(allMonitorClass, existMonitorClass.split(","));
-            if (allMonitorClass.contains(newMonitorClass)){
-                return "和已有监测类型重复！";
+            if (!ObjectUtil.isEmptyString(existMonitorClass)){
+                List<String> allMonitorClass = new ArrayList<>();
+                Collections.addAll(allMonitorClass, existMonitorClass.split(","));
+                if (allMonitorClass.contains(newMonitorClass)){
+                    return "和已有监测类型重复！";
+                }
             }
             try {
                 alarmMapping.insertMonitorClass(newMonitorClass);
@@ -93,9 +95,11 @@ public class AlarmService {
         //新增污染物，判断是否和已有的污染物重复
         if (newPollution!=null){
             //插入新的污染物
-            List<String> pollutionNameList = Arrays.stream(existPollutionName.split(",")).collect(Collectors.toList());
-            if (pollutionNameList.contains(newPollution)){
-                return "和已有污染物重复！";
+            if(!ObjectUtil.isEmptyString(existPollutionName)){
+                List<String> pollutionNameList = Arrays.stream(existPollutionName.split(",")).collect(Collectors.toList());
+                if (pollutionNameList.contains(newPollution)){
+                    return "和已有污染物重复！";
+                }
             }
             try {
                 alarmMapping.insertPollution(newPollution);

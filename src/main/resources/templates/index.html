@@ -28,6 +28,12 @@
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+    <style>
+      div.sub-wnd{
+        width:33%;
+        height: 18%;
+      }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -44,25 +50,15 @@
 
       <!-- 主页面 -->
       <div class="right_col" role="main">
-        <div class="" th:object="${allVideos}" th:with="baseURL='/videoMonitor'">
+        <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3><small>视频监控</small></h3>
+              <h3><small>首页</small></h3>
 
             </div>
 
             <div class="title_right">
               <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                <!--<form th:action="@{${baseURL}+'/1/'+*{pageSize}}" method="post" id="mohuForm">
-                  <div class="input-group">
-
-                    <input name="feature" type="text" class="form-control" placeholder="搜索...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button" onclick="document.getElementById('mohuForm').submit()">确认</button>
-                    </span>
-
-                  </div>
-                </form>-->
               </div>
             </div>
           </div>
@@ -74,7 +70,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>视频监控</h2>
+                  <h2>企业信息</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -84,31 +80,79 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                  <div class="row">
-                    <!--<div class="col-sm-6">
-                      <div class="dataTables_length" >
-                        <form id="pageSizeForm" th:action="@{${baseURL}+'/1/'}">
-                          <label>
+                    <div id="player" style="min-height: 720px">
+                        <!--<div style="position: absolute;width: 33%;height: 15%">
+                            <video style="height: auto;width:98%;" id="player0" muted autoplay></video>
+                        </div>
+                          <div style="position: absolute;width: 33%;height: 15%;left: 33%">
+                              <video style="height: auto;width:98%;" id="player1" muted autoplay></video>
+                          </div>
+                          <div style="position: absolute;width: 33%;height: 15%;left: 66%">
+                              <video style="height: auto;width:98%;" id="player2" muted autoplay></video>
+                          </div>
+                        <div style="position: absolute;width: 33%;height: 15%;top: 34%">
+                            <video style="height: auto;width:98%;" id="player3" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 33%;height: 15%;left: 33%;top: 34%">
+                            <video style="height: auto;width:98%;" id="player4" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 33%;height: 15%;left: 66%;top: 34%">
+                            <video style="height: auto;width:98%;" id="player5" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 33%;height: 15%;top: 68%">
+                            <video style="height: auto;width:98%;" id="player6" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 33%;height: 15%;left: 33%;top: 68%">
+                            <video style="height: auto;width:98%;" id="player7" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 33%;height: 15%;left: 66%;top: 68%">
+                            <video style="height: auto;width:98%;" id="player8" muted autoplay></video>
+                        </div>
+                      </div>-->
+                        <div style="position: absolute;width: 47%;height: 47%">
+                            <video style="height: auto;width:100%;" id="player0" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 47%;height: 47%;left: 47%">
+                            <video style="height: auto;width:100%;" id="player1" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 47%;height: 47%;top: 48%">
+                            <video style="height: auto;width:100%;" id="player2" muted autoplay></video>
+                        </div>
+                        <div style="position: absolute;width: 47%;height: 47%;top: 48%;left: 47%">
+                            <video style="height: auto;width:100%;" id="player3" muted autoplay></video>
+                        </div>
+<!--
+                <div class="col-md-12 col-sm-12  ">
+                  <div class="x_panel">
+                    <div class="x_content">
 
-                            显示 <select id="pageSize" class="input-sm">
-                            <option value="10" th:selected="*{pageSize} eq '10'">10</option>
-                            <option value="25" th:selected="*{pageSize} eq '25'">25</option>
-                            <option value="50" th:selected="*{pageSize} eq '50'">50</option>
-                            <option value="100" th:selected="*{pageSize} eq '100'">100</option>
-                          </select> 条记录
+                      <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                          <th scope="row">企业名称</th>
+                          <td>南京中药公司</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">行业</th>
+                          <td>药业</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">企业描述</th>
+                          <td>本公司是......</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">监测点</th>
+                          <td>库房、车间、厂房......</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">监测类型</th>
+                          <td>废气：NO2、SO2......</td>
+                        </tr>
+                        </tbody>
+                      </table>
 
-                          </label>
-                        </form>
-
-                      </div>
-                    </div>-->
-                    <video style="height: auto;width:98%;" id="videoElement" muted autoplay></video>
-                    <script type="text/javascript">
-
-                    </script>
-
-                  </div>
-
+                    </div>
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -173,39 +217,20 @@
 
     <!-- Custom Theme Scripts -->
     <script th:src="@{/build/js/custom.min.js}"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
-    <script th:src="@{/js/video-play.js}"></script>
-
-
-
+      <script src="https://cdn.bootcdn.net/ajax/libs/flv.js/1.5.0/flv.min.js"></script>
+      <script th:src="@{/js/video-play.js}"></script>
+	
   <script th:inline="javascript">
-    /*<![CDATA[*/
-    $(function(){
-      var msg = /*[[${msg}]]*/null;
-      if(msg!=null){
-        alert(msg);
-      }
-    })
-    /*]]>*/
-  </script>
-  <script th:inline="javascript">
-    $(document).ready(function() {
-      var streams = [[${stream}]];
-      startVideo(streams);
-    });
-    //这是当关闭页面或浏览器的时候调用后台的方法把进程给停掉
-    window.onbeforeunload = function(e) {
-      $.ajax({
-        url:"/quitVideoPlay",
-        type:"post",
-        data:{
-          stream:[[${stream}]]
-        },
-        async:true,
-        success: function (data){
+      /*<![CDATA[*/
+        var msg = /*[[${msg}]]*/null;
+        if(msg!=null){
+            alert(msg);
         }
-      })
-    }
+      $(document).ready(function() {
+          var streams = [[${stream}]];
+          startVideo(streams);
+      });
+      /*]]>*/
   </script>
 </body>
 </html>

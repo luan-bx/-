@@ -9,15 +9,19 @@ public class DateUtil {
     /**
      * 输入框格式
      */
-    private static SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+    public static SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
     /**
      * 时间戳格式
      */
-    private static SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     /**
      * 页面展示的格式
      */
-    private static SimpleDateFormat pageFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+    public static SimpleDateFormat pageFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+    /**
+     * 文件名的格式
+     */
+    public static SimpleDateFormat fileFormat = new SimpleDateFormat("yyyy-MM-dd-_HH-mm-ss");
 
     /**
      * 输入框格式转化为时间戳格式

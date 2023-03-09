@@ -3,15 +3,11 @@ package com.shark.aio.operation.controller;
 import com.shark.aio.operation.entity.AIOFile;
 import com.shark.aio.util.ProcessUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +15,9 @@ import java.util.List;
 @Controller
 public class FileController {
 
-    private static final String videoDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\video":"/home/thg/桌面/AIO/video";
-    private static final String dataDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\data":"/home/thg/桌面/AIO/data";
-    private static final String logsDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\logs":"/home/thg/桌面/AIO/logs";
+    private static final String videoDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\video":"/home/user/AIO/video";
+    private static final String dataDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\data":"/home/user/AIO/data";
+    private static final String logsDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\logs":"/home/user/AIO/logs";
     private static long getTotalSizeOfFilesInDir(final File file) {
         if (file.isFile())
             return file.length();

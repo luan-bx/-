@@ -27,6 +27,8 @@ public class MyWebMvcConfigurer extends WebMvcConfigurationSupport{
 		registry.addResourceHandler("/vendors/**").addResourceLocations("classpath:/static/vendors/");
 		registry.addResourceHandler("/video/**").addResourceLocations("classpath:/static/video/");
         registry.addResourceHandler("/iconPath/**").addResourceLocations("file:"+ Constants.FILEPATH + "users/");
+		registry.addResourceHandler("/faceResultPath/**").addResourceLocations("file:D:/项目/AIO/images/faceResult/");
+		registry.addResourceHandler("/carResultPath/**").addResourceLocations("file:D:/项目/AIO/images/carResult/");
     }
 
 	 

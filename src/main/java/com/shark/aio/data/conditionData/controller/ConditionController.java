@@ -55,7 +55,7 @@ public class ConditionController {
 	 */
 	@RequestMapping("/returnConditionData")
 	public void returnConditionData(String filePath, HttpServletResponse req) throws IOException {
-		filePath = "D:/项目/AIO/conditionData.txt";
+		filePath = Constants.conditionData;
 		FileInputStream fin = new FileInputStream(filePath);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);

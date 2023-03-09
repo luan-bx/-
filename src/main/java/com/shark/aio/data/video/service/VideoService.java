@@ -1,16 +1,20 @@
-package com.shark.aio.data.video.service;
+package com.shark.aio.video.service;
 
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.data.video.entity.FfmpegProcess;
 import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.data.video.mapper.VideoMapping;
 import com.shark.aio.util.ProcessUtil;
+import com.shark.aio.video.entity.CarRecordsEntity;
+import com.shark.aio.video.entity.FaceRecordsEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -33,13 +37,11 @@ public class VideoService {
     }
 
     /**
-     * 分页查询摄像头信息
-     * @param pageSize 分页每页大小
-     * @param pageNum   分页页码
+     * 查询摄像头信息
      * @param feature   模糊查询特征字符串
      * @return 分页查询结果
      */
-    public PageInfo<VideoEntity> selectVideosByPage(Integer pageSize, Integer pageNum, String feature){
+    public List<VideoEntity> selectAllVideos(String feature){
         List<VideoEntity> videos;
         if(feature!=null&&!feature.equals("")){
             feature = "%"+feature+"%";
@@ -47,7 +49,19 @@ public class VideoService {
         }else{
             videos = videoMapping.selectAllVideos();
         }
-        return new PageInfo<>(videos,5);
+        return videos;
+    }
+
+    public PageInfo<FaceRecordsEntity> selectFaceRecordsByPage(Integer pageSize, Integer pageNum){
+        List<FaceRecordsEntity> faceRecords = videoMapping.selectAllFaceRecords();
+
+        return new PageInfo<>(faceRecords,5);
+    }
+
+    public PageInfo<CarRecordsEntity> selectCarRecordsByPage(Integer pageSize, Integer pageNum){
+        List<CarRecordsEntity> carRecords = videoMapping.selectAllCarRecords();
+
+        return new PageInfo<>(carRecords,5);
     }
 
 
@@ -90,6 +104,20 @@ public class VideoService {
                 System.out.println(ProcessUtil.close(map.get(rtsp).getPid()));
                 map.remove(rtsp);
             }
+        }
+
+    }
+
+    public void insertManyVideos(String monitorName, String username, String password, String ip, String port, String description){
+        String[] names = username.split(",");
+        String[] pwds = password.split(",");
+        String[] ips = ip.split(",");
+        String[] ports = port.split(",");
+        List<VideoEntity> videos = new ArrayList<>();
+        for (int i=0;i<names.length;i++){
+            String rtsp = "rtsp://"+names[i]+":"+pwds[i]+"@"+ips[i]+":"+ports[i];
+            String stream = "stream"+ UUID.randomUUID();
+            videos.add(new VideoEntity(0,monitorName,rtsp,description,stream));
         }
 
     }
