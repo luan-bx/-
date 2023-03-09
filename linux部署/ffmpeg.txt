@@ -1,0 +1,1 @@
+ffmpeg -rtsp_transport tcp -i rtsp://admin:lbx123456@nju@192.168.0.3:554 -vcodec libx264 -r 25 -video_size 1280*720 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/room

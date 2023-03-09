@@ -94,10 +94,11 @@ public class PollutionController {
 			StringBuilder sb = new StringBuilder();
 			FileReader fileReader = null;
 			try {
-				fileReader = new FileReader("D:/项目/AIO/shucaiyi.txt");
+				String filePath = Constants.pollutionData;
+				fileReader = new FileReader(filePath);
 				byte[] bytes = new byte[4];//每一次读取四个字节
 				String line = null;
-				BufferedReader br = new BufferedReader(fileReader);
+				BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
 				while ((line = br.readLine()) != null) {
 					sb.append(line);
 					log.info(line);

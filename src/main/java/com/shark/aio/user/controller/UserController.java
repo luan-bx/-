@@ -1,17 +1,13 @@
 package com.shark.aio.user.controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.shark.aio.user.entity.UserEntity;
+import com.shark.aio.user.mapper.UserMapping;
+import com.shark.aio.user.service.UserService;
 import com.shark.aio.util.ConfPhone;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.SendSms;
 import com.shark.aio.util.VerCodeGenerateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shark.aio.user.entity.UserEntity;
-import com.shark.aio.user.mapper.UserMapping;
-import com.shark.aio.user.service.UserService;
-
-import lombok.extern.slf4j.Slf4j;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -128,7 +125,7 @@ public class UserController {
 			req.getSession().setAttribute("iconPath",iconPath);
 			req.getSession().setMaxInactiveInterval(0);
 //			return authController.auth(user, userName, req, response);
-			return "pollutionMonitor";
+			return "index";
 		} else if (login.equals(Constants.ERROR)) {
 			// 登录失败
 			req.setAttribute(Constants.INFORMATION, Constants.LOGINERROE);
