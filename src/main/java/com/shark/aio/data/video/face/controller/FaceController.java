@@ -1,4 +1,4 @@
-package com.shark.aio.video.face.controller;
+package com.shark.aio.data.video.face.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

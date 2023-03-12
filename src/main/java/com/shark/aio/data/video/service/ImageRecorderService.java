@@ -1,32 +1,18 @@
-package com.shark.aio.video.service;
+package com.shark.aio.data.video.service;
 
 import com.shark.aio.util.Constants;
-import com.shark.aio.util.ProcessUtil;
-import com.shark.aio.video.entity.FaceRecordsEntity;
-import com.shark.aio.video.face.controller.FaceController;
-import com.shark.aio.video.mapper.VideoMapping;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
-import org.apache.commons.io.monitor.FileAlterationMonitor;
-import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.FrameRecorder.Exception;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author lbx
@@ -58,16 +44,10 @@ public class ImageRecorderService implements Runnable{
     private String PARENT_DIR;
 
 
-
-
-
-
-
     /**
      * 视频快照，连续截图，覆盖截图
      * @author eguid
      * @param input 可以是动态图片(apng,gif等等)，视频文件（mp4,flv,avi等等）,流媒体地址（http-flv,rtmp，rtsp等等）
-     * @param output 图片
      * @param width 图像宽度
      * @param height 图像高度
      * @param mode 模式（1-覆盖模式，0-连续截图，根据文件名称模板顺序生成）
@@ -116,9 +96,7 @@ public class ImageRecorderService implements Runnable{
 //			grabber.setOption("min_port","5000");
         //设置本地最大的UDP端口，默认为65000端口。
 //			grabber.setOption("max_port","65000");
-
-            grabber.start();
-
+        grabber.start();
 
         if(width==null||height==null) {
             width=grabber.getImageWidth();
