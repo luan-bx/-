@@ -40,7 +40,7 @@ public class ElectricityController {
 	 */
 	@RequestMapping("/returnElectricityData")
 	public void returnElectricityData(String filePath, HttpServletResponse req) throws IOException {
-		filePath = "D:/项目/AIO/electricityData.txt";
+		filePath = "D:/项目/AIO/data/electricityData.txt";
 		FileInputStream fin = new FileInputStream(filePath);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);

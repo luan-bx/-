@@ -44,7 +44,7 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("收到HJ212协议数据为 ===> " + msg);
 
         //CRC校验
-        if(HJ212MsgUtils.checkData((String)msg).equals("error")){
+        if(!HJ212MsgUtils.checkData((String)msg).equals("error")){
             // 解析物联网设备发来的数据
             JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
             //存储数据

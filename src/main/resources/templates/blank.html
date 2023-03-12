@@ -28,6 +28,25 @@
 
     <!-- Custom Theme Style -->
     <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+
+
+
+    <script>
+      function loadXMLDoc() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange=function () {
+          if(xhr.readyState == 4 && xhr.status == 200) {
+
+            //通过Ajax响应的东西异步的展示在id为hello的div中
+            document.getElementById("myDiv").innerHTML=xhr.responseText;
+          }
+        };
+        xhr.open("POST","conditionMonitor.html",true);
+        xhr.send();
+      }
+    </script>
+
+
   </head>
 
   <body class="nav-md">
@@ -45,7 +64,7 @@
           <div class="profile clearfix">
             <div class="profile_pic">
               <img th:src="@{'/iconPath/'+${session.iconPath}}" alt="..." class="img-circle profile_img">
-            </div>
+              </div>
             <div class="profile_info">
               <span>欢迎,</span>
               <h2>天颐</h2>
@@ -65,7 +84,7 @@
                   <ul class="nav child_menu">
                     <li><a th:href="@{/pollutionMonitor}"> 污染源监测 </a></li>
                     <li><a th:href="@{/electricityMonitor}"> 用电监测 </a></li>
-                    <li><a th:href="@{/conditionMonitor}"> 工况监测 </a></li>
+                    <li><a th:href="@{/conditionMonitor}" onclick="loadXMLDoc()" > 工况监测 </a></li>
                     <li><a th:href="@{/videoMonitor}"> 视频监测 </a></li>
                   </ul>
                 </li>
@@ -105,7 +124,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile " aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img th:src="@{'/iconPath/'+${session.iconPath}}" alt="">大帅哥
+                    <img src="@{'/iconPath/'+${session.iconPath}}" alt="">天颐
                   </a>
 
                 </li>

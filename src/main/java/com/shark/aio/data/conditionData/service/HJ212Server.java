@@ -50,7 +50,6 @@ public class HJ212Server implements ApplicationRunner {
      * 启动服务
      */
     public static void runEPServer(){
-        log.info("===== EP Netty Server start =====");
         try{
             //ServerBootstrap是一个用来创建服务端Channel的工具类，创建出来的Channel用来接收进来的请求；只用来做面向连接的传输，像TCP/IP。
             ServerBootstrap b = new ServerBootstrap();
@@ -71,7 +70,7 @@ public class HJ212Server implements ApplicationRunner {
                     pipeline.addLast(new HJ212ServerHandler());
                 }
             });
-            log.info("环保 Netty Server PORT = " + PORT);
+            log.info("工况监控  端口号  =  " + PORT);
             b.bind(PORT).sync();
 
         }catch (Exception e){

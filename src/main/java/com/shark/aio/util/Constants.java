@@ -84,7 +84,7 @@ public interface Constants {
 	/*
 		文件路径
 	 */
-	String conditionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/conditionData.txt":"/home/user/AIO/data/condition/conditionData.txt";
+	String conditionData = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\2023-03-12/conditionData.txt":"/home/user/AIO/data/condition/conditionData.txt";
 
 	String pollutionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/pollutionData.txt":"/home/user/AIO/data/pollution/pollutionData.txt";
 
