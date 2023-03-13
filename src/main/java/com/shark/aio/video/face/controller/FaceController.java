@@ -42,7 +42,7 @@ public class FaceController {
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
-			URL url = new URL("http://114.212.128.235:8050/ssd_predict");
+			URL url = new URL("http://localhost:5000/ssd_predict");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			String BOUNDARY = "-------7da2e536604c8";
@@ -195,7 +195,7 @@ public class FaceController {
 	@GetMapping("/videoPlay")
 	public String toVideoPlayPage(String stream, HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
 		request.setAttribute("stream",new String[]{stream});
-		videoService.addSession(stream);
+//		videoService.addSession(stream);
 		return "videoPlay";
 	}
 
@@ -204,12 +204,12 @@ public class FaceController {
 	 * @param stream rtmp流中的stream参数
 	 * @return 啥也不返回
 	 */
-	@PostMapping("/quitVideoPlay")
+	/*@PostMapping("/quitVideoPlay")
 	@ResponseBody
 	public String quitVideoPlayPage(@RequestParam String stream){
 		videoService.dropSession(stream);
 		return null;
-	}
+	}*/
 
 
 

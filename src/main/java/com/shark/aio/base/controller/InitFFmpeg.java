@@ -1,5 +1,6 @@
 package com.shark.aio.base.controller;
 
+import com.shark.aio.util.ProcessUtil;
 import com.shark.aio.video.entity.CarRecordsEntity;
 import com.shark.aio.video.entity.FaceRecordsEntity;
 import com.shark.aio.video.entity.VideoEntity;
@@ -23,7 +24,7 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 
-//@Component
+@Component
 @Slf4j
 public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -37,7 +38,14 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent event) {
         List<VideoEntity> videos = videoMapping.selectAllVideos();
         for (VideoEntity video : videos){
+            //这里是jar包启动就会自动推流
             try {
+                ProcessUtil.videoPreview(video.getRtsp(),video.getStream());
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+            //这里是调用算法的部分
+            /*try {
                 ImageRecorderService imageRecorderService =new ImageRecorderService(video.getRtsp(),1280,720,"0",video.getMonitorName());
                 runExample(imageRecorderService.getPARENT_DIR());
                 threadPoolTaskExecutor.execute(imageRecorderService);
@@ -45,7 +53,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 //                new VideoRecorderService().startRecordVideo();
             } catch (Exception e) {
                 log.error("打开监控"+video.getMonitorName()+"异常！"+e);
-            }
+            }*/
         }
     }
 
