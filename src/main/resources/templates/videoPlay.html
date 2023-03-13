@@ -194,7 +194,7 @@
       startVideo(streams);
     });
     //这是当关闭页面或浏览器的时候调用后台的方法把进程给停掉
-    window.onbeforeunload = function(e) {
+    /*window.onbeforeunload = function(e) {
       $.ajax({
         url:"/quitVideoPlay",
         type:"post",
@@ -205,7 +205,7 @@
         success: function (data){
         }
       })
-    }
+    }*/
   </script>
 </body>
 </html>

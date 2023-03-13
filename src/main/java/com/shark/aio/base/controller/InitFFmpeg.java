@@ -1,5 +1,6 @@
 package com.shark.aio.base.controller;
 
+import com.shark.aio.util.ProcessUtil;
 import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.data.video.face.controller.FaceController;
 import com.shark.aio.data.video.license.controller.LicenseController;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -35,7 +37,14 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent event) {
         List<VideoEntity> videos = videoMapping.selectAllVideos();
         for (VideoEntity video : videos){
+            //这里是jar包启动就会自动推流
             try {
+                ProcessUtil.videoPreview(video.getRtsp(),video.getStream());
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+            //这里是调用算法的部分
+            /*try {
                 ImageRecorderService imageRecorderService =new ImageRecorderService(video.getRtsp(),1280,720,"0",video.getMonitorName());
                 runExample(imageRecorderService.getPARENT_DIR());
                 threadPoolTaskExecutor.execute(imageRecorderService);
@@ -43,7 +52,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 //                new VideoRecorderService().startRecordVideo();
             } catch (Exception e) {
                 log.error("打开监控"+video.getMonitorName()+"异常！"+e);
-            }
+            }*/
         }
     }
 
