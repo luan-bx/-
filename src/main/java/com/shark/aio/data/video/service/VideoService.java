@@ -1,4 +1,4 @@
-package com.shark.aio.video.service;
+package com.shark.aio.data.video.service;
 
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.data.video.entity.FfmpegProcess;
