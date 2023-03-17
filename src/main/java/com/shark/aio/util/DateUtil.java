@@ -7,6 +7,12 @@ import java.util.Date;
 public class DateUtil {
 
     /**
+     * 当前日期
+     */
+    static SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    public static String Data = DataFormat.format(new Date());
+
+    /**
      * 输入框格式
      */
     public static SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");

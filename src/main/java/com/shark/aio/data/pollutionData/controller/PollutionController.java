@@ -7,6 +7,7 @@ import com.shark.aio.alarm.mapper.AlarmMapping;
 import com.shark.aio.data.pollutionData.entity.PollutionMonitorEntity;
 import com.shark.aio.data.pollutionData.service.PollutionService;
 import com.shark.aio.util.Constants;
+import com.shark.aio.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -92,13 +93,10 @@ public class PollutionController {
 //			}
 //			br.close();
 			StringBuilder sb = new StringBuilder();
-			FileReader fileReader = null;
+			BufferedReader br = null;
 			try {
-				String filePath = Constants.pollutionData;
-				fileReader = new FileReader(filePath);
-				byte[] bytes = new byte[4];//每一次读取四个字节
 				String line = null;
-				BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
+				br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
 				while ((line = br.readLine()) != null) {
 					sb.append(line);
 					log.info(line);
@@ -106,7 +104,7 @@ public class PollutionController {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} finally {
-				fileReader.close();
+				br.close();
 			}
 
 			log.info(String.valueOf(sb));
@@ -163,18 +161,13 @@ public class PollutionController {
 
 			//			String pretty = JSON.toJSONString(json, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
 //					SerializerFeature.WriteDateUseDateFormat);
-			File file = new File(Constants.pollutionData);
-			if (file.exists()) {
-//				System.out.println("文件存在");
-			} else {
-				try {
-					file.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				System.out.println("文件创建成功");
+			String documenPath = Constants.POLLUTIONPATH + DateUtil.Data;
+			String filePath = documenPath + Constants.POLLUTIONDATA;
+			File document = new File(documenPath);
+			if (!document.exists()) {
+				document.mkdirs();
 			}
-
+			File file = new File(filePath);
 			String space = " ";
 			try {
 				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file, true));
@@ -217,8 +210,8 @@ public class PollutionController {
 	 */
 	@RequestMapping("/returnPollutionData")
 	public void returnPollutionData(String filePath, HttpServletResponse req) throws IOException {
-		filePath = Constants.pollutionData;
-		FileInputStream fin = new FileInputStream(filePath);
+
+		FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + DateUtil.Data + Constants.POLLUTIONDATA);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";

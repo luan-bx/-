@@ -56,8 +56,7 @@ public class EleHJ212ServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println("设备消息解析JSON结果：" + data.toJSONString());
 //        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
             try {
-                SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-                SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
+                SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
 
                 String documentPath = "D:\\项目\\AIO\\data\\" + DataFormat.format(new Date()) ;//根据日期或某个算法自动生成
                 File document = new File(documentPath);

@@ -37,12 +37,12 @@ public class testCV {
     }
 
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in)
+        Scanner scanner = new Scanner(System.in);
         int nodeCnt = scanner.nextInt();
         String node = scanner.nextLine();
         Node[] nodes = new Node[nodeCnt];
         for (int i=0;i<nodeCnt;i++){
-            nodes[i]=new Node(node.charAt(i),null,null);
+            nodes[i]=new Node(node.charAt(i) );
         }
         String[] parents = scanner.nextLine().split(" ");
         for (int i=0;i<nodeCnt-1;i++){

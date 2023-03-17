@@ -2,11 +2,11 @@ package com.shark.aio.data.video.license.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ObjectUtil;
 import com.shark.aio.util.UnicodeUtil;
-import com.shark.aio.video.entity.CarRecordsEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

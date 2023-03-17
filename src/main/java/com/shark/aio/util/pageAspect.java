@@ -20,8 +20,9 @@ public class pageAspect {
      * 第一个参数为页码pageNum
      * 第二个参数为每页记录数pageSize
      */
-    @Pointcut(value = "execution(public com.github.pagehelper.PageInfo com.shark.aio.*.service.*.*ByPage(Integer,Integer,..))")
+    @Pointcut(value = "execution(public com.github.pagehelper.PageInfo com.shark.aio.*..service.*.*ByPage(Integer,Integer,..))")
     public void pointcut(){}
+
 
     @Before("pointcut()")
     public void startPage(JoinPoint joinPoint){

@@ -1,4 +1,4 @@
-package com.shark.aio.video.entity;
+package com.shark.aio.data.video.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

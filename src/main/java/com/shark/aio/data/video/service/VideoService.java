@@ -1,12 +1,12 @@
 package com.shark.aio.data.video.service;
 
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.data.video.entity.CarRecordsEntity;
+import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.FfmpegProcess;
 import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.data.video.mapper.VideoMapping;
 import com.shark.aio.util.ProcessUtil;
-import com.shark.aio.video.entity.CarRecordsEntity;
-import com.shark.aio.video.entity.FaceRecordsEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

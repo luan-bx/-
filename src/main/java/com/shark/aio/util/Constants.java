@@ -81,12 +81,6 @@ public interface Constants {
 	String UPDATEPWD = "updatePwd";//修改密码最后一步：输入新密码
 
 
-	/*
-		文件路径
-	 */
-	String conditionData = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\2023-03-12/conditionData.txt":"/home/user/AIO/data/condition/conditionData.txt";
-
-	String pollutionData = ProcessUtil.IS_WINDOWS?"D:/项目/AIO/pollutionData.txt":"/home/user/AIO/data/pollution/pollutionData.txt";
 
 
 	/**
@@ -96,10 +90,29 @@ public interface Constants {
 	String THGINPUT = "rtsp://admin:Shark666@nju@192.168.0.2:554";
 
 	/**
+	 * 数据包名
+	 */
+	String POLLUTIONDATA = ProcessUtil.IS_WINDOWS?"\\pollutionData.txt":"/pollutionData.txt";
+	String CONDITIONDATA = ProcessUtil.IS_WINDOWS?"\\conditionData.txt":"/conditionData.txt";
+	String ELECTRICDATA = ProcessUtil.IS_WINDOWS?"\\electricData.txt":"/electricData.txt";
+
+	/**
 	 * 文件存储根路径
 	 */
+
 	String VIDEOOUTPUTPATH = "D:\\项目\\AIO\\recorder\\";
-	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\":"/home/user/AIO/image/";
-	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\faceResult\\":"/home/user/AIO/image/AIResult/";
-	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\carResult\\":"/home/user/AIO/image/AIResult/";
+	//视频的照片流
+	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\input\\":"/home/user/AIO/data/image/input/";
+	//人员识别结果
+	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\faceResult\\":"/home/user/AIO/data/image/faceResult/";
+	//车牌识别结果
+	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\carResult\\":"/home/user/AIO/data/image/carResult/";
+	//工况数据
+	String CONDITIONPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\condition\\":"/home/user/AIO/data/condition/";
+	//污染源数据
+	String POLLUTIONPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\pollution\\":"/home/user/AIO/data/pollution/";
+	//用电数据
+	String ELECTRICPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\electric\\":"/home/user/AIO/data/electric/";
+
+
 }

@@ -1,8 +1,8 @@
 package com.shark.aio.data.video.mapper;
 
+import com.shark.aio.data.video.entity.CarRecordsEntity;
+import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
-import com.shark.aio.video.entity.CarRecordsEntity;
-import com.shark.aio.video.entity.FaceRecordsEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

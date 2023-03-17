@@ -1,5 +1,6 @@
 package com.shark.aio.data.conditionData.service;
 
+import com.shark.aio.data.conditionData.entity.MnEntity;
 import com.shark.aio.data.conditionData.mapper.ConditionMapping;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,22 @@ public class ConditionService {
             return allMonitor;
         }catch (Exception e){
             log.error("ConditionService/getAllMonitor:获取全部监测点失败！",e);
+            return null;
+        }
+    }
+
+    /**
+     * 由数据包里的mn找到对应的监测点
+     * @param mn
+     * @return
+     */
+    public String getMonitorName(String mn){
+        try{
+            MnEntity mnEntity = conditionMapping.getMnEntityByMN(mn);
+            String monitorName = mnEntity.getMoniterName();
+            return monitorName;
+        }catch (Exception e){
+            log.error("ConditionService/getMonitorName:获取监测点名字失败！",e);
             return null;
         }
     }

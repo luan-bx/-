@@ -2,6 +2,8 @@ package com.shark.aio.data.conditionData.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.data.conditionData.mapper.ConditionMapping;
+import com.shark.aio.util.Constants;
+import com.shark.aio.util.DateUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -13,8 +15,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +30,8 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Autowired
     private ConditionMapping conditionMapping;
+    @Autowired
+    private ConditionService conditionService;
     /**
      * 定义一个HashMap，用于保存所有的channel和设备ID的对应关系。
      */
@@ -51,22 +53,24 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
             if (data != null){
                 System.out.println("设备消息解析JSON结果：" + data.toJSONString());
                 try {
-                    SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-                    String documentPath = "D:\\项目\\AIO\\data\\" + DataFormat.format(new Date()) ;//根据日期或某个算法自动生成
-                    String filePath = documentPath + "\\conditionData.txt";
-                    File document = new File(documentPath);
-                    if(!document.exists()){
-                        document.mkdirs();
-                    }
-                    File file = new File(filePath);
+                    //由mn对应数据库找到绑定的监测点名称
+                    String mn = net.sf.json.JSONObject.fromObject(data).getString("MN");
+                    if(mn != null){
+                        String monitorName = conditionService.getMonitorName(mn);
+                        //根目录 + 监测点 + 日期
+                        String documentPath = Constants.CONDITIONPATH + monitorName + DateUtil.Data;//再加上数据库查到的监测点
+                        String filePath = documentPath + Constants.CONDITIONDATA;
+                        File document = new File(documentPath);
+                        if(!document.exists()){
+                            document.mkdirs();
+                        }
+                        File file = new File(filePath);
 
-                    BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
-                    out.write((data.toJSONString()+"\n").getBytes());
-                    out.flush();
-                    out.close();
-//            ConditionFileEntity conditionFileEntity = null;
-//            conditionFileEntity.setFileUrl(path);
-//            conditionMapping.insertFileUrl(conditionFileEntity);
+                        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
+                        out.write((data.toJSONString()+"\n").getBytes());
+                        out.flush();
+                        out.close();
+                    }
                 } catch (Exception e) {
                     // TODO: handle exception
                     e.printStackTrace();

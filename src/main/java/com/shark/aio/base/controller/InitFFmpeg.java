@@ -1,13 +1,12 @@
 package com.shark.aio.base.controller;
 
-import com.shark.aio.util.ProcessUtil;
+import com.shark.aio.data.video.entity.CarRecordsEntity;
+import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.data.video.face.controller.FaceController;
 import com.shark.aio.data.video.license.controller.LicenseController;
 import com.shark.aio.data.video.mapper.VideoMapping;
-import com.shark.aio.data.video.service.ImageRecorderService;
-import com.shark.aio.video.entity.CarRecordsEntity;
-import com.shark.aio.video.entity.FaceRecordsEntity;
+import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
