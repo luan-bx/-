@@ -12,6 +12,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,11 +56,17 @@ public class EleHJ212ServerHandler extends ChannelInboundHandlerAdapter {
             System.out.println("设备消息解析JSON结果：" + data.toJSONString());
 //        System.out.println("再将JSON数据进行分类：" + data2.toJSONString());
             try {
-                String path = "D:\\项目\\AIO\\electricityData.txt";//根据日期或某个算法自动生成
-                File file = new File(path);
-//            if(!file.exists()){
-//                file.mkdirs();
-//            }
+                SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+                SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
+
+                String documentPath = "D:\\项目\\AIO\\data\\" + DataFormat.format(new Date()) ;//根据日期或某个算法自动生成
+                File document = new File(documentPath);
+                if(!document.exists()){
+                    document.mkdirs();
+                }
+                String filePath = documentPath+ "\\electricityData.txt";//根据日期或某个算法自动生成
+                File file = new File(filePath);
+
                 BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
                 out.write((data.toJSONString()+"\n").getBytes());
                 out.flush();
