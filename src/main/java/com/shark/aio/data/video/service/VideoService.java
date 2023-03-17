@@ -108,17 +108,10 @@ public class VideoService {
 
     }
 
-    public void insertManyVideos(String monitorName, String username, String password, String ip, String port, String description){
-        String[] names = username.split(",");
-        String[] pwds = password.split(",");
-        String[] ips = ip.split(",");
-        String[] ports = port.split(",");
-        List<VideoEntity> videos = new ArrayList<>();
-        for (int i=0;i<names.length;i++){
-            String rtsp = "rtsp://"+names[i]+":"+pwds[i]+"@"+ips[i]+":"+ports[i];
-            String stream = "stream"+ UUID.randomUUID();
-            videos.add(new VideoEntity(0,monitorName,rtsp,description,stream));
-        }
+    public int insertVideo(String monitorName, String username, String password, String ip, String port, String description){
+        String rtsp = "rtsp://"+username+":"+password+"@"+ip+":"+port;
+        String stream = "stream"+ UUID.randomUUID();
+        return videoMapping.insertIntoVideo(new VideoEntity(null,monitorName,rtsp,description,stream));
 
     }
 

@@ -6,9 +6,14 @@ import com.github.pagehelper.PageInfo;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
-import com.shark.aio.data.video.service.VideoService;
+import com.shark.aio.data.video.mapper.VideoMapping;
+import com.shark.aio.util.ClientDemo;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
+import com.shark.aio.util.ObjectUtil;
+import com.shark.aio.data.video.entity.CarRecordsEntity;
+import com.shark.aio.data.video.entity.FaceRecordsEntity;
+import com.shark.aio.data.video.service.VideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -178,11 +183,30 @@ public class FaceController {
 			               @RequestParam String username,
 						   @RequestParam String password,
 						   @RequestParam String ip,
-						   @RequestParam String port,
-						   String description){
+						   String port,
+						   String description,
+						   HttpServletRequest request) throws InterruptedException {
+		if (ObjectUtil.isEmptyString(port))port="554";
+		String message = ClientDemo.HCIsAvailable(ip,Short.parseShort(port),username,password);
+		log.info(message);
+		if (message.contains("成功")){
+			int result = videoService.insertVideo(monitorName,username,password,ip,port,description);
+			if (result>0){
+				return toVideoPage(request,null);
+			}else{
+				request.setAttribute("error","数据库错误！请检查网络或摄像头信息是否和已有摄像头重复！");
+			}
+		}else{
 
+			request.setAttribute("error","连接摄像头失败！请检查ip、端口、用户名、密码是否正确！");
+		}
+		request.setAttribute("ip",ip);
+		request.setAttribute("monitorName",monitorName);
+		request.setAttribute("username",username);
+		request.setAttribute("port",port);
+		request.setAttribute("description",description);
+		return "addVideo";
 
-		return null;
 	}
 	/**
 	 * 跳转到视频播放页面

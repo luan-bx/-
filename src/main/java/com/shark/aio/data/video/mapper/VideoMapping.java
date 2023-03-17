@@ -15,8 +15,8 @@ public interface VideoMapping {
      * 插入一个摄像头
      * @param video
      */
-    @Insert("INSERT INTO `video` VALUES (null, #{monitorName}, #{url}, #{description})")
-    public void insertIntoVideo(VideoEntity video);
+    @Insert("INSERT INTO `video` VALUES (null, #{monitorName}, #{rtsp}, #{description},#{stream})")
+    public int insertIntoVideo(VideoEntity video);
 
     /**
      * 查询全部摄像头
