@@ -54,7 +54,7 @@
         <div class="" th:with="baseURL='/alarm/settings'">
           <div class="page-title">
             <div class="title_left">
-              <h3><small>预警设置</small></h3>
+              <h3><small>视频监控</small></h3>
 
             </div>
 
@@ -71,7 +71,7 @@
             <div class="col-md-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2><i class="fa fa-cog"></i> 新增预警设置</h2>
+                  <h2><i class="fa fa-cog"></i> 新增摄像头</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -81,100 +81,66 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                  <br />
+                  <div class="alert alert-danger alert-dismissible " role="alert" th:if="${error}!=null">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong th:text="${error}"></strong>
+                  </div>
+                  <form class="form-label-left input_mask" th:action="@{/addVideo}" method="post">
 
-                  <div class="row">
-                    <div class="col-md-12 ">
-                      <div class="x_panel">
-                        <div class="x_title">
-                          <h2>Form Design <small>different form elements</small></h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Settings 1</a>
-                                <a class="dropdown-item" href="#">Settings 2</a>
-                              </div>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                          </ul>
-                          <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                          <br />
-                          <form class="form-label-left input_mask">
 
-                            <div class="col-md-6 col-sm-6  form-group has-feedback">
-                              <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
-                              <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                            </div>
 
-                            <div class="col-md-6 col-sm-6  form-group has-feedback">
-                              <input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name">
-                              <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6  form-group has-feedback">
-                              <input type="email" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email">
-                              <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="col-md-6 col-sm-6  form-group has-feedback">
-                              <input type="tel" class="form-control" id="inputSuccess5" placeholder="Phone">
-                              <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="form-group row">
-                              <label class="col-form-label col-md-3 col-sm-3 ">Default Input</label>
-                              <div class="col-md-9 col-sm-9 ">
-                                <input type="text" class="form-control" placeholder="Default Input">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-form-label col-md-3 col-sm-3 ">Disabled Input </label>
-                              <div class="col-md-9 col-sm-9 ">
-                                <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-form-label col-md-3 col-sm-3 ">Read-Only Input</label>
-                              <div class="col-md-9 col-sm-9 ">
-                                <input type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label class="col-form-label col-md-3 col-sm-3 ">Date Of Birth <span class="required">*</span>
-                              </label>
-                              <div class="col-md-9 col-sm-9 ">
-                                <input class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-                                <script>
-                                  function timeFunctionLong(input) {
-                                    setTimeout(function() {
-                                      input.type = 'text';
-                                    }, 60000);
-                                  }
-                                </script>
-                              </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div class="form-group row">
-                              <div class="col-md-9 col-sm-9  offset-md-3">
-                                <button type="button" class="btn btn-primary">Cancel</button>
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
-                              </div>
-                            </div>
-
-                          </form>
-                        </div>
+                    <div class="form-group row">
+                      <label class="col-form-label col-md-3 col-sm-3 ">摄像头IP地址：</label>
+                      <div class="col-md-9 col-sm-9 ">
+                        <input type="text" class="form-control" placeholder="IP Address" th:value="${ip}" name="ip">
+                        海康默认的http端口号为80，若摄像头的http端口号修改过，请在此栏写入，格式为ip地址:端口号；若未修改过，只写ip地址即可。
                       </div>
 
-
-
                     </div>
-                  </div>
+                    <div class="form-group row">
+                      <label class="col-form-label col-md-3 col-sm-3 ">rtsp端口号：</label>
+                      <div class="col-md-9 col-sm-9 ">
+                        <input type="text" class="form-control" placeholder="海康摄像头默认端口号为554" th:value="${port}"  name="port">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-form-label col-md-3 col-sm-3 ">用户名：</label>
+                      <div class="col-md-9 col-sm-9 ">
+                        <input type="text" class="form-control" placeholder="UserName" th:value="${username}" name="username">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-form-label col-md-3 col-sm-3 ">密码：</label>
+                      <div class="col-md-9 col-sm-9 ">
+                        <input type="password" class="form-control" placeholder="Password"  name="password">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-form-label col-md-3 col-sm-3 ">监测点名称：</label>
+                      <div class="col-md-9 col-sm-9 ">
+                        <input type="text" class="form-control" placeholder="monitorName" th:value="${monitorName}" name="monitorName">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-form-label col-md-3 col-sm-3 ">监测点描述：</label>
+                      <div class="col-md-9 col-sm-9 ">
+                        <input type="text" class="form-control" placeholder="description" th:value="${description}" name="description">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-9 col-sm-9  offset-md-3">
+                        <button class="btn btn-primary" type="reset">清空</button>
+                        <button type="submit" id="submitButton" class="btn btn-success">提交</button>
+                      </div>
+                    </div>
+
+                  </form>
+
+
                 </div>
               </div>
             </div>
