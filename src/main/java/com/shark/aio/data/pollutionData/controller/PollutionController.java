@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.mapper.AlarmMapping;
-import com.shark.aio.data.pollutionData.entity.PollutionMonitorEntity;
+import com.shark.aio.data.conditionData.entity.MnEntity;
 import com.shark.aio.data.pollutionData.service.PollutionService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
@@ -264,16 +264,15 @@ public class PollutionController {
 	/**
 	 * 新增监测点或设备关联
 	 * 监测点不能重复
-	 * @param pollutionMonitorEntity
+	 * @param mnEntity
 	 * @param newMonitorName 新监测点名称
 	 * @param existMonitorName 已有的监测点名称
 	 * @return 操作成功返回预警设置页，否则返回新增页
 	 */
 	@PostMapping("/pollution/submit/add")
-	public String addAlarmSetting(HttpServletRequest request, PollutionMonitorEntity pollutionMonitorEntity,
+	public String addAlarmSetting(HttpServletRequest request, MnEntity mnEntity,
 								  String newMonitorName, String existMonitorName){
-		log.info("0000000000"+pollutionMonitorEntity.toString());
-		String msg = pollutionService.addPollutionMonitor(pollutionMonitorEntity,newMonitorName,existMonitorName);
+		String msg = pollutionService.addPollutionMonitor(mnEntity,newMonitorName,existMonitorName);
 		request.setAttribute(Constants.MSG, msg);
 		if (msg.contains("成功")) return "forward:/pollutionMonitor";
 		else return toAddPollutionPage(request);

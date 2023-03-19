@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,9 +30,24 @@ import java.util.Map;
 public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Autowired
-    private ConditionMapping conditionMapping;
+    protected ConditionMapping conditionMapping;
     @Autowired
-    private ConditionService conditionService;
+    protected ConditionService conditionService;
+
+    // 当前类
+    private static HJ212ServerHandler hJ212ServerHandler;
+
+    /**
+     * 初始化
+     */
+    @PostConstruct
+    public void init(){
+        hJ212ServerHandler = this;
+        hJ212ServerHandler.conditionService = this.conditionService;
+    }
+
+
+
     /**
      * 定义一个HashMap，用于保存所有的channel和设备ID的对应关系。
      */
@@ -49,6 +65,7 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
         if(!HJ212MsgUtils.checkData((String)msg).equals("error")){
             // 解析物联网设备发来的数据
             JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
+
             //存储数据
             if (data != null){
                 System.out.println("设备消息解析JSON结果：" + data.toJSONString());
@@ -56,20 +73,26 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
                     //由mn对应数据库找到绑定的监测点名称
                     String mn = net.sf.json.JSONObject.fromObject(data).getString("MN");
                     if(mn != null){
-                        String monitorName = conditionService.getMonitorName(mn);
-                        //根目录 + 监测点 + 日期
-                        String documentPath = Constants.CONDITIONPATH + monitorName + DateUtil.Data;//再加上数据库查到的监测点
-                        String filePath = documentPath + Constants.CONDITIONDATA;
-                        File document = new File(documentPath);
-                        if(!document.exists()){
-                            document.mkdirs();
-                        }
-                        File file = new File(filePath);
+                        System.out.println(mn);
+                        String monitorName = hJ212ServerHandler.conditionService.getMonitorName(mn);
+                        if(monitorName.equals("error"))System.out.println("空的");
+                        if(!monitorName.equals("error")){
+                            System.out.println("不是空的");
+                            //根目录 + 监测点 + 日期
+                            String documentPath = Constants.CONDITIONPATH + monitorName + "\\" + DateUtil.Data;//再加上数据库查到的监测点
+                            String filePath = documentPath + Constants.CONDITIONDATA;
+                            File document = new File(documentPath);
+                            if(!document.exists()){
+                                document.mkdirs();
+                            }
+                            File file = new File(filePath);
 
-                        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
-                        out.write((data.toJSONString()+"\n").getBytes());
-                        out.flush();
-                        out.close();
+                            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
+                            out.write((data.toJSONString()+"\n").getBytes());
+                            out.flush();
+                            out.close();
+                    }
+
                     }
                 } catch (Exception e) {
                     // TODO: handle exception

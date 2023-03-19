@@ -38,12 +38,12 @@ public class HJ212Server implements ApplicationRunner {
      * 分发线程组,用于处理客户端的连接请求
      */
     //表示一个 NIO 的EventLoopGroup
-    private static final EventLoopGroup bossGroup = new NioEventLoopGroup(2);
+    private static final EventLoopGroup bossGroup = new NioEventLoopGroup(10);
 
     /**
      * 工作线程组, 用于处理与各个客户端连接的 IO 操作
      */
-    private static final EventLoopGroup workerGroup = new NioEventLoopGroup(4);
+    private static final EventLoopGroup workerGroup = new NioEventLoopGroup(20);
 
 
     /**

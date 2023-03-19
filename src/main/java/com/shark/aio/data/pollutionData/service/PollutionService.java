@@ -1,7 +1,7 @@
 package com.shark.aio.data.pollutionData.service;
 
 import com.shark.aio.alarm.mapper.AlarmMapping;
-import com.shark.aio.data.pollutionData.entity.PollutionMonitorEntity;
+import com.shark.aio.data.conditionData.entity.MnEntity;
 import com.shark.aio.data.pollutionData.mapper.PollutionMapping;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ObjectUtil;
@@ -81,12 +81,12 @@ public class PollutionService {
      * @param existMonitorName 已有的监测名称
      * @return 返回给页面的消息
      */
-    public String addPollutionMonitor(PollutionMonitorEntity pollutionMonitorEntity,
-                                  String newMonitorName, String existMonitorName){
+    public String addPollutionMonitor(MnEntity mnEntity,
+                                      String newMonitorName, String existMonitorName){
         //新增预警设置，判断上下限阈值的合理性和监测值是否重复
-        if (!ObjectUtil.isEmpty(pollutionMonitorEntity)){
+        if (!ObjectUtil.isEmpty(mnEntity)){
            try {
-               pollutionMapping.insert(pollutionMonitorEntity);
+               pollutionMapping.insert(mnEntity);
             }catch (DataIntegrityViolationException e){
                 log.error("pollutionMonitor:新增关联失败！",e);
                 return "设备不能和已有的重复！";

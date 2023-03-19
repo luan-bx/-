@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class ConditionService {
     @Autowired
-    private ConditionMapping conditionMapping;
+    protected ConditionMapping conditionMapping;
 
     /**
      * 获取全部监测点
@@ -42,11 +42,14 @@ public class ConditionService {
     public String getMonitorName(String mn){
         try{
             MnEntity mnEntity = conditionMapping.getMnEntityByMN(mn);
-            String monitorName = mnEntity.getMoniterName();
+            if(mnEntity == null){
+                return "error";
+            }
+            String monitorName = mnEntity.getMonitorName();
             return monitorName;
         }catch (Exception e){
             log.error("ConditionService/getMonitorName:获取监测点名字失败！",e);
-            return null;
+            return "error";
         }
     }
 

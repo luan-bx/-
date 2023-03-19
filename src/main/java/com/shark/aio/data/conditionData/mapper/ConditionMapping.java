@@ -1,9 +1,8 @@
 package com.shark.aio.data.conditionData.mapper;
 
-import com.shark.aio.data.conditionData.entity.ConditionFileEntity;
 import com.shark.aio.data.conditionData.entity.MnEntity;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -22,12 +21,7 @@ public interface ConditionMapping {
      *
      */
     @Select("SELECT * from `monitor_m_n` WHERE mn = #{mn};")
-    MnEntity getMnEntityByMN(String mn);
+    MnEntity getMnEntityByMN(@Param("mn")String mn);
 
 
-    /*
-     * 插入一条文件路径
-     */
-    @Insert("INSERT into `condition_file` (`fileUrl`) VALUES (#{fileUrl});")
-    void insertFileUrl(ConditionFileEntity conditionFileEntity);
 }

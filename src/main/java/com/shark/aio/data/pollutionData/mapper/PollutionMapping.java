@@ -1,6 +1,6 @@
 package com.shark.aio.data.pollutionData.mapper;
 
-import com.shark.aio.data.pollutionData.entity.PollutionMonitorEntity;
+import com.shark.aio.data.conditionData.entity.MnEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -27,6 +27,6 @@ public interface PollutionMapping {
     /*
      * 插入一个设备id与监测点关联记录
      */
-    @Insert("INSERT INTO `pollution_monitor` (`monitor_name`, `device_id`) VALUES (#{monitorName}, #{deviceId});")
-    void insert(PollutionMonitorEntity pollutionMonitorEntity);
+    @Insert("INSERT INTO `monitorMN` (`monitor_name`, `mn`) VALUES (#{monitorName}, #{mn});")
+    void insert(MnEntity mnEntity);
 }

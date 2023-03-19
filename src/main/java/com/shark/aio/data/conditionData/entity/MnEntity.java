@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class MnEntity {
     private int id;
-    private String moniterName;
+    private String monitorName;
     private String mn;
 
 }
