@@ -6,6 +6,7 @@ import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.data.video.face.controller.FaceController;
 import com.shark.aio.data.video.license.controller.LicenseController;
 import com.shark.aio.data.video.mapper.VideoMapping;
+import com.shark.aio.data.video.service.ImageRecorderService;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -16,12 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 
-//@Component
+@Component
 @Slf4j
 public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -42,7 +44,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
                 throw new RuntimeException(e);
             }
             //这里是调用算法的部分
-            /*try {
+            try {
                 ImageRecorderService imageRecorderService =new ImageRecorderService(video.getRtsp(),1280,720,"0",video.getMonitorName());
                 runExample(imageRecorderService.getPARENT_DIR());
                 threadPoolTaskExecutor.execute(imageRecorderService);
@@ -50,7 +52,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 //                new VideoRecorderService().startRecordVideo();
             } catch (Exception e) {
                 log.error("打开监控"+video.getMonitorName()+"异常！"+e);
-            }*/
+            }
         }
     }
 

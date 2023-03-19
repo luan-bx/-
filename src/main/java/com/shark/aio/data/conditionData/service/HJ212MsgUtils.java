@@ -120,10 +120,10 @@ public class HJ212MsgUtils {
             case "i12002-Info":
                 switch (OC) {
                     case 0:
-                        data = "正常";
+                        data = "0";
                         break;
                     case 1:
-                        data = "异常";
+                        data = "0";
                         break;
                 }
                 break;
