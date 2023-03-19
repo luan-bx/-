@@ -41,23 +41,8 @@ public class testCV {
         }
     }
 
-<<<<<<< HEAD
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        int nodeCnt = scanner.nextInt();
-        String node = scanner.nextLine();
-        Node[] nodes = new Node[nodeCnt];
-        for (int i=0;i<nodeCnt;i++){
-            nodes[i]=new Node(node.charAt(i) );
-        }
-        String[] parents = scanner.nextLine().split(" ");
-        for (int i=0;i<nodeCnt-1;i++){
-=======
-    @Test
-    public void testRtspIsAvailable() throws InterruptedException {
->>>>>>> 2413be3ef9dc74d3ac2c65e3c822720f02f154e3
 
 
     }
-}
+
 

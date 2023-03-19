@@ -1,10 +1,13 @@
 package com.shark.aio.data.conditionData.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.data.conditionData.service.ConditionService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * 接受数工况数据
@@ -58,18 +59,28 @@ public class ConditionController {
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
-		String str = "";
-		int i = 0;
+		ArrayList<JSONObject> data = new ArrayList<>();
+		ArrayList<String> keyset = new ArrayList<>();
+		keyset.add("DataTime");
+		JSONObject result = new JSONObject();
 		while ((strTmp = buffReader.readLine()) != null) {
-			if (i == 0) {
-				str = str.concat("  ");
+			JSONObject jsonObject = JSON.parseObject(strTmp);
+			JSONObject dataObj = jsonObject.getJSONObject("CP");
+			dataObj.put("DataTime",jsonObject.getString("DataTime"));
+			data.add(dataObj);
+			for (String key : dataObj.keySet()){
+				if (!keyset.contains(key)){
+					keyset.add(key);
+				}
 			}
-			str = str.concat(strTmp);
-
 		}
+		result.put("keySet",keyset);
+		result.put("data",data.toArray());
+		String response = result.toJSONString();
 		buffReader.close();
 		req.setContentType("text/html;charset=utf-8");
-			req.getWriter().write(str);
+		req.getWriter().write(response);
+
 	}
 
 
