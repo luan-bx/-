@@ -63,7 +63,15 @@
                     <div class="col-md-12 col-sm-12 ">
                         <div class="x_panel">
                             <div class="x_title">
-                                <a th:href="@{${baseURL}+'/add'}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> 新增用电设备</a>
+<!--                                <a th:href="@{${baseURL}+'/add'}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> 新增用电设备</a>-->
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="monitorName" id="monitorNameSelect">
+                                        <option  th:each="monitor:${allMonitors}" th:value="${monitor}" th:text="${monitor}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="dateDir" id="dateDirSelect"></select>
+                                </div>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -189,6 +197,7 @@
 <!-- Custom Theme Scripts -->
 <script th:src="@{/build/js/custom.min.js}"></script>
 
+
 <script th:inline="javascript">
       /*<![CDATA[*/
         var msg = /*[[${msg}]]*/null;
@@ -198,49 +207,63 @@
       /*]]>*/
   </script>
 
-<!--<script>
-    var response = [];
-    $.post("/returnElectricityData",function(result){
-        response=result.split("  ");
-        console.log(response);
-        for(var i=1; i<response.length; i++)
-        {
-            response[i]=JSON.parse(response[i]);
-            let time = response[i]["DataTime"];
-            let deviceID = response[i]["MN"];
-            let value0 = response[i]['CP']['i12001-Info'];
-            let value1 = response[i]['CP']['i12002-Info'];
-            let value2 = response[i]['CP']['i12003-Info'];
-            let value3 = response[i]['CP']['i22001-Info'];
-            let value4 = response[i]['CP']['i32001-Info'];
-            let str = "<tr>" +
-                          "<td>"+i+"</td>" +
-                          "<td>"+time+"</td>" +
-                          "<td>"+deviceID+"</td>" +
-                          "<td>"+value0+"</td>" +
-                          "<td>"+value1+"</td>" +
-                          "<td>"+value2+"</td>" +
-                          "<td>"+value3+"</td>" +
-                          "<td>"+value4+"</td>" +
-                      "</tr>";
-            $("#tbody").append(str);
-        }
-
-    });
-</script>-->
-<script th:inline="javascript" th:with="zh=@{/json/zh.json}">
-
+<script type="text/javascript" th:inline="javascript">
     window.alert = function() {
         return false;
     }
-    // $('#tbody').DataTable( {
-    //     serverSide: true,
-    //     ajax: '/returnConditionData'
-    // } );
-    var response = [];
-    $.post("/returnElectricityData",function(result){
+    $(function (){
+        $("#pageSize").change(function(){
+            $("#pageSizeForm").attr({'action':$("#pageSizeForm").attr('action')+$("#pageSize option:selected").val()})
+            $("#pageSizeForm").submit();
+        });
+        callDateDirs();
+        $("#monitorNameSelect").change(function (){
+            callDateDirs();
+            callElectricData(2);
+        });
+        callElectricData(1);
+        $("#dateDirSelect").change(function (){
+            callElectricData(2);
+        });
+    });
+</script>
+
+
+<script th:inline="javascript" th:with="zh=@{/json/zh.json}">
+
+
+
+    function callDateDirs(){
+        $.ajaxSettings.async = false;
+        $.post("/returnElectricFileList","monitorName="+$("#monitorNameSelect").val(),function (result){
+            $("#dateDirSelect").empty();
+            for (var i=0;i<result.length;i++){
+                $("#dateDirSelect").append("<option value='"+ result[i] +"'>"+ result[i] +"</option>");
+            }
+        });
+        $.ajaxSettings.async = true;
+    }
+
+    function callElectricData(cnt){
+        console.log("monitorName="+$("#monitorNameSelect").val());
+        console.log("dir="+$("#dateDirSelect").val());
+        $.post("/returnElectricData","monitorName="+$("#monitorNameSelect").val()+"&dir="+$("#dateDirSelect").val(),function(result){
+            if(cnt!==1){
+                $('#table_id_example').DataTable().clear();
+                $('#table_id_example').DataTable().destroy();
+                $('#table_id_example').empty();
+            }
+            createDatatable(result);
+        } );
+    }
+
+    function createDatatable(result) {
         var obj = JSON.parse(result);
         var col = [];
+        $("#table_id_example").append("<thead>\n" +
+            "<tr id=\"table_head\">\n" +
+            "</tr>\n" +
+            "</thead>");
         for (var i=0;i< obj.keySet.length;i++){
             $('#table_head').append("<th>"+obj.keySet[i]+"</th>");
             col[i]="{\"data\":\""+obj.keySet[i]+"\"}"
@@ -264,8 +287,7 @@
                 url: [[${zh}]],
             },
         });
-    } );
-
+    }
 
 </script>
 </body>

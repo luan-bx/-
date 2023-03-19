@@ -102,17 +102,17 @@ public interface Constants {
 	String ROOTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\":"/home/user/AIO/data/";
 	String VIDEOOUTPUTPATH = "D:\\项目\\AIO\\recorder\\";
 	//视频的照片流
-	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\input\\":"/home/user/AIO/data/image/input/";
+	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"images\\input\\":ROOTPATH+"image/input/";
 	//人员识别结果
-	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\faceResult\\":"/home/user/AIO/data/image/faceResult/";
+	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"images\\faceResult\\":ROOTPATH+"image/faceResult/";
 	//车牌识别结果
-	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\carResult\\":"/home/user/AIO/data/image/carResult/";
+	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"images\\carResult\\":ROOTPATH+"image/carResult/";
 	//工况数据
-	String CONDITIONPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\condition\\":"/home/user/AIO/data/condition/";
+	String CONDITIONPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"condition\\":ROOTPATH+"condition/";
 	//污染源数据
-	String POLLUTIONPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\pollution\\":"/home/user/AIO/data/pollution/";
+	String POLLUTIONPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"pollution\\":ROOTPATH+"pollution/";
 	//用电数据
-	String ELECTRICPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\electric\\":"/home/user/AIO/data/electric/";
+	String ELECTRICPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"electric\\":ROOTPATH+"electric/";
 
 
 }

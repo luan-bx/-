@@ -6,20 +6,17 @@ import com.shark.aio.data.conditionData.service.ConditionService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ObjectUtil;
+import com.shark.aio.util.ProcessUtil;
+import javafx.scene.input.DataFormat;
 import lombok.extern.slf4j.Slf4j;
 import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -48,14 +45,14 @@ public class ConditionController {
 
 	/**
 	 * 前端访问数据文件
-	 * @param filePath
+	 * @param monitorName
 	 * @param req
 	 * @throws IOException
 	 */
 	@RequestMapping("/returnConditionData")
-	public void returnConditionData(String filePath, HttpServletResponse req) throws IOException {
+	public void returnConditionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 
-		FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + DateUtil.Data + Constants.CONDITIONDATA);
+		FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/")+ dir + (ProcessUtil.IS_WINDOWS?"\\":"/") +  Constants.CONDITIONDATA);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
@@ -185,5 +182,31 @@ public class ConditionController {
 		}
 		return "conditionMonitor";
 	}
+
+	@RequestMapping("/conditionMonitor")
+	public String conditionMonitorWeb(HttpServletRequest request) {
+		File file = new File(Constants.CONDITIONPATH);
+		File[] files = file.listFiles();
+		String[] fileList = new String[files.length];
+		for(int i=0;i<files.length;i++){
+			fileList[i]=files[i].getName();
+		}
+		request.setAttribute("allMonitors",fileList);
+		return "conditionMonitor";
+	}
+
+	@RequestMapping("returnConditionFileList")
+	@ResponseBody
+	public String[] returnConditionFileList(String monitorName){
+		File conditionDir = new File(Constants.CONDITIONPATH+monitorName);
+		File[] files = conditionDir.listFiles();
+		String[] fileList = new String[files.length];
+		for(int i=0;i<files.length;i++){
+			fileList[i]=files[i].getName();
+		}
+		return fileList;
+	}
+
+
 
 }

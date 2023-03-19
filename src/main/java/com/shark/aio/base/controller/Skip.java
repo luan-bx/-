@@ -32,10 +32,7 @@ public class Skip {
 		return "wastedGas";
 	}
 	
-	@RequestMapping("/conditionMonitor")
-	public String conditionMonitorWeb() {
-		return "conditionMonitor";
-	}
+
 	
 	@RequestMapping("/face")
 	public String faceWeb() {
@@ -47,10 +44,7 @@ public class Skip {
 		return "eleMonitor";
 	}
 
-	@RequestMapping("/electricityMonitor")
-	public String electricityMonitorWeb() {
-		return "electricityMonitor";
-	}
+
 	
 	@RequestMapping("/alarm")
 	public String alarmWeb() {
@@ -121,10 +115,7 @@ public class Skip {
 		return "traceHeatMap";
 	}
 	
-	@RequestMapping("/pollutionMonitor")
-	public String pollutionMonitorWeb() {
-		return "pollutionMonitor";
-	}
+
 	
 	@RequestMapping("/alarmSettings")
 	public String alarmSettingsWeb() {

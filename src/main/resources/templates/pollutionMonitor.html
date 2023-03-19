@@ -63,7 +63,24 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 ">
                         <div class="x_panel">
-
+                            <div class="x_title">
+                                <!--                                <a th:href="@{${baseURL}+'/add'}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> 新增用电设备</a>-->
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="monitorName" id="monitorNameSelect">
+                                        <option  th:each="monitor:${allMonitors}" th:value="${monitor}" th:text="${monitor}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="dateDir" id="dateDirSelect"></select>
+                                </div>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
                             <div class="x_content">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -256,43 +273,63 @@
       /*]]>*/
   </script>
 
-<!--<script>
-    var response = [];
-    $.post("/returnPollutionData",function(result){
-        response=result.split("  ");
-        console.log(response);
-        for(var i=1; i<response.length; i++)
-        {
-            response[i]=JSON.parse(response[i]);
-            let time = response[i]['data'][0]["时间"];
-            let value0 = response[i]['data'][0]["幅值"];
-            let value1 = response[i]['data'][1]["幅值"];
-            let deviceID = response[i]["设备ID"]
-            let str = "<tr>" +
-                "<td>"+i+"</td>" +
-                "<td>"+deviceID+"</td>" +
-                "<td>"+time+"</td>" +
-                "<td>"+value0+"</td>" +
-                "<td>"+value1+"</td>" +
-                "</tr>";
-            $("#tbody").append(str);
-        }
-
-    });
-</script>-->
-<script th:inline="javascript" th:with="zh=@{/json/zh.json}">
-
+<script type="text/javascript" th:inline="javascript">
     window.alert = function() {
         return false;
     }
-    // $('#tbody').DataTable( {
-    //     serverSide: true,
-    //     ajax: '/returnConditionData'
-    // } );
-    var response = [];
-    $.post("/returnPollutionData",function(result){
+    $(function (){
+        $("#pageSize").change(function(){
+            $("#pageSizeForm").attr({'action':$("#pageSizeForm").attr('action')+$("#pageSize option:selected").val()})
+            $("#pageSizeForm").submit();
+        });
+        callDateDirs();
+        $("#monitorNameSelect").change(function (){
+            callDateDirs();
+            callPollutionData(2);
+        });
+        callPollutionData(1);
+        $("#dateDirSelect").change(function (){
+            callPollutionData(2);
+        });
+    });
+</script>
+
+
+<script th:inline="javascript" th:with="zh=@{/json/zh.json}">
+
+
+
+    function callDateDirs(){
+        $.ajaxSettings.async = false;
+        $.post("/returnPollutionFileList","monitorName="+$("#monitorNameSelect").val(),function (result){
+            $("#dateDirSelect").empty();
+            for (var i=0;i<result.length;i++){
+                $("#dateDirSelect").append("<option value='"+ result[i] +"'>"+ result[i] +"</option>");
+            }
+        });
+        $.ajaxSettings.async = true;
+    }
+
+    function callPollutionData(cnt){
+        console.log("monitorName="+$("#monitorNameSelect").val());
+        console.log("dir="+$("#dateDirSelect").val());
+        $.post("/returnPollutionData","monitorName="+$("#monitorNameSelect").val()+"&dir="+$("#dateDirSelect").val(),function(result){
+            if(cnt!==1){
+                $('#table_id_example').DataTable().clear();
+                $('#table_id_example').DataTable().destroy();
+                $('#table_id_example').empty();
+            }
+            createDatatable(result);
+        } );
+    }
+
+    function createDatatable(result) {
         var obj = JSON.parse(result);
         var col = [];
+        $("#table_id_example").append("<thead>\n" +
+            "<tr id=\"table_head\">\n" +
+            "</tr>\n" +
+            "</thead>");
         for (var i=0;i< obj.keySet.length;i++){
             $('#table_head').append("<th>"+obj.keySet[i]+"</th>");
             col[i]="{\"data\":\""+obj.keySet[i]+"\"}"
@@ -316,8 +353,7 @@
                 url: [[${zh}]],
             },
         });
-    } );
-
+    }
 
 </script>
 </body>

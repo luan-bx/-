@@ -7,6 +7,7 @@ import com.shark.aio.alarm.mapper.AlarmMapping;
 import com.shark.aio.data.pollutionData.service.PollutionService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
+import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -206,9 +207,9 @@ public class PollutionController {
 	 * @throws IOException
 	 */
 	@RequestMapping("/returnPollutionData")
-	public void returnPollutionData(String filePath, HttpServletResponse req) throws IOException {
+	public void returnPollutionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 
-		FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + DateUtil.Data + Constants.POLLUTIONDATA);
+		FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.POLLUTIONDATA);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
@@ -253,5 +254,27 @@ public class PollutionController {
 
 	}
 
+	@RequestMapping("/pollutionMonitor")
+	public String pollutionMonitorWeb(HttpServletRequest request) {
+		File file = new File(Constants.POLLUTIONPATH);
+		File[] files = file.listFiles();
+		String[] fileList = new String[files.length];
+		for(int i=0;i<files.length;i++){
+			fileList[i]=files[i].getName();
+		}
+		request.setAttribute("allMonitors",fileList);
+		return "pollutionMonitor";
+	}
 
+	@RequestMapping("returnPollutionFileList")
+	@ResponseBody
+	public String[] returnConditionFileList(String monitorName){
+		File conditionDir = new File(Constants.POLLUTIONPATH+monitorName);
+		File[] files = conditionDir.listFiles();
+		String[] fileList = new String[files.length];
+		for(int i=0;i<files.length;i++){
+			fileList[i]=files[i].getName();
+		}
+		return fileList;
+	}
 }
