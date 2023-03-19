@@ -5,18 +5,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.data.electricityData.service.ElectricityService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
+import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,9 +41,9 @@ public class ElectricityController {
 	 * @param req
 	 * @throws IOException
 	 */
-	@RequestMapping("/returnElectricityData")
-	public void returnElectricityData(String filePath, HttpServletResponse req) throws IOException {
-		FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + DateUtil.Data + Constants.ELECTRICDATA);
+	@RequestMapping("/returnElectricData")
+	public void returnElectricityData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
+		FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.ELECTRICDATA);
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
@@ -100,5 +99,28 @@ public class ElectricityController {
 			return "500";
 		}
 		return Constants.ADDPOLLUTION;
+	}
+
+	@RequestMapping("/electricityMonitor")
+	public String electricityMonitorWeb(HttpServletRequest request) {
+		File file = new File(Constants.ELECTRICPATH);
+		File[] files = file.listFiles();
+		String[] fileList = new String[files.length];
+		for(int i=0;i<files.length;i++){
+			fileList[i]=files[i].getName();
+		}
+		request.setAttribute("allMonitors",fileList);
+		return "electricityMonitor";
+	}
+	@RequestMapping("returnElectricFileList")
+	@ResponseBody
+	public String[] returnElectricFileList(String monitorName){
+		File electricDir = new File(Constants.ELECTRICPATH+monitorName);
+		File[] files = electricDir.listFiles();
+		String[] fileList = new String[files.length];
+		for(int i=0;i<files.length;i++){
+			fileList[i]=files[i].getName();
+		}
+		return fileList;
 	}
 }
