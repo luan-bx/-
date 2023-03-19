@@ -1,7 +1,7 @@
 package com.shark.aio.data.conditionData.service;
 
-import com.shark.aio.data.conditionData.entity.MnEntity;
-import com.shark.aio.data.conditionData.mapper.ConditionMapping;
+import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
+import com.shark.aio.data.conditionData.mapper.MonitorDeviceMapping;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class ConditionService {
     @Autowired
-    protected ConditionMapping conditionMapping;
+    protected MonitorDeviceMapping monitorDeviceMapping;
 
     /**
      * 获取全部监测点
@@ -26,7 +26,7 @@ public class ConditionService {
      */
     public List<String> getAllMonitor(){
         try {
-            List<String> allMonitor = conditionMapping.getAllMonitor();
+            List<String> allMonitor = monitorDeviceMapping.getAllMonitor();
             return allMonitor;
         }catch (Exception e){
             log.error("ConditionService/getAllMonitor:获取全部监测点失败！",e);
@@ -36,20 +36,17 @@ public class ConditionService {
 
     /**
      * 由数据包里的mn找到对应的监测点
-     * @param mn
+     * @param deviceId
      * @return
      */
-    public String getMonitorName(String mn){
+    public MonitorDeviceEntity getMonitorDevice(String deviceId){
         try{
-            MnEntity mnEntity = conditionMapping.getMnEntityByMN(mn);
-            if(mnEntity == null){
-                return "error";
-            }
-            String monitorName = mnEntity.getMonitorName();
-            return monitorName;
+            MonitorDeviceEntity monitorDeviceEntity = monitorDeviceMapping.getMonitorDeviceEntityByDeviceId(deviceId);
+
+            return monitorDeviceEntity;
         }catch (Exception e){
-            log.error("ConditionService/getMonitorName:获取监测点名字失败！",e);
-            return "error";
+            log.error("ConditionService/getMonitorDevice:获取监测点名字失败！",e);
+            return null;
         }
     }
 

@@ -99,7 +99,7 @@ public interface Constants {
 	/**
 	 * 文件存储根路径
 	 */
-
+	String ROOTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\":"/home/user/AIO/data/";
 	String VIDEOOUTPUTPATH = "D:\\项目\\AIO\\recorder\\";
 	//视频的照片流
 	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\images\\input\\":"/home/user/AIO/data/image/input/";

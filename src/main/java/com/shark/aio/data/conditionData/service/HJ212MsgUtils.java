@@ -303,7 +303,7 @@ public class HJ212MsgUtils {
 //
 //        System.out.println("=============" + (new java.text.SimpleDateFormat("yyyyMMddHHmmssSSS")).format(new Date()) + "=============");
 //        System.out.println(checkData("##0101QN=20160801085857223;ST=32;CN=1062;PW=100000;MN=010000A8900016F000169DC0;Flag=5;CP=&&RtdInterval=30&&1C80\r\n"));
-    System.out.println("123456".substring(2,5));
+    System.out.println("123456".indexOf("2"));
     }
 
 }

@@ -7,9 +7,10 @@ import lombok.Data;
  * @date 2023/3/15 - 23:12
  **/
 @Data
-public class MnEntity {
+public class MonitorDeviceEntity {
     private int id;
     private String monitorName;
-    private String mn;
+    private String monitorClass;
+    private String deviceId;
 
 }

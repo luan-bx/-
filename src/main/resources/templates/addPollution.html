@@ -51,7 +51,7 @@
         <div class="" th:with="baseURL='/pollution/submit'">
           <div class="page-title">
             <div class="title_left">
-              <h3><small>污染源监测</small></h3>
+              <h3><small>设备管理</small></h3>
 
             </div>
 
@@ -68,7 +68,7 @@
             <div class="col-md-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2><i class="fa fa-plus-square-o"></i> 新增数采仪设备</h2>
+                  <h2><i class="fa fa-plus-square-o"></i> 监测点与设备关联</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -84,8 +84,15 @@
                       <a class="nav-link active" id="setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="setting" aria-selected="true">添加设备</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" id="class-tab" data-toggle="tab" href="#class" role="tab" aria-controls="class" aria-selected="false">新增监测点</a>
+                      <a class="nav-link" id="class-tab" data-toggle="tab" href="#class" role="tab" aria-controls="class" aria-selected="false">添加监测点</a>
                     </li>
+<!--                    <li class="nav-item">-->
+<!--                      <a class="nav-link" id="device-tab" data-toggle="tab" href="#device" role="tab" aria-controls="device" aria-selected="true">删除设备</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                      <a class="nav-link" id="monitor-tab" data-toggle="tab" href="#monitor" role="tab" aria-controls="monitor" aria-selected="false">删除监测点</a>-->
+<!--                    </li>-->
+
 <!--                    <li class="nav-item">-->
 <!--                      <a class="nav-link" id="pollution-tab" data-toggle="tab" href="#pollution" role="tab" aria-controls="pollution" aria-selected="false">新增污染源</a>-->
 <!--                    </li>-->
@@ -93,6 +100,16 @@
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="setting" role="tabpanel" aria-labelledby="setting-tab">
                       <form th:action="@{${baseURL}+'/add'}" method="post" id="settingForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" for="monitorClass">监测类型<span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 ">
+                            <select class="form-control " id="monitorClass" name="monitorClass">
+                              <option th:each="mc:${allMonitorClass}" th:value="${mc}" th:text="${mc}">监测类型</option>
+                            </select>
+                          </div>
+                        </div>
 
                         <div class="item form-group">
                           <label class="col-form-label col-md-3 col-sm-3 label-align" for="monitorName">监测点<span class="required">*</span>
@@ -157,6 +174,58 @@
 
                       </form>
                     </div>
+
+
+                    <div class="tab-pane fade" id="device" role="tabpanel" aria-labelledby="device-tab">
+                      <form th:action="@{${baseURL}+'/add'}" method="post" id="deviceForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" for="DeviceId">设备ID<span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 ">
+                            <select class="form-control " id="deleteDeviceId" name="deleteDeviceId">
+                              <option th:each="mc:${allDeviceId}" th:value="${mc}" th:text="${mc}">设备ID</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="item form-group">
+                          <div class="col-md-6 col-sm-6 offset-md-4">
+                            <button class="btn btn-primary" type="reset" style="min-width: 75px;">复位</button>
+                            <button type="submit" class="btn btn-success" style="min-width: 75px;margin-left: 25px;">提交</button>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="monitor" role="tabpanel" aria-labelledby="monitor-tab">
+                      <form th:action="@{${baseURL}+'/add'}" method="post" id="monitorForm" data-parsley-validate class="form-horizontal form-label-left">
+
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" for="monitorName">监测点<span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 ">
+                            <select class="form-control " id="deleteMonitorName" name="deleteMonitorName">
+                              <option th:each="mc:${allMonitor}" th:value="${mc}" th:text="${mc}">监测点</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="item form-group">
+                          <div class="col-md-6 col-sm-6 offset-md-4">
+                            <button class="btn btn-primary" type="reset" style="min-width: 75px;">复位</button>
+                            <button type="submit" class="btn btn-success" style="min-width: 75px;margin-left: 25px;">提交</button>
+                          </div>
+                        </div>
+
+
+                      </form>
+                    </div>
+
 <!--                    <div class="tab-pane fade" id="pollution" role="tabpanel" aria-labelledby="pollution-tab">-->
 <!--                      <form th:action="@{${baseURL}+'/add'}" method="post" id="pollutionForm" class="form-horizontal form-label-left">-->
 

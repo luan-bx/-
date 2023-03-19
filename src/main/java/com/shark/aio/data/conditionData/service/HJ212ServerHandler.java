@@ -1,9 +1,10 @@
 package com.shark.aio.data.conditionData.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shark.aio.data.conditionData.mapper.ConditionMapping;
+import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
+import com.shark.aio.util.ProcessUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -29,8 +30,7 @@ import java.util.Map;
 @Component
 public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
 
-    @Autowired
-    protected ConditionMapping conditionMapping;
+
     @Autowired
     protected ConditionService conditionService;
 
@@ -71,15 +71,20 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
                 System.out.println("设备消息解析JSON结果：" + data.toJSONString());
                 try {
                     //由mn对应数据库找到绑定的监测点名称
-                    String mn = net.sf.json.JSONObject.fromObject(data).getString("MN");
-                    if(mn != null){
-                        System.out.println(mn);
-                        String monitorName = hJ212ServerHandler.conditionService.getMonitorName(mn);
-                        if(monitorName.equals("error"))System.out.println("空的");
-                        if(!monitorName.equals("error")){
-                            System.out.println("不是空的");
+                    String deviceId = net.sf.json.JSONObject.fromObject(data).getString("MN");
+                    if(deviceId != null){
+                        System.out.println(deviceId);
+                        MonitorDeviceEntity monitorDevice = hJ212ServerHandler.conditionService.getMonitorDevice(deviceId);
+
+                        if(monitorDevice == null )System.out.println("未绑定deviceId");
+                        if(monitorDevice != null ){
+                            String monitorName = monitorDevice.getMonitorName();
+                            String monitorClass = monitorDevice.getMonitorClass();
                             //根目录 + 监测点 + 日期
-                            String documentPath = Constants.CONDITIONPATH + monitorName + "\\" + DateUtil.Data;//再加上数据库查到的监测点
+                            String documentPath = ProcessUtil.IS_WINDOWS?
+                                    Constants.ROOTPATH + monitorClass + "\\" + monitorName + "\\" + DateUtil.Data:
+                                    Constants.ROOTPATH + monitorClass + "/" + monitorName + "/" + DateUtil.Data;
+
                             String filePath = documentPath + Constants.CONDITIONDATA;
                             File document = new File(documentPath);
                             if(!document.exists()){
