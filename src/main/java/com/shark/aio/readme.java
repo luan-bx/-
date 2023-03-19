@@ -80,4 +80,12 @@ public class readme {
 	 * 十路视频可以正常播放，只不过台式机的cpu和内存直接干满了
 	 * 我自己的摄像头不知道为什么，有时候推流自动中断，师兄的一切正常
 	 */
+
+	/**
+	 * 20220319thg
+	 * 打jar包特有异常：
+	 * 1.lib文件夹要和jar包在同一目录下
+	 * 2.jar包运行，调用海康源码报错ClassNotFound      已解决，博客https://blog.csdn.net/weixin_42476367/article/details/123085691
+	 * 3.jar包运行，读取txt文件乱码
+	 */
 }

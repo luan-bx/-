@@ -187,8 +187,10 @@
 
         <dependency>
             <groupId>com.sun.jna</groupId>
-            <artifactId>jna</artifactId>
-            <version>3.0.9</version>
+            <artifactId>examples</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/examples.jar</systemPath>
         </dependency>
 
     </dependencies>
@@ -200,9 +202,28 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.shark.aio.AioApplication</mainClass>
+                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
         </plugins>
+        <!--指定引入外部包的位置 mvn package -Dmaven.test.skip=true-->
+        <!--打包部署放开以下注释-->
+        <!--正常启动需注释以下代码，否则会包shiro错误-->
+        <resources>
+            <resource>
+                <directory>${project.basedir}/lib</directory>
+                <targetPath>/BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+            <!--<resource>
+                <directory>src/main/resources</directory>
+                <targetPath>BOOT-INF/classes/</targetPath>
+            </resource>-->
+        </resources>
+
     </build>
+
 
 </project>

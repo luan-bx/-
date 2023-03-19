@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -215,19 +216,27 @@ public class PollutionController {
 		InputStreamReader reader = new InputStreamReader(fin);
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
-		String str = "";
-		int i = 0;
+		ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
+		ArrayList<String> keyset = new ArrayList<>();
+		keyset.add("DataTime");
+		com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
 		while ((strTmp = buffReader.readLine()) != null) {
-			if (i == 0) {
-				str = str.concat("  ");
+			com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(strTmp);
+			com.alibaba.fastjson.JSONObject dataObj = jsonObject.getJSONObject("CP");
+			dataObj.put("DataTime",jsonObject.getString("DataTime"));
+			data.add(dataObj);
+			for (String key : dataObj.keySet()){
+				if (!keyset.contains(key)){
+					keyset.add(key);
+				}
 			}
-			str = str.concat(strTmp);
-//			log.info(str);
-
 		}
+		result.put("keySet",keyset);
+		result.put("data",data.toArray());
+		String response = result.toJSONString();
 		buffReader.close();
 		req.setContentType("text/html;charset=utf-8");
-		req.getWriter().write(str);
+		req.getWriter().write(response);
 	}
 
 
