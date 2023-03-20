@@ -15,7 +15,7 @@ public interface Constants {
 	String ALREADY = "already";
 	String BINDSUCCESS = "bindsuccess";
 	//String FILEPATH = "/Users/lb/Downloads/shark/环保仪/data/";
-	String FILEPATH = "C:/shark/环保仪/data/";
+	String FILEPATH = ProcessUtil.IS_WINDOWS?"C:/shark/环保仪/data/":"/home/user/AIO/";
 	String USERS = "users/";
 	String PROJECT = "project/";
 	
@@ -103,11 +103,11 @@ public interface Constants {
 	String IMGROOTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\":"/home/user/AIO/image/";
 	String VIDEOOUTPUTPATH = "D:\\项目\\AIO\\recorder\\";
 	//视频的照片流
-	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"images\\input\\":IMGROOTPATH+"image/input/";
+	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"input\\":IMGROOTPATH+"input/";
 	//人员识别结果
-	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"images\\faceResult\\":IMGROOTPATH+"image/faceResult/";
+	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"faceResult\\":IMGROOTPATH+"faceResult/";
 	//车牌识别结果
-	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"images\\carResult\\":IMGROOTPATH+"image/carResult/";
+	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"carResult\\":IMGROOTPATH+"carResult/";
 	//工况数据
 	String CONDITIONPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"condition\\":ROOTPATH+"condition/";
 	//污染源数据

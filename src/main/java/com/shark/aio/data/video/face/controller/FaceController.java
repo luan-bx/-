@@ -118,10 +118,12 @@ public class FaceController {
 					out2.write(b);
 					out2.flush();
 					out2.close();
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
 			}
 
 
@@ -129,6 +131,7 @@ public class FaceController {
 			System.out.println("发送POST请求出现异常！" + e);
 			e.printStackTrace();
 		}
+		//删除照片文件
 		return faceRecord;
 	}
 
