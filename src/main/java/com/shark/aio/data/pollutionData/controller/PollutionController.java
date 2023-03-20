@@ -211,7 +211,7 @@ public class PollutionController {
 	public void returnPollutionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 
 		FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.POLLUTIONDATA);
-		InputStreamReader reader = new InputStreamReader(fin);
+		InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
 		ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
@@ -258,10 +258,14 @@ public class PollutionController {
 	@RequestMapping("/pollutionMonitor")
 	public String pollutionMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.POLLUTIONPATH);
+		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		String[] fileList = new String[0];
+		if (files!=null){
+			fileList = new String[files.length];
+			for(int i=0;i<files.length;i++){
+				fileList[i]=files[i].getName();
+			}
 		}
 		request.setAttribute("allMonitors",fileList);
 		return "pollutionMonitor";

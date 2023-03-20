@@ -205,6 +205,15 @@
                     <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
         </plugins>
         <!--指定引入外部包的位置 mvn package -Dmaven.test.skip=true-->
         <!--打包部署放开以下注释-->

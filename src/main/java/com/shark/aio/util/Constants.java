@@ -100,13 +100,14 @@ public interface Constants {
 	 * 文件存储根路径
 	 */
 	String ROOTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data\\":"/home/user/AIO/data/";
+	String IMGROOTPATH = ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\images\\":"/home/user/AIO/image/";
 	String VIDEOOUTPUTPATH = "D:\\项目\\AIO\\recorder\\";
 	//视频的照片流
-	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"images\\input\\":ROOTPATH+"image/input/";
+	String IMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"images\\input\\":IMGROOTPATH+"image/input/";
 	//人员识别结果
-	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"images\\faceResult\\":ROOTPATH+"image/faceResult/";
+	String FACEIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"images\\faceResult\\":IMGROOTPATH+"image/faceResult/";
 	//车牌识别结果
-	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"images\\carResult\\":ROOTPATH+"image/carResult/";
+	String CARIMGOUTPUTPATH = ProcessUtil.IS_WINDOWS?IMGROOTPATH+"images\\carResult\\":IMGROOTPATH+"image/carResult/";
 	//工况数据
 	String CONDITIONPATH = ProcessUtil.IS_WINDOWS?ROOTPATH+"condition\\":ROOTPATH+"condition/";
 	//污染源数据

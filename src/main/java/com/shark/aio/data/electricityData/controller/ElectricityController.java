@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.data.electricityData.service.ElectricityService;
 import com.shark.aio.util.Constants;
-import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,7 @@ public class ElectricityController {
 	@RequestMapping("/returnElectricData")
 	public void returnElectricityData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 		FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.ELECTRICDATA);
-		InputStreamReader reader = new InputStreamReader(fin);
+		InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
 		ArrayList<JSONObject> data = new ArrayList<>();
@@ -104,10 +103,14 @@ public class ElectricityController {
 	@RequestMapping("/electricityMonitor")
 	public String electricityMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.ELECTRICPATH);
+		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		String[] fileList = new String[0];
+		if (files!=null){
+			fileList = new String[files.length];
+			for(int i=0;i<files.length;i++){
+				fileList[i]=files[i].getName();
+			}
 		}
 		request.setAttribute("allMonitors",fileList);
 		return "electricityMonitor";

@@ -7,19 +7,23 @@ import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ObjectUtil;
 import com.shark.aio.util.ProcessUtil;
-import javafx.scene.input.DataFormat;
 import lombok.extern.slf4j.Slf4j;
-import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * 接受数工况数据
@@ -53,7 +57,7 @@ public class ConditionController {
 	public void returnConditionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 
 		FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/")+ dir + (ProcessUtil.IS_WINDOWS?"\\":"/") +  Constants.CONDITIONDATA);
-		InputStreamReader reader = new InputStreamReader(fin);
+		InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 		BufferedReader buffReader = new BufferedReader(reader);
 		String strTmp = "";
 		ArrayList<JSONObject> data = new ArrayList<>();
@@ -186,10 +190,14 @@ public class ConditionController {
 	@RequestMapping("/conditionMonitor")
 	public String conditionMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.CONDITIONPATH);
+		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		String[] fileList = new String[0];
+		if (files!=null){
+			fileList = new String[files.length];
+			for(int i=0;i<files.length;i++){
+				fileList[i]=files[i].getName();
+			}
 		}
 		request.setAttribute("allMonitors",fileList);
 		return "conditionMonitor";
