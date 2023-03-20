@@ -21,7 +21,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -138,7 +137,7 @@ public class PollutionController {
 			alarmSettingsEntity =alarmMapping.getAlarmSettingsEntity(name0);
 			if(alarmSettingsEntity!= null){
 				if(alarmSettingsEntity.getLowerLimit() > value0Double){
-					alarmRecordEntity.setAlarmTime(Timestamp.valueOf(time0));
+					alarmRecordEntity.setAlarmTime(time0);
 					alarmRecordEntity.setMonitor("监测点1");
 					alarmRecordEntity.setMonitorClass("污染源监控");
 					alarmRecordEntity.setMonitorValue(name0);
@@ -147,7 +146,7 @@ public class PollutionController {
 					alarmMapping.insertalarmRecords(alarmRecordEntity);
 				}
 				if(alarmSettingsEntity.getUpperLimit() < value0Double){
-					alarmRecordEntity.setAlarmTime(Timestamp.valueOf(time0));
+					alarmRecordEntity.setAlarmTime(time0);
 					alarmRecordEntity.setMonitor("监测点1");
 					alarmRecordEntity.setMonitorClass("污染源监控");
 					alarmRecordEntity.setMonitorValue(name0);

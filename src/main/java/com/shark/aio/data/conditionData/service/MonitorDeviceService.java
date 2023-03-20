@@ -1,5 +1,7 @@
 package com.shark.aio.data.conditionData.service;
 
+import com.shark.aio.alarm.entity.AlarmRecordEntity;
+import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
 import com.shark.aio.data.conditionData.mapper.MonitorDeviceMapping;
 import com.shark.aio.util.Constants;
@@ -24,6 +26,42 @@ public class MonitorDeviceService {
     @Autowired
     MonitorDeviceMapping monitorDeviceMapping;
 
+    /**
+     * 由数据包里的mn找到对应的监测点
+     * @param deviceId
+     * @return
+     */
+    public MonitorDeviceEntity getMonitorDevice(String deviceId){
+        try{
+            MonitorDeviceEntity monitorDeviceEntity = monitorDeviceMapping.getMonitorDeviceEntityByDeviceId(deviceId);
+
+            return monitorDeviceEntity;
+        }catch (Exception e){
+            log.error("ConditionService/getMonitorDevice:获取监测点名字失败！",e);
+            return null;
+        }
+    }
+
+    public List<AlarmSettingsEntity> getAllAlarmSettings(){
+        try{
+            List<AlarmSettingsEntity> alarmSettingsEntity = monitorDeviceMapping.getAllAlarmSettingsEntity();
+
+            return alarmSettingsEntity;
+        }catch (Exception e){
+            log.error("ConditionService/getAllAlarmSettings:获取报警设置失败！",e);
+            return null;
+        }
+    }
+
+    public String insertAlarmRecord(AlarmRecordEntity alarmRecordEntity){
+        try{
+            monitorDeviceMapping.insertAlarmRecordEntity(alarmRecordEntity);
+            return "success";
+        }catch (Exception e){
+            log.error("ConditionService/insertAlarmRecord:报警插入失败！",e);
+            return null;
+        }
+    }
 
     /**
      * 工具方法，供控制层调用，向request中存放所有监测类型和污染物

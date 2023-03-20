@@ -1,5 +1,7 @@
 package com.shark.aio.data.conditionData.mapper;
 
+import com.shark.aio.alarm.entity.AlarmRecordEntity;
+import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
 import org.apache.ibatis.annotations.*;
 
@@ -18,6 +20,8 @@ public interface MonitorDeviceMapping {
     @Select("SELECT * from `monitor_device` WHERE device_id = #{deviceId};")
     MonitorDeviceEntity getMonitorDeviceEntityByDeviceId(@Param("deviceId")String deviceId);
 
+    @Select("SELECT * from `alarm_settings`")
+    List<AlarmSettingsEntity> getAllAlarmSettingsEntity();
     @Select("select name from pollution")
     public List<String> getAllPollutionName();
 
@@ -30,6 +34,10 @@ public interface MonitorDeviceMapping {
      */
     @Select("select name from monitor_class")
     public List<String> getAllMonitorClass();
+
+    @Insert("INSERT INTO `alarm_records` (`alarm_time`, `monitor`, `monitor_class`, `monitor_value`, `monitor_data` , `message`) " +
+            "VALUES (#{alarmTime}, #{monitor}, #{monitorClass}, #{monitorValue}, #{monitorData}, #{message}  );")
+    void insertAlarmRecordEntity(AlarmRecordEntity alarmRecordEntity);
 
     @Insert("INSERT INTO `monitor_device` (`monitor_name`, `monitor_class`, `device_id`) VALUES (#{monitorName}, #{monitorClass}, #{deviceId});")
     void insert(MonitorDeviceEntity monitorDeviceEntity);

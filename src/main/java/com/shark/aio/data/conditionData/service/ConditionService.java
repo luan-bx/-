@@ -1,6 +1,5 @@
 package com.shark.aio.data.conditionData.service;
 
-import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
 import com.shark.aio.data.conditionData.mapper.MonitorDeviceMapping;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -34,21 +33,7 @@ public class ConditionService {
         }
     }
 
-    /**
-     * 由数据包里的mn找到对应的监测点
-     * @param deviceId
-     * @return
-     */
-    public MonitorDeviceEntity getMonitorDevice(String deviceId){
-        try{
-            MonitorDeviceEntity monitorDeviceEntity = monitorDeviceMapping.getMonitorDeviceEntityByDeviceId(deviceId);
 
-            return monitorDeviceEntity;
-        }catch (Exception e){
-            log.error("ConditionService/getMonitorDevice:获取监测点名字失败！",e);
-            return null;
-        }
-    }
 
 //    /**
 //     * 获取全部污染物名称
