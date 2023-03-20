@@ -1,5 +1,6 @@
 package com.shark.aio.data.video.service;
 
+import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.util.Constants;
 import org.bytedeco.ffmpeg.global.avcodec;
 import org.bytedeco.ffmpeg.global.avutil;
@@ -16,24 +17,25 @@ import java.util.Date;
  * @date 2023/2/23 - 16:11
  **/
 public class VideoRecorderService {
-    static SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-    static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
-    private String inputFile = Constants.LBXINPUT;
-    private String outputFile =  Constants.VIDEOOUTPUTPATH + "\\%Y-%m-%d_%H-%M-%S.mp4";
 
-    public void startRecordVideo()
+    static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
+    private String inputFile;
+    private String outputFile;
+
+    public void startRecordVideo(VideoEntity video, boolean status)
             throws Exception {
         //海歌摄像头
         //String inputFile = "rtsp://admin:Shark666@nju@192.168.0.2:554";
         //百翔摄像头
 
-
-        String url = "D:\\项目\\AIO\\recorder\\" +(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(new Date()) ;
+        SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String url = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) ;
         File localPath = new File(url);
         if (!localPath.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
             localPath.mkdirs();
         }
-
+        this.inputFile = video.getRtsp();
+        this.outputFile =  Constants.VIDEOPATH + video.getMonitorName() + "\\%Y-%m-%d_%H-%M-%S.mp4";
 
         // %03d表示长度为3位，缺位的补零
 
@@ -43,7 +45,7 @@ public class VideoRecorderService {
 //        //       String outputFile = "D:\\项目\\AIO\\recorder\\" + time + ".mp4";
 //        System.out.println("outputFile222    " + "D:\\项目\\AIO\\recorder\\recorder%03d.mp4");
 //        System.out.println("outputFile    " + outputFile);
-        frameRecord(inputFile, outputFile,1);
+        frameRecord(inputFile, outputFile,1, status);
     }
 
     /**
@@ -54,10 +56,10 @@ public class VideoRecorderService {
      * @throws Exception
      * @throws org.bytedeco.javacv.FrameRecorder.Exception
      */
-    public void frameRecord(String inputFile, String outputFile, int audioChannel)
+    public void frameRecord(String inputFile, String outputFile, int audioChannel, boolean status)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
 
-        boolean isStart=true;//该变量建议设置为全局控制变量，用于控制录制结束
+        //boolean status 该变量建议设置为全局控制变量，用于控制录制结束
         // 获取视频源
         FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(inputFile);
         // 如果不设置成tcp连接时，默认使用UDP，丢包现象比较严重
@@ -122,13 +124,13 @@ public class VideoRecorderService {
         // recorder.setVideoOption("preset", "veryslow");
 
         // 开始取视频源
-        recordByFrame(grabber, recorder, isStart);
+        recordByFrame(grabber, recorder, status);
     }
 
 
 
 
-    private void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder, Boolean status)
+    private void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder, boolean status)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
         try {//建议在线程中使用该方法
             grabber.start();
@@ -154,7 +156,7 @@ public class VideoRecorderService {
                     grabber.stop();
                     System.out.println("尝试重新开启录制器");
 //                    recorder.start();
-                    frameRecord(inputFile,outputFile,1);
+                    frameRecord(inputFile,outputFile,1, status);
                 }
             } catch (org.bytedeco.javacv.FrameRecorder.Exception e1) {
                 throw e;

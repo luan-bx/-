@@ -1,4 +1,4 @@
-package com.shark.aio.data.conditionData.entity;
+package com.shark.aio.data.monitorDeviceHj212;
 
 import lombok.Data;
 

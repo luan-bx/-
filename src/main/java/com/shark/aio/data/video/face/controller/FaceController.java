@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
+import com.shark.aio.data.video.service.VideoRecorderService;
 import com.shark.aio.data.video.service.VideoService;
 import com.shark.aio.util.ClientDemo;
 import com.shark.aio.util.Constants;
@@ -31,12 +32,16 @@ public class FaceController {
 
 	@Autowired
 	private VideoService videoService;
+	@Autowired
+	static
+	VideoRecorderService videoRecorderService;
 
+	private static boolean flag = false;
 
 
 	@RequestMapping("/callFaceAI")
 	@ResponseBody
-	public static FaceRecordsEntity callFaceAI(File file) {
+	public static FaceRecordsEntity callFaceAI(File file , VideoEntity video) {
 //		filePath = "C:\\Users\\dell\\Desktop\\1.png";
 		FaceRecordsEntity faceRecord = null;
 		DataOutputStream out = null;
@@ -118,10 +123,18 @@ public class FaceController {
 					out2.write(b);
 					out2.flush();
 					out2.close();
+
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				//录制视频
+				flag = true;
+				videoRecorderService.startRecordVideo(video, flag);
+			}else {
+				flag = false;
+				videoRecorderService.startRecordVideo(video, flag);
 			}
 
 

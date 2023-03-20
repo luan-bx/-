@@ -25,24 +25,6 @@ public class readme {
 	 * user：用户表（登录、注册）
 	 */
 
-	/**
-	 * # AIO
-	 * 可视化面板
-	 * <li><a th:href="@{/index}"></i> 可视化面板 </a></li>
-	 * 数据监测
-	 * <li><a th:href="@{/pollutionMonitor}"> 污染源监测 </a></li>
-	 * <li><a th:href="@{/conditionMonitor}"> 工况监测 </a></li>
-	 * <li><a th:href="@{/videoMonitor}"> 视频监测 </a></li>
-	 * 智慧预警
-	 * <li><a th:href="@{/alarm/record}"> 告警通知 </a></li>
-	 * <li><a th:href="@{/alarm/settings}"> 预警设置 </a></li>
-	 * 运营管理
-	 * <li><a th:href="@{/announcement}">园区公告</a></li>
-	 * <li><a th:href="@{/dataReport}">数据上报</a></li>
-	 * <li><a th:href="@{/documentManagement}">文件管理</a></li>
-	 * <li><a th:href="@{/diskCapacity}">磁盘容量</a></li>
-	 * <li><a th:href="@{/device}">设备详情</a></li>
-	 */
 
 	/**
 	 * 右上角信箱，作为报警器，可以加红点，看完之后红点消失
@@ -87,5 +69,11 @@ public class readme {
 	 * 1.lib文件夹要和jar包在同一目录下
 	 * 2.jar包运行，调用海康源码报错ClassNotFound      已解决，博客https://blog.csdn.net/weixin_42476367/article/details/123085691
 	 * 3.jar包运行，读取txt文件乱码
+	 */
+
+	/**
+	 * lbx
+	 * 1. 视频监控 —— 界面的一个个小图标，可以放该视频实时画面，使用视频快照并覆盖截图
+	 * 2. 设备管理 —— 删除设备、监测点；修改设备、监测点名称
 	 */
 }

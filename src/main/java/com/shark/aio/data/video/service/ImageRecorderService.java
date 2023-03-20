@@ -141,17 +141,6 @@ public class ImageRecorderService implements Runnable{
 
         recorder.close();//close包含stop和release方法。录制文件必须保证最后执行stop()方法，才能保证文件头写入完整，否则文件损坏。
         grabber.close();//close包含stop和release方法
-
     }
-
-
-
-
-
-
-
-
-
-
 
 }

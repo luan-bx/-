@@ -17,13 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 
-@Component
+//@Component
 @Slf4j
 public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
@@ -46,7 +45,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
             //这里是调用算法的部分
             try {
                 ImageRecorderService imageRecorderService =new ImageRecorderService(video.getRtsp(),1280,720,"0",video.getMonitorName());
-                runExample(imageRecorderService.getPARENT_DIR());
+                runExample(imageRecorderService.getPARENT_DIR(), video);
                 threadPoolTaskExecutor.execute(imageRecorderService);
 //                new Thread(imageRecorderService).start();
 //                new VideoRecorderService().startRecordVideo();
@@ -56,7 +55,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
         }
     }
 
-    public void runExample(String PARENT_DIR) throws java.lang.Exception {
+    public void runExample(String PARENT_DIR, VideoEntity video) throws java.lang.Exception {
 
         File parentDir = FileUtils.getFile(PARENT_DIR);
 
@@ -65,7 +64,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
             @Override
             public void onFileCreate(File file) {
-                FaceRecordsEntity faceResult = FaceController.callFaceAI(file);
+                FaceRecordsEntity faceResult = FaceController.callFaceAI(file, video);
                 if (faceResult!=null){
                     try {
                         videoMapping.insertFaceRecord(faceResult);
@@ -86,7 +85,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
             @Override
             public void onFileDelete(File file) {
-                System.out.println("File deleted: " + file.getName());
+
             }
 
             @Override

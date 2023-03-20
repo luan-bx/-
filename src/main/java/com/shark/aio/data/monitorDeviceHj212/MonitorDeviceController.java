@@ -1,7 +1,5 @@
-package com.shark.aio.data.conditionData.controller;
+package com.shark.aio.data.monitorDeviceHj212;
 
-import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
-import com.shark.aio.data.conditionData.service.MonitorDeviceService;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

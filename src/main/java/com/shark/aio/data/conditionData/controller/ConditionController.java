@@ -7,19 +7,23 @@ import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ObjectUtil;
 import com.shark.aio.util.ProcessUtil;
-import javafx.scene.input.DataFormat;
 import lombok.extern.slf4j.Slf4j;
-import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * 接受数工况数据
@@ -51,33 +55,33 @@ public class ConditionController {
 	 */
 	@RequestMapping("/returnConditionData")
 	public void returnConditionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
-
-		FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/")+ dir + (ProcessUtil.IS_WINDOWS?"\\":"/") +  Constants.CONDITIONDATA);
-		InputStreamReader reader = new InputStreamReader(fin);
-		BufferedReader buffReader = new BufferedReader(reader);
-		String strTmp = "";
-		ArrayList<JSONObject> data = new ArrayList<>();
-		ArrayList<String> keyset = new ArrayList<>();
-		keyset.add("DataTime");
-		JSONObject result = new JSONObject();
-		while ((strTmp = buffReader.readLine()) != null) {
-			JSONObject jsonObject = JSON.parseObject(strTmp);
-			JSONObject dataObj = jsonObject.getJSONObject("CP");
-			dataObj.put("DataTime",jsonObject.getString("DataTime"));
-			data.add(dataObj);
-			for (String key : dataObj.keySet()){
-				if (!keyset.contains(key)){
-					keyset.add(key);
+		if(!"null".equals(monitorName)) {
+			FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.CONDITIONDATA);
+			InputStreamReader reader = new InputStreamReader(fin);
+			BufferedReader buffReader = new BufferedReader(reader);
+			String strTmp = "";
+			ArrayList<JSONObject> data = new ArrayList<>();
+			ArrayList<String> keyset = new ArrayList<>();
+			keyset.add("DataTime");
+			JSONObject result = new JSONObject();
+			while ((strTmp = buffReader.readLine()) != null) {
+				JSONObject jsonObject = JSON.parseObject(strTmp);
+				JSONObject dataObj = jsonObject.getJSONObject("CP");
+				dataObj.put("DataTime", jsonObject.getString("DataTime"));
+				data.add(dataObj);
+				for (String key : dataObj.keySet()) {
+					if (!keyset.contains(key)) {
+						keyset.add(key);
+					}
 				}
 			}
+			result.put("keySet", keyset);
+			result.put("data", data.toArray());
+			String response = result.toJSONString();
+			buffReader.close();
+			req.setContentType("text/html;charset=utf-8");
+			req.getWriter().write(response);
 		}
-		result.put("keySet",keyset);
-		result.put("data",data.toArray());
-		String response = result.toJSONString();
-		buffReader.close();
-		req.setContentType("text/html;charset=utf-8");
-		req.getWriter().write(response);
-
 	}
 
 
@@ -187,11 +191,16 @@ public class ConditionController {
 	public String conditionMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.CONDITIONPATH);
 		File[] files = file.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		if(files == null){
+			request.setAttribute(Constants.MSG, "暂无数据");
+			request.setAttribute("allMonitors",null);
+		}else {
+			String[] fileList = new String[files.length];
+			for (int i = 0; i < files.length; i++) {
+				fileList[i] = files[i].getName();
+			}
+			request.setAttribute("allMonitors", fileList);
 		}
-		request.setAttribute("allMonitors",fileList);
 		return "conditionMonitor";
 	}
 
@@ -200,11 +209,15 @@ public class ConditionController {
 	public String[] returnConditionFileList(String monitorName){
 		File conditionDir = new File(Constants.CONDITIONPATH+monitorName);
 		File[] files = conditionDir.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		if(files == null){
+			return null;
+		}else {
+			String[] fileList = new String[files.length];
+			for (int i = 0; i < files.length; i++) {
+				fileList[i] = files[i].getName();
+			}
+			return fileList;
 		}
-		return fileList;
 	}
 
 

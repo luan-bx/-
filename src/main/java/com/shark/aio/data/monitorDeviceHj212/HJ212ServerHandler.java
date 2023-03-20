@@ -1,9 +1,8 @@
-package com.shark.aio.data.conditionData.service;
+package com.shark.aio.data.monitorDeviceHj212;
 
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
-import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ProcessUtil;
 import io.netty.channel.ChannelHandlerContext;

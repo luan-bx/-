@@ -1,5 +1,6 @@
-package com.shark.aio.data.conditionData.service;
+package com.shark.aio.data.monitorDeviceHj212;
 
+import com.shark.aio.data.monitorDeviceHj212.HJ212ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;

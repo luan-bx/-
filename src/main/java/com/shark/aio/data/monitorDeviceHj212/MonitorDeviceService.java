@@ -1,9 +1,9 @@
-package com.shark.aio.data.conditionData.service;
+package com.shark.aio.data.monitorDeviceHj212;
 
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
-import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
-import com.shark.aio.data.conditionData.mapper.MonitorDeviceMapping;
+import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceEntity;
+import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceMapping;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;

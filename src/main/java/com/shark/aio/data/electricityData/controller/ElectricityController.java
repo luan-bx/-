@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.data.electricityData.service.ElectricityService;
 import com.shark.aio.util.Constants;
-import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,31 +42,33 @@ public class ElectricityController {
 	 */
 	@RequestMapping("/returnElectricData")
 	public void returnElectricityData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
-		FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.ELECTRICDATA);
-		InputStreamReader reader = new InputStreamReader(fin);
-		BufferedReader buffReader = new BufferedReader(reader);
-		String strTmp = "";
-		ArrayList<JSONObject> data = new ArrayList<>();
-		ArrayList<String> keyset = new ArrayList<>();
-		keyset.add("DataTime");
-		JSONObject result = new JSONObject();
-		while ((strTmp = buffReader.readLine()) != null) {
-			JSONObject jsonObject = JSON.parseObject(strTmp);
-			JSONObject dataObj = jsonObject.getJSONObject("CP");
-			dataObj.put("DataTime",jsonObject.getString("DataTime"));
-			data.add(dataObj);
-			for (String key : dataObj.keySet()){
-				if (!keyset.contains(key)){
-					keyset.add(key);
+		if(!"null".equals(monitorName)) {
+			FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.ELECTRICDATA);
+			InputStreamReader reader = new InputStreamReader(fin);
+			BufferedReader buffReader = new BufferedReader(reader);
+			String strTmp = "";
+			ArrayList<JSONObject> data = new ArrayList<>();
+			ArrayList<String> keyset = new ArrayList<>();
+			keyset.add("DataTime");
+			JSONObject result = new JSONObject();
+			while ((strTmp = buffReader.readLine()) != null) {
+				JSONObject jsonObject = JSON.parseObject(strTmp);
+				JSONObject dataObj = jsonObject.getJSONObject("CP");
+				dataObj.put("DataTime", jsonObject.getString("DataTime"));
+				data.add(dataObj);
+				for (String key : dataObj.keySet()) {
+					if (!keyset.contains(key)) {
+						keyset.add(key);
+					}
 				}
 			}
+			result.put("keySet", keyset);
+			result.put("data", data.toArray());
+			String response = result.toJSONString();
+			buffReader.close();
+			req.setContentType("text/html;charset=utf-8");
+			req.getWriter().write(response);
 		}
-		result.put("keySet",keyset);
-		result.put("data",data.toArray());
-		String response = result.toJSONString();
-		buffReader.close();
-		req.setContentType("text/html;charset=utf-8");
-		req.getWriter().write(response);
 	}
 
 
@@ -105,11 +106,17 @@ public class ElectricityController {
 	public String electricityMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.ELECTRICPATH);
 		File[] files = file.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		if(files == null){
+			request.setAttribute(Constants.MSG, "暂无数据");
+			request.setAttribute("allMonitors",null);
+		}else {
+			String[] fileList = new String[files.length];
+			for(int i=0;i<files.length;i++){
+				fileList[i]=files[i].getName();
+			}
+			request.setAttribute("allMonitors",fileList);
 		}
-		request.setAttribute("allMonitors",fileList);
+
 		return "electricityMonitor";
 	}
 	@RequestMapping("returnElectricFileList")
@@ -117,10 +124,14 @@ public class ElectricityController {
 	public String[] returnElectricFileList(String monitorName){
 		File electricDir = new File(Constants.ELECTRICPATH+monitorName);
 		File[] files = electricDir.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		if(files == null){
+			return null;
+		}else {
+			String[] fileList = new String[files.length];
+			for (int i = 0; i < files.length; i++) {
+				fileList[i] = files[i].getName();
+			}
+			return fileList;
 		}
-		return fileList;
 	}
 }

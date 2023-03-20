@@ -1,8 +1,8 @@
-package com.shark.aio.data.conditionData.mapper;
+package com.shark.aio.data.monitorDeviceHj212;
 
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
-import com.shark.aio.data.conditionData.entity.MonitorDeviceEntity;
+import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceEntity;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

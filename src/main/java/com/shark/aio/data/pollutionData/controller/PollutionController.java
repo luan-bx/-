@@ -209,31 +209,34 @@ public class PollutionController {
 	@RequestMapping("/returnPollutionData")
 	public void returnPollutionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 
-		FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.POLLUTIONDATA);
-		InputStreamReader reader = new InputStreamReader(fin);
-		BufferedReader buffReader = new BufferedReader(reader);
-		String strTmp = "";
-		ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
-		ArrayList<String> keyset = new ArrayList<>();
-		keyset.add("DataTime");
-		com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
-		while ((strTmp = buffReader.readLine()) != null) {
-			com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(strTmp);
-			com.alibaba.fastjson.JSONObject dataObj = jsonObject.getJSONObject("CP");
-			dataObj.put("DataTime",jsonObject.getString("DataTime"));
-			data.add(dataObj);
-			for (String key : dataObj.keySet()){
-				if (!keyset.contains(key)){
-					keyset.add(key);
+		if(!"null".equals(monitorName)){
+			FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.POLLUTIONDATA);
+			InputStreamReader reader = new InputStreamReader(fin);
+			BufferedReader buffReader = new BufferedReader(reader);
+			String strTmp = "";
+			ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
+			ArrayList<String> keyset = new ArrayList<>();
+			keyset.add("DataTime");
+			com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
+			while ((strTmp = buffReader.readLine()) != null) {
+				com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(strTmp);
+				com.alibaba.fastjson.JSONObject dataObj = jsonObject.getJSONObject("CP");
+				dataObj.put("DataTime",jsonObject.getString("DataTime"));
+				data.add(dataObj);
+				for (String key : dataObj.keySet()){
+					if (!keyset.contains(key)){
+						keyset.add(key);
+					}
 				}
 			}
+			result.put("keySet",keyset);
+			result.put("data",data.toArray());
+			String response = result.toJSONString();
+			buffReader.close();
+			req.setContentType("text/html;charset=utf-8");
+			req.getWriter().write(response);
 		}
-		result.put("keySet",keyset);
-		result.put("data",data.toArray());
-		String response = result.toJSONString();
-		buffReader.close();
-		req.setContentType("text/html;charset=utf-8");
-		req.getWriter().write(response);
+
 	}
 
 
@@ -258,11 +261,16 @@ public class PollutionController {
 	public String pollutionMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.POLLUTIONPATH);
 		File[] files = file.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		if(files == null){
+			request.setAttribute(Constants.MSG, "暂无数据");
+			request.setAttribute("allMonitors",null);
+		}else {
+			String[] fileList = new String[files.length];
+			for (int i = 0; i < files.length; i++) {
+				fileList[i] = files[i].getName();
+			}
+			request.setAttribute("allMonitors", fileList);
 		}
-		request.setAttribute("allMonitors",fileList);
 		return "pollutionMonitor";
 	}
 
@@ -271,10 +279,14 @@ public class PollutionController {
 	public String[] returnConditionFileList(String monitorName){
 		File conditionDir = new File(Constants.POLLUTIONPATH+monitorName);
 		File[] files = conditionDir.listFiles();
-		String[] fileList = new String[files.length];
-		for(int i=0;i<files.length;i++){
-			fileList[i]=files[i].getName();
+		if(files == null){
+			return null;
+		}else {
+			String[] fileList = new String[files.length];
+			for(int i=0;i<files.length;i++) {
+				fileList[i] = files[i].getName();
+			}
+			return fileList;
 		}
-		return fileList;
 	}
 }
