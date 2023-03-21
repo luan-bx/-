@@ -57,7 +57,7 @@ public class ConditionController {
 	public void returnConditionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 		if(!"null".equals(monitorName)) {
 			FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.CONDITIONDATA);
-			InputStreamReader reader = new InputStreamReader(fin);
+			InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 			BufferedReader buffReader = new BufferedReader(reader);
 			String strTmp = "";
 			ArrayList<JSONObject> data = new ArrayList<>();

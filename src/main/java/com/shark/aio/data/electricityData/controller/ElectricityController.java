@@ -44,7 +44,7 @@ public class ElectricityController {
 	public void returnElectricityData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 		if(!"null".equals(monitorName)) {
 			FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.ELECTRICDATA);
-			InputStreamReader reader = new InputStreamReader(fin);
+			InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 			BufferedReader buffReader = new BufferedReader(reader);
 			String strTmp = "";
 			ArrayList<JSONObject> data = new ArrayList<>();
@@ -105,6 +105,7 @@ public class ElectricityController {
 	@RequestMapping("/electricityMonitor")
 	public String electricityMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.ELECTRICPATH);
+		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
 		if(files == null){
 			request.setAttribute(Constants.MSG, "暂无数据");

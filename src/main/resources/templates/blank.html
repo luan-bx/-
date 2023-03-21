@@ -67,7 +67,7 @@
               </div>
             <div class="profile_info">
               <span>欢迎,</span>
-              <h2>新用户</h2>
+                <span th:text="${session.userName}"></span>
             </div>
           </div>
           <!-- /menu profile quick info -->
@@ -125,7 +125,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile " aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="@{'/iconPath/'+${session.iconPath}}" alt="">新用户
+                    <img th:src="@{'/iconPath/'+${session.iconPath}}" alt=""><span th:text="${session.userName}"></span>
                   </a>
 
                 </li>

@@ -211,7 +211,7 @@ public class PollutionController {
 
 		if(!"null".equals(monitorName)){
 			FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.POLLUTIONDATA);
-			InputStreamReader reader = new InputStreamReader(fin);
+			InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 			BufferedReader buffReader = new BufferedReader(reader);
 			String strTmp = "";
 			ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
@@ -260,6 +260,7 @@ public class PollutionController {
 	@RequestMapping("/pollutionMonitor")
 	public String pollutionMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.POLLUTIONPATH);
+		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
 		if(files == null){
 			request.setAttribute(Constants.MSG, "暂无数据");
