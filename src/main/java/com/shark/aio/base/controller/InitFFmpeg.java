@@ -7,6 +7,7 @@ import com.shark.aio.data.video.face.controller.FaceController;
 import com.shark.aio.data.video.license.controller.LicenseController;
 import com.shark.aio.data.video.mapper.VideoMapping;
 import com.shark.aio.data.video.service.ImageRecorderService;
+import com.shark.aio.data.video.service.VideoRecorderService;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -17,10 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 //@Component
@@ -30,13 +31,20 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     private VideoMapping videoMapping;
 
+    public static HashMap<String, VideoRecorderService> map = new HashMap<>();
+
+
     @Resource(name="threadPoolTaskExecutor")
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         List<VideoEntity> videos = videoMapping.selectAllVideos();
+        //初始化map
+
         for (VideoEntity video : videos){
+            //初始化map
+            map.put(video.getMonitorName(),new VideoRecorderService());
             //这里是jar包启动就会自动推流
             try {
                 ProcessUtil.videoPreview(video.getRtsp(),video.getStream());

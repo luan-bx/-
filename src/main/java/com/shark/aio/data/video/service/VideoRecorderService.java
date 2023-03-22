@@ -2,6 +2,8 @@ package com.shark.aio.data.video.service;
 
 import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.util.Constants;
+import lombok.Getter;
+import lombok.Setter;
 import org.bytedeco.ffmpeg.global.avcodec;
 import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
@@ -16,13 +18,19 @@ import java.util.Date;
  * @author lbx
  * @date 2023/2/23 - 16:11
  **/
+@Getter
+@Setter
 public class VideoRecorderService {
 
     static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
     private String inputFile;
     private String outputFile;
+    private boolean status;
 
-    public void startRecordVideo(VideoEntity video, boolean status)
+    private boolean recording;
+
+
+    public void startRecordVideo(VideoEntity video)
             throws Exception {
         //海歌摄像头
         //String inputFile = "rtsp://admin:Shark666@nju@192.168.0.2:554";
@@ -45,7 +53,7 @@ public class VideoRecorderService {
 //        //       String outputFile = "D:\\项目\\AIO\\recorder\\" + time + ".mp4";
 //        System.out.println("outputFile222    " + "D:\\项目\\AIO\\recorder\\recorder%03d.mp4");
 //        System.out.println("outputFile    " + outputFile);
-        frameRecord(inputFile, outputFile,1, status);
+        frameRecord(inputFile, outputFile,1);
     }
 
     /**
@@ -56,7 +64,7 @@ public class VideoRecorderService {
      * @throws Exception
      * @throws org.bytedeco.javacv.FrameRecorder.Exception
      */
-    public void frameRecord(String inputFile, String outputFile, int audioChannel, boolean status)
+    public void frameRecord(String inputFile, String outputFile, int audioChannel)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
 
         //boolean status 该变量建议设置为全局控制变量，用于控制录制结束
@@ -124,20 +132,30 @@ public class VideoRecorderService {
         // recorder.setVideoOption("preset", "veryslow");
 
         // 开始取视频源
-        recordByFrame(grabber, recorder, status);
+        recordByFrame(grabber, recorder);
     }
 
 
 
 
-    private void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder, boolean status)
+    private void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
         try {//建议在线程中使用该方法
             grabber.start();
             recorder.start();
-
+            recording=true;
+            int cnt = 0;
             Frame frame = null;
-            while (status&& (frame = grabber.grabFrame()) != null) {
+            while ( (frame = grabber.grabFrame()) != null) {
+                if (!status){
+                    cnt++;
+                }else{
+                    cnt=0;
+                }
+                if (cnt>=10){
+                    recording=false;
+                    break;
+                }
                 recorder.record(frame);
                 //1.用线程sleep
                 //2.获取当前时间，做时间差
@@ -156,7 +174,7 @@ public class VideoRecorderService {
                     grabber.stop();
                     System.out.println("尝试重新开启录制器");
 //                    recorder.start();
-                    frameRecord(inputFile,outputFile,1, status);
+                    frameRecord(inputFile,outputFile,1);
                 }
             } catch (org.bytedeco.javacv.FrameRecorder.Exception e1) {
                 throw e;

@@ -1,6 +1,7 @@
 package com.shark.aio.data.video.service;
 
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.base.controller.InitFFmpeg;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.FfmpegProcess;
@@ -11,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -111,7 +111,11 @@ public class VideoService {
     public int insertVideo(String monitorName, String username, String password, String ip, String port, String description){
         String rtsp = "rtsp://"+username+":"+password+"@"+ip+":"+port;
         String stream = "stream"+ UUID.randomUUID();
-        return videoMapping.insertIntoVideo(new VideoEntity(null,monitorName,rtsp,description,stream));
+        int count = videoMapping.insertIntoVideo(new VideoEntity(null,monitorName,rtsp,description,stream));
+        if (count==1){
+            InitFFmpeg.map.put(monitorName,new VideoRecorderService());
+        }
+        return count;
 
     }
 

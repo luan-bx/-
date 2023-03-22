@@ -4,8 +4,6 @@ import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.Kernel32;
 import com.sun.jna.platform.win32.WinNT;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,13 +53,14 @@ public class ProcessUtil {
         /*如果是Linux系统**/
         if (IS_LINUX){
             System.out.println("linux");
-            String cmd = "ffmpeg -f rtsp -rtsp_transport tcp -i '"
+            String cmd = "nohup ffmpeg -nostdin -rtsp_transport tcp -i '"
                     + ""
                     + videoPath
                     + "'"
                     + " "
                     + "-vcodec libx264 -r 25 -preset ultrafast -tune zerolatency -f flv -an rtmp://localhost:1935/myapp/"
-                    + stream;
+                    + stream
+                    + " >> /dev/null 2>&1 </dev/null &";
             pid = commandUtil.linuxExec(cmd);
         }
         if(pid>0) {
