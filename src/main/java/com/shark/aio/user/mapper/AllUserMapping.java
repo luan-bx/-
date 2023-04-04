@@ -2,10 +2,7 @@ package com.shark.aio.user.mapper;
 
 import com.shark.aio.user.entity.PostEntity;
 import com.shark.aio.user.entity.UserEntity;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -13,6 +10,7 @@ import java.util.List;
  * @author lbx
  * @date 2023/3/28 - 14:28
  **/
+@Mapper
 public interface AllUserMapping {
     /*
      * 删除用户
@@ -35,11 +33,14 @@ public interface AllUserMapping {
     /*
      * 更新用户信息
      */
-    @Update("UPDATE `user` SET `phone`=#{phone}, `email`=#{email} ,`number`=#{number}, "
-            + " `post_name`=#{postName}"+ "WHERE `user_name`=#{originUserName};")
-    void updateUserById(UserEntity userEntity,@Param("originUserName") String originUserName);
+    @Update("UPDATE `user` SET `phone`=#{user.phone}, `email`=#{user.email} ,`number`=#{user.number}, "
+            + " `post_name`=#{user.postName}"+ "WHERE `user_name`=#{originUserName};")
+    void updateUserById(@Param("user") UserEntity userEntity,@Param("originUserName") String originUserName);
 
 
     @Select("select * from `post`")
     List<PostEntity> getAllPost();
+
+    @Select("select * from `user` where `user_name`=#{userName}")
+    public UserEntity queryUserByUserName(String userName);
 }
