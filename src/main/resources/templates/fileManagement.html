@@ -86,7 +86,7 @@
                                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2 th:text="|视频文件总大小：${videoTotalSize}MB|"></h2>
+                                                <h2 th:text="|视频文件总大小:${videoTotalSize}MB|"></h2>
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -118,8 +118,8 @@
                                                                     <td style="width: 31%" th:text="${obj.fileSrc}"></td>
                                                                     <td style="width: 20%" th:text="${#dates.format(obj.createdTime,'yyyy年MM月dd日 HH时mm分')}"></td>
                                                                     <td style="width: 9%">
-                                                                        <a th:href="@{${baseURL}+'download'(fileName=${obj.fileName})}" style="color: #33beff">下载</a>
-                                                                        <a th:href="@{${baseURL}+'/delete/'(fileName=${obj.fileName})}" style="color: #33beff">删除</a>
+                                                                        <a th:href="@{/download(fileName=${obj.fileName},path=${obj.fileSrc})}" style="color: #33beff">下载</a>
+                                                                        <a th:href="@{/deleteOneFile(fileName=${obj.fileName},path=${obj.fileSrc})}" style="color: #33beff">删除</a>
                                                                     </td>
                                                                 </tr>
                                                                 </tbody>
@@ -133,7 +133,7 @@
                                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2 th:text="|数据文件总大小：${dataTotalSize}MB|"></h2>
+                                                <h2 th:text="|数据文件总大小:${dataTotalSize}MB|"></h2>
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -165,8 +165,8 @@
                                                                     <td th:text="${obj.fileSrc}"></td>
                                                                     <td th:text="${#dates.format(obj.createdTime,'yyyy年MM月dd日 HH时mm分')}"></td>
                                                                     <td>
-                                                                        <a th:href="@{${baseURL}+'download'(fileName=${obj.fileName})}" style="color: #33beff">下载</a>
-                                                                        <a th:href="@{${baseURL}+'/delete/'(fileName=${obj.fileName})}" style="color: #33beff">删除</a>
+                                                                        <a th:href="@{/download(fileName=${obj.fileName},path=${obj.fileSrc})}" style="color: #33beff">下载</a>
+                                                                        <a th:href="@{/deleteOneFile(fileName=${obj.fileName},path=${obj.fileSrc})}" style="color: #33beff">删除</a>
                                                                     </td>
                                                                 </tr>
                                                                 </tbody>
@@ -180,7 +180,7 @@
                                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2 th:text="|日志文件总大小：${logsTotalSize}MB|"></h2>
+                                                <h2 th:text="|日志文件总大小:${logsTotalSize}MB|"></h2>
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -212,8 +212,8 @@
                                                                     <td th:text="${obj.fileSrc}"></td>
                                                                     <td th:text="${#dates.format(obj.createdTime,'yyyy年MM月dd日 HH时mm分')}"></td>
                                                                     <td>
-                                                                        <a th:href="@{${baseURL}+'download'(fileName=${obj.fileName})}" style="color: #33beff">下载</a>
-                                                                        <a th:href="@{${baseURL}+'/delete/'(fileName=${obj.fileName})}" style="color: #33beff">删除</a>
+                                                                        <a th:href="@{/download(fileName=${obj.fileName},path=${obj.fileSrc})}" style="color: #33beff">下载</a>
+                                                                        <a th:href="@{/deleteOneFile(fileName=${obj.fileName},path=${obj.fileSrc})}" style="color: #33beff">删除</a>
                                                                     </td>
                                                                 </tr>
                                                                 </tbody>
@@ -328,5 +328,6 @@
         })
       /*]]>*/
   </script>
+
 </body>
 </html>

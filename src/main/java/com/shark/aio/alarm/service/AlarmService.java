@@ -8,6 +8,7 @@ import com.shark.aio.util.Constants;
 import com.shark.aio.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.jdbc.SQL;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+
+@MapperScan(value = "com.shark.aio.alarm.mapper")
 public class AlarmService {
 
     @Autowired

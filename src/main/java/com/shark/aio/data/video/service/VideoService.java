@@ -9,6 +9,7 @@ import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.data.video.mapper.VideoMapping;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@MapperScan(value = "com.shark.aio.data.video.mapper")
 public class VideoService {
 
     @Autowired

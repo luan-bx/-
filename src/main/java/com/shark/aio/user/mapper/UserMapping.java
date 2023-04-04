@@ -11,8 +11,8 @@ public interface UserMapping {
 	/*
 	 * 插入一个客户用户记录
 	 */
-	@Insert("INSERT INTO `user`(`user_name`, `password`, `openId`, `phone`, `email`, `gender`,`icon`, `number`, `post_id`,  `wx_id`) "
-			+ "values(#{userName}, #{password}, #{openId}, #{phone}, #{email}, #{gender}, #{icon}, #{number}, #{postId},  #{wxId});")
+	@Insert("INSERT INTO `user`(`user_name`, `password`, `phone`, `email`, `gender`,`icon`, `number`, `post_name`) "
+			+ "values(#{userName}, #{password}, #{phone}, #{email}, #{gender}, #{icon}, #{number}, #{postName});")
 	void insert(UserEntity customerUserEntity);
 	
 	/*
@@ -27,12 +27,7 @@ public interface UserMapping {
 	@Select("SELECT * from `user` WHERE number = #{number};")
 	UserEntity queryUserByNumber(@Param("number") String number);
 	
-	/*
-	 * 通过客户openId查询用户
-	 */
-	@Select("SELECT * from `user` WHERE openId = #{openId}")
-	UserEntity queryCuByOpenId(@Param("openId") String openId);
-	
+
 	/*
 	 * 通过客户手机号查询用户
 	 */
@@ -48,25 +43,11 @@ public interface UserMapping {
 	/*
 	 * 更新username\passwd\openId
 	 */
-	@Update("UPDATE `user` SET `user_name`=#{userName}, `password`=#{password}, `openId`=#{openId} "
+	@Update("UPDATE `user` SET `user_name`=#{userName}, `password`=#{password}"
 			+ "WHERE `phone`=#{phone};")
 	void updateUserByPhone(@Param("userName") String userName, @Param("password") String password, 
-			@Param("openId") String openId, @Param("phone") String phone);
-	
-	/*
-	 * 更新wxid
-	 */
-	@Update("UPDATE `user` SET `wx_id`=#{wxId} WHERE `phone`=#{phone};")
-	void updateWxIdByPhone(@Param("wxId") int wxId, @Param("phone") String phone);
-	
-	/*
-	 * 通过phone查询wxuser表的关联id
-	 */
-	@Select("SELECT w.id "
-			+ "FROM `user` u, `wxusers` w "
-			+ "WHERE w.phone = u.phone AND w.phone = #{phone};")
-	int getWxIdByPhone(String phone);
-	
+			 @Param("phone") String phone);
+
 	/*
 	 * 通过name查询user表id
 	 */

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +29,7 @@ public class AlarmRecordEntity {
 
      */
     private Integer id;
-    private String alarmTime;
+    private Timestamp alarmTime;
     private String monitor;
     private String monitorClass;
     private String monitorValue;

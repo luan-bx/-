@@ -3,6 +3,7 @@ package com.shark.aio.data.conditionData.service;
 import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceMapping;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ import java.util.List;
  **/
 @Service
 @Slf4j
+
+@MapperScan(value = "com.shark.aio.data.monitorDeviceHj212")
 public class ConditionService {
     @Autowired
     protected MonitorDeviceMapping monitorDeviceMapping;
