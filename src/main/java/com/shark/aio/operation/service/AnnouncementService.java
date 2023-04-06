@@ -3,12 +3,14 @@ package com.shark.aio.operation.service;
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.operation.entity.AnnouncementEntity;
 import com.shark.aio.operation.mapper.AnnouncementMapping;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@MapperScan(value = "com.shark.aio.operation.mapper")
 public class AnnouncementService {
 
     @Autowired

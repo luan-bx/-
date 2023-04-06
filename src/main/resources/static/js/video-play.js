@@ -108,7 +108,7 @@ function startVideo(streams){
         console.log("create");
         var flvPlayer = flvjs.createPlayer({
         type: 'flv',
-        url: 'http://localhost:9000/live?port='+port+'&app='+app+'&stream='+stream,
+        url: 'http://192.168.0.121:9000/live?port='+port+'&app='+app+'&stream='+stream,
         enableWorker: true, // 启用分离的线程进行转换
         //enableStashBuffer: false, // 关闭IO隐藏缓冲区
         stashInitialSize: 200, // 减少首帧显示等待时长

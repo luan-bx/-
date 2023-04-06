@@ -76,7 +76,9 @@ public class ConditionController {
 				}
 			}
 			result.put("keySet", keyset);
+			System.out.println(result);
 			result.put("data", data.toArray());
+			System.out.println(result);
 			String response = result.toJSONString();
 			buffReader.close();
 			req.setContentType("text/html;charset=utf-8");
@@ -190,8 +192,9 @@ public class ConditionController {
 	@RequestMapping("/conditionMonitor")
 	public String conditionMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.CONDITIONPATH);
+		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
-		if(files == null){
+		if(files.length == 0){
 			request.setAttribute(Constants.MSG, "暂无数据");
 			request.setAttribute("allMonitors",null);
 		}else {

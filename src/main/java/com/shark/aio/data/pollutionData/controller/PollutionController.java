@@ -1,16 +1,10 @@
 package com.shark.aio.data.pollutionData.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.shark.aio.alarm.entity.AlarmRecordEntity;
-import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.mapper.AlarmMapping;
-import com.shark.aio.data.pollutionData.service.PollutionService;
 import com.shark.aio.util.Constants;
-import com.shark.aio.util.DateUtil;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +31,6 @@ public class PollutionController {
 
 	@Autowired
 	private AlarmMapping alarmMapping;
-	@Autowired
-	private PollutionService pollutionService;
 	/**
 	 * 验证码校验、接收数据
 	 * @param request
@@ -47,157 +39,157 @@ public class PollutionController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("/receivePollutionData")
-	@ResponseBody
-	protected String receivePollutionData(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+//	@RequestMapping("/receivePollutionData")
+//	@ResponseBody
+//	protected String receivePollutionData(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException {
+//
+//		log.info("进入接收方法");
+//		String strjson = request.getParameter("verify");
+//		if (strjson != null) {
+//			log.info(JSON.toJSONString(strjson));
+//			return strjson;
+//		} else {
+//			response.setCharacterEncoding("utf-8");
+//			JSONObject jsonInfo = getJsonInfo(request);
+//			response.getWriter().print("application/json 的 serlvet接收到的数据如下：");
+//			response.getWriter().print(jsonInfo);
+//		}
+//		return strjson;
+//	}
 
-		log.info("进入接收方法");
-		String strjson = request.getParameter("verify");
-		if (strjson != null) {
-			log.info(JSON.toJSONString(strjson));
-			return strjson;
-		} else {
-			response.setCharacterEncoding("utf-8");
-			JSONObject jsonInfo = getJsonInfo(request);
-			response.getWriter().print("application/json 的 serlvet接收到的数据如下：");
-			response.getWriter().print(jsonInfo);
-		}
-		return strjson;
-	}
-
-	public static void main(String arg[]){
-		PollutionController c = new PollutionController();
-		HttpServletRequest  request = null;
-		c.getJsonInfo(request);
-	}
+//	public static void main(String arg[]){
+//		PollutionController c = new PollutionController();
+//		HttpServletRequest  request = null;
+//		c.getJsonInfo(request);
+//	}
 	/**
 	 * 数据转换json，更换时间格式，写入数据文件
-	 * @param request
+	 * @param
 	 * @return
 	 */
 	@Test
-	private JSONObject getJsonInfo(HttpServletRequest request) {
-		JSONObject json = new JSONObject();
-		try {
-
-//			InputStreamReader in = new InputStreamReader(request.getInputStream(), "utf-8");
-//			BufferedReader br = new BufferedReader(in);
+//	private JSONObject getJsonInfo(HttpServletRequest request) {
+//		JSONObject json = new JSONObject();
+//		try {
+//
+////			InputStreamReader in = new InputStreamReader(request.getInputStream(), "utf-8");
+////			BufferedReader br = new BufferedReader(in);
+////			StringBuilder sb = new StringBuilder();
+////			String line = null;
+////			while ((line = br.readLine()) != null) {
+////				sb.append(line);
+////				log.info(line);
+////			}
+////			br.close();
 //			StringBuilder sb = new StringBuilder();
-//			String line = null;
-//			while ((line = br.readLine()) != null) {
-//				sb.append(line);
-//				log.info(line);
+//			BufferedReader br = null;
+//			try {
+//				String line = null;
+//				br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
+//				while ((line = br.readLine()) != null) {
+//					sb.append(line);
+//					log.info(line);
+//				}
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//			} finally {
+//				br.close();
 //			}
-//			br.close();
-			StringBuilder sb = new StringBuilder();
-			BufferedReader br = null;
-			try {
-				String line = null;
-				br = new BufferedReader(new InputStreamReader(request.getInputStream(), "utf-8"));
-				while ((line = br.readLine()) != null) {
-					sb.append(line);
-					log.info(line);
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} finally {
-				br.close();
-			}
-
-			log.info(String.valueOf(sb));
-			json = JSONObject.fromObject(sb.toString());
-			//换时间戳-->字符串
-			//先把要换的数据从json找到，再调用换格式的方法
-			//原方法为：找到json中时间戳的字段，修改后更新整个json
-			//JSONObject为逐级找{}，JSONArray为逐级找[]
-			JSONObject update1 = JSONObject.fromObject(json.getString("data"));
-			JSONArray update2=JSONArray.fromObject(update1.getString("dataPoints"));
-			JSONObject update3= update2.getJSONObject(0);
-//			update3.put("time", TimeStamp2Date(JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("time")));//直接提交price的key，如果该key存在则替换value
-//			update2.set(0, update3);//覆盖掉原来的值
-//			update1.put("dataPoints", update2);  //再覆盖
-//			json.put("data", update1);
-
-			//现方法：找到该字段，修改后，取值直接写入文件
-			String time0 = TimeStamp2Date(JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("time"));
-			String time1 = TimeStamp2Date(JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("time"));
-
-			String name0 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("variableName");
-			String name1 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("variableName");
-
-			String value0 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("value");
-			String value1 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("value");
-
-			String deviceID = JSONObject.fromObject((json.getString("data"))).getString("deviceId");
-
-			Double value0Double = Double.parseDouble(value0);
-			AlarmSettingsEntity alarmSettingsEntity = null;
-			AlarmRecordEntity alarmRecordEntity= null ;
-			alarmSettingsEntity =alarmMapping.getAlarmSettingsEntity(name0);
-			if(alarmSettingsEntity!= null){
-				if(alarmSettingsEntity.getLowerLimit() > value0Double){
-					alarmRecordEntity.setAlarmTime(time0);
-					alarmRecordEntity.setMonitor("监测点1");
-					alarmRecordEntity.setMonitorClass("污染源监控");
-					alarmRecordEntity.setMonitorValue(name0);
-					alarmRecordEntity.setMonitorData(value0);
-					alarmRecordEntity.setMessage("低于阈值");
-					alarmMapping.insertalarmRecords(alarmRecordEntity);
-				}
-				if(alarmSettingsEntity.getUpperLimit() < value0Double){
-					alarmRecordEntity.setAlarmTime(time0);
-					alarmRecordEntity.setMonitor("监测点1");
-					alarmRecordEntity.setMonitorClass("污染源监控");
-					alarmRecordEntity.setMonitorValue(name0);
-					alarmRecordEntity.setMonitorData(value0);
-					alarmRecordEntity.setMessage("高于阈值");
-					alarmMapping.insertalarmRecords(alarmRecordEntity);
-				}
-			}
-
-
-			//			String pretty = JSON.toJSONString(json, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
-//					SerializerFeature.WriteDateUseDateFormat);
-			String documenPath = Constants.POLLUTIONPATH + DateUtil.Data;
-			String filePath = documenPath + Constants.POLLUTIONDATA;
-			File document = new File(documenPath);
-			if (!document.exists()) {
-				document.mkdirs();
-			}
-			File file = new File(filePath);
-			String space = " ";
-			try {
-				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file, true));
-//				out.write(String.valueOf(json + "\r\n").getBytes());
-				out.write(("{\"data\":[" +
-						"{\"名称" + "\":" + "\"" + name0 + "\"," +
-						"\"时间\":" + "\"" + time0 + "\","+
-						"\"幅值\":" + "\"" + value0 + "\"}," +
-						"{\"名称" + "\":" + "\"" + name1 + "\"," +
-						"\"时间\":" + "\"" + time1 + "\"," +
-						"\"幅值\":" + "\"" + value1 + "\"}]," +
-						"\"设备ID\":" + "\"" + deviceID + "\"}" + "\r\n").getBytes());
-				out.flush();
-				try {
-					out.close();
-				} catch (IOException e) {
-					log.info("FileService/saveData, 关闭文件失败", e);
-				}
-				System.out.println("json数据保存到成功！！！");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println("从前端接收到的json数据：" + json);
-//			log.info("从前端接收到的json数据：" + json);
-//			log.info(
-//					"温度值" + JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("value") + "湿度值"
-//							+ JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("value"));
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-		}
-		return json;
-	}
+//
+//			log.info(String.valueOf(sb));
+//			json = JSONObject.fromObject(sb.toString());
+//			//换时间戳-->字符串
+//			//先把要换的数据从json找到，再调用换格式的方法
+//			//原方法为：找到json中时间戳的字段，修改后更新整个json
+//			//JSONObject为逐级找{}，JSONArray为逐级找[]
+//			JSONObject update1 = JSONObject.fromObject(json.getString("data"));
+//			JSONArray update2=JSONArray.fromObject(update1.getString("dataPoints"));
+//			JSONObject update3= update2.getJSONObject(0);
+////			update3.put("time", TimeStamp2Date(JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("time")));//直接提交price的key，如果该key存在则替换value
+////			update2.set(0, update3);//覆盖掉原来的值
+////			update1.put("dataPoints", update2);  //再覆盖
+////			json.put("data", update1);
+//
+//			//现方法：找到该字段，修改后，取值直接写入文件
+//			String time0 = TimeStamp2Date(JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("time"));
+//			String time1 = TimeStamp2Date(JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("time"));
+//
+//			String name0 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("variableName");
+//			String name1 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("variableName");
+//
+//			String value0 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("value");
+//			String value1 = JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("value");
+//
+//			String deviceID = JSONObject.fromObject((json.getString("data"))).getString("deviceId");
+//
+//			Double value0Double = Double.parseDouble(value0);
+//			AlarmSettingsEntity alarmSettingsEntity = null;
+//			AlarmRecordEntity alarmRecordEntity= null ;
+//			alarmSettingsEntity =alarmMapping.getAlarmSettingsEntity(name0);
+//			if(alarmSettingsEntity!= null){
+//				if(alarmSettingsEntity.getLowerLimit() > value0Double){
+//					alarmRecordEntity.setAlarmTime(time0);
+//					alarmRecordEntity.setMonitor("监测点1");
+//					alarmRecordEntity.setMonitorClass("污染源监控");
+//					alarmRecordEntity.setMonitorValue(name0);
+//					alarmRecordEntity.setMonitorData(value0);
+//					alarmRecordEntity.setMessage("低于阈值");
+//					alarmMapping.insertalarmRecords(alarmRecordEntity);
+//				}
+//				if(alarmSettingsEntity.getUpperLimit() < value0Double){
+//					alarmRecordEntity.setAlarmTime(time0);
+//					alarmRecordEntity.setMonitor("监测点1");
+//					alarmRecordEntity.setMonitorClass("污染源监控");
+//					alarmRecordEntity.setMonitorValue(name0);
+//					alarmRecordEntity.setMonitorData(value0);
+//					alarmRecordEntity.setMessage("高于阈值");
+//					alarmMapping.insertalarmRecords(alarmRecordEntity);
+//				}
+//			}
+//
+//
+//			//			String pretty = JSON.toJSONString(json, SerializerFeature.PrettyFormat, SerializerFeature.WriteMapNullValue,
+////					SerializerFeature.WriteDateUseDateFormat);
+//			String documenPath = Constants.POLLUTIONPATH + DateUtil.Data;
+//			String filePath = documenPath + Constants.POLLUTIONDATA;
+//			File document = new File(documenPath);
+//			if (!document.exists()) {
+//				document.mkdirs();
+//			}
+//			File file = new File(filePath);
+//			String space = " ";
+//			try {
+//				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file, true));
+////				out.write(String.valueOf(json + "\r\n").getBytes());
+//				out.write(("{\"data\":[" +
+//						"{\"名称" + "\":" + "\"" + name0 + "\"," +
+//						"\"时间\":" + "\"" + time0 + "\","+
+//						"\"幅值\":" + "\"" + value0 + "\"}," +
+//						"{\"名称" + "\":" + "\"" + name1 + "\"," +
+//						"\"时间\":" + "\"" + time1 + "\"," +
+//						"\"幅值\":" + "\"" + value1 + "\"}]," +
+//						"\"设备ID\":" + "\"" + deviceID + "\"}" + "\r\n").getBytes());
+//				out.flush();
+//				try {
+//					out.close();
+//				} catch (IOException e) {
+//					log.info("FileService/saveData, 关闭文件失败", e);
+//				}
+//				System.out.println("json数据保存到成功！！！");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			System.out.println("从前端接收到的json数据：" + json);
+////			log.info("从前端接收到的json数据：" + json);
+////			log.info(
+////					"温度值" + JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(0)).getString("value") + "湿度值"
+////							+ JSONObject.fromObject(JSONArray.fromObject(JSONObject.fromObject(json.getString("data")).getString("dataPoints")).get(1)).getString("value"));
+//		} catch (Exception e) {
+//			log.error(e.getMessage(), e);
+//		}
+//		return json;
+//	}
 
 
 	/**
@@ -262,7 +254,7 @@ public class PollutionController {
 		File file = new File(Constants.POLLUTIONPATH);
 		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
-		if(files == null){
+		if(files.length == 0){
 			request.setAttribute(Constants.MSG, "暂无数据");
 			request.setAttribute("allMonitors",null);
 		}else {

@@ -1,6 +1,8 @@
 package com.shark.aio.user.service;
 
+import com.shark.aio.user.entity.PostEntity;
 import com.shark.aio.user.entity.UserEntity;
+import com.shark.aio.user.mapper.AllUserMapping;
 import com.shark.aio.user.mapper.UserMapping;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.MD5Util;
@@ -30,8 +32,9 @@ public class UserService {
 //	@Autowired
 //	private RedisService redisService;
 	@Autowired    
-	private JavaMailSenderImpl javaMailSender;  
-
+	private JavaMailSenderImpl javaMailSender;
+	@Autowired
+	AllUserMapping allUserMapping;
 	/*
 	 * 注册
 	 */
@@ -78,34 +81,16 @@ public class UserService {
 		}
 	}
 
-//	/**
-//	 * 返回所有岗位信息
-//	 * 
-//	 * @return
-//	 */
-//	public List<PostEntity> getAllPost() {
-//		return PostMapping.getAll();
-//	}
-
-
-	/*
-	 * 功能：微信扫码注册过，从数据库取wxId绑定用户名-密码表 返回： 1. 绑定成功 Constants.SUCCESSCOD 2. 绑定失败
-	 * Constants.ERROR
+	/**
+	 * 返回所有岗位信息
+	 *
+	 * @return
 	 */
-	public String bindUser(String phone) {
-		if (phone == null) {
-			return Constants.FAILCODE; // 如果phone为空，直接退出判断
-		}
-		try {
-			// 通过手机号从wx表获取wxid
-			int wxId = userMapping.getWxIdByPhone(phone);
-			// wxid更新到user表的wxid字段(前提：user记录已经存在)
-			userMapping.updateWxIdByPhone(wxId, phone);
-			return Constants.SUCCESSCODE;
-		} catch (Exception e) {
-			return Constants.FAILCODE;
-		}
+	public List<PostEntity> getAllPost() {
+		return allUserMapping.getAllPost();
 	}
+
+
 
 	/*
 	 * 功能：根据userName、phone、email判断是否是新用户 返回： 1. 是新用户 Constants.SUCCESSCOD 2. 已存在账号

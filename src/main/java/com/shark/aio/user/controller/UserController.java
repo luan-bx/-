@@ -76,13 +76,6 @@ public class UserController {
 //		userEntity.setDepartmentId(5);
 //		userEntity.setDepartmentName("未分配部门");
 		userEntity.setEmail("未绑定邮箱");
-		/*
-		 * 如果是第一个注册用户，自动设置为管理员
-		 */
-		if(userEntity.getId() == 1) {
-			userEntity.setPostId(1);
-			userEntity.setPostName("管理员");
-		}
 
 		// 判断新用户(用户名-密码表)
 		String isNewUser = userService.isNewUser(userEntity, req);
@@ -250,12 +243,12 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("/delete")
-	public String delete(HttpServletRequest req) {
-		// 将注册页面的部门、岗位两个选项的下拉框动态给前端
-		userMapping.deleteUserByUserName("qh-02");
-		return Constants.SUCCESS;
-	}
+//	@RequestMapping("/delete")
+//	public String delete(HttpServletRequest req) {
+//		// 将注册页面的部门、岗位两个选项的下拉框动态给前端
+//		userMapping.deleteUserByUserName("qh-02");
+//		return Constants.SUCCESS;
+//	}
 	
 	//20220830-thg,修改邮箱
 	/**
@@ -265,7 +258,7 @@ public class UserController {
 	 * @param username
 	 * @param email
 	 * @param code
-	 * @param companyEntity
+	 * @param
 	 * @param postId
 	 * @param session
 	 * @return
@@ -294,7 +287,7 @@ public class UserController {
 	 * @param email
 	 * @param session
 	 * @param req
-	 * @param companyEntity
+	 * @param
 	 * @param postId
 	 * @return
 	 */
@@ -317,7 +310,7 @@ public class UserController {
 	 * 
 	 * @param req
 	 * @param username
-	 * @param companyEntity
+	 * @param
 	 * @param postId
 	 * @return
 	 */
@@ -337,9 +330,9 @@ public class UserController {
 		 * @param req
 		 * @param response
 		 * @param username
-		 * @param email
+		 * @param
 		 * @param code
-		 * @param companyEntity
+		 * @param
 		 * @param postId
 		 * @param session
 		 * @return
@@ -371,7 +364,7 @@ public class UserController {
 	 * 
 	 * @param req
 	 * @param username
-	 * @param companyEntity
+	 * @param
 	 * @param postId
 	 * @return
 	 */

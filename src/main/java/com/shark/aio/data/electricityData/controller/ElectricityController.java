@@ -2,13 +2,10 @@ package com.shark.aio.data.electricityData.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.shark.aio.data.electricityData.service.ElectricityService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,13 +27,10 @@ import java.util.Locale;
 @Slf4j
 public class ElectricityController {
 
-	@Autowired
-	private ElectricityService electricityService;
-
 
 	/**
 	 * 前端访问数据文件
-	 * @param filePath
+	 * @param
 	 * @param req
 	 * @throws IOException
 	 */
@@ -89,25 +83,14 @@ public class ElectricityController {
 		
 		}
 
-	/**
-	 * 跳转到新增xxx页面
-	 * @param request request
-	 * @return 新增xxx页面
-	 */
-	@GetMapping("/electricity/add")
-	public String toAddElectricityPage(HttpServletRequest request){
-		if (!electricityService.searchMonitor(request)){
-			return "500";
-		}
-		return Constants.ADDPOLLUTION;
-	}
+
 
 	@RequestMapping("/electricityMonitor")
 	public String electricityMonitorWeb(HttpServletRequest request) {
 		File file = new File(Constants.ELECTRICPATH);
 		if(!file.exists())file.mkdirs();
 		File[] files = file.listFiles();
-		if(files == null){
+		if(files.length == 0){
 			request.setAttribute(Constants.MSG, "暂无数据");
 			request.setAttribute("allMonitors",null);
 		}else {

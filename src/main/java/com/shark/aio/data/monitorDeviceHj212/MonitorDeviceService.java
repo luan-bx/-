@@ -2,8 +2,6 @@ package com.shark.aio.data.monitorDeviceHj212;
 
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
-import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceEntity;
-import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceMapping;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -53,13 +51,13 @@ public class MonitorDeviceService {
         }
     }
 
-    public String insertAlarmRecord(AlarmRecordEntity alarmRecordEntity){
+    public void insertAlarmRecord(AlarmRecordEntity alarmRecordEntity){
         try{
             monitorDeviceMapping.insertAlarmRecordEntity(alarmRecordEntity);
-            return "success";
+//            return "success";
         }catch (Exception e){
             log.error("ConditionService/insertAlarmRecord:报警插入失败！",e);
-            return null;
+//            return null;
         }
     }
 

@@ -1,6 +1,5 @@
 package com.shark.aio.data.monitorDeviceHj212;
 
-import com.shark.aio.data.monitorDeviceHj212.HJ212ServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -71,7 +70,7 @@ public class HJ212Server implements ApplicationRunner {
                     pipeline.addLast(new HJ212ServerHandler());
                 }
             });
-            log.info("工况监控  端口号  =  " + PORT);
+            log.info("HJ212 端口号  =  " + PORT);
             b.bind(PORT).sync();
 
         }catch (Exception e){

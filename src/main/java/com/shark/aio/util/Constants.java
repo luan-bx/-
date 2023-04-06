@@ -15,7 +15,7 @@ public interface Constants {
 	String ALREADY = "already";
 	String BINDSUCCESS = "bindsuccess";
 	//String FILEPATH = "/Users/lb/Downloads/shark/环保仪/data/";
-	String FILEPATH = ProcessUtil.IS_WINDOWS?"C:/shark/环保仪/data/":"/home/user/AIO/";
+	String FILEPATH = ProcessUtil.IS_WINDOWS?"C:/shark/环保仪/download/":"/home/user/AIO/";
 	String USERS = "users/";
 	String PROJECT = "project/";
 	
@@ -53,6 +53,8 @@ public interface Constants {
 	String SIGNFIRST ="signfirst";
 	String USERNAME = "userName";
 	String POSTID = "postId";
+	String POST ="post";
+	String ALLUSER = "allUser";
 
 	/*
 	 * 页面
