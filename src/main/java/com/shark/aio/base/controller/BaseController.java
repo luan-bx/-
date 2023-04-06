@@ -1,10 +1,12 @@
 package com.shark.aio.base.controller;
 
+import com.shark.aio.data.video.service.VideoRecorderService;
 import com.shark.aio.user.mapper.UserMapping;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,7 @@ public class BaseController {
 
 	@Autowired
 	private UserMapping userMapping;
+
 
 	@RequestMapping("/")
 	public String AIO(HttpServletRequest req) {
@@ -47,5 +50,6 @@ public class BaseController {
 //		req.getSession().setMaxInactiveInterval(0);
 		return "index";
 	}
+
 
 }

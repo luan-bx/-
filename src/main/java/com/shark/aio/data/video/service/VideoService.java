@@ -2,6 +2,7 @@ package com.shark.aio.data.video.service;
 
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.base.controller.InitFFmpeg;
+import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.FfmpegProcess;
@@ -115,7 +116,7 @@ public class VideoService {
         String stream = "stream"+ UUID.randomUUID();
         int count = videoMapping.insertIntoVideo(new VideoEntity(null,monitorName,rtsp,description,stream));
         if (count==1){
-            InitFFmpeg.map.put(monitorName,new VideoRecorderService());
+            VideoConfiguration.registerBean(VideoRecorderService.class, monitorName);
         }
         return count;
 

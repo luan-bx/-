@@ -177,11 +177,23 @@
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna</artifactId>
             <version>5.12.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun</groupId>
+                    <artifactId>jna</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
             <version>5.12.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun</groupId>
+                    <artifactId>jna</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -192,6 +204,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/examples.jar</systemPath>
         </dependency>
+        <!--<dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>jna</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jna.jar</systemPath>
+        </dependency>-->
 
     </dependencies>
 
@@ -218,7 +237,7 @@
         <!--指定引入外部包的位置 mvn package -Dmaven.test.skip=true-->
         <!--打包部署放开以下注释-->
         <!--正常启动需注释以下代码，否则会包shiro错误-->
-        <resources>
+        <!--<resources>
             <resource>
                 <directory>${project.basedir}/lib</directory>
                 <targetPath>/BOOT-INF/lib/</targetPath>
@@ -226,11 +245,11 @@
                     <include>**/*.jar</include>
                 </includes>
             </resource>
-<!--             <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <targetPath>BOOT-INF/classes/</targetPath>-->
-<!--            </resource>-->
-        </resources>
+             <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>BOOT-INF/classes/</targetPath>
+            </resource>
+        </resources>-->
 
     </build>
 

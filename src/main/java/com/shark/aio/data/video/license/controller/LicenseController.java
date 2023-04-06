@@ -112,7 +112,7 @@ public class LicenseController {
 
 
 		} catch (Exception e) {
-			System.out.println("发送POST请求出现异常！" + e);
+			log.error("发送POST请求出现异常！",e);
 			e.printStackTrace();
 		}
 		return carRecord;

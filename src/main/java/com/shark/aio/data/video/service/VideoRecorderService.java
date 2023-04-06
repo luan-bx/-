@@ -4,12 +4,16 @@ import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.util.Constants;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.bytedeco.ffmpeg.global.avcodec;
 import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 import org.bytedeco.javacv.Frame;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,17 +23,40 @@ import java.util.Date;
  * @date 2023/2/23 - 16:11
  **/
 @Getter
-@Setter
+@Slf4j
 public class VideoRecorderService {
+
 
     static  SimpleDateFormat TimeFormat = new java.text.SimpleDateFormat("HH-mm-ss");
     private String inputFile;
     private String outputFile;
-    private boolean status;
+    private boolean status = false;
 
-    private boolean recording;
+    private boolean recording = false;
 
+    private long noPersonTime;
 
+    public void setRecording(boolean recording) {
+        this.recording = recording;
+    }
+
+    public void setStatus(boolean status){
+        if (!this.status && status){
+            noPersonTime = System.currentTimeMillis();
+            log.info("开始录制，noPersonTime="+noPersonTime);
+        }
+        this.status = status;
+    }
+
+    @Async("threadPoolTaskExecutor")
+    public void testAsync() throws InterruptedException {
+        while (true){
+            System.out.println("异步方法执行");
+            Thread.sleep(1000);
+            System.out.println("异步方法结束");
+        }
+    }
+    @Async("threadPoolTaskExecutor")
     public void startRecordVideo(VideoEntity video)
             throws Exception {
         //海歌摄像头
@@ -37,13 +64,16 @@ public class VideoRecorderService {
         //百翔摄像头
 
         SimpleDateFormat DataFormat = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        String url = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) ;
+
+        this.inputFile = video.getRtsp();
+        this.outputFile =  Constants.VIDEOPATH + video.getMonitorName() + "\\%Y-%m-%d_%H-%M-%S.mp4";
+//        String url = "D:\\项目\\AIO\\recorder\\" + DataFormat.format(new Date()) ;
+        String url =Constants.VIDEOPATH + video.getMonitorName();
         File localPath = new File(url);
+
         if (!localPath.exists()) {  // 获得文件目录，判断目录是否存在，不存在就新建一个
             localPath.mkdirs();
         }
-        this.inputFile = video.getRtsp();
-        this.outputFile =  Constants.VIDEOPATH + video.getMonitorName() + "\\%Y-%m-%d_%H-%M-%S.mp4";
 
         // %03d表示长度为3位，缺位的补零
 
@@ -137,25 +167,22 @@ public class VideoRecorderService {
 
 
 
-
-    private void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder)
+    public void recordByFrame(FFmpegFrameGrabber grabber, FFmpegFrameRecorder recorder)
             throws Exception, org.bytedeco.javacv.FrameRecorder.Exception {
         try {//建议在线程中使用该方法
             grabber.start();
             recorder.start();
             recording=true;
-            int cnt = 0;
             Frame frame = null;
             while ( (frame = grabber.grabFrame()) != null) {
                 if (!status){
-                    cnt++;
-                }else{
-                    cnt=0;
+                    if ((System.currentTimeMillis()-noPersonTime)>=(long)10*1000){
+                        recording=false;
+                        log.info("许久无人，停止录制");
+                        break;
+                    }
                 }
-                if (cnt>=10){
-                    recording=false;
-                    break;
-                }
+                log.info("recording="+recording+",status="+status+",noPersonTime="+noPersonTime);
                 recorder.record(frame);
                 //1.用线程sleep
                 //2.获取当前时间，做时间差
