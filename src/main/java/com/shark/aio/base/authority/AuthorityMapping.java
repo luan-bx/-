@@ -1,7 +1,6 @@
 package com.shark.aio.base.authority;
 
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -9,16 +8,15 @@ import org.apache.ibatis.annotations.Update;
  * @author lbx
  * @date 2023/4/2 - 21:09
  **/
-@Mapper
 public interface AuthorityMapping {
 
-    @Select("SELECT * FROM `authority` WHERE `id`=1;")
+    @Select("SELECT * FROM `authority` WHERE `id`=2;")
     AuthorityEntity getCompany();
 
-    @Select("SELECT * FROM `authority` WHERE `id`=2;")
+    @Select("SELECT * FROM `authority` WHERE `id`=3;")
     AuthorityEntity getPark();
 
-    @Select("SELECT * FROM `authority` WHERE `id`=3;")
+    @Select("SELECT * FROM `authority` WHERE `id`=4;")
     AuthorityEntity getFree();
 
     /*

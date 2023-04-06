@@ -67,7 +67,7 @@
                         <img th:src="@{'/iconPath/'+${session.iconPath}}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎</span>
+                        <span>欢迎,</span>
                         <span th:text="${session.userName}"></span>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                                     <!--                    <li><a th:href="@{/dataReport}">数据上报</a></li>-->
                                     <li><a th:href="@{/allUserEntity}">用户管理</a></li>
                                     <li><a th:href="@{/authorityManagement}">权限管理</a></li>
-                                    <li><a th:href="@{/logManagement}">日志管理</a></li>
+                                    <li><a th:href="@{/authorityManagement}">日志管理</a></li>
                                     <li><a th:href="@{/pollution/add}">设备管理</a></li>
                                     <li><a th:href="@{/diskCapacityManagement}">磁盘容量</a></li>
                                     <!--                    <li><a th:href="@{/device}">设备详情</a></li>-->

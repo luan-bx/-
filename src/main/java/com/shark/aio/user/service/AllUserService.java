@@ -95,6 +95,24 @@ public class AllUserService {
         }
     }
 
+    /**
+     * 根据用户名查询用户
+     * @param userName
+     * @return
+     */
+    public UserEntity queryUserByUserName(String userName) {
+        if (userName == null) {
+            return null;
+        }
+        try {
+
+            return allUserMapping.queryUserByUserName(userName);
+        } catch (Exception e) {
+            log.error("AllUserService/deleteUser, 查询用户记录失败, 用户名：" +userName, e);
+            throw new RuntimeException("查询用户信息失败！");
+        }
+    }
+
 
 
 }

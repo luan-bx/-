@@ -130,38 +130,39 @@
                                         <label class="control-label col-md-3 col-sm-3 ">分配权限</label>
                                         <div class="col-md-9 col-sm-9 " >
                                             <div class="">
+                                                <input type="hidden" name="id" th:value="${park.id}">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${park.authority1}" /> 污染源监测
+                                                    <input type="checkbox" class="js-switch" name="authority1" th:attr="checked=${park.authority1}" /> 污染源监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch"  th:attr="checked=${park.authority2}"/> 用电监测
+                                                    <input type="checkbox" class="js-switch"  name="authority2" th:attr="checked=${park.authority2}"/> 用电监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${park.authority3}"/> 工况监测
+                                                    <input type="checkbox" class="js-switch" name="authority3" th:attr="checked=${park.authority3}"/> 工况监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch"  th:attr="checked=${park.authority4}"/> 视频监测
+                                                    <input type="checkbox" class="js-switch" name="authority4" th:attr="checked=${park.authority4}"/> 视频监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch"  th:attr="checked=${park.authority5}"/> 智慧预警
+                                                    <input type="checkbox" class="js-switch"  name="authority5" th:attr="checked=${park.authority5}"/> 智慧预警
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${park.authority6}"/> 文件管理
+                                                    <input type="checkbox" class="js-switch" name="authority6" th:attr="checked=${park.authority6}"/> 文件管理
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${park.authority7}"/> 日志管理
+                                                    <input type="checkbox" class="js-switch" name="authority7" th:attr="checked=${park.authority7}"/> 日志管理
                                                 </label>
                                             </div>
                                         </div>
@@ -191,38 +192,39 @@
                                         <label class="control-label col-md-3 col-sm-3 ">分配权限</label>
                                         <div class="col-md-9 col-sm-9 " >
                                             <div class="">
+                                                <input type="hidden" name="id" th:value="${free.id}">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${free.authority1}" /> 污染源监测
+                                                    <input type="checkbox" class="js-switch" name="authority1" th:attr="checked=${free.authority1}" /> 污染源监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch"  th:attr="checked=${free.authority2}"/> 用电监测
+                                                    <input type="checkbox" class="js-switch"  name="authority2" th:attr="checked=${free.authority2}"/> 用电监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${free.authority3}"/> 工况监测
+                                                    <input type="checkbox" class="js-switch" name="authority3" th:attr="checked=${free.authority3}"/> 工况监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch"  th:attr="checked=${free.authority4}"/> 视频监测
+                                                    <input type="checkbox" class="js-switch" name="authority4" th:attr="checked=${free.authority4}"/> 视频监测
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch"  th:attr="checked=${free.authority5}"/> 智慧预警
+                                                    <input type="checkbox" class="js-switch"  name="authority5" th:attr="checked=${free.authority5}"/> 智慧预警
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${free.authority6}"/> 文件管理
+                                                    <input type="checkbox" class="js-switch" name="authority6" th:attr="checked=${free.authority6}"/> 文件管理
                                                 </label>
                                             </div>
                                             <div class="">
                                                 <label>
-                                                    <input type="checkbox" class="js-switch" th:attr="checked=${free.authority7}"/> 日志管理
+                                                    <input type="checkbox" class="js-switch" name="authority7" th:attr="checked=${free.authority7}"/> 日志管理
                                                 </label>
                                             </div>
                                         </div>
