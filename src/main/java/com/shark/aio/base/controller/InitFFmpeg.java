@@ -27,7 +27,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
-@Component
+//@Component
 @Slf4j
 public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 

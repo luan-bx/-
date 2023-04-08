@@ -3,6 +3,7 @@ package com.shark.aio.data.video.face.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.base.annotation.Description;
 import com.shark.aio.base.controller.InitFFmpeg;
 import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
@@ -157,6 +158,7 @@ public class FaceController {
 	 * @return 页面
 	 */
 	@RequestMapping("/videoMonitor")
+	@Description("跳转到摄像头列表页面")
 	public String toVideoPage(HttpServletRequest request,
 							 String feature){
 		List<VideoEntity> videos = videoService.selectAllVideos(feature);
