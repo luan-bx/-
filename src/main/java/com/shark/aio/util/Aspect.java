@@ -56,7 +56,8 @@ public class Aspect {
             return res;
         }catch (Throwable e){
             log.error(desc+"失败！",e);
+            return "500";
+
         }
-        return null;
     }
 }

@@ -158,3 +158,47 @@
 2023-04-08 10:43:28.267 [,] [http-nio-8081-exec-3] INFO  c.s.aio.util.Aspect - [controllerAOP,76] - 跳转到摄像头列表页面成功！耗时：64ms
 2023-04-08 10:51:47.074 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
 2023-04-08 10:51:47.080 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-08 12:41:21.090 [,] [main] INFO  c.s.a.AioApplication - [logStarting,55] - Starting AioApplication using Java 1.8.0_361 on thg with PID 7964 (D:\项目\AIO\target\classes started by 唐海歌 in D:\项目\AIO)
+2023-04-08 12:41:21.090 [,] [main] INFO  c.s.a.AioApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-08 12:41:22.306 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-08 12:41:22.306 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-08 12:41:22.306 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-08 12:41:22.418 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-08 12:41:23.474 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-08 12:41:23.488 [,] [main] INFO  c.s.a.AioApplication - [logStarted,61] - Started AioApplication in 2.604 seconds (JVM running for 3.665)
+2023-04-08 12:41:23.493 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-08 12:41:24.513 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-08 12:41:30.097 [,] [http-nio-8081-exec-3] INFO  c.s.aio.util.Aspect - [controllerAOP,50] - 跳转到摄像头列表页面方法开始执行
+2023-04-08 12:41:30.114 [,] [http-nio-8081-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-08 12:42:41.885 [,] [http-nio-8081-exec-5] INFO  c.s.aio.util.Aspect - [controllerAOP,50] - 跳转到摄像头列表页面方法开始执行
+2023-04-08 12:42:41.885 [,] [http-nio-8081-exec-5] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-08 12:43:20.558 [,] [main] INFO  c.s.a.AioApplication - [logStarting,55] - Starting AioApplication using Java 1.8.0_361 on thg with PID 2792 (D:\项目\AIO\target\classes started by 唐海歌 in D:\项目\AIO)
+2023-04-08 12:43:20.560 [,] [main] INFO  c.s.a.AioApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-08 12:43:21.442 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-08 12:43:21.443 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-08 12:43:21.443 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-08 12:43:21.550 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-08 12:43:22.545 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-08 12:43:22.558 [,] [main] INFO  c.s.a.AioApplication - [logStarted,61] - Started AioApplication in 2.169 seconds (JVM running for 2.856)
+2023-04-08 12:43:22.562 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-08 12:43:27.289 [,] [http-nio-8081-exec-4] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-08 12:43:27.306 [,] [http-nio-8081-exec-4] INFO  c.s.aio.util.Aspect - [controllerAOP,50] - 跳转到摄像头列表页面方法开始执行
+2023-04-08 12:43:27.320 [,] [http-nio-8081-exec-4] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-08 12:43:28.180 [,] [http-nio-8081-exec-4] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-08 12:47:24.418 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-08 12:47:24.424 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-08 12:47:27.791 [,] [main] INFO  c.s.a.AioApplication - [logStarting,55] - Starting AioApplication using Java 1.8.0_361 on thg with PID 20020 (D:\项目\AIO\target\classes started by 唐海歌 in D:\项目\AIO)
+2023-04-08 12:47:27.793 [,] [main] INFO  c.s.a.AioApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-08 12:47:28.731 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-08 12:47:28.731 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-08 12:47:28.731 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-08 12:47:28.840 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-08 12:47:29.844 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-08 12:47:29.856 [,] [main] INFO  c.s.a.AioApplication - [logStarted,61] - Started AioApplication in 3.126 seconds (JVM running for 3.891)
+2023-04-08 12:47:29.859 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-08 12:47:32.664 [,] [http-nio-8081-exec-3] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-08 12:47:32.683 [,] [http-nio-8081-exec-3] INFO  c.s.aio.util.Aspect - [controllerAOP,50] - 跳转到摄像头列表页面方法开始执行
+2023-04-08 12:47:32.698 [,] [http-nio-8081-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-08 12:47:33.402 [,] [http-nio-8081-exec-3] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-08 12:47:51.691 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-08 12:47:51.697 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.

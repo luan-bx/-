@@ -293,7 +293,7 @@
                         </thead>
                         <tbody style="text-align: center">
                         <tr th:each="obj,objStat:*{list}">
-                          <th scope="row" th:text="${objStat.index}+*{startRow}">1</ th>
+                          <th scope="row" th:text="${objStat.index}+*{startRow}">1</th>
                           <td style="text-align: center"><img class="resultImg" th:src="@{'/carResultPath/'+${obj.pictureUrl}}" style="max-width: 100px;max-height: 100px" onclick="pop(this)"></td>
                           <td th:text="${obj.result}"></td>
                           <td th:text="${obj.score}"></td>
