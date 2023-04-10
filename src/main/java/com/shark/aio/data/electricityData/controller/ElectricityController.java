@@ -28,94 +28,102 @@ import java.util.Locale;
 public class ElectricityController {
 
 
-	/**
-	 * 前端访问数据文件
-	 * @param
-	 * @param req
-	 * @throws IOException
-	 */
-	@RequestMapping("/returnElectricData")
-	public void returnElectricityData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
-		if(!"null".equals(monitorName)) {
-			FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.ELECTRICDATA);
-			InputStreamReader reader = new InputStreamReader(fin,"utf-8");
-			BufferedReader buffReader = new BufferedReader(reader);
-			String strTmp = "";
-			ArrayList<JSONObject> data = new ArrayList<>();
-			ArrayList<String> keyset = new ArrayList<>();
-			keyset.add("DataTime");
-			JSONObject result = new JSONObject();
-			while ((strTmp = buffReader.readLine()) != null) {
-				JSONObject jsonObject = JSON.parseObject(strTmp);
-				JSONObject dataObj = jsonObject.getJSONObject("CP");
-				dataObj.put("DataTime", jsonObject.getString("DataTime"));
-				data.add(dataObj);
-				for (String key : dataObj.keySet()) {
-					if (!keyset.contains(key)) {
-						keyset.add(key);
-					}
-				}
-			}
-			result.put("keySet", keyset);
-			result.put("data", data.toArray());
-			String response = result.toJSONString();
-			buffReader.close();
-			req.setContentType("text/html;charset=utf-8");
-			req.getWriter().write(response);
-		}
-	}
+    /**
+     * 前端访问数据文件
+     *
+     * @param
+     * @param req
+     * @throws IOException
+     */
+    @RequestMapping("/returnElectricData")
+    public void returnElectricityData(String monitorName, String dir, HttpServletResponse req) throws IOException {
+        if (!"null".equals(monitorName)) {
+            FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.ELECTRICDATA);
+            InputStreamReader reader = new InputStreamReader(fin, "utf-8");
+            BufferedReader buffReader = new BufferedReader(reader);
+            String strTmp = "";
+            ArrayList<JSONObject> data = new ArrayList<>();
+            ArrayList<String> keyset = new ArrayList<>();
+            keyset.add("DataTime");
+            JSONObject result = new JSONObject();
+            while ((strTmp = buffReader.readLine()) != null) {
+                JSONObject jsonObject = JSON.parseObject(strTmp);
+                JSONObject dataObj = jsonObject.getJSONObject("CP");
+                dataObj.put("DataTime", jsonObject.getString("DataTime"));
+                data.add(dataObj);
+                for (String key : dataObj.keySet()) {
+                    if (!keyset.contains(key)) {
+                        keyset.add(key);
+                    }
+                }
+            }
+            result.put("keySet", keyset);
+            result.put("data", data.toArray());
+            String response = result.toJSONString();
+            buffReader.close();
+            req.setContentType("text/html;charset=utf-8");
+            req.getWriter().write(response);
+        }
+    }
 
 
-	/**
-	 * 时间戳转字符串
-	 * @param timestampString
-	 * @return
-	 */
-	public static String TimeStamp2Date(String timestampString) {
+    /**
+     * 时间戳转字符串
+     *
+     * @param timestampString
+     * @return
+     */
+    public static String TimeStamp2Date(String timestampString) {
 
-		String formats = "yyyy-MM-dd HH:mm:ss";
+        String formats = "yyyy-MM-dd HH:mm:ss";
 
-		Long timestamp = Long.parseLong(timestampString) * 1000;
+        Long timestamp = Long.parseLong(timestampString) * 1000;
 
-		String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
+        String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
 
-		return date;
-		
-		}
+        return date;
+
+    }
 
 
+    @RequestMapping("/electricityMonitor")
+    public String electricityMonitorWeb(HttpServletRequest request) {
+        File file = new File(Constants.ELECTRICPATH);
+        if (!file.exists()) file.mkdirs();
+        File[] files = file.listFiles();
+        if (files.length == 0) {
+            request.setAttribute(Constants.MSG, "暂无数据");
+            request.setAttribute("allMonitors", null);
+        } else {
+            String[] fileList = new String[files.length];
+            for (int i = 0; i < files.length; i++) {
+                fileList[i] = files[i].getName();
+            }
+            request.setAttribute("allMonitors", fileList);
+        }
 
-	@RequestMapping("/electricityMonitor")
-	public String electricityMonitorWeb(HttpServletRequest request) {
-		File file = new File(Constants.ELECTRICPATH);
-		if(!file.exists())file.mkdirs();
-		File[] files = file.listFiles();
-		if(files.length == 0){
-			request.setAttribute(Constants.MSG, "暂无数据");
-			request.setAttribute("allMonitors",null);
-		}else {
-			String[] fileList = new String[files.length];
-			for(int i=0;i<files.length;i++){
-				fileList[i]=files[i].getName();
-			}
-			request.setAttribute("allMonitors",fileList);
-		}
+        log.info("进入用电监测页面成功！");
+        return "electricityMonitor";
+    }
 
-		return "electricityMonitor";
-	}
-	@RequestMapping("returnElectricFileList")
-	@ResponseBody
-	public String[] returnElectricFileList(String monitorName){
-		File electricDir = new File(Constants.ELECTRICPATH+monitorName);
-		File[] files = electricDir.listFiles();
-		if(files == null){
-			return null;
-		}else {
-			String[] fileList = new String[files.length];
-			for (int i = 0; i < files.length; i++) {
-				fileList[i] = files[i].getName();
-			}
-			return fileList;
-		}
-	}
+    @RequestMapping("returnElectricFileList")
+    @ResponseBody
+    public String[] returnElectricFileList(String monitorName) {
+        try {
+            File electricDir = new File(Constants.ELECTRICPATH + monitorName);
+            File[] files = electricDir.listFiles();
+            if (files == null) {
+                return null;
+            } else {
+                String[] fileList = new String[files.length];
+                for (int i = 0; i < files.length; i++) {
+                    fileList[i] = files[i].getName();
+                }
+                return fileList;
+            }
+        } catch (Exception e) {
+            log.error("数据文件查询失败！");
+            return null;
+        }
+    }
 }

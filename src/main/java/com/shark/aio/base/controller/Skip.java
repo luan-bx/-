@@ -14,6 +14,7 @@ public class Skip {
 	@RequestMapping("/index")
 	public String indexWeb(HttpServletRequest request) {
 		request.setAttribute("stream",new String[]{"room","room","room","room","room","room","room","room","room"});
+		log.info("进入首页成功！");
 		return "index";
 	}
 	
@@ -119,6 +120,8 @@ public class Skip {
 	
 	@RequestMapping("/alarmSettings")
 	public String alarmSettingsWeb() {
+
+		log.info("进入预警设置页面成功！");
 		return "alarmSettings";
 	}
 }

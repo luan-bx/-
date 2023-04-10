@@ -72,11 +72,12 @@ public class UserService {
 			String password = userEntity.getPassword();
 			String MD5password = MD5Util.MD5(name + password);
 			userEntity.setPassword(MD5password);
+			System.out.println(userEntity.getId());
 			userMapping.insert(userEntity);
 			return Constants.SUCCESSCODE;
 		} catch (Exception e) {
-			log.info("插入user记录失败", e);
-			req.setAttribute("error", "注册失败，请重新注册或联系管理员");
+			log.error("插入user记录失败", e);
+			req.setAttribute("msg", "注册失败，请重新注册或联系管理员");
 			return Constants.FAILCODE;
 		}
 	}
@@ -87,7 +88,14 @@ public class UserService {
 	 * @return
 	 */
 	public List<PostEntity> getAllPost() {
-		return allUserMapping.getAllPost();
+		try {
+			List<PostEntity> allPost = allUserMapping.getAllPost();
+			return allPost;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("BackSysService/getAllPost, 获取全部岗位失败, ", e);
+			return null;
+		}
 	}
 
 
@@ -105,11 +113,11 @@ public class UserService {
 //			UserEntity EMAIL = userMapping.queryCuByEmail(userEntity.getEmail());
 			UserEntity number = userMapping.queryUserByNumber(userEntity.getNumber());
 			if (NAME != null) {
-				log.info("该用户名已注册过");
+				log.error(NAME + ",该用户名已注册过");
 				req.setAttribute(Constants.ALREADY, "该用户名已经注册过，请返回登录");
 				return Constants.FAILCODE;
 			} else if (PHONE != null) {
-				log.info("该手机号已注册过");
+				log.error(PHONE + ",该手机号已注册过");
 				req.setAttribute(Constants.ALREADY, "该手机号已经注册过，请返回登录");
 				return Constants.FAILCODE;
 			} /*else if (EMAIL != null) {
@@ -117,14 +125,14 @@ public class UserService {
 				req.setAttribute(Constants.ALREADY, "该邮箱已经注册过，请返回登录");
 				return Constants.FAILCODE;
 			} */else if (number != null) {
-				log.info("该工号已注册过");
+				log.error(number + ",该工号已注册过");
 				req.setAttribute(Constants.ALREADY, "该工号已经注册过，请返回登录");
 				return Constants.FAILCODE;
 			} else {
 				return Constants.SUCCESSCODE;
 			}
 		} catch (Exception e) {
-			log.info("UserService/isNewUser 查询用户错误", e);
+			log.error("UserService/isNewUser 查询用户错误", e);
 			req.setAttribute("error", "注册失败，请重新注册或联系管理员");
 			return Constants.ERROR;
 		}
@@ -150,29 +158,28 @@ public class UserService {
 					// 邮箱？
 					if (user == null) {
 						// 未注册！
-						log.info("UserService/login, 账号不存在，请先注册，本次登录账户：" + loginStr);
+						log.error("UserService/login, 账号不存在，请先注册，本次登录账户：" + loginStr);
 						req.setAttribute("error", "账号不存在，请先注册");
 						return Constants.FAILCODE;
 					} else {
-						log.info("UserService/login, 使用邮箱登录 : " + loginStr);
+						log.info("使用邮箱登录 : " + loginStr);
 					}
 				} else {
-					log.info("UserService/login, 使用手机号登录 : " + loginStr);
+					log.info("使用手机号登录 : " + loginStr);
 				}
 			} else {
-				log.info("UserService/login, 使用用户名登录 : " + loginStr);
+				log.info("使用用户名登录 : " + loginStr);
 			}
 			// 查询到用户，进行登录密码校验
 			// 此user为从数据库取到的用户全部信息，不要用userEntity
 			String name = user.getUserName();
 			String loginPs = MD5Util.MD5(name + password);
-			log.info("MD5加密" + loginPs);
 			if (loginPs.equals(user.getPassword())) {
 				// 加缓存，24小时内再次登录无需验证
 				Cookie cookie = new Cookie(Constants.COOKIEHEAD, name);
 				cookie.setMaxAge(Constants.COOKIE_TTL); // 24h
 				response.addCookie(cookie);
-				log.info("UserService/login, 登录成功");
+				log.info("登录成功");
 //				// 登录成功，写Redis
 //				try {
 //					setRedis(user);
@@ -182,12 +189,12 @@ public class UserService {
 //				}
 				return Constants.SUCCESSCODE;
 			} else {
-				log.info("UserService/login, 登录失败，用户名或密码错误，账户：" + loginStr + " 密码：" + password);
+				log.error("UserService/login, 登录失败，用户名或密码错误，账户：" + loginStr + " 密码：" + password);
 				return Constants.ERROR;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			log.info("UserService/login, 账号查询失败，请先注册或重新登录", e);
+			log.error("UserService/login, 账号查询失败，请先注册或重新登录", e);
 			return Constants.ERROR;
 		}
 	}

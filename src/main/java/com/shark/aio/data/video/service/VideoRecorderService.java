@@ -4,6 +4,7 @@ import com.shark.aio.data.video.entity.VideoEntity;
 import com.shark.aio.util.Constants;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.bytedeco.ffmpeg.global.avcodec;
 import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
@@ -18,6 +19,8 @@ import java.util.Date;
  * @author lbx
  * @date 2023/2/23 - 16:11
  **/
+
+@Slf4j
 @Getter
 @Setter
 public class VideoRecorderService {
@@ -177,6 +180,7 @@ public class VideoRecorderService {
                     frameRecord(inputFile,outputFile,1);
                 }
             } catch (org.bytedeco.javacv.FrameRecorder.Exception e1) {
+                log.error("视频录制失败！",e);
                 throw e;
             }
         }finally {

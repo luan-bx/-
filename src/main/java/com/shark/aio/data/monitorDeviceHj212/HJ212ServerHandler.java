@@ -1,5 +1,10 @@
 package com.shark.aio.data.monitorDeviceHj212;
 
+import com.alibaba.fastjson.JSONObject;
+import com.shark.aio.alarm.entity.AlarmRecordEntity;
+import com.shark.aio.alarm.entity.AlarmSettingsEntity;
+import com.shark.aio.util.Constants;
+import com.shark.aio.util.ProcessUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -9,7 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -50,95 +62,91 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        push(ctx);
+
         System.out.println("收到HJ212协议数据为 ===> " + msg);
 
         //CRC校验
-//        if(!HJ212MsgUtils.checkData((String)msg).equals("error")){
-//            // 解析物联网设备发来的数据
-//            JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
-//
-//            //存储数据
-//            if (data != null){
-//
-//
-////                System.out.println("设备消息解析JSON结果：" + data.toJSONString());
-//                try {
-//                    //由mn对应数据库找到绑定的监测点名称
-//                    String deviceId = net.sf.json.JSONObject.fromObject(data).getString("MN");
-//                    if(deviceId != null){
-//                        MonitorDeviceEntity monitorDevice = hJ212ServerHandler.monitorDeviceService.getMonitorDevice(deviceId);
-//
-//                        if(monitorDevice == null )System.out.println("未绑定deviceId");
-//                        if(monitorDevice != null ){
-//                            String monitorName = monitorDevice.getMonitorName();
-//                            String monitorClass = monitorDevice.getMonitorClass();
-//                            SimpleDateFormat DataFormat = new SimpleDateFormat("yyyy-MM-dd");
-//                            String date = DataFormat.format(new Date());
-//                            //根目录 + 监测点 + 日期
-//                            String documentPath = ProcessUtil.IS_WINDOWS?
-//                                    Constants.ROOTPATH + monitorClass + "\\" + monitorName + "\\" + date:
-//                                    Constants.ROOTPATH + monitorClass + "/" + monitorName + "/" + date;
-//
-//                            String filePath = documentPath + Constants.CONDITIONDATA;
-//                            File document = new File(documentPath);
-//                            if(!document.exists()){
-//                                document.mkdirs();
-//                            }
-//                            File file = new File(filePath);
-//
-//                            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
-//                            out.write((data.toJSONString()+"\n").getBytes());
-//                            out.flush();
-//                            out.close();
-//
-//
-//                            //报警服务
-//                            List<AlarmSettingsEntity> allAlarmSettings = hJ212ServerHandler.monitorDeviceService.getAllAlarmSettings();
-//                            if(allAlarmSettings != null){
-//                                JSONObject CPObject = data.getJSONObject("CP");
-//
-//                                for (AlarmSettingsEntity alarmSettingsEntity : allAlarmSettings){
-//                                    for(String key : CPObject.keySet()){
-//
-//
-//
-//
-//                                        if(alarmSettingsEntity.getMonitorValue().equals(key)){
-//
-//
-//
-//                                            Double value = Double.parseDouble(CPObject.getString(key));
-//
-//                                            if( value > alarmSettingsEntity.getLowerLimit() &&
-//                                                value < alarmSettingsEntity.getUpperLimit()){
-//                                            }else {
-//                                                AlarmRecordEntity alarmRecordEntity = new AlarmRecordEntity();
-//                                                alarmRecordEntity.setAlarmTime(Timestamp.valueOf(data.getString("DataTime")));
-//                                                alarmRecordEntity.setMonitor(monitorName);
-//                                                alarmRecordEntity.setMonitorClass(monitorClass);
-//                                                alarmRecordEntity.setMonitorValue(key);
-//                                                alarmRecordEntity.setMonitorData(value.toString());
-//                                                alarmRecordEntity.setMessage(alarmSettingsEntity.getMessage());
-//                                                hJ212ServerHandler.monitorDeviceService.insertAlarmRecord(alarmRecordEntity);
-//
-//                                            }
-//                                        }
-//                                    }
-//
-//                                }
-//                            }
-//
-//                    }
-//
-//                    }
-//                } catch (Exception e) {
-//                    // TODO: handle exception
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        }
+        if(!HJ212MsgUtils.checkData((String)msg).equals("error")){
+            // 解析物联网设备发来的数据
+            JSONObject data = HJ212MsgUtils.dealMsg1((String) msg);
+
+            //存储数据
+            if (data != null){
+
+
+//                System.out.println("设备消息解析JSON结果：" + data.toJSONString());
+                try {
+                    //由mn对应数据库找到绑定的监测点名称
+                    String deviceId = net.sf.json.JSONObject.fromObject(data).getString("MN");
+                    if(deviceId != null){
+                        MonitorDeviceEntity monitorDevice = hJ212ServerHandler.monitorDeviceService.getMonitorDevice(deviceId);
+
+                        if(monitorDevice == null )System.out.println("未绑定deviceId");
+                        if(monitorDevice != null ){
+                            //回应数采仪
+                            push(ctx);
+
+                            String monitorName = monitorDevice.getMonitorName();
+                            String monitorClass = monitorDevice.getMonitorClass();
+                            SimpleDateFormat DataFormat = new SimpleDateFormat("yyyy-MM-dd");
+                            String date = DataFormat.format(new Date());
+                            //根目录 + 监测点 + 日期
+                            String documentPath = ProcessUtil.IS_WINDOWS?
+                                    Constants.ROOTPATH + monitorClass + "\\" + monitorName + "\\" + date:
+                                    Constants.ROOTPATH + monitorClass + "/" + monitorName + "/" + date;
+
+                            String filePath = documentPath + Constants.CONDITIONDATA;
+                            File document = new File(documentPath);
+                            if(!document.exists()){
+                                document.mkdirs();
+                            }
+                            File file = new File(filePath);
+
+                            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file,true));
+                            out.write((data.toJSONString()+"\n").getBytes());
+                            out.flush();
+                            out.close();
+
+
+                            //报警服务
+                            List<AlarmSettingsEntity> allAlarmSettings = hJ212ServerHandler.monitorDeviceService.getAllAlarmSettings();
+                            if(allAlarmSettings != null){
+                                JSONObject CPObject = data.getJSONObject("CP");
+
+                                for (AlarmSettingsEntity alarmSettingsEntity : allAlarmSettings){
+                                    for(String key : CPObject.keySet()){
+                                        if(alarmSettingsEntity.getMonitorValue().equals(key)){
+                                            Double value = Double.parseDouble(CPObject.getString(key));
+                                            if( value > alarmSettingsEntity.getLowerLimit() &&
+                                                value < alarmSettingsEntity.getUpperLimit()){
+                                            }else {
+                                                AlarmRecordEntity alarmRecordEntity = new AlarmRecordEntity();
+                                                alarmRecordEntity.setAlarmTime(Timestamp.valueOf(data.getString("DataTime")));
+                                                alarmRecordEntity.setMonitor(monitorName);
+                                                alarmRecordEntity.setMonitorClass(monitorClass);
+                                                alarmRecordEntity.setMonitorValue(key);
+                                                alarmRecordEntity.setMonitorData(value.toString());
+                                                alarmRecordEntity.setMessage(alarmSettingsEntity.getMessage());
+                                                hJ212ServerHandler.monitorDeviceService.insertAlarmRecord(alarmRecordEntity);
+
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+
+                    }
+
+                    }
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    e.printStackTrace();
+                    log.error("HJ212数据接收失败！",e);
+                }
+
+            }
+        }
 
 
     }
@@ -219,7 +227,9 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
         Channel channel = ctx.channel();
 
         System.out.println(ctx.channel());
-        channel.writeAndFlush("010101");
+        SimpleDateFormat DataFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        String date = DataFormat.format(new Date());
+        channel.writeAndFlush("##0087QN="+date+";ST=91;CN=9014;PW=123456;MN=010000A8900016F000169DC0;Flag=4;CP=&&&&2F80\r\n");
     }
 
 

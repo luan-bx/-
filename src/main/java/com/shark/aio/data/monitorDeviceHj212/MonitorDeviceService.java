@@ -146,8 +146,9 @@ public class MonitorDeviceService {
             if(monitorDeviceEntity.getDeviceId() != null){
                 try {
                     monitorDeviceMapping.insert(monitorDeviceEntity);
+                    log.info("新增监测点与设备关联成功！");
                 }catch (DataIntegrityViolationException e){
-                    log.error("pollutionMonitor:新增关联失败！",e);
+                    log.error("pollutionMonitor:新增监测点与设备关联失败！",e);
                     return "设备不能和已有的重复！";
                 }
                 return "新增设备成功！";
@@ -167,27 +168,30 @@ public class MonitorDeviceService {
             }
             try {
                 monitorDeviceMapping.insertMonitor(newMonitorName);
+                log.info("新增监测类型成功！");
                 return "新增监测类型成功！";
             }catch (Exception e){
-                log.error("AlarmService/addAlarmSetting:新增监测类型失败！",e);
+                log.error("新增监测类型失败！",e);
                 return "新增监测类型失败！";
             }
         }
         if (deleteDeviceId !=null){
             try {
                 monitorDeviceMapping.deleteDeviceId(deleteDeviceId);
+                log.info("删除设备ID成功！");
                 return "删除设备ID成功！";
             }catch (Exception e){
-                log.error("AlarmService/addAlarmSetting:新增监测类型失败！",e);
+                log.error("删除设备ID失败！",e);
                 return "删除设备ID失败！";
             }
         }
         if (deleteMonitorName !=null){
             try {
                 monitorDeviceMapping.deleteMonitorName(deleteMonitorName);
+                log.info("删除监测点成功！");
                 return "删除监测点成功！";
             }catch (Exception e){
-                log.error("AlarmService/addAlarmSetting:新增监测类型失败！",e);
+                log.error("删除监测点失败！",e);
                 return "删除监测点失败！";
             }
         }

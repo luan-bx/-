@@ -22,19 +22,34 @@ public class AuthorityController {
 
     @RequestMapping("/authorityManagement")
     public String authority(HttpServletRequest req){
-        AuthorityEntity park = authorityMapping.getPark();
-        AuthorityEntity free = authorityMapping.getFree();
-        AuthorityEntity company = authorityMapping.getCompany();
-        req.setAttribute("park", park);
-        req.setAttribute("free", free);
-        req.setAttribute("company", company);
-        return "authorityManagement";
+        try{
+            AuthorityEntity park = authorityMapping.getPark();
+            AuthorityEntity free = authorityMapping.getFree();
+            AuthorityEntity company = authorityMapping.getCompany();
+            req.setAttribute("park", park);
+            req.setAttribute("free", free);
+            req.setAttribute("company", company);
+            log.info("进入权限管理页面成功！");
+            return "authorityManagement";
+        }catch (Exception e){
+            req.setAttribute("msg", "进入权限管理页面失败！");
+            log.error("进入权限管理页面失败！",e);
+            return "index";
+        }
+
     }
     @RequestMapping("/authorityUpdate")
     public String authorityUpdate(HttpServletRequest req, AuthorityEntity object){
-        System.out.println(object);
-        authorityMapping.updateAuthority(object );
-        return authority(req);
+        try {
+            authorityMapping.updateAuthority(object );
+            log.info("修改权限管理成功！");
+            return authority(req);
+        }catch (Exception e){
+            req.setAttribute("msg", "修改权限管理失败！");
+            log.error("修改权限管理失败！",e);
+            return "index";
+        }
+
     }
 
 }

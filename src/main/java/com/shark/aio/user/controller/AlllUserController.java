@@ -39,15 +39,17 @@ public class AlllUserController {
     @RequestMapping("/allUserEntity")
     public String allUserEntity(HttpServletRequest req) {
         List<UserEntity> allUser = allUserService.getAllUser();
-        if (allUser.equals(null)) {
-            log.info("BackSysController/allUserEntity, 进入全部用户修改表失败");
+        List<PostEntity> allPost = userService.getAllPost();
+        if (allUser == null | null == allPost ) {
+            log.error("BackSysController/allUserEntity, 进入全部用户修改表失败");
             req.setAttribute(Constants.ERROR, "进入全部用户修改表失败");
             return "allUser";
         }
         // 将注册页面的部门、岗位两个选项的下拉框动态给前端
-        List<PostEntity> allPost = userService.getAllPost();
-        req.setAttribute(Constants.POST, allPost);
+
+        req.setAttribute(Constants.ALLPOST, allPost);
         req.setAttribute(Constants.ALLUSER, allUser);
+        log.info("进入全部用户页面成功");
         return "allUser";
     }
 
@@ -63,12 +65,13 @@ public class AlllUserController {
 
         String updataOneUserEntity = allUserService.updataOneUserEntity(userEntity, originUserName);
         if (updataOneUserEntity.equals(Constants.FAILCODE)) {
-            log.info("BackSysController/updataOneUserEntity, 提交用户修改表失败");
-            req.setAttribute(Constants.ERROR, "提交用户修改表失败");
+            log.error("updataOneUserEntity, 提交用户修改表失败！");
+            req.setAttribute(Constants.ERROR, "提交用户修改表失败！");
             return allUserEntity( req);
         }
         req.setAttribute(Constants.POSTID, postId);
         req.setAttribute("msg", "修改成功");
+        log.info("提交用户修改表成功！");
         return allUserEntity( req);
     }
 
@@ -95,13 +98,13 @@ public class AlllUserController {
 
         String deleteUser = allUserService.deleteUser(userName);
         if (deleteUser.equals(Constants.FAILCODE)) {
-            log.info("BackSysController/deleteUser, 用户删除失败");
+            log.error(" deleteUser, 用户" + userName + "删除失败");
             req.setAttribute(Constants.ERROR, "用户删除失败");
             return allUserEntity(req);
         }
-        log.info("BackSysController/deleteUser, 用户删除成功");
+        log.info("用户" + userName + "删除成功");
         req.setAttribute(Constants.POSTID, postId);
-        req.setAttribute("msg", "删除用户成功");
+        req.setAttribute("msg", "用户" + userName + "删除成功");
         return allUserEntity(req);
     }
 }

@@ -4,25 +4,19 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.data.conditionData.service.ConditionService;
 import com.shark.aio.util.Constants;
-import com.shark.aio.util.DateUtil;
-import com.shark.aio.util.ObjectUtil;
 import com.shark.aio.util.ProcessUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -104,18 +98,7 @@ public class ConditionController {
 		
 		}
 
-	/**
-	 * 跳转到新增xxx页面
-	 * @param request request
-	 * @return 新增xxx页面
-	 */
-	@GetMapping("/condition/add")
-	public String toAddConditionPage(HttpServletRequest request){
-		if (!conditionService.searchMonitor(request)){
-			return "500";
-		}
-		return Constants.ADDPOLLUTION;
-	}
+
 
 
 	/**
@@ -155,39 +138,39 @@ public class ConditionController {
 //		return "conditionMonitor";
 //	}
 
-	/**
-	 * 跳转到工况历史页面
-	 * GET对应侧边栏
-	 * POST对应页面中的条件查询
-	 * @param request request
-	 * @param pageNum 分页插件：当前页码
-	 * @param pageSize 分页插件：每页大小
-	 * @return
-	 */
-	@RequestMapping(value = {"/conditionOnline","/conditionOnline/{pageNum}/{pageSize}"})
-	public String toConditionOnlinePage(HttpServletRequest request,
-									 @PathVariable(required = false) Integer pageNum,
-									 @PathVariable(required = false) Integer pageSize
-	){
-		//条件查询的HashMap，若没有条件查询默认为null
-		HashMap<String,String> features = null;
-		//条件查询是POST方法，此处判断POST
-		if (request.getMethod().equals("POST")){
-			//获取查询条件，并放置到HashMap中
-			features = new HashMap<>();
-			String date = request.getParameter("date");
-			try {
-				//开始结束时间转化为时间戳
-				if (!ObjectUtil.isEmptyString(date)) features.put("date", DateUtil.toTimestamp(date));
-			}catch (ParseException e){
-				log.error("转化为时间戳失败！",e);
-			}
-			request.setAttribute("date", date);
-			request.setAttribute("class","conditionOnline");
-			request.setAttribute("online","对象");
-		}
-		return "conditionMonitor";
-	}
+//	/**
+//	 * 跳转到工况历史页面
+//	 * GET对应侧边栏
+//	 * POST对应页面中的条件查询
+//	 * @param request request
+//	 * @param pageNum 分页插件：当前页码
+//	 * @param pageSize 分页插件：每页大小
+//	 * @return
+//	 */
+//	@RequestMapping(value = {"/conditionOnline","/conditionOnline/{pageNum}/{pageSize}"})
+//	public String toConditionOnlinePage(HttpServletRequest request,
+//									 @PathVariable(required = false) Integer pageNum,
+//									 @PathVariable(required = false) Integer pageSize
+//	){
+//		//条件查询的HashMap，若没有条件查询默认为null
+//		HashMap<String,String> features = null;
+//		//条件查询是POST方法，此处判断POST
+//		if (request.getMethod().equals("POST")){
+//			//获取查询条件，并放置到HashMap中
+//			features = new HashMap<>();
+//			String date = request.getParameter("date");
+//			try {
+//				//开始结束时间转化为时间戳
+//				if (!ObjectUtil.isEmptyString(date)) features.put("date", DateUtil.toTimestamp(date));
+//			}catch (ParseException e){
+//				log.error("转化为时间戳失败！",e);
+//			}
+//			request.setAttribute("date", date);
+//			request.setAttribute("class","conditionOnline");
+//			request.setAttribute("online","对象");
+//		}
+//		return "conditionMonitor";
+//	}
 
 	@RequestMapping("/conditionMonitor")
 	public String conditionMonitorWeb(HttpServletRequest request) {
@@ -204,23 +187,30 @@ public class ConditionController {
 			}
 			request.setAttribute("allMonitors", fileList);
 		}
+		log.info("进入工况监测页面成功！");
 		return "conditionMonitor";
 	}
 
 	@RequestMapping("returnConditionFileList")
 	@ResponseBody
 	public String[] returnConditionFileList(String monitorName){
-		File conditionDir = new File(Constants.CONDITIONPATH+monitorName);
-		File[] files = conditionDir.listFiles();
-		if(files == null){
-			return null;
-		}else {
-			String[] fileList = new String[files.length];
-			for (int i = 0; i < files.length; i++) {
-				fileList[i] = files[i].getName();
+		try{
+			File conditionDir = new File(Constants.CONDITIONPATH+monitorName);
+			File[] files = conditionDir.listFiles();
+			if(files == null){
+				return null;
+			}else {
+				String[] fileList = new String[files.length];
+				for (int i = 0; i < files.length; i++) {
+					fileList[i] = files[i].getName();
+				}
+				return fileList;
 			}
-			return fileList;
+		}catch (Exception e){
+			log.error("数据文件查询失败！");
+			return null;
 		}
+
 	}
 
 

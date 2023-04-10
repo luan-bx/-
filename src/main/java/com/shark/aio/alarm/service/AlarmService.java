@@ -69,10 +69,13 @@ public class AlarmService {
             if (alarmSettingsEntity.getUpperLimit()<= alarmSettingsEntity.getLowerLimit()) return "上限阈值须大于下限阈值！";
            try {
                alarmMapping.insertAlarmEntity(alarmSettingsEntity);
+               log.info("新增预警设置提交成功！");
            }catch (DataIntegrityViolationException e){
-                log.error("AlarmService/addAlarmSetting:新增预警设置失败！",e);
+                log.info("新增预警设置提交失败！");
+                log.error("新增预警设置提交失败！",e);
                 return "监测值不能和已有的重复！";
            }
+
            return "新增预警设置成功！";
         }
 
@@ -87,11 +90,13 @@ public class AlarmService {
                 }
             }
             try {
+                log.info("新增监测类型提交成功！");
                 alarmMapping.insertMonitorClass(newMonitorClass);
                 return "新增监测类型成功！";
             }catch (Exception e){
-                log.error("AlarmService/addAlarmSetting:新增监测类型失败！",e);
-                return "新增监测类型失败！";
+                log.info("新增监测类型提交失败！");
+                log.error("新增监测类型提交失败！",e);
+                return "新增监测类型提交失败！";
             }
         }
 
@@ -106,9 +111,11 @@ public class AlarmService {
             }
             try {
                 alarmMapping.insertPollution(newPollution);
-                return "新增污染物成功！";
+                log.info("新增污染物提交成功！");
+                return "新增污染物提交成功！";
             }catch (Exception e){
-                log.error("AlarmService/addAlarmSetting:新增污染物失败！",e);
+                log.info("新增污染物提交成功！");
+                log.error("新增污染物提交失败！",e);
                 return "新增污染物失败！";
             }
         }
@@ -123,10 +130,12 @@ public class AlarmService {
     public String deleteAlarmSettingById(int id){
         try {
             alarmMapping.deleteAlarmSettingById(id);
-            return "删除成功！";
+            log.info("删除预警设置成功!");
+            return "删除预警设置成功！";
         }catch (Exception e){
-            log.error("AlarmService/deleteAlarmSettingById:删除失败!",e);
-            return "删除失败";
+            log.info("删除预警设置失败!" );
+            log.error("删除预警设置失败!",e);
+            return "删除预警设置失败";
         }
     }
 
@@ -140,11 +149,13 @@ public class AlarmService {
         if (alarmMapping.getMonitorValue(alarmSettingsEntity.getMonitorValue())!=null) return "监测值和已有监测值重复！";
         try {
             alarmMapping.updateAlarmSetting(alarmSettingsEntity);
+            log.info("预警设置成功!" );
             return "修改成功！";
 
         }catch (Exception e){
-            log.error("AlarmService/editAlarmSetting:修改失败！",e);
-            return "修改失败！";
+            log.info("预警设置失败！");
+            log.error("预警设置失败！",e);
+            return "预警设置失败！";
         }
     }
 
@@ -157,7 +168,7 @@ public class AlarmService {
             List<String> allMonitorClass = alarmMapping.getAllMonitorClass();
             return allMonitorClass;
         }catch (Exception e){
-            log.error("AlarmService/getAllMonitorClass:获取全部监测类型失败！",e);
+            log.error("获取全部监测类型失败！",e);
             return null;
         }
     }
@@ -171,7 +182,7 @@ public class AlarmService {
             List<String> allPollutionName = alarmMapping.getAllPollutionName();
             return allPollutionName;
         }catch (Exception e){
-            log.error("AlarmService/getAllMonitorClass:获取全部污染物名称失败！",e);
+            log.error("获取全部污染物名称失败！",e);
             return null;
         }
     }
@@ -186,8 +197,10 @@ public class AlarmService {
         List<String> allMonitorClass = getAllMonitorClass();
         List<String> allPollutionName = getAllPollutionName();
         if (allPollutionName==null || allMonitorClass==null){
+            log.error("获取全部监测类型和污染物名称失败！");
             return false;
         }
+        log.error("获取全部监测类型和污染物名称成功！");
         request.setAttribute(Constants.ALLMONITORCLASS, allMonitorClass);
         request.setAttribute(Constants.ALLPOLLUTIONNAME, allPollutionName);
         return true;
@@ -215,7 +228,7 @@ public class AlarmService {
 //
 //            }
         }catch (Exception e){
-            log.error("AlarmService/getAllAlarmRecords:获取报警记录失败！",e);
+            log.error("获取报警记录失败！",e);
         }
         return new PageInfo<>(allAlarmRecords, 5);
     }

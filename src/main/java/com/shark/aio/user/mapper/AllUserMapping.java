@@ -33,8 +33,8 @@ public interface AllUserMapping {
     /*
      * 更新用户信息
      */
-    @Update("UPDATE `user` SET `phone`=#{user.phone}, `email`=#{user.email} ,`number`=#{user.number}, "
-            + " `post_name`=#{user.postName}"+ "WHERE `user_name`=#{originUserName};")
+    @Update("UPDATE `user` SET `phone`=#{user.phone}, `email`=#{user.email} ,`number`=#{user.number}, " +
+            "`post_id`=#{user.postId} ,`post_name`=#{user.postName}"+ "WHERE `user_name`=#{originUserName};")
     void updateUserById(@Param("user") UserEntity userEntity,@Param("originUserName") String originUserName);
 
 
@@ -43,4 +43,7 @@ public interface AllUserMapping {
 
     @Select("select * from `user` where `user_name`=#{userName}")
     public UserEntity queryUserByUserName(String userName);
+
+    @Select("select number from `post` where `name`=#{name}")
+    public int queryNumberBypostName(String name);
 }
