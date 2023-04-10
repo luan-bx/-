@@ -3,7 +3,9 @@ package com.shark.aio.data.video.face.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.base.annotation.Description;
 import com.shark.aio.base.controller.InitFFmpeg;
+import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
@@ -43,7 +45,7 @@ public class FaceController {
 //		filePath = "C:\\Users\\dell\\Desktop\\1.png";
 		FaceRecordsEntity faceRecord = null;
 		DataOutputStream out = null;
-		VideoRecorderService videoRecorderService = InitFFmpeg.map.get(video.getMonitorName());
+		VideoRecorderService videoRecorderService = VideoConfiguration.getBean(VideoRecorderService.class, video.getMonitorName());
 		final String newLine = "\r\n";
 		final String prefix = "--";
 		try {
@@ -122,6 +124,7 @@ public class FaceController {
 					out2.write(b);
 					out2.flush();
 					out2.close();
+					log.info("有人，图片已存");
 
 
 				} catch (IOException e) {
@@ -131,6 +134,7 @@ public class FaceController {
 				//录制视频
 				videoRecorderService.setStatus(true);
 				if (!videoRecorderService.isRecording()){
+					log.info("开始录制...");
 					videoRecorderService.startRecordVideo(video);
 				}
 			}else {
@@ -140,7 +144,7 @@ public class FaceController {
 
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("发送POST请求出现异常！",e);
 		}
 		//删除照片文件
 		return faceRecord;
@@ -154,13 +158,13 @@ public class FaceController {
 	 * @return 页面
 	 */
 	@RequestMapping("/videoMonitor")
+	@Description("跳转到摄像头列表页面")
 	public String toVideoPage(HttpServletRequest request,
 							 String feature){
 		List<VideoEntity> videos = videoService.selectAllVideos(feature);
 
 		request.setAttribute("class","video");
 		request.setAttribute("allVideos",videos);
-		log.info("进入视频监测页面成功！");
 		return "video";
 	}
 

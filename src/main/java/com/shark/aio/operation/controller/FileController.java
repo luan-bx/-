@@ -161,4 +161,14 @@ public class FileController {
         log.info("进入文件管理成功！");
         return "fileManagement";
     }
+
+    @RequestMapping("/logManagement")
+    public String logManagementWeb(HttpServletRequest request) throws IOException {
+        DecimalFormat decimalFormat = new DecimalFormat("###0.00");
+        List<AIOFile> logsFileList = new ArrayList<>();
+        double logsTotalSize = getAllFileInformationInDir(new File(logsDir), logsFileList) / (1024.0 * 1024.0);
+        request.setAttribute("logsTotalSize", decimalFormat.format(logsTotalSize));
+        request.setAttribute("logsFileList", logsFileList);
+        return "logManagement";
+    }
 }

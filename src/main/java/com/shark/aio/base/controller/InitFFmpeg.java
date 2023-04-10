@@ -1,5 +1,6 @@
 package com.shark.aio.base.controller;
 
+import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
@@ -17,7 +18,9 @@ import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -31,8 +34,6 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     private VideoMapping videoMapping;
 
-    public static HashMap<String, VideoRecorderService> map = new HashMap<>();
-
 
     @Resource(name="threadPoolTaskExecutor")
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
@@ -40,11 +41,14 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         List<VideoEntity> videos = videoMapping.selectAllVideos();
-        //初始化map
+
 
         for (VideoEntity video : videos){
-            //初始化map
-            map.put(video.getMonitorName(),new VideoRecorderService());
+
+            //在ioc容器中注册bean
+            VideoConfiguration.registerBean(VideoRecorderService.class, video.getMonitorName());
+
+
             //这里是jar包启动就会自动推流
             try {
                 ProcessUtil.videoPreview(video.getRtsp(),video.getStream());
@@ -81,14 +85,14 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
                         e.printStackTrace();
                     }
                 }
-                CarRecordsEntity carResult = LicenseController.callLicenseAI(file);
+                /*CarRecordsEntity carResult = LicenseController.callLicenseAI(file);
                 if (carResult!=null){
                     try {
                         videoMapping.insertCarRecord(carResult);
                     }catch (java.lang.Exception e){
                         e.printStackTrace();
                     }
-                }
+                }*/
 //                System.out.println("算法识别" + file.getName());
             }
 

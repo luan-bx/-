@@ -1,12 +1,14 @@
 package com.shark.aio.base.controller;
 
 import com.shark.aio.user.entity.UserEntity;
+import com.shark.aio.data.video.service.VideoRecorderService;
 import com.shark.aio.user.mapper.UserMapping;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
