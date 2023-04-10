@@ -57,7 +57,7 @@ public class UserController {
 			}
 			return "手机号不正确，请检查您输入的手机号。";
 		} catch (Exception e) {
-			log.info("发送验证码失败",e);
+			log.error("发送验证码失败",e);
 			
 		}
 		return "发送验证码失败";
@@ -70,7 +70,7 @@ public class UserController {
 	public String signup(UserEntity userEntity, String code, HttpSession session, 
 			@RequestParam(value = "file", required = false) List<MultipartFile> file, HttpServletRequest req) {
 
-		userEntity.setPostId(16);
+		userEntity.setPostId(5);
 		userEntity.setPostName("待管理员审核");
 		//20220908-thg,注册自动设置部门和邮箱
 //		userEntity.setDepartmentId(5);
@@ -83,7 +83,7 @@ public class UserController {
 			
 			String addResult = userService.addUser(userEntity, file, req);
 			if (addResult.equals(Constants.FAILCODE)) {
-				log.info("注册失败");
+				log.error(userEntity.getUserName() +"注册失败!");
 //				return Constants.SIGNUP;
 				return "redirect:/regist"; //qh 20220412
 			}
@@ -92,11 +92,11 @@ public class UserController {
 			return Constants.LOGIN;// 注册成功返回登录页面
 		} else if (isNewUser.equals(Constants.ERROR)) {
 			// 查询失败
-			log.info("UserController/signup, 用户信息查询失败");
+			log.error("UserController/signup, 用户信息查询失败!");
 			return Constants.ERROR;
 		} else {
 			// 查询存在的,返回已经注册过
-			log.info("已经注册过，请返回登录");
+			log.info(userEntity.getUserName() +"已经注册过，请返回登录!");
 			return Constants.LOGIN;
 		}
 	}
@@ -110,7 +110,7 @@ public class UserController {
 		String login = userService.login(userEntity, req, response);
 		if (login.equals(Constants.SUCCESSCODE)) {
 			// 登录成功
-			log.info("UserController/Login, 用户登录成功");
+			log.info("用户" + userEntity.getUserName() + "登录成功");
 			//判断权限
 			String userName = userEntity.getUserName();
 			UserEntity user = userMapping.queryUserByUserName(userName);
@@ -122,13 +122,13 @@ public class UserController {
 		} else if (login.equals(Constants.ERROR)) {
 			// 登录失败
 			req.setAttribute(Constants.INFORMATION, Constants.LOGINERROE);
-			log.info("UserController/Login, 用户登录失败");
+			log.error("用户" + userEntity.getUserName() + "登录失败");
 			// 返回登录页面，缓存刚才登录的账户
 			req.setAttribute(Constants.USERNAME, userEntity.getUserName());
 			return Constants.LOGIN;// 用户名或密码错误
 		} else {
 			// 请先注册
-			log.info("账号不存在，请先注册");
+			log.error("账号不存在，请先注册");
 			req.setAttribute(Constants.INFORMATION, Constants.SIGNFIRST);
 			return Constants.LOGIN;// 需要注册
 		}
@@ -144,6 +144,7 @@ public class UserController {
 	//		List<PostEntity> allPost = userService.getAllPost();
 //		req.setAttribute(Constants.DEPARTMENT, allDepart);
 //		req.setAttribute(Constants.POST, allPost);
+		log.error("进入注册页面");
 		return Constants.SIGNUP;
 	}
 	

@@ -30,18 +30,18 @@ public class DiskCapacityController {
     @RequestMapping("/diskCapacityManagement")
     public String diskCapacityManagement(HttpServletRequest req, HttpServletResponse reps) throws IOException {
 
+        try{
+            OperatingSystemMXBean mem = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+            // 获取内存总容量
+            long totalMemorySize = mem.getTotalPhysicalMemorySize();
+            // 获取可用内存容量(剩余物理内存）
+            long freeMemorySize = mem.getFreePhysicalMemorySize();
 
-        OperatingSystemMXBean mem = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        // 获取内存总容量
-        long totalMemorySize = mem.getTotalPhysicalMemorySize();
-        // 获取可用内存容量(剩余物理内存）
-        long freeMemorySize = mem.getFreePhysicalMemorySize();
+            float usedRAMRate = (float) (((totalMemorySize - freeMemorySize) * 1.0 / totalMemorySize) * 100);
 
-        float usedRAMRate = (float) (((totalMemorySize - freeMemorySize) * 1.0 / totalMemorySize) * 100);
-
-        DecimalFormat df = new DecimalFormat("#0.00");
+            DecimalFormat df = new DecimalFormat("#0.00");
 //        File[] disks = File.listRoots();
-        File disks = new File(ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data":"/home/user");
+            File disks = new File(ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data":"/home/user");
             //获取总容量
             long totalSpace = disks.getTotalSpace();
             // 获取剩余容量
@@ -51,15 +51,21 @@ public class DiskCapacityController {
             // 获取使用率
             float useRate = (float) ((usedSpace * 1.0 / totalSpace) * 100);
 
-        boolean isConnect = isConnect("www.baidu.com");
-        System.out.println("网络状态" + isConnect);
-        DiskCapacityEntity diskCapacity = new DiskCapacityEntity();
-        diskCapacity.setTotalMemorySize(transformation(totalMemorySize));
-        diskCapacity.setTotalSpace(transformation(totalSpace));
-        diskCapacity.setConnect(isConnect);
-        diskCapacity.setUsedRAMRate(df.format(usedRAMRate) + "%");
-        diskCapacity.setUseRate(df.format(useRate) + "%");
-        req.setAttribute("diskCapacity", diskCapacity);
+            boolean isConnect = isConnect("www.baidu.com");
+            System.out.println("网络状态" + isConnect);
+            DiskCapacityEntity diskCapacity = new DiskCapacityEntity();
+            diskCapacity.setTotalMemorySize(transformation(totalMemorySize));
+            diskCapacity.setTotalSpace(transformation(totalSpace));
+            diskCapacity.setConnect(isConnect);
+            diskCapacity.setUsedRAMRate(df.format(usedRAMRate) + "%");
+            diskCapacity.setUseRate(df.format(useRate) + "%");
+            req.setAttribute("diskCapacity", diskCapacity);
+            log.info("进入磁盘管理页面成功！");
+        }catch (Exception e){
+            log.error("进入磁盘管理页面失败！",e);
+        }
+
+
         return "diskCapacityManagement";
     }
 

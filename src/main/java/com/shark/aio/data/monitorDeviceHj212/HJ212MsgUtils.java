@@ -88,7 +88,6 @@ public class HJ212MsgUtils {
             }
             return data;
         }
-        System.out.println("请检查连接");
         return null;
     }
 
@@ -98,98 +97,98 @@ public class HJ212MsgUtils {
     private static String[] setChineseField(String data) {
         String key = data.substring(0, data.indexOf("\""));
         data = data.replaceAll(key + "\":\"", "").replaceAll("\":\"", "");
-//        double OC = Double.parseDouble(data);
-//        switch (key) {
-//            case "i12001-Info":
-//                switch (OC) {
-//                    case 0:
-//                        data = "运行";
-//                        break;
-//                    case 1:
-//                        data = "维护";
-//                        break;
-//                    case 2:
-//                        data = "故障";
-//                        break;
-//                    case 3:
-//                        data = "校准";
-//                        break;
-//                    case 4:
-//                        data = "运行";
-//                        break;
-//                    case 5:
-//                        data = "反吹";
-//                        break;
-//                    case 6:
-//                        data = "电源故障";
-//                        break;
-//                    case 7:
-//                        data = "测量";
-//                        break;
-//                    case 8:
-//                        data = "标定";
-//                        break;
-//                    case 9:
-//                        data = "待机";
-//                        break;
-//                    case 10:
-//                        data = "运维";
-//                        break;
-//                }
-//                break;
-//            case "i12002-Info":
-//                switch (OC) {
-//                    case 0:
-//                        data = "0";
-//                        break;
-//                    case 1:
-//                        data = "0";
-//                        break;
-//                }
-//                break;
-//            case "i12003-Info":
-//                switch (OC) {
-//                    case 0:
-//                        data = "正常";
-//                        break;
-//                    case 1:
-//                        data = "报警";
-//                        break;
-//                }
-//                break;
-//            case "i22001-Info":
-//                switch (OC) {
-//                    case 0:
-//                        data = "运行";
-//                        break;
-//                    case 1:
-//                        data = "停机";
-//                        break;
-//                    case 2:
-//                        data = "故障";
-//                        break;
-//                    case 3:
-//                        data = "维护";
-//                        break;
-//                }
-//                break;
-//            case "i32001-Info":
-//                switch (OC) {
-//                    case 0:
-//                        data = "运行";
-//                        break;
-//                    case 1:
-//                        data = "停机";
-//                        break;
-//                    case 2:
-//                        data = "故障";
-//                        break;
-//                    case 3:
-//                        data = "维护";
-//                        break;
-//                }
-//                break;
-//        }
+        int OC = Integer.parseInt(data);
+        switch (key) {
+            case "i12001-Info":
+                switch (OC) {
+                    case 0:
+                        data = "运行";
+                        break;
+                    case 1:
+                        data = "维护";
+                        break;
+                    case 2:
+                        data = "故障";
+                        break;
+                    case 3:
+                        data = "校准";
+                        break;
+                    case 4:
+                        data = "运行";
+                        break;
+                    case 5:
+                        data = "反吹";
+                        break;
+                    case 6:
+                        data = "电源故障";
+                        break;
+                    case 7:
+                        data = "测量";
+                        break;
+                    case 8:
+                        data = "标定";
+                        break;
+                    case 9:
+                        data = "待机";
+                        break;
+                    case 10:
+                        data = "运维";
+                        break;
+                }
+                break;
+            case "i12002-Info":
+                switch (OC) {
+                    case 0:
+                        data = "0";
+                        break;
+                    case 1:
+                        data = "0";
+                        break;
+                }
+                break;
+            case "i12003-Info":
+                switch (OC) {
+                    case 0:
+                        data = "正常";
+                        break;
+                    case 1:
+                        data = "报警";
+                        break;
+                }
+                break;
+            case "i22001-Info":
+                switch (OC) {
+                    case 0:
+                        data = "运行";
+                        break;
+                    case 1:
+                        data = "停机";
+                        break;
+                    case 2:
+                        data = "故障";
+                        break;
+                    case 3:
+                        data = "维护";
+                        break;
+                }
+                break;
+            case "i32001-Info":
+                switch (OC) {
+                    case 0:
+                        data = "运行";
+                        break;
+                    case 1:
+                        data = "停机";
+                        break;
+                    case 2:
+                        data = "故障";
+                        break;
+                    case 3:
+                        data = "维护";
+                        break;
+                }
+                break;
+        }
         String[] result = new String[2];
         result[0] = key;
         result[1] = data;
@@ -314,7 +313,7 @@ public class HJ212MsgUtils {
             }
             return CRCCheck;
         }catch(Exception e) {
-            System.out.println(e);
+            log.error("CRC校验失败！",e);
             return "error";
         }
 

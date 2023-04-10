@@ -43,11 +43,15 @@ public class AlarmController {
         PageInfo<AlarmSettingsEntity> alarmSettings = alarmService.getAlarmSettingsByPage(pageNum, pageSize, feature);
 
         if(alarmSettings == null){
+            log.info("进入预警设置页面失败！");
+            log.error("进入预警设置页面失败！");
             return "500";
         }else {
+            log.info("进入预警设置页面成功！");
             request.setAttribute("allSettings",alarmSettings);
             return Constants.ALARMSETTINGS;
         }
+
     }
 
     /**
@@ -58,7 +62,11 @@ public class AlarmController {
     @GetMapping("/settings/add")
     public String toAddAlarmSettingPage(HttpServletRequest request){
         if (!alarmService.setAttributeBYMonitorAndPollution(request)){
+            log.info("进入新增预警设置页面失败！");
+            log.error("进入新增预警设置页面失败！");
             return "500";
+        }else {
+            log.info("进入新增预警设置页面成功！");
         }
         return Constants.ADDALARMSETTING;
     }
@@ -175,9 +183,12 @@ public class AlarmController {
         //查询数据库
         PageInfo<AlarmRecordEntity> allAlarmRecords = alarmService.getAlarmRecordsByPage(pageNum, pageSize, features);
         if(allAlarmRecords == null) {
+            log.info("报警记录页面成功！" );
             return "500";
         }
         if (!alarmService.setAttributeBYMonitorAndPollution(request)){
+            log.info("报警记录页面失败！" );
+            log.error("报警记录页面失败！");
             return "500";
         }
         request.setAttribute("records", allAlarmRecords);

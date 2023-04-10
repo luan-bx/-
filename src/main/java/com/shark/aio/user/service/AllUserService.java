@@ -17,7 +17,6 @@ import java.util.List;
  **/
 @Slf4j
 @Service
-
 //扫不到这个mapping，换个文件目录就可以，也可以加这一条指向哪个目录
 @MapperScan(value = "com.shark.aio.user.mapper")
 public class AllUserService {
@@ -35,11 +34,10 @@ public class AllUserService {
     public List<UserEntity> getAllUser() {
         try {
             List<UserEntity> allUser = allUserMapping.getAll();
-            log.info("BackSysService/getAllUser, 获取全部用户信息成功");
             return allUser;
         } catch (Exception e) {
             // TODO: handle exception
-            log.info("BackSysService/getAllUser, 获取全部用户信息失败, ", e);
+            log.error("BackSysService/getAllUser, 获取全部用户信息失败, ", e);
             return null;
         }
     }
@@ -50,12 +48,11 @@ public class AllUserService {
     public String getNewUser(HttpServletRequest req){
         try {
             List<UserEntity> newUser = allUserMapping.getNew();
-            log.info("BackSysService/getNewUser, 获取新用户信息成功");
             req.setAttribute("newUser", newUser);
             return Constants.SUCCESSCODE;
         }catch (Exception e) {
             // TODO: handle exception
-            log.info("BackSysService/getNewUser, 获取新用户信息失败",e);
+            log.error("BackSysService/getNewUser, 获取新用户信息失败",e);
             return Constants.FAILCODE;
         }
     }
@@ -69,11 +66,12 @@ public class AllUserService {
             return Constants.FAILCODE;
         }
         try {
+            userEntity.setPostId(allUserMapping.queryNumberBypostName(userEntity.getPostName()));
             // 修改一条用户记录
             allUserMapping.updateUserById( userEntity, originUserName);;
             return Constants.SUCCESSCODE;
         } catch (Exception e) {
-            log.info("BackSysService/updataOneUserEntity, 修改一条用户记录失败, ", e);
+            log.error("BackSysService/updataOneUserEntity, 修改一条用户记录失败, ", e);
             return Constants.FAILCODE;
         }
     }

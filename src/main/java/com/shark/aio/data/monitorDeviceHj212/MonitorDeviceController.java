@@ -26,8 +26,9 @@ public class MonitorDeviceController {
     @GetMapping("/pollution/add")
     public String toAddPollutionPage(HttpServletRequest request){
         if (!monitorDeviceService.searchMonitor(request)){
+            log.error("进入新增污染源页面失败！");
             return "500";
-        }
+        }else  log.info("进入新增污染源页面成功！");
         return Constants.ADDPOLLUTION;
     }
 

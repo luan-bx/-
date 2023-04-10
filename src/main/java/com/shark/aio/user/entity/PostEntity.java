@@ -21,7 +21,7 @@ public class PostEntity {
 	 */
 	private int id;
 	private String name;
-//	private String number;
+	private String number;
 	private Timestamp created;
 	private Timestamp updated;
 }

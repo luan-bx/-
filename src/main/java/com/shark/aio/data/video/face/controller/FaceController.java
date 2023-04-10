@@ -175,6 +175,7 @@ public class FaceController {
 		PageInfo<FaceRecordsEntity> faceRecords = videoService.selectFaceRecordsByPage(pageSize,pageNum);
 		request.setAttribute("class","face");
 		request.setAttribute("faceRecords",faceRecords);
+		log.info("进入人员识别结果页面成功！");
 		return "video";
 	}
 
@@ -186,11 +187,13 @@ public class FaceController {
 		PageInfo<CarRecordsEntity> carRecords = videoService.selectCarRecordsByPage(pageSize,pageNum);
 		request.setAttribute("class","car");
 		request.setAttribute("carRecords",carRecords);
+		log.info("进入车牌识别结果页面成功！");
 		return "video";
 	}
 
 	@GetMapping("/addVideo")
 	public String toAddVideoPage(){
+		log.info("进入添加摄像头页面成功！");
 		return "addVideo";
 	}
 
@@ -204,16 +207,19 @@ public class FaceController {
 						   HttpServletRequest request) throws InterruptedException {
 		if (ObjectUtil.isEmptyString(port))port="554";
 		String message = ClientDemo.HCIsAvailable(ip,Short.parseShort(port),username,password);
-		log.info(message);
+
 		if (message.contains("成功")){
 			int result = videoService.insertVideo(monitorName,username,password,ip,port,description);
 			if (result>0){
+				log.info("添加摄像头成功！");
 				return toVideoPage(request,null);
 			}else{
+				log.error("添加摄像头失败！");
 				request.setAttribute("error","数据库错误！请检查网络或摄像头信息是否和已有摄像头重复！");
 			}
 		}else{
 
+			log.error("添加摄像头失败！");
 			request.setAttribute("error","连接摄像头失败！请检查ip、端口、用户名、密码是否正确！");
 		}
 		request.setAttribute("ip",ip);
@@ -235,6 +241,7 @@ public class FaceController {
 	public String toVideoPlayPage(String stream, HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
 		request.setAttribute("stream",new String[]{stream});
 //		videoService.addSession(stream);
+		log.error("进入摄像头实时监测页面成功！");
 		return "videoPlay";
 	}
 

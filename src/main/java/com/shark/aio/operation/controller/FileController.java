@@ -26,7 +26,7 @@ public class FileController {
             File file = new File(path);
             //如果文件不存在
             if (!file.exists()) {
-                log.info("下载文件不存在");
+                log.error("下载文件" + fileName + "不存在");
             }
             //解决下载文件时文件名乱码问题
             byte[] fileNameBytes = fileName.getBytes(StandardCharsets.UTF_8);
@@ -54,10 +54,10 @@ public class FileController {
                 bis.close();
                 os.close();
             } catch (IOException e) {
-                log.error("{}", e);
-                log.info("下载失败");
+                log.error("文件" + fileName + "下载失败，{}", e);
+                log.info("文件" + fileName + "下载失败");
             }
-            log.info("下载成功");
+            log.info("文件" + fileName + "下载成功");
         } catch (Exception e) {
             // TODO 自动生成的 catch 块
             e.printStackTrace();
@@ -71,17 +71,17 @@ public class FileController {
         // 如果文件路径只有单个文件
         if (file.exists() && file.isFile()) {
             if (file.delete()) {
-                System.out.println("删除文件" + fileName + "成功！");
+                log.info("删除文件" + fileName + "成功！");
                 request.setAttribute(Constants.MSG, "删除文件" + fileName + "成功！");
                 toFileManagementPage(request);
             } else {
                 request.setAttribute(Constants.MSG, "删除文件" + fileName + "失败！");
-                System.out.println("删除文件" + fileName + "失败！");
+                log.error("删除文件" + fileName + "失败！");
                 toFileManagementPage(request);
             }
         } else {
             request.setAttribute(Constants.MSG, fileName + "不存在！");
-            System.out.println(fileName + "不存在！");
+            log.error(fileName + "不存在！");
 
         }
     } catch (Exception e) {
@@ -97,7 +97,7 @@ public class FileController {
 //    private static final String dataDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\data":"/home/user/AIO/data";
     private static final String dataDir = Constants.ROOTPATH;
     private static final String videoDir = Constants.VIDEOPATH;
-    private static final String logsDir = ProcessUtil.IS_WINDOWS ? "F:\\code\\soft\\AIO\\logs" : "/home/user/AIO/logs";
+    private static final String logsDir = ProcessUtil.IS_WINDOWS ? "D:\\项目\\AIO\\日志\\" : "/home/user/AIO/logs";
 
     private static long getTotalSizeOfFilesInDir(final File file) {
         if (file.isFile())
@@ -158,6 +158,7 @@ public class FileController {
         request.setAttribute("videoFileList", videoFileList);
         request.setAttribute("dataFileList", dataFileList);
         request.setAttribute("logsFileList", logsFileList);
+        log.info("进入文件管理成功！");
         return "fileManagement";
     }
 

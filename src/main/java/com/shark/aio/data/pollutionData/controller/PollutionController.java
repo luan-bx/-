@@ -29,16 +29,16 @@ import java.util.Locale;
 @Slf4j
 public class PollutionController {
 
-	@Autowired
-	private AlarmMapping alarmMapping;
-	/**
-	 * 验证码校验、接收数据
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
+    @Autowired
+    private AlarmMapping alarmMapping;
+    /**
+     * 验证码校验、接收数据
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
 //	@RequestMapping("/receivePollutionData")
 //	@ResponseBody
 //	protected String receivePollutionData(HttpServletRequest request, HttpServletResponse response)
@@ -63,12 +63,14 @@ public class PollutionController {
 //		HttpServletRequest  request = null;
 //		c.getJsonInfo(request);
 //	}
-	/**
-	 * 数据转换json，更换时间格式，写入数据文件
-	 * @param
-	 * @return
-	 */
-	@Test
+
+    /**
+     * 数据转换json，更换时间格式，写入数据文件
+     *
+     * @param
+     * @return
+     */
+    @Test
 //	private JSONObject getJsonInfo(HttpServletRequest request) {
 //		JSONObject json = new JSONObject();
 //		try {
@@ -192,94 +194,100 @@ public class PollutionController {
 //	}
 
 
-	/**
-	 * 前端访问数据文件
-	 * @param filePath
-	 * @param req
-	 * @throws IOException
-	 */
-	@RequestMapping("/returnPollutionData")
-	public void returnPollutionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
+    /**
+     * 前端访问数据文件
+     * @param filePath
+     * @param req
+     * @throws IOException
+     */
+    @RequestMapping("/returnPollutionData")
+    public void returnPollutionData(String monitorName, String dir, HttpServletResponse req) throws IOException {
 
-		if(!"null".equals(monitorName)){
-			FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS?"\\":"/") + dir + (ProcessUtil.IS_WINDOWS?"\\":"/") + Constants.POLLUTIONDATA);
-			InputStreamReader reader = new InputStreamReader(fin,"utf-8");
-			BufferedReader buffReader = new BufferedReader(reader);
-			String strTmp = "";
-			ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
-			ArrayList<String> keyset = new ArrayList<>();
-			keyset.add("DataTime");
-			com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
-			while ((strTmp = buffReader.readLine()) != null) {
-				com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(strTmp);
-				com.alibaba.fastjson.JSONObject dataObj = jsonObject.getJSONObject("CP");
-				dataObj.put("DataTime",jsonObject.getString("DataTime"));
-				data.add(dataObj);
-				for (String key : dataObj.keySet()){
-					if (!keyset.contains(key)){
-						keyset.add(key);
-					}
-				}
-			}
-			result.put("keySet",keyset);
-			result.put("data",data.toArray());
-			String response = result.toJSONString();
-			buffReader.close();
-			req.setContentType("text/html;charset=utf-8");
-			req.getWriter().write(response);
-		}
+        if (!"null".equals(monitorName)) {
+            FileInputStream fin = new FileInputStream(Constants.POLLUTIONPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.POLLUTIONDATA);
+            InputStreamReader reader = new InputStreamReader(fin, "utf-8");
+            BufferedReader buffReader = new BufferedReader(reader);
+            String strTmp = "";
+            ArrayList<com.alibaba.fastjson.JSONObject> data = new ArrayList<>();
+            ArrayList<String> keyset = new ArrayList<>();
+            keyset.add("DataTime");
+            com.alibaba.fastjson.JSONObject result = new com.alibaba.fastjson.JSONObject();
+            while ((strTmp = buffReader.readLine()) != null) {
+                com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(strTmp);
+                com.alibaba.fastjson.JSONObject dataObj = jsonObject.getJSONObject("CP");
+                dataObj.put("DataTime", jsonObject.getString("DataTime"));
+                data.add(dataObj);
+                for (String key : dataObj.keySet()) {
+                    if (!keyset.contains(key)) {
+                        keyset.add(key);
+                    }
+                }
+            }
+            result.put("keySet", keyset);
+            result.put("data", data.toArray());
+            String response = result.toJSONString();
+            buffReader.close();
+            req.setContentType("text/html;charset=utf-8");
+            req.getWriter().write(response);
+        }
 
-	}
+    }
 
 
-	/**
-	 * 时间戳转字符串
-	 * @param timestampString
-	 * @return
-	 */
-	public static String TimeStamp2Date(String timestampString) {
+    /**
+     * 时间戳转字符串
+     *
+     * @param timestampString
+     * @return
+     */
+    public static String TimeStamp2Date(String timestampString) {
 
-		String formats = "yyyy-MM-dd HH:mm:ss";
+        String formats = "yyyy-MM-dd HH:mm:ss";
 
-		Long timestamp = Long.parseLong(timestampString) * 1000;
+        Long timestamp = Long.parseLong(timestampString) * 1000;
 
-		String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
+        String date = new SimpleDateFormat(formats, Locale.CHINA).format(new Date(timestamp));
 
-		return date;
+        return date;
 
-	}
+    }
 
-	@RequestMapping("/pollutionMonitor")
-	public String pollutionMonitorWeb(HttpServletRequest request) {
-		File file = new File(Constants.POLLUTIONPATH);
-		if(!file.exists())file.mkdirs();
-		File[] files = file.listFiles();
-		if(files.length == 0){
-			request.setAttribute(Constants.MSG, "暂无数据");
-			request.setAttribute("allMonitors",null);
-		}else {
-			String[] fileList = new String[files.length];
-			for (int i = 0; i < files.length; i++) {
-				fileList[i] = files[i].getName();
-			}
-			request.setAttribute("allMonitors", fileList);
-		}
-		return "pollutionMonitor";
-	}
+    @RequestMapping("/pollutionMonitor")
+    public String pollutionMonitorWeb(HttpServletRequest request) {
+        File file = new File(Constants.POLLUTIONPATH);
+        if (!file.exists()) file.mkdirs();
+        File[] files = file.listFiles();
+        if (files.length == 0) {
+            request.setAttribute(Constants.MSG, "暂无数据");
+            request.setAttribute("allMonitors", null);
+        } else {
+            String[] fileList = new String[files.length];
+            for (int i = 0; i < files.length; i++) {
+                fileList[i] = files[i].getName();
+            }
+            request.setAttribute("allMonitors", fileList);
+        }
+        return "pollutionMonitor";
+    }
 
-	@RequestMapping("returnPollutionFileList")
-	@ResponseBody
-	public String[] returnConditionFileList(String monitorName){
-		File conditionDir = new File(Constants.POLLUTIONPATH+monitorName);
-		File[] files = conditionDir.listFiles();
-		if(files == null){
-			return null;
-		}else {
-			String[] fileList = new String[files.length];
-			for(int i=0;i<files.length;i++) {
-				fileList[i] = files[i].getName();
-			}
-			return fileList;
-		}
-	}
+    @RequestMapping("returnPollutionFileList")
+    @ResponseBody
+    public String[] returnConditionFileList(String monitorName) {
+        try {
+            File conditionDir = new File(Constants.POLLUTIONPATH + monitorName);
+            File[] files = conditionDir.listFiles();
+            if (files == null) {
+                return null;
+            } else {
+                String[] fileList = new String[files.length];
+                for (int i = 0; i < files.length; i++) {
+                    fileList[i] = files[i].getName();
+                }
+                return fileList;
+            }
+        } catch (Exception e) {
+            log.error("数据文件查询失败！");
+            return null;
+        }
+    }
 }

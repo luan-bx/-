@@ -22,6 +22,8 @@ import java.util.Date;
  * @author lbx
  * @date 2023/2/23 - 16:11
  **/
+
+@Slf4j
 @Getter
 @Slf4j
 public class VideoRecorderService {
@@ -204,6 +206,7 @@ public class VideoRecorderService {
                     frameRecord(inputFile,outputFile,1);
                 }
             } catch (org.bytedeco.javacv.FrameRecorder.Exception e1) {
+                log.error("视频录制失败！",e);
                 throw e;
             }
         }finally {

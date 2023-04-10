@@ -53,7 +53,7 @@ public interface Constants {
 	String SIGNFIRST ="signfirst";
 	String USERNAME = "userName";
 	String POSTID = "postId";
-	String POST ="post";
+	String ALLPOST ="allPost";
 	String ALLUSER = "allUser";
 
 	/*

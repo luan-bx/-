@@ -173,7 +173,10 @@
                     <div class="form-group row ">
                       <label class="control-label col-md-3 col-sm-3 ">岗位名称：</label>
                       <div class="col-md-9 col-sm-9 ">
-                        <input type="text" class="form-control" name="postName" id="newPostName">
+                        <select class="form-control" name="postName" id="newPostName">
+<!--                          <option th:each="ausr:${allUser} " th:text="${ausr.postName}" th:value="${ausr.postName} selected disabled hidden"></option>-->
+                          <option th:each="post:${allPost} " th:text="${post.name}" th:selected="${post.name} "></option>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group">
