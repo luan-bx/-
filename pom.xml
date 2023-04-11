@@ -2,6 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>AIO-part</module>
+        <module>AIO-company</module>
+    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -197,13 +202,7 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.sun.jna</groupId>
-            <artifactId>examples</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/examples.jar</systemPath>
-        </dependency>
+
         <!--<dependency>
             <groupId>com.sun</groupId>
             <artifactId>jna</artifactId>
@@ -214,44 +213,7 @@
 
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.shark.aio.AioApplication</mainClass>
-                    <includeSystemScope>true</includeSystemScope>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                    <encoding>utf-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-        <!--指定引入外部包的位置 mvn package -Dmaven.test.skip=true-->
-        <!--打包部署放开以下注释-->
-        <!--正常启动需注释以下代码，否则会包shiro错误-->
-        <!--<resources>
-            <resource>
-                <directory>${project.basedir}/lib</directory>
-                <targetPath>/BOOT-INF/lib/</targetPath>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
-            </resource>
-             <resource>
-                <directory>src/main/resources</directory>
-                <targetPath>BOOT-INF/classes/</targetPath>
-            </resource>
-        </resources>-->
 
-    </build>
 
 
 </project>

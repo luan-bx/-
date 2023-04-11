@@ -1,0 +1,52 @@
+2023-04-10 16:04:45.708 [,] [main] INFO  c.s.a.AioApplication - [logStarting,55] - Starting AioApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 22868 (F:\code\soft\AIO\target\classes started by dell in F:\code\soft\AIO)
+2023-04-10 16:04:45.710 [,] [main] INFO  c.s.a.AioApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-10 16:04:46.805 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-10 16:04:46.806 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-10 16:04:46.807 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-10 16:04:46.875 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-10 16:04:47.762 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-10 16:04:47.774 [,] [main] INFO  c.s.a.AioApplication - [logStarted,61] - Started AioApplication in 2.237 seconds (JVM running for 2.775)
+2023-04-10 16:04:47.778 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-10 16:05:24.317 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-10 16:05:29.026 [,] [http-nio-8081-exec-6] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-10 16:05:57.478 [,] [http-nio-8081-exec-9] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-10 16:05:57.945 [,] [http-nio-8081-exec-9] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-10 16:05:57.973 [,] [http-nio-8081-exec-9] INFO  c.s.a.u.s.UserService - [login,171] - 使用用户名登录 : admin
+2023-04-10 16:05:57.975 [,] [http-nio-8081-exec-9] INFO  c.s.a.u.s.UserService - [login,182] - 登录成功
+2023-04-10 16:05:57.975 [,] [http-nio-8081-exec-9] INFO  c.s.a.u.c.UserController - [Login,113] - 用户admin登录成功
+2023-04-10 16:06:03.177 [,] [http-nio-8081-exec-6] INFO  c.s.a.b.c.Skip - [indexWeb,22] - 进入首页成功！
+2023-04-10 16:06:05.283 [,] [http-nio-8081-exec-7] INFO  c.s.aio.util.Aspect - [controllerAOP,50] - 跳转到摄像头列表页面方法开始执行
+2023-04-10 16:06:05.306 [,] [http-nio-8081-exec-7] INFO  c.s.aio.util.Aspect - [controllerAOP,55] - 跳转到摄像头列表页面成功！耗时：23ms
+2023-04-10 16:06:06.059 [,] [http-nio-8081-exec-1] INFO  c.s.a.d.v.f.c.FaceController - [toFaceRecordsOfVideoPage,178] - 进入人员识别结果页面成功！
+2023-04-10 16:06:09.014 [,] [http-nio-8081-exec-10] INFO  c.s.a.d.v.f.c.FaceController - [toCarRecordsOfVideoPage,190] - 进入车牌识别结果页面成功！
+2023-04-10 16:06:09.893 [,] [http-nio-8081-exec-8] INFO  c.s.a.d.v.f.c.FaceController - [toFaceRecordsOfVideoPage,178] - 进入人员识别结果页面成功！
+2023-04-10 16:06:10.815 [,] [http-nio-8081-exec-3] INFO  c.s.aio.util.Aspect - [controllerAOP,50] - 跳转到摄像头列表页面方法开始执行
+2023-04-10 16:06:10.834 [,] [http-nio-8081-exec-3] INFO  c.s.aio.util.Aspect - [controllerAOP,55] - 跳转到摄像头列表页面成功！耗时：18ms
+2023-04-10 16:07:30.524 [,] [http-nio-8081-exec-8] INFO  c.s.a.d.v.f.c.FaceController - [toFaceRecordsOfVideoPage,178] - 进入人员识别结果页面成功！
+2023-04-10 16:08:19.475 [,] [http-nio-8081-exec-9] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:08:23.144 [,] [http-nio-8081-exec-3] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:08:24.209 [,] [http-nio-8081-exec-10] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:08:25.186 [,] [http-nio-8081-exec-4] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:14:09.004 [,] [http-nio-8081-exec-8] INFO  c.s.a.u.c.AlllUserController - [allUserEntity,52] - 进入全部用户页面成功
+2023-04-10 16:18:13.912 [,] [http-nio-8081-exec-9] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:21:37.230 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-10 16:21:37.240 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-10 16:21:40.690 [,] [main] INFO  c.s.a.AioApplication - [logStarting,55] - Starting AioApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 7048 (F:\code\soft\AIO\target\classes started by dell in F:\code\soft\AIO)
+2023-04-10 16:21:40.693 [,] [main] INFO  c.s.a.AioApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-10 16:21:41.609 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-10 16:21:41.609 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-10 16:21:41.609 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-10 16:21:41.673 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-10 16:21:42.548 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-10 16:21:42.560 [,] [main] INFO  c.s.a.AioApplication - [logStarted,61] - Started AioApplication in 2.029 seconds (JVM running for 2.567)
+2023-04-10 16:21:42.564 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-10 16:21:44.320 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-10 16:21:44.345 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-10 16:21:44.718 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-10 16:21:44.751 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:25:17.802 [,] [http-nio-8081-exec-4] INFO  c.s.a.b.a.AuthorityController - [authority,32] - 进入权限管理页面成功！
+2023-04-10 16:25:19.440 [,] [http-nio-8081-exec-7] INFO  c.s.a.u.c.AlllUserController - [allUserEntity,52] - 进入全部用户页面成功
+2023-04-10 16:25:22.832 [,] [http-nio-8081-exec-5] INFO  c.s.a.d.m.MonitorDeviceController - [toAddPollutionPage,31] - 进入新增污染源页面成功！
+2023-04-10 16:25:26.942 [,] [http-nio-8081-exec-6] INFO  c.s.a.b.d.DiskCapacityController - [diskCapacityManagement,63] - 进入磁盘管理页面成功！
+2023-04-10 16:35:50.203 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-10 16:35:50.206 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
