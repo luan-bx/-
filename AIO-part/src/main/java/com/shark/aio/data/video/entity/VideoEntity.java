@@ -17,4 +17,6 @@ public class VideoEntity {
     private String description = "测试用监测点";
     private String stream = "room";
 
+    private int companyId;
+
 }

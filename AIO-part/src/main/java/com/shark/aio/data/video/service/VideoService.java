@@ -110,15 +110,12 @@ public class VideoService {
 
     }
 
-    public int insertVideo(String monitorName, String username, String password, String ip, String port, String description){
-        String rtsp = "rtsp://"+username+":"+password+"@"+ip+":"+port;
-        String stream = "stream"+ UUID.randomUUID();
-        int count = videoMapping.insertIntoVideo(new VideoEntity(null,monitorName,rtsp,description,stream));
-        if (count==1){
-            VideoConfiguration.registerBean(VideoRecorderService.class, monitorName);
-        }
-        return count;
-
+    public String queryIdByCompanyId(String companyId){
+        return videoMapping.queryIpByCompanyId(companyId);
     }
+
+
+
+
 
 }

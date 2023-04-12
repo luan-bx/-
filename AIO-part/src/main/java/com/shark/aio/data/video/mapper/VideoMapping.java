@@ -52,4 +52,7 @@ public interface VideoMapping {
     public void insertCarRecord(CarRecordsEntity carRecords);
     @Select("SELECT * FROM car_records")
     public List<CarRecordsEntity> selectAllCarRecords();
+
+    @Select("SELECT ip FROM company WHERE id=#{companyId};")
+    public String queryIpByCompanyId(String companyId);
 }

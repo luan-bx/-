@@ -37,116 +37,7 @@ public class FaceController {
 
 
 
-	@RequestMapping("/callFaceAI")
-	@ResponseBody
-	public static FaceRecordsEntity callFaceAI(File file , VideoEntity video) {
-//		filePath = "C:\\Users\\dell\\Desktop\\1.png";
-		FaceRecordsEntity faceRecord = null;
-		DataOutputStream out = null;
-		VideoRecorderService videoRecorderService = VideoConfiguration.getBean(VideoRecorderService.class, video.getMonitorName());
-		final String newLine = "\r\n";
-		final String prefix = "--";
-		try {
-			URL url = new URL("http://localhost:5000/ssd_predict");
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-			String BOUNDARY = "-------7da2e536604c8";
-			conn.setRequestMethod("POST");
-			conn.setDoOutput(true);
-			conn.setDoInput(true);
-			conn.setUseCaches(false);
-			conn.setRequestProperty("connection", "Keep-Alive");
-			conn.setRequestProperty("Charsert", "UTF-8");
-			conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
-			out = new DataOutputStream(conn.getOutputStream());
-			StringBuilder sb1 = new StringBuilder();
-			sb1.append(prefix);
-			sb1.append(BOUNDARY);
-			sb1.append(newLine);
-			sb1.append("Content-Disposition: form-data;name=\"file\";filename=\"" + file.getName() + "\"" + newLine);
-			sb1.append("Content-Type:application/octet-stream");
-			sb1.append(newLine);
-			sb1.append(newLine);
-			out.write(sb1.toString().getBytes());
-			DataInputStream in = new DataInputStream(new FileInputStream(file));
-			byte[] bufferOut = new byte[1024];
-			int bytes = 0;
-			while ((bytes = in.read(bufferOut)) != -1) {
-				out.write(bufferOut, 0, bytes);
-			}
-			out.write(newLine.getBytes());
-			in.close();
-
-			byte[] end_data = ("\r\n--" + BOUNDARY + "--\r\n").getBytes();
-			out.write(end_data);
-			out.flush();
-			out.close();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String line = null;
-			line = reader.readLine();
-			log.info("人脸识别算法："+line.substring(0,100));
-			JSONObject result = JSON.parseObject(line);
-			String msg = "";
-			if (result.getString("class_name").contains("person")) {
-				faceRecord = new FaceRecordsEntity();
-				//判断有几个人以及最高概率
-				String[] classes = result.getString("class_name").split(";");
-				int count = 0;
-				double score = 0;
-				for (String s: classes){
-					if (!s.contains("person")) continue;
-					count ++;
-					double thisScore = Double.parseDouble(s.substring(s.indexOf("person: ")+"person: ".length()));
-					if (thisScore > score){
-						score = thisScore;
-					}
-				}
-				faceRecord.setResult(count + "个人");
-				faceRecord.setScore(score);
-				/*msg = line.substring(line.indexOf("\"img_str\":\"")+"\"img_str\":\"".length(), line.indexOf("\"}"));
-				log.info(msg);*/
-				BASE64Decoder decoder = new BASE64Decoder();
-
-				try {
-					// 解密
-					byte[] b = decoder.decodeBuffer(result.getString("img_str"));
-					// 处理数据
-					for(int i = 0; i < b.length; ++i) {
-						if (b[i] < 0) {
-							b[i] += 256;
-						}
-					}
-					String fileName = DateUtil.fileFormat.format(new Date())+".jpg";
-					faceRecord.setPictureUrl(fileName);
-					OutputStream out2 = new FileOutputStream(Constants.FACEIMGOUTPUTPATH + fileName);
-					out2.write(b);
-					out2.flush();
-					out2.close();
-					log.info("有人，图片已存");
-
-
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				//录制视频
-				videoRecorderService.setStatus(true);
-				if (!videoRecorderService.isRecording()){
-					log.info("开始录制...");
-					videoRecorderService.startRecordVideo(video);
-				}
-			}else {
-				videoRecorderService.setStatus(false);
-			}
-
-
-
-		} catch (Exception e) {
-			log.error("发送POST请求出现异常！",e);
-		}
-		//删除照片文件
-		return faceRecord;
-	}
 
 
 	/**
@@ -204,10 +95,11 @@ public class FaceController {
 	 * @throws IllegalAccessException
 	 */
 	@GetMapping("/videoPlay")
-	public String toVideoPlayPage(String stream, HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
+	public String toVideoPlayPage(String stream,String companyId ,HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
 		request.setAttribute("stream",new String[]{stream});
-//		videoService.addSession(stream);
-		log.error("进入摄像头实时监测页面成功！");
+		String ip = videoService.queryIdByCompanyId(companyId);
+		request.setAttribute("ip",ip);
+		log.info("进入摄像头实时监测页面成功！");
 		return "videoPlay";
 	}
 

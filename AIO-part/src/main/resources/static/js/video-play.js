@@ -106,9 +106,11 @@ function startVideo(streams){
 
     function createFlvPlayer(port, app, stream,videoElement){
         console.log("create");
+        var ip = [[${ip}]];
+        console.log("ip:"+ip);
         var flvPlayer = flvjs.createPlayer({
         type: 'flv',
-        url: 'http://localhost:9000/live?port='+port+'&app='+app+'&stream='+stream,
+        url: 'http://'+ip+':9000/live?port='+port+'&app='+app+'&stream='+stream,
         enableWorker: true, // 启用分离的线程进行转换
         //enableStashBuffer: false, // 关闭IO隐藏缓冲区
         stashInitialSize: 200, // 减少首帧显示等待时长
