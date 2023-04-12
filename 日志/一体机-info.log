@@ -227,3 +227,436 @@
 2023-04-11 10:56:26.109 [,] [http-nio-8081-exec-2] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
 2023-04-11 10:57:21.901 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
 2023-04-11 10:57:21.904 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:12:40.670 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 17440 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:12:40.672 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:12:41.523 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:12:41.524 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:12:41.524 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:12:41.589 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:12:42.486 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:12:42.498 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.993 seconds (JVM running for 2.552)
+2023-04-11 11:12:42.501 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:12:44.384 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:12:44.396 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:12:44.409 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:12:44.785 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:12:44.808 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:13:25.391 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:13:25.397 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:13:28.124 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 12780 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:13:28.126 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:13:29.008 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:13:29.009 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:13:29.009 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:13:29.075 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:13:29.982 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:13:29.994 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.053 seconds (JVM running for 2.637)
+2023-04-11 11:13:29.998 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:13:39.206 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:13:39.217 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:13:39.230 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:13:39.688 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:13:39.711 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:15:24.689 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:15:24.695 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:15:27.267 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 1104 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:15:27.269 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:15:28.091 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:15:28.091 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:15:28.091 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:15:28.155 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:15:29.094 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:15:29.106 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.003 seconds (JVM running for 2.546)
+2023-04-11 11:15:29.110 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:15:29.712 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:15:29.723 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:15:29.742 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:15:30.145 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:15:30.168 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:16:02.661 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:16:02.664 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:16:05.188 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 15328 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:16:05.189 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:16:06.041 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:16:06.042 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:16:06.042 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:16:06.108 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:16:07.044 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:16:07.058 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.038 seconds (JVM running for 2.594)
+2023-04-11 11:16:07.063 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:16:08.576 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:16:08.588 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:16:08.600 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:16:08.975 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:16:09.003 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:16:31.255 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:16:31.262 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:16:34.404 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 14796 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:16:34.406 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:16:35.271 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:16:35.272 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:16:35.272 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:16:35.344 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:16:36.267 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:16:36.278 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.04 seconds (JVM running for 2.596)
+2023-04-11 11:16:36.282 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:16:37.283 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:16:37.295 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:16:37.308 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:16:37.701 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:16:37.724 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:19:50.414 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:19:50.419 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:19:53.204 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 5748 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:19:53.206 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:19:54.032 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:19:54.032 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:19:54.033 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:19:54.096 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:19:54.975 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:19:54.988 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.946 seconds (JVM running for 2.468)
+2023-04-11 11:19:54.992 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:19:56.736 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:19:56.747 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:19:56.760 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:19:57.310 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:19:57.335 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:22:24.967 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:22:24.973 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:22:27.753 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 12372 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:22:27.755 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:22:28.623 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:22:28.623 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:22:28.623 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:22:28.691 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:22:29.655 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:22:29.666 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.081 seconds (JVM running for 2.635)
+2023-04-11 11:22:29.672 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:22:44.776 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:22:44.788 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:22:44.811 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:22:45.190 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:22:45.213 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:24:46.561 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:24:46.567 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:24:49.146 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 8664 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:24:49.148 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:24:49.987 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:24:49.987 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:24:49.988 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:24:50.053 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:24:51.010 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:24:51.025 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.05 seconds (JVM running for 2.597)
+2023-04-11 11:24:51.029 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:24:52.482 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:24:52.494 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:24:52.513 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:24:52.898 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:24:52.923 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:27:00.579 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:27:00.586 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:27:03.263 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 15956 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:27:03.265 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:27:04.089 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:27:04.090 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:27:04.090 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:27:04.148 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:27:05.048 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:27:05.060 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.962 seconds (JVM running for 2.503)
+2023-04-11 11:27:05.064 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:27:09.134 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:27:09.146 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:27:09.166 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:27:09.762 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:27:09.786 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:27:48.411 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:27:48.415 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:27:51.199 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 2116 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:27:51.200 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:27:52.046 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:27:52.046 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:27:52.046 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:27:52.108 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:27:52.995 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:27:53.007 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.971 seconds (JVM running for 2.533)
+2023-04-11 11:27:53.010 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:27:54.034 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:27:54.045 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:27:54.058 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:27:54.437 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:27:54.460 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:28:08.596 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:28:08.600 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:28:11.462 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 5116 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:28:11.464 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:28:12.290 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:28:12.291 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:28:12.291 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:28:12.351 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:28:13.274 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:28:13.287 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.987 seconds (JVM running for 2.541)
+2023-04-11 11:28:13.291 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:28:14.553 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:28:14.565 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:28:14.578 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:28:14.964 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:28:14.993 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:28:37.645 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:28:37.652 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:28:40.419 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 13512 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:28:40.422 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:28:41.247 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:28:41.247 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:28:41.247 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:28:41.308 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:28:42.199 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:28:42.218 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.964 seconds (JVM running for 2.523)
+2023-04-11 11:28:42.222 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:28:45.161 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:28:45.173 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:28:45.195 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:28:45.580 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:28:45.608 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:29:32.445 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:29:32.452 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:29:35.194 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 16816 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:29:35.196 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:29:36.028 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:29:36.028 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:29:36.029 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:29:36.097 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:29:37.012 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:29:37.025 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.993 seconds (JVM running for 2.545)
+2023-04-11 11:29:37.028 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:29:38.713 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:29:38.725 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:29:38.737 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:29:39.114 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:29:39.137 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:30:55.141 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:30:55.147 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:30:57.870 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 4940 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:30:57.872 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:30:58.807 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:30:58.808 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:30:58.808 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:30:58.881 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:30:59.803 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:30:59.816 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.125 seconds (JVM running for 2.697)
+2023-04-11 11:30:59.820 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:31:01.512 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:31:01.524 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:31:01.536 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:31:01.917 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:31:01.942 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:31:14.463 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:31:14.470 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:31:17.051 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 15440 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:31:17.053 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:31:17.898 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:31:17.898 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:31:17.898 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:31:17.964 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:31:18.875 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:31:18.887 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.008 seconds (JVM running for 2.562)
+2023-04-11 11:31:18.891 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:31:20.833 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:31:20.846 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:31:20.858 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:31:21.238 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:31:21.262 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:32:17.270 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 11:32:17.276 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 11:32:20.141 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 18048 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 11:32:20.143 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 11:32:20.993 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:32:20.994 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 11:32:20.994 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 11:32:21.056 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 11:32:21.991 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 11:32:22.002 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.027 seconds (JVM running for 2.572)
+2023-04-11 11:32:22.007 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 11:32:22.872 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 11:32:22.884 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 11:32:22.904 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 11:32:23.276 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 11:32:23.299 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 11:32:35.959 [,] [http-nio-8081-exec-10] INFO  c.s.a.d.e.c.ElectricityController - [electricityMonitorWeb,105] - 进入用电监测页面成功！
+2023-04-11 12:39:06.324 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:39:06.329 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:39:09.084 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 16168 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:39:09.085 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:39:09.928 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:39:09.929 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:39:09.930 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:39:09.994 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:39:10.876 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:39:10.894 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.975 seconds (JVM running for 2.53)
+2023-04-11 12:39:10.897 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:39:12.728 [,] [http-nio-8081-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:39:12.738 [,] [http-nio-8081-exec-2] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:39:12.750 [,] [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:39:13.123 [,] [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:39:13.147 [,] [http-nio-8081-exec-2] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:39:43.958 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:39:43.964 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:39:46.613 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 3260 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:39:46.615 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:39:47.449 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:39:47.450 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:39:47.450 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:39:47.510 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:39:48.424 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:39:48.436 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.0 seconds (JVM running for 2.585)
+2023-04-11 12:39:48.440 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:39:57.958 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:39:57.970 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:39:57.982 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:39:58.359 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:39:58.382 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:40:35.787 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:40:35.795 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:40:38.596 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 14332 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:40:38.598 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:40:39.438 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:40:39.439 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:40:39.439 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:40:39.502 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:40:40.409 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:40:40.422 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.991 seconds (JVM running for 2.546)
+2023-04-11 12:40:40.426 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:40:43.024 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:40:43.036 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:40:43.047 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:40:43.414 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:40:43.437 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:40:55.776 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:40:55.782 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:40:58.995 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 3392 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:40:58.997 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:40:59.839 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:40:59.840 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:40:59.840 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:40:59.905 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:41:00.842 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:41:00.855 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.028 seconds (JVM running for 2.584)
+2023-04-11 12:41:00.859 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:41:01.710 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:41:01.721 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:41:01.734 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:41:02.107 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:41:02.131 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:41:33.494 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:41:33.498 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:41:36.541 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 16600 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:41:36.543 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:41:37.367 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:41:37.368 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:41:37.368 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:41:37.429 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:41:38.347 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:41:38.361 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.988 seconds (JVM running for 2.543)
+2023-04-11 12:41:38.365 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:41:39.737 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:41:39.757 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:41:39.769 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:41:40.163 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:41:40.192 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:42:26.546 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:42:26.553 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:42:29.875 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 4088 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:42:29.877 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:42:30.722 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:42:30.723 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:42:30.723 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:42:30.802 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:42:31.723 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:42:31.735 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.027 seconds (JVM running for 2.576)
+2023-04-11 12:42:31.738 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:42:31.969 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:42:31.982 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:42:31.994 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:42:32.376 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:42:32.400 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:42:46.078 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:42:46.080 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:42:48.658 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 8832 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:42:48.660 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:42:49.484 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:42:49.485 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:42:49.485 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:42:49.545 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:42:50.449 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:42:50.462 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 1.974 seconds (JVM running for 2.537)
+2023-04-11 12:42:50.466 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:42:52.230 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:42:52.242 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:42:52.254 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:42:52.630 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:42:52.656 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:43:02.341 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:43:02.347 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:43:05.166 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 7612 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:43:05.168 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:43:06.007 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:43:06.008 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:43:06.008 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:43:06.072 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:43:06.996 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:43:07.008 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.008 seconds (JVM running for 2.574)
+2023-04-11 12:43:07.012 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:43:16.054 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:43:16.067 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:43:16.078 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:43:16.453 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:43:16.477 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:43:34.956 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:43:34.963 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:43:37.854 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 9140 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:43:37.856 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:43:38.733 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:43:38.733 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:43:38.733 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:43:38.797 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:43:39.710 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:43:39.722 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.062 seconds (JVM running for 2.666)
+2023-04-11 12:43:39.726 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:43:41.084 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:43:41.097 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:43:41.120 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:43:41.496 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:43:41.519 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:44:02.188 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:44:02.194 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:44:04.837 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 17312 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:44:04.839 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:44:05.684 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:44:05.685 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:44:05.685 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:44:05.749 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:44:06.699 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:44:06.711 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.041 seconds (JVM running for 2.608)
+2023-04-11 12:44:06.715 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:44:07.857 [,] [http-nio-8081-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:44:07.868 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:44:07.880 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:44:08.265 [,] [http-nio-8081-exec-1] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:44:08.296 [,] [http-nio-8081-exec-1] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:44:19.520 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:44:19.526 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
+2023-04-11 12:44:22.100 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarting,55] - Starting AIOPartApplication using Java 1.8.0_341 on DESKTOP-GT12THB with PID 23264 (F:\code\soft\AIO\AIO-part\target\classes started by dell in F:\code\soft\AIO)
+2023-04-11 12:44:22.102 [,] [main] INFO  c.s.a.AIOPartApplication - [logStartupProfileInfo,634] - No active profile set, falling back to 1 default profile: "default"
+2023-04-11 12:44:22.935 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:44:22.935 [,] [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+2023-04-11 12:44:22.936 [,] [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-11 12:44:23.000 [,] [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+2023-04-11 12:44:23.952 [,] [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8081"]
+2023-04-11 12:44:23.964 [,] [main] INFO  c.s.a.AIOPartApplication - [logStarted,61] - Started AIOPartApplication in 2.028 seconds (JVM running for 2.602)
+2023-04-11 12:44:23.968 [,] [main] INFO  c.s.a.d.m.HJ212Server - [runEPServer,73] - HJ212 端口号  =  9999
+2023-04-11 12:44:24.892 [,] [http-nio-8081-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-11 12:44:24.911 [,] [http-nio-8081-exec-2] INFO  c.s.a.b.c.BaseController - [AIO,34] - BaseController/pms, 本次登录用户:admin
+2023-04-11 12:44:24.926 [,] [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,110] - HikariPool-1 - Starting...
+2023-04-11 12:44:25.299 [,] [http-nio-8081-exec-2] INFO  c.z.h.HikariDataSource - [getConnection,123] - HikariPool-1 - Start completed.
+2023-04-11 12:44:25.322 [,] [http-nio-8081-exec-2] INFO  c.s.a.b.c.BaseController - [AIO,52] - 用户：admin登陆系统
+2023-04-11 12:44:54.287 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,350] - HikariPool-1 - Shutdown initiated...
+2023-04-11 12:44:54.291 [,] [SpringApplicationShutdownHook] INFO  c.z.h.HikariDataSource - [close,352] - HikariPool-1 - Shutdown completed.
