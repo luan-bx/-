@@ -109,10 +109,17 @@ public class VideoService {
         }
 
     }
+    public String queryStreamByVideoName(String videoName){return videoMapping.queryStreamByVideoName(videoName);}
 
-    public String queryIdByCompanyId(String companyId){
-        return videoMapping.queryIpByCompanyId(companyId);
-    }
+    public List<String> selectAllVideoName(){return videoMapping.selectAllVideoName();}
+
+    public List<FaceRecordsEntity> selectFourFaceRecords(){return videoMapping.selectFourFaceRecords();}
+
+    public List<CarRecordsEntity> selectFourCarRecords(){return videoMapping.selectFourCarRecords();}
+
+    public void insertFaceRecord(FaceRecordsEntity faceRecord){videoMapping.insertFaceRecord(faceRecord);}
+
+    public void insertCarRecord(CarRecordsEntity carRecord){videoMapping.insertCarRecord(carRecord);}
 
 
 

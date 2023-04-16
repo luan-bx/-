@@ -315,6 +315,7 @@
     function createFlvPlayer(port, app, stream,videoElement){
       console.log("create");
       var ip = [[${ip}]];
+      if (ip==null)ip='localhost';
       console.log("ip:"+ip);
       var flvPlayer = flvjs.createPlayer({
         type: 'flv',

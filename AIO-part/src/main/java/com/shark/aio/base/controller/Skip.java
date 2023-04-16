@@ -9,12 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @Slf4j
 public class Skip {
-	@RequestMapping("/index")
-	public String indexWeb(HttpServletRequest request) {
-		request.setAttribute("stream",new String[]{"room","room","room","room","room","room","room","room","room"});
-		log.info("进入首页成功！");
-		return "index";
-	}
+
 	
 	@RequestMapping("/wastedWater")
 	public String wastedWaterWeb() {
