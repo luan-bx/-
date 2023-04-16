@@ -58,7 +58,7 @@
                 <div class="clearfix"></div>
 
                 <div class="row">
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>实时AI预警</h2>
@@ -71,91 +71,55 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <video style="height: auto;width:100%;" id="player0" autoplay controls>
-                                    <source th:src="@{/video/carId.mp4}" type="video/mp4">
+
+
+                                    <video style="height: auto;width:98%;" id="videoPlayer" muted autoplay></video>
                                 </video>
+                                <div class="col-md-12 col-sm-12">
+                                    <select class="form-control" id="videoSelect">
+                                        <option th:each="video:${allVideoName}" th:text="${video}" th:value="${video}"></option>
+                                    </select>
+                                </div>
                                 <div class="col-md-12 col-sm-12  ">
                                     <div class="x_panel">
                                         <div class="x_content">
-                                            <table class="table table-striped">
+                                            <table class="table table-striped" style="margin-top: 10px">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>车牌识别</th>
+                                                        <th>人脸识别</th>
                                                         <th>预测分数</th>
                                                         <th>风险程度</th>
                                                         <th>时间</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>苏A 99999</td>
-                                                        <td>0.93</td>
-                                                        <td>正常</td>
-                                                        <td>14:30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>苏A 99999</td>
-                                                        <td>0.93</td>
-                                                        <td>正常</td>
-                                                        <td>14:30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>苏A 99999</td>
-                                                        <td>0.93</td>
-                                                        <td>正常</td>
-                                                        <td>14:30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>苏A 99999</td>
-                                                        <td>0.93</td>
-                                                        <td>正常</td>
-                                                        <td>14:30</td>
+                                                <tbody id="faceTableBody">
+                                                    <tr th:each="face:${faceRecords}">
+                                                        <td th:text="${faceStat.count}"></td>
+                                                        <td th:text="${face.result}"></td>
+                                                        <td th:text="${face.score}"></td>
+                                                        <td th:text="正常"></td>
+                                                        <td th:text="${#dates.format(face.time,'yyyy年MM月dd日 HH:mm')}"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <table class="table table-striped">
+                                            <table class="table table-striped" style="margin-top: 10px">
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>识别结果</th>
+                                                    <th>车辆识别</th>
                                                     <th>预测分数</th>
                                                     <th>风险程度</th>
                                                     <th>时间</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>人</td>
-                                                    <td>0.93</td>
-                                                    <td>正常</td>
-                                                    <td>14:30</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>人</td>
-                                                    <td>0.93</td>
-                                                    <td>正常</td>
-                                                    <td>14:30</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>车</td>
-                                                    <td>0.93</td>
-                                                    <td>正常</td>
-                                                    <td>14:30</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>车</td>
-                                                    <td>0.93</td>
-                                                    <td>正常</td>
-                                                    <td>14:30</td>
+                                                <tbody id="carTableBody">
+                                                <tr th:each="car:${carRecords}">
+                                                    <td th:text="${carStat.count}"></td>
+                                                    <td th:text="${car.result}"></td>
+                                                    <td th:text="${car.score}"></td>
+                                                    <td th:text="正常"></td>
+                                                    <td th:text="${#dates.format(car.time,'yyyy年MM月dd日 HH:mm')}"></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -167,7 +131,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-6 col-sm-6">
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>地图监控</h2>
@@ -187,6 +151,48 @@
                                             <div class="x_content">
 
 
+                                                <div style="height: 50%;width: 100%;min-height: 380px;font-size: 30px;border: thin black;">
+                                                    <iframe height="100%" width="100%" style="min-height: 380px;" th:src="@{/map}"></iframe>
+                                                </div>
+                                                <div style="height: 50%;width: 100%;min-height: 380px;border: thin black;">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>时间</th>
+                                                            <th>企业</th>
+                                                            <th>内容</th>
+                                                            <th>处理进度</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>12:00</td>
+                                                            <td>企业1</td>
+                                                            <td>废水指标超标</td>
+                                                            <td>处理完成</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12:00</td>
+                                                            <td>企业1</td>
+                                                            <td>废水指标超标</td>
+                                                            <td>处理完成</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12:00</td>
+                                                            <td>企业1</td>
+                                                            <td>废水指标超标</td>
+                                                            <td>处理完成</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12:00</td>
+                                                            <td>企业1</td>
+                                                            <td>废水指标超标</td>
+                                                            <td>处理完成</td>
+                                                        </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -196,35 +202,106 @@
 
 
                         </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>预警总览</h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>预警总览</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
 
 
-                                <div class="col-md-12 col-sm-12  ">
-                                    <div class="x_panel">
-                                        <div class="x_content">
+                                    <div class="col-md-12 col-sm-12  ">
+                                        <div class="x_panel">
+                                            <div class="x_content">
+
+                                                <canvas id="canvasDoughnut" width="466" height="233" style="width: 466px;height: 233px;"></canvas>
+                                                <table class="table table-striped" style="margin-top: 100px">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>时间</th>
+                                                        <th>企业</th>
+                                                        <th>内容</th>
+                                                        <th>处理进度</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>12:00</td>
+                                                        <td>企业1</td>
+                                                        <td>废水指标超标</td>
+                                                        <td>处理完成</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12:00</td>
+                                                        <td>企业1</td>
+                                                        <td>废水指标超标</td>
+                                                        <td>处理完成</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12:00</td>
+                                                        <td>企业1</td>
+                                                        <td>废水指标超标</td>
+                                                        <td>处理完成</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12:00</td>
+                                                        <td>企业1</td>
+                                                        <td>废水指标超标</td>
+                                                        <td>处理完成</td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
 
 
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>运营总览</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
 
 
+                                    <div class="col-md-12 col-sm-12  ">
+                                        <div class="x_panel">
+                                            <div class="x_content">
+                                                <p style="font-size: 20px;margin: 10px">待审核数据：  23</p>
+                                                <p style="font-size: 20px;margin: 10px">新增企业数量：50</p>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
+
                     </div>
                 </div>
                 <!-- 主页面结束 -->
@@ -295,7 +372,262 @@
                 startVideo(streams);
             });*/
             /*]]>*/
+            var vp;
+
+            $(function (){
+                $(document).ready(function() {
+                    $.ajax({
+                        url:"/queryVideoStreamByName",
+                        data:"videoName="+$("#videoSelect").val(),
+                        type:"POST",
+                        success:function (result){
+                            vp = startVideo(result);
+                            console.log(vp);
+                        },
+                        error:function (){
+                            alert("打开视频失败");
+                        }
+                    })
+
+                });
+                $("#videoSelect").change(function (){
+                        $.ajax({
+                            url:"/queryVideoStreamByName",
+                            data:"videoName="+$("#videoSelect").val(),
+                            type:"POST",
+                            success:function (result){
+                                if (vp!=null){
+                                    console.log('destroy');
+                                    vp.pause();
+                                    vp.unload();
+                                    vp.detachMediaElement();
+                                    vp.destroy();
+
+                                }
+                                vp = startVideo(result);
+                                console.log(vp);
+                            },
+                            error:function (){
+                                alert("切换视频失败，请重试。");
+                            }
+                        })
+
+                });
+            })
+
+            function Player(video,flvPlayer){
+                this.video=video;
+                this.flvPlayer=flvPlayer;
+                this.init=function(){
+                    this.flvPlayer.attachMediaElement(this.video);
+                    console.log("开始播放");
+                    this.flvPlayer.load();
+                    this.video.addEventListener("progress", () => {
+                        /*console.log("里面："+flvPlayer);
+                        console.log(flvPlayer);*/
+                        var end = this.flvPlayer.buffered.end(0); //获取当前buffered值(缓冲区末尾)
+                        var delta = end - this.flvPlayer.currentTime; //获取buffered与当前播放位置的差值
+
+                        // 延迟过大，通过跳帧的方式更新视频
+                        if (delta > 5 || delta < 0)  {
+                            this.flvPlayer.currentTime = this.flvPlayer.buffered.end(0) - 1;
+                            return;
+                        }
+
+                        // 追帧
+                        if (delta > 2) {
+                            // console.log("1.1倍速播放");
+                            this.video.playbackRate = 1.1;
+                        } else {
+                            // console.log("原速度播放");
+                            this.video.playbackRate = 1;
+                        }
+                    });
+                    // 网页重新激活后，更新视频
+                    window.onfocus = () => {
+                        let end = this.flvPlayer.buffered.end(0) - 1;
+                        this.flvPlayer.currentTime = end;
+                    };
+                };
+            }
+
+
+
+
+
+
+            function startVideo(stream){
+                var port = 1935;
+                var app = 'myapp';
+                if (flvjs.isSupported()) {
+                    var videoElement = document.getElementById('videoPlayer');
+                    var flv = generateFlvPlayer(port, app, stream, videoElement);
+                    var player = new Player(videoElement,flv);
+                    /*console.log("外面："+flvPlayer);
+                    console.log(flvPlayer);*/
+                    player.init(port,app,stream);
+                    return flv;
+                }
+                return null;
+            }
+
+            function generateFlvPlayer(port, app, stream, videoElement){
+                var player = createFlvPlayer(port, app, stream, videoElement);
+                //断流重连
+                player.on(flvjs.Events.ERROR, (errorType, errorDetail, errorInfo) => {
+                        console.log("errorType:", errorType);
+                        console.log("errorDetail:", errorDetail);
+                        console.log("errorInfo:", errorInfo);
+                        //视频出错后销毁重新创建
+                        if (player) {
+                            player.pause();
+                            player.unload();
+                            player.detachMediaElement();
+                            player.destroy();
+                            console.log("error");
+                            player = generateFlvPlayer(port, app, stream,videoElement);
+                        }
+                    }
+
+                );
+
+                /*player.on("statistics_info", function (res) {
+                    if (this.lastDecodedFrame == 0) {
+                        this.lastDecodedFrame = res.decodedFrames;
+                        return;
+                    }
+                    if (this.lastDecodedFrame != res.decodedFrames) {
+                        this.lastDecodedFrame = res.decodedFrames;
+                    } else {
+                        this.lastDecodedFrame = 0;
+                        if (player) {
+                            player.pause();
+                            player.unload();
+                            player.detachMediaElement();
+                            player.destroy();
+                            console.log("error2");
+                            flvPlayer = generateFlvPlayer(port, app, stream,videoElement);
+                        }
+                    }
+                });*/
+                return player;
+            }
+
+            function createFlvPlayer(port, app, stream,videoElement){
+                console.log("create");
+                var ip = [[${ip}]];
+                if(ip==null)ip='localhost';
+                var address = 'http://'+ip+':9000/live?port='+port+'&app='+app+'&stream='+stream;
+                console.log("ip:"+ip);
+                var flvPlayer = flvjs.createPlayer({
+                    type: 'flv',
+                    url: address,
+                    enableWorker: true, // 启用分离的线程进行转换
+                    //enableStashBuffer: false, // 关闭IO隐藏缓冲区
+                    stashInitialSize: 200, // 减少首帧显示等待时长
+                    lazyLoadMaxDuration: 24*60*60,
+                    hasAudio: false
+                });
+                /*flvPlayer.attachMediaElement(videoElement);
+                flvPlayer.load();*/
+                return flvPlayer;
+            }
         </script>
+    <script th:inline="javascript">
+
+        let websocket = null;
+        let host = document.location.host;
+        //判断当前浏览器是否支持WebSocket
+        if ('WebSocket' in window) {
+            //连接WebSocket节点
+            websocket = new WebSocket("ws://" + host + "/webSocket");
+        } else {
+            alert('浏览器不支持webSocket');
+        }
+
+        //连接发生错误的回调方法
+        websocket.onerror = function () {
+            setMessageInnerHTML("error");
+        };
+
+        //连接成功建立的回调方法
+        websocket.onopen = function (event) {
+            setMessageInnerHTML("open");
+        };
+
+        //接收到消息的回调方法
+        websocket.onmessage = function (event) {
+            let faceData = JSON.parse(event.data)['faceData'];
+            // console.log(data);
+            let faceLen = faceData.length;
+            let face_trs = $("#faceTableBody").children();
+            let face_tr = face_trs.first();
+            for (var i=0;i<faceLen;i++){
+                let tds = face_tr.children();
+                let td = tds.first();
+                td.text(i+1);
+                td=td.next();
+                td.text(faceData[i]['result']);
+                td=td.next();
+                td.text(faceData[i]['score']);
+                td=td.next();
+                td.text('正常');
+                td=td.next();
+                td.text(faceData[i]['time']);
+
+                face_tr=face_tr.next();
+            }
+
+            let carData = JSON.parse(event.data)['carData'];
+            // console.log(data);
+            let carLen = carData.length;
+            let car_trs = $("#carTableBody").children();
+            let car_tr = car_trs.first();
+            for (var i=0;i<carLen;i++){
+                let tds = car_tr.children();
+                let td = tds.first();
+                td.text(i+1);
+                td=td.next();
+                td.text(carData[i]['result']);
+                td=td.next();
+                td.text(carData[i]['score']);
+                td=td.next();
+                td.text('正常');
+                td=td.next();
+                td.text(carData[i]['time']);
+
+                car_tr=car_tr.next();
+            }
+
+        };
+
+        //连接关闭的回调方法
+        websocket.onclose = function () {
+            setMessageInnerHTML("close");
+        };
+
+        //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+        window.onbeforeunload = function () {
+            websocket.close();
+        };
+
+        //将消息显示在网页上
+        function setMessageInnerHTML(innerHTML) {
+
+        };
+
+        //关闭连接
+        function closeWebSocket() {
+            websocket.close();
+        };
+
+        //发送消息
+        function send() {
+            let message = document.getElementById('text').value;
+            websocket.send(message);
+        };
+
+    </script>
     </div>
 </div>
 </body>

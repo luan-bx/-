@@ -8,6 +8,7 @@ import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
+import com.shark.aio.data.video.mapper.VideoMapping;
 import com.shark.aio.data.video.service.VideoRecorderService;
 import com.shark.aio.data.video.service.VideoService;
 import com.shark.aio.util.Constants;
