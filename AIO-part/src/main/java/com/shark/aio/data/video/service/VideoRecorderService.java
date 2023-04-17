@@ -179,7 +179,7 @@ public class VideoRecorderService {
                         break;
                     }
                 }
-                log.info("recording="+recording+",status="+status+",noPersonTime="+noPersonTime);
+//                log.info("recording="+recording+",status="+status+",noPersonTime="+noPersonTime);
                 recorder.record(frame);
                 //1.用线程sleep
                 //2.获取当前时间，做时间差

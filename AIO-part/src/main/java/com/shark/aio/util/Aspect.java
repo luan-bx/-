@@ -50,7 +50,7 @@ public class Aspect {
         try {
             Object res;
             res = joinPoint.proceed();
-            log.info(desc+"成功！耗时："+(System.currentTimeMillis()-start)+"ms");
+            log.info(desc+"成功！耗时："+(System.currentTimeMillis()-start)+"ms，返回值："+(res==null?"无":res.toString()));
             return res;
         }catch (Throwable e){
             log.error(desc+"失败！",e);

@@ -8,6 +8,7 @@ import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.VideoEntity;
+import com.shark.aio.data.video.mapper.VideoMapping;
 import com.shark.aio.data.video.service.VideoRecorderService;
 import com.shark.aio.data.video.service.VideoService;
 import com.shark.aio.util.Constants;
@@ -37,11 +38,15 @@ public class FaceController {
 
 
 
+
+
+
 	@RequestMapping("/callFaceAI")
 	@ResponseBody
-	public static FaceRecordsEntity callFaceAI(File file , VideoEntity video) {
+	public FaceRecordsEntity callFaceAI(File file , VideoEntity video) {
 //		filePath = "C:\\Users\\dell\\Desktop\\1.png";
 		FaceRecordsEntity faceRecord = null;
+		CarRecordsEntity carRecord = null;
 		DataOutputStream out = null;
 		VideoRecorderService videoRecorderService = VideoConfiguration.getBean(VideoRecorderService.class, video.getMonitorName());
 		final String newLine = "\r\n";
@@ -84,25 +89,42 @@ public class FaceController {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = null;
 			line = reader.readLine();
-			log.info("人脸识别算法："+line.substring(0,100));
+			log.info("ssd算法："+line.substring(0,100));
 			JSONObject result = JSON.parseObject(line);
 			String msg = "";
-			if (result.getString("class_name").contains("person")) {
-				faceRecord = new FaceRecordsEntity();
-				//判断有几个人以及最高概率
+			boolean isPerson = result.getString("class_name").contains("person");
+			boolean isCar = result.getString("class_name").contains("car");
+			if (isPerson||isCar) {
+				//录制视频
+				videoRecorderService.setStatus(true);
+				if (!videoRecorderService.isRecording()){
+					log.info("开始录制...");
+					videoRecorderService.startRecordVideo(video);
+				}
+				if (isCar)carRecord = new CarRecordsEntity();
+				//判断有几个人和车以及最高概率
 				String[] classes = result.getString("class_name").split(";");
-				int count = 0;
-				double score = 0;
+				int personCount = 0;
+				int carCount = 0;
+				double personScore = 0;
+				double carScore = 0;
 				for (String s: classes){
+					//person
 					if (!s.contains("person")) continue;
-					count ++;
-					double thisScore = Double.parseDouble(s.substring(s.indexOf("person: ")+"person: ".length()));
-					if (thisScore > score){
-						score = thisScore;
+					personCount ++;
+					double thisPersonScore = Double.parseDouble(s.substring(s.indexOf("person: ")+"person: ".length()));
+					if (thisPersonScore > personScore){
+						personScore = thisPersonScore;
+					}
+					//car
+					if (!s.contains("person")) continue;
+					carCount ++;
+					double thisCarScore = Double.parseDouble(s.substring(s.indexOf("car: ")+"car: ".length()));
+					if (thisCarScore > carScore){
+						carScore = thisCarScore;
 					}
 				}
-				faceRecord.setResult(count + "个人");
-				faceRecord.setScore(score);
+
 				/*msg = line.substring(line.indexOf("\"img_str\":\"")+"\"img_str\":\"".length(), line.indexOf("\"}"));
 				log.info(msg);*/
 				BASE64Decoder decoder = new BASE64Decoder();
@@ -117,24 +139,35 @@ public class FaceController {
 						}
 					}
 					String fileName = DateUtil.fileFormat.format(new Date())+".jpg";
-					faceRecord.setPictureUrl(fileName);
 					OutputStream out2 = new FileOutputStream(Constants.FACEIMGOUTPUTPATH + fileName);
 					out2.write(b);
 					out2.flush();
 					out2.close();
 					log.info("有人，图片已存");
 
+					if (isPerson){
+						faceRecord = new FaceRecordsEntity();
+						faceRecord.setResult(personCount + "个人");
+						faceRecord.setScore(personScore);
+						faceRecord.setPictureUrl(fileName);
+						videoService.insertFaceRecord(faceRecord);
+					}
+					if (isCar){
+						carRecord = new CarRecordsEntity();
+						carRecord.setResult(carCount + "辆车");
+						carRecord.setScore(carScore);
+						carRecord.setPictureUrl(fileName);
+						videoService.insertCarRecord(carRecord);
+					}
+
+
+
 
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				//录制视频
-				videoRecorderService.setStatus(true);
-				if (!videoRecorderService.isRecording()){
-					log.info("开始录制...");
-					videoRecorderService.startRecordVideo(video);
-				}
+
 			}else {
 				videoRecorderService.setStatus(false);
 			}
@@ -147,7 +180,6 @@ public class FaceController {
 		//删除照片文件
 		return faceRecord;
 	}
-
 
 	/**
 	 * 跳转到摄像头列表页面
@@ -204,10 +236,9 @@ public class FaceController {
 	 * @throws IllegalAccessException
 	 */
 	@GetMapping("/videoPlay")
-	public String toVideoPlayPage(String stream, HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
+	public String toVideoPlayPage(String stream,String companyId ,HttpServletRequest request) throws NoSuchFieldException, IllegalAccessException {
 		request.setAttribute("stream",new String[]{stream});
-//		videoService.addSession(stream);
-		log.error("进入摄像头实时监测页面成功！");
+		log.info("进入摄像头实时监测页面成功！");
 		return "videoPlay";
 	}
 

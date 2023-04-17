@@ -25,6 +25,9 @@ public interface VideoMapping {
     @Select("SELECT * FROM `video`")
     public List<VideoEntity> selectAllVideos();
 
+    @Select("SELECT monitor_name FROM video")
+    public List<String> selectAllVideoName();
+
     /**
      * 根据特征feature模糊查询摄像头信息
      * @param feature
@@ -47,9 +50,17 @@ public interface VideoMapping {
     @Select("SELECT * FROM face_records")
     public List<FaceRecordsEntity> selectAllFaceRecords();
 
+    @Select("SELECT * FROM face_records ORDER BY time DESC LIMIT 4")
+    public List<FaceRecordsEntity> selectFourFaceRecords();
+
 
     @Insert("INSERT INTO car_records (picture_url,result,score) VALUES(#{pictureUrl},#{result},#{score})")
     public void insertCarRecord(CarRecordsEntity carRecords);
     @Select("SELECT * FROM car_records")
     public List<CarRecordsEntity> selectAllCarRecords();
+
+    @Select("SELECT * FROM car_records ORDER BY time DESC LIMIT 4")
+    public List<CarRecordsEntity> selectFourCarRecords();
+    @Select("SELECT stream FROM video WHERE monitor_name=#{videoName}")
+    public String queryStreamByVideoName(String videoName);
 }

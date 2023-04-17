@@ -109,16 +109,20 @@ public class VideoService {
         }
 
     }
+    public String queryStreamByVideoName(String videoName){return videoMapping.queryStreamByVideoName(videoName);}
 
-    public int insertVideo(String monitorName, String username, String password, String ip, String port, String description){
-        String rtsp = "rtsp://"+username+":"+password+"@"+ip+":"+port;
-        String stream = "stream"+ UUID.randomUUID();
-        int count = videoMapping.insertIntoVideo(new VideoEntity(null,monitorName,rtsp,description,stream));
-        if (count==1){
-            VideoConfiguration.registerBean(VideoRecorderService.class, monitorName);
-        }
-        return count;
+    public List<String> selectAllVideoName(){return videoMapping.selectAllVideoName();}
 
-    }
+    public List<FaceRecordsEntity> selectFourFaceRecords(){return videoMapping.selectFourFaceRecords();}
+
+    public List<CarRecordsEntity> selectFourCarRecords(){return videoMapping.selectFourCarRecords();}
+
+    public void insertFaceRecord(FaceRecordsEntity faceRecord){videoMapping.insertFaceRecord(faceRecord);}
+
+    public void insertCarRecord(CarRecordsEntity carRecord){videoMapping.insertCarRecord(carRecord);}
+
+
+
+
 
 }

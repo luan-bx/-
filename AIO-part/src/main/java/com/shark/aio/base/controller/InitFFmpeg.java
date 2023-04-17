@@ -28,6 +28,8 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
     @Autowired
     private VideoMapping videoMapping;
+    @Autowired
+    private FaceController faceController;
 
 
     @Resource(name="threadPoolTaskExecutor")
@@ -72,7 +74,7 @@ public class InitFFmpeg implements ApplicationListener<ApplicationReadyEvent> {
 
             @Override
             public void onFileCreate(File file) {
-                FaceRecordsEntity faceResult = FaceController.callFaceAI(file, video);
+                FaceRecordsEntity faceResult = faceController.callFaceAI(file, video);
                 if (faceResult!=null){
                     try {
                         videoMapping.insertFaceRecord(faceResult);
