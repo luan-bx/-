@@ -50,7 +50,7 @@ public class ConditionController {
 	@RequestMapping("/returnConditionData")
 	public void returnConditionData(String monitorName,String dir ,HttpServletResponse req) throws IOException {
 		if(!"null".equals(monitorName)) {
-			FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.CONDITIONDATA);
+			FileInputStream fin = new FileInputStream(Constants.CONDITIONPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir  + Constants.CONDITIONDATA);
 			InputStreamReader reader = new InputStreamReader(fin,"utf-8");
 			BufferedReader buffReader = new BufferedReader(reader);
 			String strTmp = "";
@@ -70,9 +70,9 @@ public class ConditionController {
 				}
 			}
 			result.put("keySet", keyset);
-			System.out.println(result);
+//			System.out.println(result);
 			result.put("data", data.toArray());
-			System.out.println(result);
+//			System.out.println(result);
 			String response = result.toJSONString();
 			buffReader.close();
 			req.setContentType("text/html;charset=utf-8");
@@ -106,8 +106,6 @@ public class ConditionController {
 	 * GET对应侧边栏
 	 * POST对应页面中的条件查询
 	 * @param request request
-	 * @param pageNum 分页插件：当前页码
-	 * @param pageSize 分页插件：每页大小
 	 * @return
 	 */
 //	@RequestMapping(value = {"/conditionHistory","/conditionHistory/{pageNum}/{pageSize}"})

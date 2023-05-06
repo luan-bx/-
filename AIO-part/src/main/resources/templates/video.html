@@ -207,7 +207,7 @@
                           <th>序号</th>
                           <th>视频截图</th>
                           <th>检测结果</th>
-                          <th>预测分数</th>
+<!--                          <th>预测分数</th>-->
                           <th>时间</th>
                         </tr>
                         </thead>
@@ -216,7 +216,7 @@
                           <th scope="row" th:text="${objStat.index}+*{startRow}">1</th>
                           <td style="text-align: center"><img class="resultImg" th:src="@{'/faceResultPath/'+${obj.pictureUrl}}" style="max-width: 100px;max-height: 100px" onclick="pop(this)"></td>
                           <td th:text="${obj.result}"></td>
-                          <td th:text="${obj.score}"></td>
+<!--                          <td th:text="${obj.score}"></td>-->
                           <td th:text="${#dates.format(obj.time,'yyyy年MM月dd日 HH:mm:ss')}"></td>
                         </tr>
                         </tbody>
@@ -271,7 +271,7 @@
                           <th>序号</th>
                           <th>视频截图</th>
                           <th>检测结果</th>
-                          <th>预测分数</th>
+<!--                          <th>预测分数</th>-->
                           <th>时间</th>
                         </tr>
                         </thead>
@@ -280,7 +280,7 @@
                           <th scope="row" th:text="${objStat.index}+*{startRow}">1</th>
                           <td style="text-align: center"><img class="resultImg" th:src="@{'/carResultPath/'+${obj.pictureUrl}}" style="max-width: 100px;max-height: 100px" onclick="pop(this)"></td>
                           <td th:text="${obj.result}"></td>
-                          <td th:text="${obj.score}"></td>
+<!--                          <td th:text="${obj.score}"></td>-->
                           <td th:text="${#dates.format(obj.time,'yyyy年MM月dd日 HH:mm:ss')}"></td>
                         </tr>
                         </tbody>

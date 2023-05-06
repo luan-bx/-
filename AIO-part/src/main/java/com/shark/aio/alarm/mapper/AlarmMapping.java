@@ -2,6 +2,7 @@ package com.shark.aio.alarm.mapper;
 
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyEntity;
 import com.shark.aio.alarm.service.AlarmService;
 import org.apache.ibatis.annotations.*;
 
@@ -16,7 +17,7 @@ public interface AlarmMapping {
      * @return 所有预警设置List
      */
     @Select("select * from alarm_settings")
-    public List<AlarmSettingsEntity> getAllAlarmSettings();
+    List<AlarmSettingsEntity> getAllAlarmSettings();
 
     /**
      * 查询某类监测项目的数据
@@ -38,7 +39,7 @@ public interface AlarmMapping {
             "or lower_limit like #{feature} " +
             "or upper_limit like #{feature} " +
             "or message like #{feature}")
-    public List<AlarmSettingsEntity> getAlarmSettingsByFeatures(String feature);
+    List<AlarmSettingsEntity> getAlarmSettingsByFeatures(String feature);
 
     /**
      * 查询预警设置表alarm_settings
@@ -48,7 +49,7 @@ public interface AlarmMapping {
      * @return 监测值
      */
     @Select("select monitor_value from alarm_settings where monitor_value=#{monitorValue}")
-    public String getMonitorValue(String monitorValue);
+    String getMonitorValue(String monitorValue);
 
     /**
      * 向预警设置表alarm_settings插入新的记录
@@ -56,7 +57,7 @@ public interface AlarmMapping {
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("insert into alarm_settings values (null,#{monitorClass},#{monitorValue},#{lowerLimit},#{upperLimit},#{message})")
-    public int insertAlarmEntity(AlarmSettingsEntity alarmSettingsEntity);
+    int insertAlarmEntity(AlarmSettingsEntity alarmSettingsEntity);
 
     /**
      * 根据id删除alarm_settings表中的一条记录
@@ -64,7 +65,7 @@ public interface AlarmMapping {
      * @return 成功删除的记录数，即删除成功为1，删除失败为0
      */
     @Delete("delete from alarm_settings where id=#{id}")
-    public int deleteAlarmSettingById(int id);
+    int deleteAlarmSettingById(int id);
 
     /**
      * 根据id编辑alarm_settings表中的记录
@@ -79,14 +80,14 @@ public interface AlarmMapping {
             "`upper_limit` = #{upperLimit}, " +
             "`message` = #{message} " +
             "WHERE `id`=#{id}")
-    public int updateAlarmSetting(AlarmSettingsEntity alarmSettingsEntity);
+    int updateAlarmSetting(AlarmSettingsEntity alarmSettingsEntity);
 
     /**
      * 从监测类型表monitor_class表中查询所有监测类型
      * @return 所有监测类型List
      */
     @Select("select name from monitor_class")
-    public List<String> getAllMonitorClass();
+    List<String> getAllMonitorClass();
 
     /**
      * 向监测类型monitor_class表中插入一条新的记录
@@ -94,7 +95,7 @@ public interface AlarmMapping {
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("INSERT INTO `monitor_class` SET `name`=#{name}")
-    public int insertMonitorClass(String name);
+    int insertMonitorClass(String name);
 
     /**
      * 向监测点monitor表中插入一条新的记录
@@ -102,44 +103,58 @@ public interface AlarmMapping {
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("INSERT INTO `monitor` SET `name`=#{name}")
-    public int insertMonitor(String name);
+    int insertMonitor(String name);
 
     /**
      * 从污染物类型pollution表中查询所有污染物
      * @return 所有污染物List
      */
     @Select("select name from pollution")
-    public List<String> getAllPollutionName();
+    List<String> getAllPollutionName();
 
+    @Select("select name from monitor")
+    List<String> getAllMonitor();
+
+//    @Select("select company from alarm_records_company")
+//    public List<String> getAllCompany();
+
+    @Select(" select classtab.company FROM (SELECT company, MAX(alarm_time) alarm_time FROM alarm_records_company GROUP BY company) " +
+            "tmp LEFT JOIN alarm_records_company classtab ON " +
+            "classtab.company = tmp.company AND classtab.alarm_time = tmp.alarm_time;")
+    List<String> getAllCompany();
     /**
      * 向污染物类型pollution表中插入新的污染物
      * @param name 新污染物名称
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("INSERT INTO `pollution` SET `name`=#{name}")
-    public int insertPollution(String name);
+    int insertPollution(String name);
 
     /**
      * 插入报警记录
      * @param alarmRecordentity
      */
     @Insert("INSERT INTO `alarm_records` values (null,#{alarmTime},#{monitor},#{monitorClass},#{monitorValue},#{monitorData},#{message})")
-    public void insertalarmRecords(AlarmRecordEntity alarmRecordentity);
+    void insertalarmRecords(AlarmRecordEntity alarmRecordentity);
 
     /**
      * 查询所有报警记录
      * @return 报警记录List
      */
+    @Select("SELECT * FROM `alarm_records_company`")
+    List<AlarmRecordCompanyEntity> getAllAlarmRecordsCompany();
+
+    @SelectProvider(type = AlarmService.class, method = "selectRecordsCompanyByDynamicSql")
+    List<AlarmRecordCompanyEntity> getAlarmRecordsCompanyByFeature(HashMap<String,String> features);
+
     @Select("SELECT * FROM `alarm_records`")
-    public List<AlarmRecordEntity> getAllAlarmRecords();
-
-
+    List<AlarmRecordEntity> getAllAlarmRecords();
     /**
      * 根据条件查询报警记录
      * @param features 查询条件
      * @return 报警记录List
      */
     @SelectProvider(type = AlarmService.class, method = "selectRecordsByDynamicSql")
-    public List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
+    List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
 
 }

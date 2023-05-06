@@ -1,7 +1,6 @@
 package com.shark.aio.data.video.service;
 
 import com.github.pagehelper.PageInfo;
-import com.shark.aio.data.video.configuration.VideoConfiguration;
 import com.shark.aio.data.video.entity.CarRecordsEntity;
 import com.shark.aio.data.video.entity.FaceRecordsEntity;
 import com.shark.aio.data.video.entity.FfmpegProcess;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @Slf4j

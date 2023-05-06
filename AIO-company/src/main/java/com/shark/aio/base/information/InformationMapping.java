@@ -11,8 +11,8 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface InformationMapping {
 
-    @Update("UPDATE `information` SET `company`=#{company}, `industry`=#{industry}," +
-            "`description`=#{description}  WHERE `id`= 1;")
+    @Update("UPDATE `information` SET `company`=#{company}, `industry`=#{industry}, `description`=#{description}," +
+            " `location`=#{location}, `telephone`=#{telephone}  WHERE `id`= 1;")
     void updateInformation(InformationEntity informationEntity);
 
 

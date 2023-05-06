@@ -69,47 +69,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <div id="player" style="min-height: 720px">
-                                    <!--<div style="position: absolute;width: 33%;height: 15%">
-                                        <video style="height: auto;width:98%;" id="player0" muted autoplay></video>
-                                    </div>
-                                      <div style="position: absolute;width: 33%;height: 15%;left: 33%">
-                                          <video style="height: auto;width:98%;" id="player1" muted autoplay></video>
-                                      </div>
-                                      <div style="position: absolute;width: 33%;height: 15%;left: 66%">
-                                          <video style="height: auto;width:98%;" id="player2" muted autoplay></video>
-                                      </div>
-                                    <div style="position: absolute;width: 33%;height: 15%;top: 34%">
-                                        <video style="height: auto;width:98%;" id="player3" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 33%;height: 15%;left: 33%;top: 34%">
-                                        <video style="height: auto;width:98%;" id="player4" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 33%;height: 15%;left: 66%;top: 34%">
-                                        <video style="height: auto;width:98%;" id="player5" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 33%;height: 15%;top: 68%">
-                                        <video style="height: auto;width:98%;" id="player6" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 33%;height: 15%;left: 33%;top: 68%">
-                                        <video style="height: auto;width:98%;" id="player7" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 33%;height: 15%;left: 66%;top: 68%">
-                                        <video style="height: auto;width:98%;" id="player8" muted autoplay></video>
-                                    </div>
-                                  </div>-->
-                                    <div style="position: absolute;width: 47%;height: 47%">
-                                        <video style="height: auto;width:100%;" id="player0" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 47%;height: 47%;left: 47%">
-                                        <video style="height: auto;width:100%;" id="player1" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 47%;height: 47%;top: 48%">
-                                        <video style="height: auto;width:100%;" id="player2" muted autoplay></video>
-                                    </div>
-                                    <div style="position: absolute;width: 47%;height: 47%;top: 48%;left: 47%">
-                                        <video style="height: auto;width:100%;" id="player3" muted autoplay></video>
-                                    </div>
+                                <div id="player" style="min-height: 300px">
 
                                     <div class="col-md-12 col-sm-12  ">
                                         <div class="x_panel">
@@ -128,6 +88,14 @@
                                                     <tr>
                                                         <th scope="row">企业描述</th>
                                                         <td th:text="${informationEntity.description}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">地址</th>
+                                                        <td th:text="${informationEntity.location}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">电话</th>
+                                                        <td th:text="${informationEntity.telephone}"></td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">监测点</th>
@@ -150,19 +118,48 @@
 
 
                         </div>
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>园区地址</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div  style="min-height: 200px">
+
+                                    <div class="col-md-12 col-sm-12  ">
+                                        <div class="x_panel">
+                                            <div class="x_content">
+
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row">IP</th>
+                                                        <td th:text="${partHostEntity.ip}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">端口号</th>
+                                                        <td th:text="${partHostEntity.port}"></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
-                <!-- 主页面结束 -->
 
-
-                <!-- footer content 页脚：可以指代开发公司？-->
-                <!--        <footer>-->
-                <!--          <div class="pull-middle">-->
-                <!--            Gentelella - Bootstrap Admin Template by <a th:href="@{/https://colorlib.com">Colorlib</a>-->
-                <!--          </div>-->
-                <!--          <div class="clearfix"></div>-->
-                <!--        </footer>-->
-                <!-- /footer content -->
             </div>
         </div>
 

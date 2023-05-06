@@ -106,19 +106,19 @@
                                   </div>
                                   <div class="input-prepend input-group col-sm-2">
                                     <select class="form-control" name="monitor">
-                                      <option value="">监测点无要求</option>
-                                      <option value="监测点1" th:selected="${monitor} eq '监测点1'">监测点1</option>
+                                      <option value="">监测点</option>
+                                      <option th:each="mt:${allMonitor}" th:value="${mt}" th:text="${mt}" th:selected="${mt} eq ${monitor}">监测点1</option>
                                     </select>
                                   </div>
                                   <div class="input-prepend input-group col-sm-2">
                                     <select class="form-control" name="monitorClass">
-                                      <option value="">监测类型无要求</option>
+                                      <option value="">监测类型</option>
                                       <option th:each="mc:${allMonitorClass}" th:value="${mc}" th:text="${mc}" th:selected="${mc} eq ${monitorClass}"></option>
                                     </select>
                                   </div>
                                   <div class="input-prepend input-group col-sm-2">
                                     <select class="form-control" name="monitorValue">
-                                      <option value="">监测值无要求</option>
+                                      <option value="">监测值</option>
                                       <option th:each="pn:${allPollutionName}" th:value="${pn}" th:text="${pn}" th:selected="${pn} eq ${monitorValue}"></option>
                                     </select>
                                   </div>

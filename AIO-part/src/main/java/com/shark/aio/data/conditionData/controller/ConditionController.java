@@ -70,9 +70,9 @@ public class ConditionController {
 				}
 			}
 			result.put("keySet", keyset);
-			System.out.println(result);
+//			System.out.println(result);
 			result.put("data", data.toArray());
-			System.out.println(result);
+//			System.out.println(result);
 			String response = result.toJSONString();
 			buffReader.close();
 			req.setContentType("text/html;charset=utf-8");

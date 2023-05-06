@@ -32,7 +32,7 @@ public class HJ212Server implements ApplicationRunner {
     /**
      * Netty服务端监听的端口号
      */
-    public static final int PORT = 9999;
+    public static final int PORT = 9998;
 
     /**
      * 分发线程组,用于处理客户端的连接请求

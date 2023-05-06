@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>智能一体机</title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <!-- NProgress -->
+    <link th:href="@{/vendors/nprogress/nprogress.css}" rel="stylesheet">
+    <!-- iCheck -->
+    <link th:href="@{/vendors/iCheck/skins/flat/green.css}" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <!-- 侧边栏 -->
+        <div th:replace="~{blank::menu}"></div>
+
+        <!-- 右上角图标 -->
+        <div th:replace="~{blank::top_nav}"></div>
+
+        <!-- 主页面 -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><small>企业档案</small></h3>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                    <div class="x_panel">
+
+                            <div class="x_title">
+                                <h2>全部企业</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                        <div class="x_content">
+                            <div class="col-md-4 col-sm-4  profile_details">
+                                <div class="well profile_view">
+                                    <div class="col-sm-12">
+<!--                                        <h4 class="brief"><i>园区</i></h4>-->
+                                        <div class="left col-md-7 col-sm-7">
+                                            <h2>南京中医药</h2>
+                                            <p><strong>简介: </strong> ************</p>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-building"></i> 地址:</li>
+                                                <li><i class="fa fa-phone"></i> 电话 #:</li>
+                                            </ul>
+                                        </div>
+                                        <div class="right col-md-5 col-sm-5 text-center">
+                                            <img src="images/img.jpg" alt="" class="img-circle img-fluid">
+                                        </div>
+                                    </div>
+<!--                                    <div class=" profile-bottom text-center">-->
+<!--                                        <div class=" col-sm-6 emphasis">-->
+<!--                                            <p class="ratings">-->
+<!--                                                <a>4.0</a>-->
+<!--                                                <a href="#"><span class="fa fa-star"></span></a>-->
+<!--                                                <a href="#"><span class="fa fa-star"></span></a>-->
+<!--                                                <a href="#"><span class="fa fa-star"></span></a>-->
+<!--                                                <a href="#"><span class="fa fa-star"></span></a>-->
+<!--                                                <a href="#"><span class="fa fa-star-o"></span></a>-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                        <div class=" col-sm-6 emphasis">-->
+<!--                                            <button type="button" class="btn btn-success btn-sm"><i class="fa fa-user">-->
+<!--                                            </i> <i class="fa fa-comments-o"></i></button>-->
+<!--                                            <button type="button" class="btn btn-primary btn-sm">-->
+<!--                                                <i class="fa fa-user"> </i> View Profile-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script th:src="@{/vendors/jquery/dist/jquery.min.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/vendors/fastclick/lib/fastclick.js}"></script>
+<!-- NProgress -->
+<script th:src="@{/vendors/nprogress/nprogress.js}"></script>
+<!-- bootstrap-progressbar -->
+<script th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+
+<!-- Custom Theme Scripts -->
+<script th:src="@{/build/js/custom.min.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var msg = /*[[${msg}]]*/null;
+    if (msg != null) {
+        alert(msg);
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

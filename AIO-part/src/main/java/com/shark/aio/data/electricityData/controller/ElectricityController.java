@@ -38,7 +38,7 @@ public class ElectricityController {
     @RequestMapping("/returnElectricData")
     public void returnElectricityData(String monitorName, String dir, HttpServletResponse req) throws IOException {
         if (!"null".equals(monitorName)) {
-            FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + Constants.ELECTRICDATA);
+            FileInputStream fin = new FileInputStream(Constants.ELECTRICPATH + monitorName + (ProcessUtil.IS_WINDOWS ? "\\" : "/") + dir +  Constants.ELECTRICDATA);
             InputStreamReader reader = new InputStreamReader(fin, "utf-8");
             BufferedReader buffReader = new BufferedReader(reader);
             String strTmp = "";

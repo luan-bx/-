@@ -11,6 +11,9 @@ import java.util.List;
 @Mapper
 public interface AlarmMapping {
 
+
+
+
     /**
      * 查询所有预警设置
      * @return 所有预警设置List
@@ -86,15 +89,17 @@ public interface AlarmMapping {
      * @return 所有监测类型List
      */
     @Select("select name from monitor_class")
-    public List<String> getAllMonitorClass();
+    List<String> getAllMonitorClass();
 
+    @Select("select name from monitor")
+    List<String> getAllMonitor();
     /**
      * 向监测类型monitor_class表中插入一条新的记录
      * @param name 监测类型名
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("INSERT INTO `monitor_class` SET `name`=#{name}")
-    public int insertMonitorClass(String name);
+    int insertMonitorClass(String name);
 
     /**
      * 向监测点monitor表中插入一条新的记录
@@ -102,14 +107,14 @@ public interface AlarmMapping {
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("INSERT INTO `monitor` SET `name`=#{name}")
-    public int insertMonitor(String name);
+    int insertMonitor(String name);
 
     /**
      * 从污染物类型pollution表中查询所有污染物
      * @return 所有污染物List
      */
     @Select("select name from pollution")
-    public List<String> getAllPollutionName();
+    List<String> getAllPollutionName();
 
     /**
      * 向污染物类型pollution表中插入新的污染物
@@ -117,14 +122,14 @@ public interface AlarmMapping {
      * @return 成功插入的记录数，即插入成功为1，插入失败为0
      */
     @Insert("INSERT INTO `pollution` SET `name`=#{name}")
-    public int insertPollution(String name);
+    int insertPollution(String name);
 
     /**
      * 插入报警记录
      * @param alarmRecordentity
      */
     @Insert("INSERT INTO `alarm_records` values (null,#{alarmTime},#{monitor},#{monitorClass},#{monitorValue},#{monitorData},#{message})")
-    public void insertalarmRecords(AlarmRecordEntity alarmRecordentity);
+    void insertalarmRecords(AlarmRecordEntity alarmRecordentity);
 
     /**
      * 查询所有报警记录
@@ -141,5 +146,7 @@ public interface AlarmMapping {
      */
     @SelectProvider(type = AlarmService.class, method = "selectRecordsByDynamicSql")
     public List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
+
+
 
 }

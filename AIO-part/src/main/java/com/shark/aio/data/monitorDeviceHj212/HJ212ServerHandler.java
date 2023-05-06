@@ -63,7 +63,7 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
-        System.out.println("收到HJ212协议数据为 ===> " + msg);
+//        System.out.println("收到HJ212协议数据为 ===> " + msg);
 
         //CRC校验
         if(!HJ212MsgUtils.checkData((String)msg).equals("error")){

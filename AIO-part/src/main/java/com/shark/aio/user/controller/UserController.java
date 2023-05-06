@@ -1,5 +1,6 @@
 package com.shark.aio.user.controller;
 
+import com.shark.aio.base.controller.BaseController;
 import com.shark.aio.user.entity.UserEntity;
 import com.shark.aio.user.mapper.UserMapping;
 import com.shark.aio.user.service.UserService;
@@ -31,6 +32,9 @@ public class UserController {
 	protected UserService userService;
 	@Autowired
 	protected UserMapping userMapping;
+
+	@Autowired
+	protected BaseController baseController;
 
 
 
@@ -114,11 +118,12 @@ public class UserController {
 			//判断权限
 			String userName = userEntity.getUserName();
 			UserEntity user = userMapping.queryUserByUserName(userName);
-			String iconPath = user.getIcon();
-			req.getSession().setAttribute("iconPath",iconPath);
+			req.getSession().setAttribute("iconPath",user.getIcon());
+			req.getSession().setAttribute("userName",user.getUserName());
 			req.getSession().setMaxInactiveInterval(0);
 //			return authController.auth(user, userName, req, response);
-			return "index";
+			return baseController.toIndex(req);
+//			return "index";
 		} else if (login.equals(Constants.ERROR)) {
 			// 登录失败
 			req.setAttribute(Constants.INFORMATION, Constants.LOGINERROE);

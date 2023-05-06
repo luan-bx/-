@@ -2,7 +2,6 @@ package com.shark.aio.data.monitorDeviceHj212;
 
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
-import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceEntity;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -64,4 +63,8 @@ public interface MonitorDeviceMapping {
 
     @Delete("delete from `monitor` where name = #{deleteMonitorName}")
     void deleteMonitorName(String deleteMonitorName);
+
+
+
+
 }

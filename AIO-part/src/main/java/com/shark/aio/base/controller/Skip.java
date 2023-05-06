@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class Skip {
 
-	
+
+
+
 	@RequestMapping("/wastedWater")
 	public String wastedWaterWeb() {
 		return "wastedWater";

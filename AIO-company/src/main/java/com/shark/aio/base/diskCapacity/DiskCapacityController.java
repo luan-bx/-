@@ -1,6 +1,6 @@
 package com.shark.aio.base.diskCapacity;
 
-import com.shark.aio.util.ProcessUtil;
+import com.shark.aio.util.Constants;
 import com.sun.management.OperatingSystemMXBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,7 @@ public class DiskCapacityController {
 
             DecimalFormat df = new DecimalFormat("#0.00");
 //        File[] disks = File.listRoots();
-            File disks = new File(ProcessUtil.IS_WINDOWS?"D:\\项目\\AIO\\data":"/home/user");
+            File disks = new File(Constants.DISKCAPACITYPATH);
             //获取总容量
             long totalSpace = disks.getTotalSpace();
             // 获取剩余容量

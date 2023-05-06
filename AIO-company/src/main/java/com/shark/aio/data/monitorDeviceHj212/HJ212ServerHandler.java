@@ -3,6 +3,9 @@ package com.shark.aio.data.monitorDeviceHj212;
 import com.alibaba.fastjson.JSONObject;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
+import com.shark.aio.alarm.contactPart.ContractPartController;
+import com.shark.aio.base.information.InformationEntity;
+import com.shark.aio.base.information.InformationMapping;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ProcessUtil;
 import io.netty.channel.Channel;
@@ -37,7 +40,10 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
 
     @Autowired
     protected MonitorDeviceService monitorDeviceService;
-
+    @Autowired
+    protected ContractPartController contractPartController;
+    @Autowired
+    InformationMapping informationMapping;
     // 当前类
     private static HJ212ServerHandler hJ212ServerHandler;
 
@@ -48,6 +54,8 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
     public void init(){
         hJ212ServerHandler = this;
         hJ212ServerHandler.monitorDeviceService = this.monitorDeviceService;
+        hJ212ServerHandler.contractPartController = this.contractPartController;
+        hJ212ServerHandler.informationMapping = this.informationMapping;
     }
 
 
@@ -63,7 +71,8 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
-        System.out.println("收到HJ212协议数据为 ===> " + msg);
+//        System.out.println("收到HJ212协议数据为 ===> " + msg);
+
 
         //CRC校验
         if(!HJ212MsgUtils.checkData((String)msg).equals("error")){
@@ -126,6 +135,9 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
                                                 alarmRecordEntity.setMessage(alarmSettingsEntity.getMessage());
                                                 hJ212ServerHandler.monitorDeviceService.insertAlarmRecord(alarmRecordEntity);
 
+                                                //传到园区端
+                                                InformationEntity informationEntity = hJ212ServerHandler.informationMapping.getInformation();
+                                                hJ212ServerHandler.contractPartController.alarmToPart(alarmRecordEntity, informationEntity.getCompany());
                                             }
                                         }
                                     }

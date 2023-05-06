@@ -12,4 +12,6 @@ public class InformationEntity {
     private String company;
     private String industry;
     private String description;
+    private String location;
+    private String telephone;
 }

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.mapper.AlarmMapping;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyEntity;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -186,6 +187,24 @@ public class AlarmService {
             return null;
         }
     }
+    public List<String> getAllMonitor(){
+        try {
+            List<String> allMonitor = alarmMapping.getAllMonitor();
+            return allMonitor;
+        }catch (Exception e){
+            log.error("获取监测点名称失败！",e);
+            return null;
+        }
+    }
+    public List<String> getAllCompany(){
+        try {
+            List<String> allCompany = alarmMapping.getAllCompany();
+            return allCompany;
+        }catch (Exception e){
+            log.error("获取全部企业名称失败！",e);
+            return null;
+        }
+    }
 
     /**
      * 工具方法，供控制层调用，向request中存放所有监测类型和污染物
@@ -196,6 +215,8 @@ public class AlarmService {
     public boolean setAttributeBYMonitorAndPollution(HttpServletRequest request){
         List<String> allMonitorClass = getAllMonitorClass();
         List<String> allPollutionName = getAllPollutionName();
+        List<String> allMonitor = getAllMonitor();
+        List<String> allCompany = getAllCompany();
         if (allPollutionName==null || allMonitorClass==null){
             log.error("获取全部监测类型和污染物名称失败！");
             return false;
@@ -203,8 +224,32 @@ public class AlarmService {
         log.error("获取全部监测类型和污染物名称成功！");
         request.setAttribute(Constants.ALLMONITORCLASS, allMonitorClass);
         request.setAttribute(Constants.ALLPOLLUTIONNAME, allPollutionName);
+        request.setAttribute("allMonitor", allMonitor);
+        request.setAttribute("allCompany", allCompany);
         return true;
     }
+
+    public PageInfo<AlarmRecordCompanyEntity> getAlarmRecordsCompanyByPage(Integer pageNum, Integer pageSize, HashMap<String,String> features){
+        List<AlarmRecordCompanyEntity> allAlarmRecordsCompany = null;
+        try{
+            if (features==null || features.isEmpty()){
+                allAlarmRecordsCompany = alarmMapping.getAllAlarmRecordsCompany();
+            }
+            else{
+                System.out.println("map:"+features);
+                allAlarmRecordsCompany = alarmMapping.getAlarmRecordsCompanyByFeature(features);
+
+            }
+//            for(AlarmRecordEntity alarmRecordEntity : allAlarmRecords){
+//                String timestamp = String.valueOf(alarmRecordEntity.getAlarmTime());
+//
+//            }
+        }catch (Exception e){
+            log.error("获取报警记录失败！",e);
+        }
+        return new PageInfo<>(allAlarmRecordsCompany, 5);
+    }
+
 
     /**
      * 从数据库查询报警记录
@@ -258,6 +303,41 @@ public class AlarmService {
                 if (!ObjectUtil.isEmptyString(features.get("endTime"))){
                     WHERE("alarm_time <= '"+features.get("endTime")+"'");
                 }
+            }
+        }.toString();
+        return sql;
+    }
+
+
+    /**
+     * 动态SQL，用于报警记录的条件查询
+     * @param features 查询条件
+     * @return SQL语句
+     */
+    public String selectRecordsCompanyByDynamicSql(HashMap<String,String> features){
+        String sql = new SQL(){
+            {
+                SELECT("*");
+                FROM("alarm_records_company");
+                if (!ObjectUtil.isEmptyString(features.get("monitor"))){
+                    WHERE("monitor = '"+features.get("monitor")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("monitorClass"))){
+                    WHERE("monitor_class = '"+features.get("monitorClass")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("monitorValue"))){
+                    WHERE("monitor_value = '"+features.get("monitorValue")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("startTime"))){
+                    WHERE("alarm_time >= '"+features.get("startTime")+"'");
+                }
+                if (!ObjectUtil.isEmptyString(features.get("endTime"))){
+                    WHERE("alarm_time <= '"+features.get("endTime")+"'");
+                }
+
+                if (!ObjectUtil.isEmptyString(features.get("company"))){
+                    WHERE("company = '"+features.get("company")+"'");
+                };
             }
         }.toString();
         return sql;

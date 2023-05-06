@@ -3,13 +3,15 @@ package com.shark.aio.base.authority;
 import lombok.Data;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * @author lbx
  * @date 2023/4/2 - 19:42
  **/
 @Data
 @ToString
-public class AuthorityEntity {
+public class AuthorityEntity{
     private int id;
     private String authority1 = "off";
     private String authority2 = "off";

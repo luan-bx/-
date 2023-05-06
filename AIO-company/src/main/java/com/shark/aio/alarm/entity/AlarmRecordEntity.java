@@ -5,13 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AlarmRecordEntity {
+public class AlarmRecordEntity implements Serializable{
     /*
     create table AIO.alarm_records
 (

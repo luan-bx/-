@@ -186,7 +186,15 @@ public class AlarmService {
             return null;
         }
     }
-
+    public List<String> getAllMonitor(){
+        try {
+            List<String> allMonitor = alarmMapping.getAllMonitor();
+            return allMonitor;
+        }catch (Exception e){
+            log.error("获取监测点名称失败！",e);
+            return null;
+        }
+    }
     /**
      * 工具方法，供控制层调用，向request中存放所有监测类型和污染物
      * 查询监测类型或污染物名称失败后，返回false
@@ -196,6 +204,7 @@ public class AlarmService {
     public boolean setAttributeBYMonitorAndPollution(HttpServletRequest request){
         List<String> allMonitorClass = getAllMonitorClass();
         List<String> allPollutionName = getAllPollutionName();
+        List<String> allMonitor = getAllMonitor();
         if (allPollutionName==null || allMonitorClass==null){
             log.error("获取全部监测类型和污染物名称失败！");
             return false;
@@ -203,6 +212,7 @@ public class AlarmService {
         log.error("获取全部监测类型和污染物名称成功！");
         request.setAttribute(Constants.ALLMONITORCLASS, allMonitorClass);
         request.setAttribute(Constants.ALLPOLLUTIONNAME, allPollutionName);
+        request.setAttribute("allMonitor", allMonitor);
         return true;
     }
 

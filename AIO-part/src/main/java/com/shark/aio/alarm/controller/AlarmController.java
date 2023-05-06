@@ -3,6 +3,7 @@ package com.shark.aio.alarm.controller;
 import com.github.pagehelper.PageInfo;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyEntity;
 import com.shark.aio.alarm.service.AlarmService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
@@ -195,6 +196,61 @@ public class AlarmController {
         return Constants.ALARMREOCRDS;
     }
 
+
+
+
+    @RequestMapping(value = {"/companyRecord","/companyRecord/{pageNum}/{pageSize}"})
+    public String toAlarmCompanyRecordsPage(HttpServletRequest request,
+                                     @PathVariable(required = false) Integer pageNum,
+                                     @PathVariable(required = false) Integer pageSize
+    ){
+        //条件查询的HashMap，若没有条件查询默认为null
+        HashMap<String,String> features = null;
+        //条件查询是POST方法，此处判断POST
+        if (request.getMethod().equals("POST")){
+            //获取查询条件，并放置到HashMap中
+            features = new HashMap<>();
+            String startTime = request.getParameter("startTime");
+            String endTime = request.getParameter("endTime");
+            try {
+                //开始结束时间转化为时间戳
+                if (!ObjectUtil.isEmptyString(startTime)) features.put("startTime", DateUtil.toTimestamp(startTime));
+                if (!ObjectUtil.isEmptyString(endTime)) features.put("endTime",DateUtil.toTimestamp(endTime));
+            }catch (ParseException e){
+                log.error("转化为时间戳失败！",e);
+            }
+            //监测点、监测类型、监测值
+            String monitor = request.getParameter("monitor");
+            if(!ObjectUtil.isEmptyString(monitor)) features.put("monitor",monitor);
+            String monitorClass = request.getParameter("monitorClass");
+            if(!ObjectUtil.isEmptyString(monitorClass)) features.put("monitorClass",monitorClass);
+            String monitorValue = request.getParameter("monitorValue");
+            if(!ObjectUtil.isEmptyString(monitorValue)) features.put("monitorValue",monitorValue);
+            String company = request.getParameter("company");
+            if(!ObjectUtil.isEmptyString(company)) features.put("company",company);
+
+            //返回前端，方便下一次筛选
+            request.setAttribute("monitor", features.get("monitor"));
+            request.setAttribute("monitorClass", features.get("monitorClass"));
+            request.setAttribute("monitorValue", features.get("monitorValue"));
+            request.setAttribute("startTime", startTime);
+            request.setAttribute("endTime", endTime);
+            request.setAttribute("company", company);
+        }
+        //查询数据库
+        PageInfo<AlarmRecordCompanyEntity> allAlarmRecordCompanyEntity = alarmService.getAlarmRecordsCompanyByPage(pageNum, pageSize, features);
+        if(allAlarmRecordCompanyEntity == null) {
+            log.info("报警记录页面成功！" );
+            return "500";
+        }
+        if (!alarmService.setAttributeBYMonitorAndPollution(request)){
+            log.info("报警记录页面失败！" );
+            log.error("报警记录页面失败！");
+            return "500";
+        }
+        request.setAttribute("alarmRecordCompanyEntity", allAlarmRecordCompanyEntity);
+        return "alarmRecordsCompany";
+    }
 
     @RequestMapping("/testRtmp")
     public String toTestPage(){

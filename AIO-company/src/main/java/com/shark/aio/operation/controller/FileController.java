@@ -97,7 +97,7 @@ public class FileController {
 //    private static final String dataDir = ProcessUtil.IS_WINDOWS?"F:\\code\\soft\\AIO\\data":"/home/user/AIO/data";
     private static final String dataDir = Constants.ROOTPATH;
     private static final String videoDir = Constants.VIDEOPATH;
-    private static final String logsDir = ProcessUtil.IS_WINDOWS ? "D:\\项目\\AIO\\日志\\" : "/home/njzt/AIO/日志";
+    private static final String logsDir = ProcessUtil.IS_WINDOWS ? "D:\\项目\\AIO\\日志\\" : "/home/test/AIO/日志";
 
     private static long getTotalSizeOfFilesInDir(final File file) {
         if (file.isFile())

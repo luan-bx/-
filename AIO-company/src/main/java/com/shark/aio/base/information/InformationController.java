@@ -1,5 +1,7 @@
 package com.shark.aio.base.information;
 
+import com.shark.aio.alarm.contactPart.ContractPartMapping;
+import com.shark.aio.alarm.contactPart.PartHostEntity;
 import com.shark.aio.data.monitorDeviceHj212.MonitorDeviceService;
 import com.shark.aio.util.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -23,7 +26,8 @@ public class InformationController {
     MonitorDeviceService MonitorDeviceService;
     @Autowired
     InformationMapping informationMapping;
-
+    @Autowired
+    ContractPartMapping contractPartMapping;
 
     @RequestMapping("/index")
     public String indexWeb(HttpServletRequest request) {
@@ -32,14 +36,20 @@ public class InformationController {
         List<String> allMonitor = MonitorDeviceService.getAllMonitor();
         request.setAttribute(Constants.ALLMONITOR, allMonitor);
         request.setAttribute("informationEntity", informationEntity);
+        PartHostEntity partHostEntity = contractPartMapping.getPartHost();
+        request.setAttribute("partHostEntity", partHostEntity);
+        HttpSession session = request.getSession();
+        session.setAttribute("company",informationEntity.getCompany());
         log.info("进入首页成功！");
         return "index";
     }
 
     @RequestMapping("/updateInformation")
-    public String updateInformation(HttpServletRequest request) {
+    public String updateInformationWeb(HttpServletRequest request) {
         InformationEntity informationEntity = informationMapping.getInformation();
         List<String> allMonitor = MonitorDeviceService.getAllMonitor();
+        PartHostEntity partHostEntity = contractPartMapping.getPartHost();
+        request.setAttribute("partHostEntity", partHostEntity);
         request.setAttribute(Constants.ALLMONITOR, allMonitor);
         request.setAttribute("informationEntity", informationEntity);
         log.info("进入企业信息修改页面成功！");
@@ -52,10 +62,23 @@ public class InformationController {
             informationMapping.updateInformation(informationEntity);
         }catch (Exception e){
             log.error("企业信息修改失败！" +e);
-            return updateInformation(request);
+            return updateInformationWeb(request);
         }
         request.setAttribute("msg", "企业信息修改成功！");
         log.info("企业信息修改成功！");
+        return indexWeb(request);
+    }
+
+    @RequestMapping("/updataPartHostEntity")
+    public String updataPartHostEntity(HttpServletRequest request, PartHostEntity partHostEntity) {
+        try{
+            contractPartMapping.updatePartHost(partHostEntity);
+        }catch (Exception e){
+            log.error("园区地址修改失败！" +e);
+            return updateInformationWeb(request);
+        }
+        request.setAttribute("msg", "园区地址修改成功！");
+        log.info("园区地址修改成功！");
         return indexWeb(request);
     }
 }
