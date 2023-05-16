@@ -37,7 +37,7 @@ public class BaseController {
 				if (ck.getName().equals(Constants.COOKIEHEAD)) {
 					flag = true;
 					userName = ck.getValue();
-//					log.info("本次登录用户:{}", ck.getValue());
+					log.info("本次登录用户:{}", ck.getValue());
 					break;
 				}
 			}
@@ -49,13 +49,23 @@ public class BaseController {
 ////		/**
 ////		 * 根据用户名，查询权限，返回对应首页
 ////		 */
-		UserEntity userEntity = userMapping.queryUserByUserName(userName);
-		req.getSession().setAttribute("iconPath",userEntity.getIcon());
-		req.getSession().setAttribute("userName",userEntity.getUserName());
 
-		req.getSession().setMaxInactiveInterval(0);
+		try{
+			UserEntity userEntity = userMapping.queryUserByUserName(userName);
+			if(userEntity == null){
+				return Constants.LOGIN;
+			}
+			req.getSession().setAttribute("iconPath",userEntity.getIcon());
+			req.getSession().setAttribute("userName",userEntity.getUserName());
 
-		log.info("用户：" + userEntity.getUserName() + "登陆系统");
+			req.getSession().setMaxInactiveInterval(0);
+			log.info("用户：" + userEntity.getUserName() + "登陆系统");
+		}catch (Exception e){
+			return Constants.LOGIN;
+		}
+
+
+
 		return informationController.indexWeb(req);
 
 	}

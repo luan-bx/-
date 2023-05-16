@@ -3,6 +3,8 @@ package com.shark.aio.alarm.mapper;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyEntity;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyHighEntity;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyMediumEntity;
 import com.shark.aio.alarm.service.AlarmService;
 import org.apache.ibatis.annotations.*;
 
@@ -122,6 +124,16 @@ public interface AlarmMapping {
             "tmp LEFT JOIN alarm_records_company classtab ON " +
             "classtab.company = tmp.company AND classtab.alarm_time = tmp.alarm_time;")
     List<String> getAllCompany();
+
+    @Select(" select classtab.company FROM (SELECT company, MAX(alarm_time) alarm_time FROM alarm_records_company_high GROUP BY company) " +
+            "tmp LEFT JOIN alarm_records_company_high classtab ON " +
+            "classtab.company = tmp.company AND classtab.alarm_time = tmp.alarm_time;")
+    List<String> getAllCompanyHigh();
+
+    @Select(" select classtab.company FROM (SELECT company, MAX(alarm_time) alarm_time FROM alarm_records_company_medium GROUP BY company) " +
+            "tmp LEFT JOIN alarm_records_company_medium classtab ON " +
+            "classtab.company = tmp.company AND classtab.alarm_time = tmp.alarm_time;")
+    List<String> getAllCompanyMedium();
     /**
      * 向污染物类型pollution表中插入新的污染物
      * @param name 新污染物名称
@@ -149,6 +161,11 @@ public interface AlarmMapping {
 
     @Select("SELECT * FROM `alarm_records`")
     List<AlarmRecordEntity> getAllAlarmRecords();
+
+    @Select("SELECT * FROM `alarm_records_company_high`")
+    List<AlarmRecordCompanyHighEntity> getAllAlarmRecordsHigh();
+    @Select("SELECT * FROM `alarm_records_company_medium`")
+    List<AlarmRecordCompanyMediumEntity> getAllAlarmRecordsMedium();
     /**
      * 根据条件查询报警记录
      * @param features 查询条件
@@ -156,5 +173,11 @@ public interface AlarmMapping {
      */
     @SelectProvider(type = AlarmService.class, method = "selectRecordsByDynamicSql")
     List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
+
+    @SelectProvider(type = AlarmService.class, method = "selectRecordsMediumByDynamicSql")
+    List<AlarmRecordCompanyMediumEntity> getAlarmRecordsMediumByFeature(HashMap<String,String> features);
+
+    @SelectProvider(type = AlarmService.class, method = "selectRecordsHighByDynamicSql")
+    List<AlarmRecordCompanyHighEntity> getAlarmRecordsByHighFeature(HashMap<String,String> features);
 
 }

@@ -1,9 +1,9 @@
 package com.shark.aio.data.monitorDeviceHj212;
 
 import com.alibaba.fastjson.JSONObject;
+import com.shark.aio.alarm.contactPart.ContractPartController;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
-import com.shark.aio.alarm.contactPart.ContractPartController;
 import com.shark.aio.base.information.InformationEntity;
 import com.shark.aio.base.information.InformationMapping;
 import com.shark.aio.util.Constants;
@@ -15,6 +15,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.Jedis;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedOutputStream;
@@ -72,7 +73,7 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
 //        System.out.println("收到HJ212协议数据为 ===> " + msg);
-
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
 
         //CRC校验
         if(!HJ212MsgUtils.checkData((String)msg).equals("error")){
@@ -92,6 +93,8 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
                         if(monitorDevice != null ){
                             //回应数采仪
                             push(ctx);
+                            //redis三小时key,是否失去连接超过三小时
+                            jedis.setex(deviceId, 3*60*60, "true");
                             String monitorName = monitorDevice.getMonitorName();
                             String monitorClass = monitorDevice.getMonitorClass();
                             SimpleDateFormat DataFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -123,21 +126,41 @@ public class HJ212ServerHandler extends ChannelInboundHandlerAdapter {
                                     for(String key : CPObject.keySet()){
                                         if(alarmSettingsEntity.getMonitorValue().equals(key)){
                                             Double value = Double.parseDouble(CPObject.getString(key));
+                                            if (!jedis.exists(key)) {
+                                                jedis.setex(key, 24*60*60, "1");
+                                            }
+                                            //判断8小时恒定值
+                                            if (!jedis.exists("invariable_" + key)) {
+                                                jedis.setex("invariable_" + key, 8*60*60, String.valueOf(value));
+                                            }else{
+                                                if(value != Double.parseDouble(jedis.get("invariable_" + key))){
+                                                    jedis.setex("invariable_" + key, 8*60*60, String.valueOf(value));
+                                                }
+                                            }
+
+
                                             if( value > alarmSettingsEntity.getLowerLimit() &&
                                                 value < alarmSettingsEntity.getUpperLimit()){
+
                                             }else {
+                                                Timestamp alarmTime = Timestamp.valueOf(data.getString("DataTime"));
                                                 AlarmRecordEntity alarmRecordEntity = new AlarmRecordEntity();
-                                                alarmRecordEntity.setAlarmTime(Timestamp.valueOf(data.getString("DataTime")));
+                                                alarmRecordEntity.setAlarmTime(alarmTime);
                                                 alarmRecordEntity.setMonitor(monitorName);
                                                 alarmRecordEntity.setMonitorClass(monitorClass);
                                                 alarmRecordEntity.setMonitorValue(key);
                                                 alarmRecordEntity.setMonitorData(value.toString());
                                                 alarmRecordEntity.setMessage(alarmSettingsEntity.getMessage());
                                                 hJ212ServerHandler.monitorDeviceService.insertAlarmRecord(alarmRecordEntity);
+                                                //超限增加1次
+                                                jedis.incr(key);
+                                                if("3".equals(jedis.get(key))){
+                                                    //超过3次超标，传到园区端
+                                                    InformationEntity informationEntity = hJ212ServerHandler.informationMapping.getInformation();
+                                                    hJ212ServerHandler.contractPartController.alarmToPart2("more3", null, null, alarmRecordEntity, informationEntity.getCompany(), alarmTime);
+                                                    jedis.setex( key, 24*60*60, "1");
+                                                }
 
-                                                //传到园区端
-                                                InformationEntity informationEntity = hJ212ServerHandler.informationMapping.getInformation();
-                                                hJ212ServerHandler.contractPartController.alarmToPart(alarmRecordEntity, informationEntity.getCompany());
                                             }
                                         }
                                     }

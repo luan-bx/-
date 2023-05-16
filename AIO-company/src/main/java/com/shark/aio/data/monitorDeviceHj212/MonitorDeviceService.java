@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -146,6 +147,8 @@ public class MonitorDeviceService {
             if(monitorDeviceEntity.getDeviceId() != null){
                 try {
                     monitorDeviceMapping.insert(monitorDeviceEntity);
+                    Jedis jedis = new Jedis("127.0.0.1", 6379);
+                    jedis.setex(monitorDeviceEntity.getDeviceId(), 3*60*60, "true");
                     log.info("新增监测点与设备关联成功！");
                 }catch (DataIntegrityViolationException e){
                     log.error("pollutionMonitor:新增监测点与设备关联失败！",e);

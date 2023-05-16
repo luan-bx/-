@@ -1,9 +1,11 @@
 package com.shark.aio.alarm.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyHighEntity;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyEntity;
+import com.shark.aio.alarm.receiveAlarm.AlarmRecordCompanyMediumEntity;
 import com.shark.aio.alarm.service.AlarmService;
 import com.shark.aio.util.Constants;
 import com.shark.aio.util.DateUtil;
@@ -199,7 +201,7 @@ public class AlarmController {
 
 
 
-    @RequestMapping(value = {"/companyRecord","/companyRecord/{pageNum}/{pageSize}"})
+    @RequestMapping(value = {"/recordsLow","/companyRecord/{pageNum}/{pageSize}"})
     public String toAlarmCompanyRecordsPage(HttpServletRequest request,
                                      @PathVariable(required = false) Integer pageNum,
                                      @PathVariable(required = false) Integer pageSize
@@ -250,6 +252,105 @@ public class AlarmController {
         }
         request.setAttribute("alarmRecordCompanyEntity", allAlarmRecordCompanyEntity);
         return "alarmRecordsCompany";
+    }
+    @RequestMapping(value = {"/recordsMedium", "/recordsMedium/{pageNum}/{pageSize}"})
+    public String toAlarmRecordsMediumPage(HttpServletRequest request,
+                                           @PathVariable(required = false) Integer pageNum,
+                                           @PathVariable(required = false) Integer pageSize
+    ) {
+        //条件查询的HashMap，若没有条件查询默认为null
+        HashMap<String, String> features = null;
+        //条件查询是POST方法，此处判断POST
+        if (request.getMethod().equals("POST")) {
+            //获取查询条件，并放置到HashMap中
+            features = new HashMap<>();
+            String startTime = request.getParameter("startTime");
+            String endTime = request.getParameter("endTime");
+            try {
+                //开始结束时间转化为时间戳
+                if (!ObjectUtil.isEmptyString(startTime)) features.put("startTime", DateUtil.toTimestamp(startTime));
+                if (!ObjectUtil.isEmptyString(endTime)) features.put("endTime", DateUtil.toTimestamp(endTime));
+            } catch (ParseException e) {
+                log.error("转化为时间戳失败！", e);
+            }
+            //监测点、监测类型、监测值
+            String monitorName = request.getParameter("monitorName");
+            if (!ObjectUtil.isEmptyString(monitorName)) features.put("monitorName", monitorName);
+            String monitorClass = request.getParameter("monitorClass");
+            if (!ObjectUtil.isEmptyString(monitorClass)) features.put("monitorClass", monitorClass);
+            String deviceId = request.getParameter("deviceId");
+            if (!ObjectUtil.isEmptyString(deviceId)) features.put("deviceId", deviceId);
+            String company = request.getParameter("company");
+            if(!ObjectUtil.isEmptyString(company)) features.put("company",company);
+
+            //返回前端，方便下一次筛选
+            request.setAttribute("monitorName", features.get("monitorName"));
+            request.setAttribute("monitorClass", features.get("monitorClass"));
+            request.setAttribute("deviceId", features.get("deviceId"));
+            request.setAttribute("startTime", startTime);
+            request.setAttribute("endTime", endTime);
+            request.setAttribute("company", company);
+        }
+        //查询数据库
+        PageInfo<AlarmRecordCompanyMediumEntity> allAlarmRecordsMedium = alarmService.getAlarmRecordsMediumByPage(pageNum, pageSize, features);
+        if (allAlarmRecordsMedium == null) {
+            log.error("中级报警记录页面失败！");
+            return "500";
+        }
+        if (!alarmService.setAttributeMedium(request)) {
+            log.info("中级报警记录页面失败！");
+            log.error("中级报警记录页面失败！");
+            return "500";
+        }
+        request.setAttribute("recordsMedium", allAlarmRecordsMedium);
+        return Constants.ALARMREOCRDSMEDIUM;
+    }
+
+    @RequestMapping(value = {"/recordsHigh", "/recordsHigh/{pageNum}/{pageSize}"})
+    public String toAlarmRecordsHighPage(HttpServletRequest request,
+                                         @PathVariable(required = false) Integer pageNum,
+                                         @PathVariable(required = false) Integer pageSize
+    ) {
+        //条件查询的HashMap，若没有条件查询默认为null
+        HashMap<String, String> features = null;
+        //条件查询是POST方法，此处判断POST
+        if (request.getMethod().equals("POST")) {
+            //获取查询条件，并放置到HashMap中
+            features = new HashMap<>();
+            String startTime = request.getParameter("startTime");
+            String endTime = request.getParameter("endTime");
+            try {
+                //开始结束时间转化为时间戳
+                if (!ObjectUtil.isEmptyString(startTime)) features.put("startTime", DateUtil.toTimestamp(startTime));
+                if (!ObjectUtil.isEmptyString(endTime)) features.put("endTime", DateUtil.toTimestamp(endTime));
+            } catch (ParseException e) {
+                log.error("转化为时间戳失败！", e);
+            }
+            //监测点、监测类型、监测值
+            String monitorValue = request.getParameter("monitorValue");
+            if (!ObjectUtil.isEmptyString(monitorValue)) features.put("monitorValue", monitorValue);
+            String company = request.getParameter("company");
+            if(!ObjectUtil.isEmptyString(company)) features.put("company",company);
+
+            //返回前端，方便下一次筛选
+            request.setAttribute("startTime", startTime);
+            request.setAttribute("endTime", endTime);
+            request.setAttribute("monitorValue", features.get("monitorValue"));
+            request.setAttribute("company", company);
+        }
+        //查询数据库
+        PageInfo<AlarmRecordCompanyHighEntity> allAlarmRecordsHigh = alarmService.getAlarmRecordsHighByPage(pageNum, pageSize, features);
+        if (allAlarmRecordsHigh == null) {
+            log.error("高级报警记录页面失败！");
+            return "500";
+        }
+        if (!alarmService.setAttributeHigh(request)) {
+            log.info("高级报警记录页面失败！");
+            log.error("高级报警记录页面失败！");
+            return "500";
+        }
+        request.setAttribute("recordsHigh", allAlarmRecordsHigh);
+        return Constants.ALARMREOCRDSHIGH;
     }
 
     @RequestMapping("/testRtmp")

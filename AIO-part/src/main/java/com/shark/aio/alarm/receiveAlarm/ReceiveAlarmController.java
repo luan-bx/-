@@ -9,7 +9,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -33,7 +32,7 @@ public class ReceiveAlarmController  implements ApplicationRunner {
     }
     public void receiveAlarm() {
         try {
-            ServerSocket serverSocket = new ServerSocket(9999);
+            ServerSocket serverSocket = new ServerSocket(9997);
             int count = 0;//记录客户端的数量
             System.out.println("服务器启动，等待客户端的连接。。。");
             Socket socket = null;
@@ -43,9 +42,9 @@ public class ReceiveAlarmController  implements ApplicationRunner {
                 Thread serverHandleThread = new Thread(new ServerHandleThread(socket, receiveAlarmMapping));
                 serverHandleThread.setPriority(4);
                 serverHandleThread.start();
-                System.out.println("上线的客户端有" + count + "个！");
-                InetAddress inetAddress = socket.getInetAddress();
-                System.out.println("当前客户端的IP地址是：" + inetAddress.getHostAddress());
+//                System.out.println("上线的客户端有" + count + "个！");
+//                InetAddress inetAddress = socket.getInetAddress();
+//                System.out.println("当前客户端的IP地址是：" + inetAddress.getHostAddress());
             }
         } catch (IOException e) {//TODO Auto-generated catch block
             e.printStackTrace();

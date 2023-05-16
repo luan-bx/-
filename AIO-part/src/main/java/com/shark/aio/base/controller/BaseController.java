@@ -51,8 +51,9 @@ public class BaseController {
 ////		 * 根据用户名，查询权限，返回对应首页
 ////		 */
 		UserEntity userEntity = userMapping.queryUserByUserName(userName);
-////		return authController.auth(userEntity, userName, req, response);
-////		return "wastedWater";
+		if(userEntity == null){
+			return Constants.LOGIN;
+		}
 		req.getSession().setAttribute("iconPath",userEntity.getIcon());
 		req.getSession().setAttribute("userName",userEntity.getUserName());
 		req.getSession().setMaxInactiveInterval(0);

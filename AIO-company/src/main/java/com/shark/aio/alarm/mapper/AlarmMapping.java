@@ -1,5 +1,7 @@
 package com.shark.aio.alarm.mapper;
 
+import com.shark.aio.alarm.entity.AlarmRecordCompanyHighEntity;
+import com.shark.aio.alarm.entity.AlarmRecordCompanyMediumEntity;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import com.shark.aio.alarm.service.AlarmService;
@@ -12,14 +14,15 @@ import java.util.List;
 public interface AlarmMapping {
 
 
-
+    @Select("select device_id from monitor_device")
+    List<String> getAllDeviceId();
 
     /**
      * 查询所有预警设置
      * @return 所有预警设置List
      */
     @Select("select * from alarm_settings")
-    public List<AlarmSettingsEntity> getAllAlarmSettings();
+    List<AlarmSettingsEntity> getAllAlarmSettings();
 
     /**
      * 查询某类监测项目的数据
@@ -131,13 +134,18 @@ public interface AlarmMapping {
     @Insert("INSERT INTO `alarm_records` values (null,#{alarmTime},#{monitor},#{monitorClass},#{monitorValue},#{monitorData},#{message})")
     void insertalarmRecords(AlarmRecordEntity alarmRecordentity);
 
+
     /**
      * 查询所有报警记录
      * @return 报警记录List
      */
     @Select("SELECT * FROM `alarm_records`")
-    public List<AlarmRecordEntity> getAllAlarmRecords();
+    List<AlarmRecordEntity> getAllAlarmRecords();
 
+    @Select("SELECT * FROM `alarm_records_company_high`")
+    List<AlarmRecordCompanyHighEntity> getAllAlarmRecordsHigh();
+    @Select("SELECT * FROM `alarm_records_company_medium`")
+    List<AlarmRecordCompanyMediumEntity> getAllAlarmRecordsMedium();
 
     /**
      * 根据条件查询报警记录
@@ -145,8 +153,13 @@ public interface AlarmMapping {
      * @return 报警记录List
      */
     @SelectProvider(type = AlarmService.class, method = "selectRecordsByDynamicSql")
-    public List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
+    List<AlarmRecordEntity> getAlarmRecordsByFeature(HashMap<String,String> features);
 
+    @SelectProvider(type = AlarmService.class, method = "selectRecordsMediumByDynamicSql")
+    List<AlarmRecordCompanyMediumEntity> getAlarmRecordsMediumByFeature(HashMap<String,String> features);
+
+    @SelectProvider(type = AlarmService.class, method = "selectRecordsHighByDynamicSql")
+    List<AlarmRecordCompanyHighEntity> getAlarmRecordsByHighFeature(HashMap<String,String> features);
 
 
 }

@@ -44,7 +44,7 @@
 
       <!-- 主页面 -->
       <div class="right_col" role="main">
-        <div class="" th:object="${records}" th:with="baseURL='/alarm/records'">
+        <div class="" th:object="${records}" th:with="baseURL='/alarm/recordsLow'">
           <div class="page-title">
             <div class="title_left">
               <h3><small>报警通知</small></h3>
@@ -64,7 +64,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>预警设置</h2>
+                  <h2>低级预警</h2>
 
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -94,7 +94,7 @@
                       </div>
                     </div>
                     <div class="col-sm-10">
-                          <form th:action="@{/alarm/records}" method="post">
+                          <form th:action="@{/alarm/recordsLow}" method="post">
                             <fieldset>
                               <div class="control-group">
                                 <div class="controls">

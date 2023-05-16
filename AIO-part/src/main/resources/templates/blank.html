@@ -56,7 +56,7 @@
         <div class="col-md-3 left_col" th:fragment="menu">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="" class="site_title"><i class="fa fa-paw"></i> <span>智能一体机</span></a>
+                    <a th:href="@{/}" class="site_title"><i class="fa fa-paw"></i> <span>智能一体机</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -94,7 +94,9 @@
                                 <ul class="nav child_menu">
                                     <li><a th:href="@{/alarm/records}"> 告警通知 </a></li>
                                     <li><a th:href="@{/alarm/settings}"> 预警设置 </a></li>
-                                    <li><a th:href="@{/alarm/companyRecord}"> 企业告警通知 </a></li>
+                                    <li><a th:href="@{/alarm/recordsLow}"> 企业低级预警 </a></li>
+                                    <li><a th:href="@{/alarm/recordsMedium}"> 企业中级预警 </a></li>
+                                    <li><a th:href="@{/alarm/recordsHigh}"> 企业高级预警 </a></li>
                                 </ul>
                             </li>
                             <li><a th:href="@{/documentManagement}"><i class="fa fa-folder-open"></i>文件管理</a></li>

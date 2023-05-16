@@ -44,7 +44,7 @@
 
       <!-- 主页面 -->
       <div class="right_col" role="main">
-        <div class="" th:object="${alarmRecordCompanyEntity}" th:with="baseURL='/alarm/companyRecord'">
+        <div class="" th:object="${recordsMedium}" th:with="baseURL='/alarm/recordsMedium'">
           <div class="page-title">
             <div class="title_left">
               <h3><small>报警通知</small></h3>
@@ -64,7 +64,7 @@
             <div class="col-md-12 col-sm-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>预警设置</h2>
+                  <h2>中级预警</h2>
 
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -94,7 +94,7 @@
                       </div>
                     </div>
                     <div class="col-sm-10">
-                          <form th:action="@{/alarm/companyRecord}" method="post">
+                          <form th:action="@{/alarm/recordsMedium}" method="post">
                             <fieldset>
                               <div class="control-group">
                                 <div class="controls">
@@ -104,16 +104,16 @@
                                   <div class="input-prepend input-group col-sm-2">
                                     <input type="text" name="endTime" class="form-control" placeholder="结束时间"  onfocus="(this.type='datetime-local')"  onblur="(this.type='text')" th:value="${endTime}"/>
                                   </div>
-<!--                                  <div class="input-prepend input-group col-sm-2">-->
-<!--                                    <select class="form-control" name="monitor">-->
-<!--                                      <option value="">监测点</option>-->
-<!--                                      <option value="监测点1" th:selected="${monitor} eq '监测点1'">监测点1</option>-->
-<!--                                    </select>-->
-<!--                                  </div>-->
                                   <div class="input-prepend input-group col-sm-2">
                                     <select class="form-control" name="company">
                                       <option value="">企业名称</option>
                                       <option th:each="cp:${allCompany}" th:value="${cp}" th:text="${cp}" th:selected="${cp} eq ${company}"></option>
+                                    </select>
+                                  </div>
+                                  <div class="input-prepend input-group col-sm-2">
+                                    <select class="form-control" name="monitorName">
+                                      <option value="">监测点</option>
+                                      <option th:each="mt:${allMonitor}" th:value="${mt}" th:text="${mt}" th:selected="${mt} eq ${monitorName}">监测点1</option>
                                     </select>
                                   </div>
                                   <div class="input-prepend input-group col-sm-2">
@@ -122,13 +122,12 @@
                                       <option th:each="mc:${allMonitorClass}" th:value="${mc}" th:text="${mc}" th:selected="${mc} eq ${monitorClass}"></option>
                                     </select>
                                   </div>
-                                  <div class="input-prepend input-group col-sm-2">
-                                    <select class="form-control" name="monitorValue">
-                                      <option value="">监测值</option>
-                                      <option th:each="pn:${allPollutionName}" th:value="${pn}" th:text="${pn}" th:selected="${pn} eq ${monitorValue}"></option>
-                                    </select>
-                                  </div>
-
+<!--                                  <div class="input-prepend input-group col-sm-2">-->
+<!--                                    <select class="form-control" name="deviceId">-->
+<!--                                      <option value="">设备Id</option>-->
+<!--                                      <option th:each="pn:${allDeviceId}" th:value="${pn}" th:text="${pn}" th:selected="${pn} eq ${deviceId}"></option>-->
+<!--                                    </select>-->
+<!--                                  </div>-->
                                   <div class="input-prepend input-group col-sm-2">
                                     <input type="submit" class="btn btn-primary btn-sm" value="搜索" style="margin-top: 5px;">
                                   </div>
@@ -147,10 +146,8 @@
                       <th>企业名称</th>
                       <th>监测点</th>
                       <th>监测类型</th>
-                      <th>监测值</th>
-                      <th>监测数据</th>
+                      <th>设备Id</th>
                       <th>报警信息</th>
-
                     </tr>
                     </thead>
                     <tbody style="text-align: center">
@@ -158,12 +155,10 @@
                       <th scope="row" th:text="${objStat.index}+*{startRow}">1</th>
                       <td th:text="${#dates.format(obj.alarmTime,'yyyy年MM月dd日 HH:mm')}"></td>
                       <td th:text="${obj.company}"></td>
-                      <td th:text="${obj.monitor}"></td>
+                      <td th:text="${obj.monitorName}"></td>
                       <td th:text="${obj.monitorClass}"></td>
-                      <td th:text="${obj.monitorValue}"></td>
-                      <td th:text="${obj.monitorData}"></td>
+                      <td th:text="${obj.deviceId}"></td>
                       <td th:text="${obj.message}"></td>
-
                     </tr>
                     </tbody>
                   </table>

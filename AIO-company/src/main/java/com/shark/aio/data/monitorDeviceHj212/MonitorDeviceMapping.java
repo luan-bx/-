@@ -1,9 +1,11 @@
 package com.shark.aio.data.monitorDeviceHj212;
 
+import com.shark.aio.alarm.entity.AlarmRecordCompanyMediumEntity;
 import com.shark.aio.alarm.entity.AlarmRecordEntity;
 import com.shark.aio.alarm.entity.AlarmSettingsEntity;
 import org.apache.ibatis.annotations.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -37,6 +39,15 @@ public interface MonitorDeviceMapping {
     @Insert("INSERT INTO `alarm_records` (`alarm_time`, `monitor`, `monitor_class`, `monitor_value`, `monitor_data` , `message`) " +
             "VALUES (#{alarmTime}, #{monitor}, #{monitorClass}, #{monitorValue}, #{monitorData}, #{message}  );")
     void insertAlarmRecordEntity(AlarmRecordEntity alarmRecordEntity);
+
+    @Insert("INSERT INTO `alarm_records_company_medium`(`alarm_time`, `company`, `monitor_name`, `monitor_class`, `device_id`, `message`) " +
+            " VALUES( #{alarmTime}, #{company}, #{monitorName}, #{monitorClass}, #{deviceId}, #{message});")
+    void insertAlarmRecordCompanyMedium(AlarmRecordCompanyMediumEntity alarmRecordCompanyMediumEntity);
+
+    @Insert("INSERT INTO `alarm_records_company_high`(`alarm_time`, `company`, `key`,  `message`) " +
+            " VALUES( #{alarmTime}, #{company}, #{key}, #{message});")
+    void insertAlarmRecordCompanyHigh(Timestamp alarmTime, String company, String key, String message);
+
 
     @Insert("INSERT INTO `monitor_device` (`monitor_name`, `monitor_class`, `device_id`) VALUES (#{monitorName}, #{monitorClass}, #{deviceId});")
     void insert(MonitorDeviceEntity monitorDeviceEntity);
